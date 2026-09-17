@@ -45,6 +45,11 @@ jobs:
 
       - run: pip install -r scraper/requirements.txt
 
+      - name: Completar la cadena de certificados
+        # El servidor de CFE no manda los intermedios; en Linux eso rompe la
+        # verificación TLS. Esto los descarga y exporta REQUESTS_CA_BUNDLE.
+        run: cd scraper && python3 preparar_tls.py --github-env
+
       - name: Verificar que el parser siga funcionando
         run: cd scraper && python3 test_parser.py
 

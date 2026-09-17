@@ -43,11 +43,13 @@ def main():
     ap.add_argument("--estados", nargs="*", help="nombres de estado; omitir = todos")
     ap.add_argument("--rehacer", action="store_true")
     ap.add_argument("--pausa", type=float, default=1.5)
+    ap.add_argument("--inseguro", action="store_true",
+                    help="salta la verificación TLS; último recurso")
     args = ap.parse_args()
 
     cat = {"generado": None, "fuente": cfe.PAGINAS["GDMTH"], "estados": {}} if args.rehacer else cargar()
 
-    s = cfe.SesionCFE("GDMTH", pausa=args.pausa).abrir()
+    s = cfe.SesionCFE("GDMTH", pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
     estados = s.estados()
     if args.estados:
         querer = {P.normalizar(e) for e in args.estados}

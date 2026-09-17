@@ -73,6 +73,8 @@ def main():
                     help="solo lo que no esté capturado (modo cron)")
     ap.add_argument("--rehacer", action="store_true")
     ap.add_argument("--pausa", type=float, default=1.5)
+    ap.add_argument("--inseguro", action="store_true",
+                    help="salta la verificación TLS; último recurso")
     args = ap.parse_args()
 
     catalogo = cargar(CATALOGO, None)
@@ -93,7 +95,7 @@ def main():
                                "registros": {}})
     registros = tarifas["registros"]
 
-    s = cfe.SesionCFE(args.tarifa, pausa=args.pausa).abrir()
+    s = cfe.SesionCFE(args.tarifa, pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
 
     # Los horarios vienen en cualquier respuesta de la página.
     escribir(HORARIOS, {"generado": ahora(), "fuente": s.url, "zonas": s.horarios()})

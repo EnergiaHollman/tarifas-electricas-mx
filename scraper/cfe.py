@@ -12,6 +12,7 @@ cuesta 12 postbacks en lugar de 60.
 Uso previsto: una corrida mensual. No está pensado para consultas en vivo;
 para eso está la API, que lee del JSON ya capturado.
 """
+import os
 import time
 
 import requests
@@ -27,7 +28,7 @@ PAGINAS = {
 }
 
 AGENTE = ("tarifas-gdmth/1.0 (consulta mensual automatizada de tarifas "
-          "publicas; https://github.com/EnergiaHollman/tarifas-electricas-mx/)")
+          "publicas; https://github.com/USUARIO/REPO)")
 
 
 class ErrorCFE(RuntimeError):
@@ -37,7 +38,8 @@ class ErrorCFE(RuntimeError):
 class SesionCFE:
     """Una sesión contra una página de tarifas."""
 
-    def __init__(self, tarifa="GDMTH", pausa=1.5, timeout=45, reintentos=3):
+    def __init__(self, tarifa="GDMTH", pausa=1.5, timeout=45, reintentos=3,
+                 verificar_tls=None):
         if tarifa not in PAGINAS:
             raise ErrorCFE(f"tarifa desconocida: {tarifa}")
         self.tarifa = tarifa
@@ -46,6 +48,16 @@ class SesionCFE:
         self.timeout = timeout
         self.reintentos = reintentos
         self.html = None
+        # El servidor de CFE no manda la cadena completa de certificados, y en
+        # Linux eso rompe la verificación. preparar_tls.py arma un bundle que
+        # sí la trae; requests lo toma solo de REQUESTS_CA_BUNDLE.
+        if verificar_tls is None:
+            verificar_tls = os.environ.get("CFE_TLS_INSEGURO", "") not in ("1", "true", "si")
+        self.verificar = verificar_tls
+        if not self.verificar:
+            import urllib3
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+            print("AVISO: verificación TLS desactivada.")
         self.s = requests.Session()
         self.s.headers.update({
             "User-Agent": AGENTE,
@@ -58,7 +70,8 @@ class SesionCFE:
         ultimo = None
         for intento in range(self.reintentos):
             try:
-                r = self.s.request(metodo, self.url, timeout=self.timeout, **kw)
+                r = self.s.request(metodo, self.url, timeout=self.timeout,
+                                   verify=self.verificar, **kw)
                 r.raise_for_status()
                 if "__VIEWSTATE" not in r.text:
                     raise ErrorCFE("la respuesta no parece la página de tarifas")

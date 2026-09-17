@@ -201,6 +201,7 @@ los despliegues anteriores.
 | Ruta | Qué es |
 |---|---|
 | `scraper/parser.py` | Parseo del HTML. Lo único frágil ante rediseños de CFE |
+| `scraper/preparar_tls.py` | Completa la cadena de certificados que CFE no manda |
 | `scraper/cfe.py` | Cliente WebForms: sesión y cadena de postbacks |
 | `scraper/construir_catalogo.py` | Municipio → región tarifaria. Se corre una vez |
 | `scraper/actualizar_tarifas.py` | Captura de cargos y horarios. Lo que corre el cron |

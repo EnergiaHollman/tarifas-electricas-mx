@@ -478,6 +478,33 @@ CFE rediseñó la página. Procedimiento:
 
 Los datos ya capturados no se tocan y la API sigue sirviendo mientras tanto.
 
+### Error de TLS: CERTIFICATE_VERIFY_FAILED
+
+El servidor de CFE no manda la cadena completa de certificados. Windows y los
+navegadores lo compensan solos, por eso en tu equipo funciona y en Linux no.
+
+Los workflows ya traen un paso que lo resuelve: `preparar_tls.py` descarga los
+intermedios faltantes y arma un bundle de CA completo. En local:
+
+```
+cd scraper
+python3 preparar_tls.py
+set REQUESTS_CA_BUNDLE=C:\dev\tarifas-mx\scraper\ca_bundle.pem
+```
+
+El script te dice la ruta exacta al terminar.
+
+Si aun así falla, la salida te dice quién emite el certificado. Puede ser que
+la raíz no esté en el almacén estándar. Último recurso, agregando `--inseguro`
+al comando del scraper, que salta la verificación:
+
+```
+python3 actualizar_tarifas.py --regiones NOROESTE --desde 2026 --inseguro
+```
+
+Los datos son públicos y de solo lectura, así que el riesgo es bajo, pero
+solo úsalo si lo anterior no funcionó.
+
 ### El Action falla capturando, con error de conexión
 
 CFE tiene el sitio caído o lento. Vuelve a lanzar el workflow más tarde. Si
