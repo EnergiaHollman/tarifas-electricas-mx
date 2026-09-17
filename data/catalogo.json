@@ -3,9 +3,423 @@
   "SONORA": {
    "id": "26",
    "municipios": {
+    "ACONCHI": {
+     "id": "1879",
+     "nombre": "ACONCHI",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "AGUA PRIETA": {
+     "id": "1880",
+     "nombre": "AGUA PRIETA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "ALAMOS": {
+     "id": "1881",
+     "nombre": "ALAMOS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "ALTAR": {
+     "id": "1882",
+     "nombre": "ALTAR",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "ARIVECHI": {
+     "id": "1883",
+     "nombre": "ARIVECHI",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "ARIZPE": {
+     "id": "1884",
+     "nombre": "ARIZPE",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "ATIL": {
+     "id": "1885",
+     "nombre": "ATIL",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "BACADEHUACHI": {
+     "id": "1886",
+     "nombre": "BACADEHUACHI",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "BACANORA": {
+     "id": "1887",
+     "nombre": "BACANORA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "BACERAC": {
+     "id": "1888",
+     "nombre": "BACERAC",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "BACOACHI": {
+     "id": "1889",
+     "nombre": "BACOACHI",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "BACUM": {
+     "id": "1890",
+     "nombre": "BACUM",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "BANAMICHI": {
+     "id": "1891",
+     "nombre": "BANAMICHI",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "BAVIACORA": {
+     "id": "1892",
+     "nombre": "BAVIACORA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "BAVISPE": {
+     "id": "1893",
+     "nombre": "BAVISPE",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "BENITO JUAREZ": {
+     "id": "1894",
+     "nombre": "BENITO JUAREZ",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "BENJAMIN HILL": {
+     "id": "1895",
+     "nombre": "BENJAMIN HILL",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "CABORCA": {
+     "id": "1896",
+     "nombre": "CABORCA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "CAJEME": {
+     "id": "1897",
+     "nombre": "CAJEME",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "CANANEA": {
+     "id": "1898",
+     "nombre": "CANANEA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "CARBO": {
+     "id": "1899",
+     "nombre": "CARBO",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "CUCURPE": {
+     "id": "1900",
+     "nombre": "CUCURPE",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "CUMPAS": {
+     "id": "1901",
+     "nombre": "CUMPAS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "DIVISADEROS": {
+     "id": "1902",
+     "nombre": "DIVISADEROS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "EMPALME": {
+     "id": "1903",
+     "nombre": "EMPALME",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "ETCHOJOA": {
+     "id": "1904",
+     "nombre": "ETCHOJOA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "FRONTERAS": {
+     "id": "1905",
+     "nombre": "FRONTERAS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "GRANADOS": {
+     "id": "1906",
+     "nombre": "GRANADOS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "GUAYMAS": {
+     "id": "1907",
+     "nombre": "GUAYMAS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "HERMOSILLO": {
+     "id": "1908",
+     "nombre": "HERMOSILLO",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "HUACHINERA": {
+     "id": "1909",
+     "nombre": "HUACHINERA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "HUASABAS": {
+     "id": "1910",
+     "nombre": "HUASABAS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "HUATABAMPO": {
+     "id": "1911",
+     "nombre": "HUATABAMPO",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "HUEPAC": {
+     "id": "1912",
+     "nombre": "HUEPAC",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "IMURIS": {
+     "id": "1913",
+     "nombre": "IMURIS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "LA COLORADA": {
+     "id": "1914",
+     "nombre": "LA COLORADA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "MAGDALENA": {
+     "id": "1915",
+     "nombre": "MAGDALENA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "MAZATAN": {
+     "id": "1916",
+     "nombre": "MAZATAN",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "MOCTEZUMA": {
+     "id": "1917",
+     "nombre": "MOCTEZUMA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "NACO": {
+     "id": "1918",
+     "nombre": "NACO",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "NACORI CHICO": {
+     "id": "1919",
+     "nombre": "NACORI CHICO",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "NACOZARI DE GARCIA": {
+     "id": "1920",
+     "nombre": "NACOZARI DE GARCIA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
     "NAVOJOA": {
      "id": "1921",
      "nombre": "NAVOJOA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "NOGALES": {
+     "id": "1922",
+     "nombre": "NOGALES",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "ONAVAS": {
+     "id": "1923",
+     "nombre": "ONAVAS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "OPODEPE": {
+     "id": "1924",
+     "nombre": "OPODEPE",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "OQUITOA": {
+     "id": "1925",
+     "nombre": "OQUITOA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "PITIQUITO": {
+     "id": "1926",
+     "nombre": "PITIQUITO",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "PUERTO PENASCO": {
+     "id": "1927",
+     "nombre": "PUERTO PENASCO",
+     "region": "BAJA CALIFORNIA",
+     "region_id": "1"
+    },
+    "QUIRIEGO": {
+     "id": "1928",
+     "nombre": "QUIRIEGO",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "RAYON": {
+     "id": "1929",
+     "nombre": "RAYON",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "ROSARIO": {
+     "id": "1930",
+     "nombre": "ROSARIO",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SAHUARIPA": {
+     "id": "1931",
+     "nombre": "SAHUARIPA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SAN FELIPE DE JESUS": {
+     "id": "1932",
+     "nombre": "SAN FELIPE DE JESUS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SAN IGNACIO RIO MUERTO": {
+     "id": "1933",
+     "nombre": "SAN IGNACIO RIO MUERTO",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SAN JAVIER": {
+     "id": "1934",
+     "nombre": "SAN JAVIER",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SAN LUIS RIO COLORADO": {
+     "id": "1935",
+     "nombre": "SAN LUIS RIO COLORADO",
+     "region": "BAJA CALIFORNIA",
+     "region_id": "1"
+    },
+    "SAN MIGUEL DE HORCASITAS": {
+     "id": "1936",
+     "nombre": "SAN MIGUEL DE HORCASITAS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SAN PEDRO DE LA CUEVA": {
+     "id": "1937",
+     "nombre": "SAN PEDRO DE LA CUEVA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SANTA ANA": {
+     "id": "1938",
+     "nombre": "SANTA ANA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SANTA CRUZ": {
+     "id": "1939",
+     "nombre": "SANTA CRUZ",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SARIC": {
+     "id": "1940",
+     "nombre": "SARIC",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SOYOPA": {
+     "id": "1941",
+     "nombre": "SOYOPA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "SUAQUI GRANDE": {
+     "id": "1942",
+     "nombre": "SUAQUI GRANDE",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "TEPACHE": {
+     "id": "1943",
+     "nombre": "TEPACHE",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "TRINCHERAS": {
+     "id": "1944",
+     "nombre": "TRINCHERAS",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "TUBUTAMA": {
+     "id": "1945",
+     "nombre": "TUBUTAMA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "VILLA HIDALGO": {
+     "id": "1946",
+     "nombre": "VILLA HIDALGO",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "VILLA PESQUEIRA": {
+     "id": "1947",
+     "nombre": "VILLA PESQUEIRA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    },
+    "YECORA": {
+     "id": "1948",
+     "nombre": "YECORA",
      "region": "NOROESTE",
      "region_id": "18"
     }
@@ -14,6 +428,6 @@
   }
  },
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
- "generado": "2026-09-17T21:44:34+00:00",
+ "generado": "2026-09-17T23:14:21+00:00",
  "parcial": true
 }

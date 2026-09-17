@@ -1,7 +1,711 @@
 {
- "actualizado": "2026-09-17T21:44:34+00:00",
+ "actualizado": "2026-09-17T23:15:18+00:00",
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
  "registros": {
+  "GDMTH|BAJA CALIFORNIA|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.6124,
+    "capacidad": 357.99,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 0.951,
+    "punta": 1.2837
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.6124
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 0.951
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.2837
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 357.99
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:14:32+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 1,
+   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "periodo_cfe": "ENE-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.6126,
+    "capacidad": 358.2,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 0.9515,
+    "punta": 1.2844
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.6126
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 0.9515
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.2844
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 358.2
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:14:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 2,
+   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "periodo_cfe": "FEB-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.6129,
+    "capacidad": 358.41,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 0.9519,
+    "punta": 1.285
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.6129
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 0.9519
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.285
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 358.41
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:14:37+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 3,
+   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "periodo_cfe": "MAR-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.6129,
+    "capacidad": 358.4,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 0.9519,
+    "punta": 1.285
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.6129
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 0.9519
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.285
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 358.4
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:14:39+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 4,
+   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "periodo_cfe": "ABR-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.6087,
+    "capacidad": 354.82,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 0.9443,
+    "punta": 1.2741
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.6087
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 0.9443
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.2741
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 354.82
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:14:42+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 5,
+   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "periodo_cfe": "MAY-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.6046,
+    "capacidad": 351.29,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 0.9369,
+    "punta": 1.2633
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.6046
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 0.9369
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.2633
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 351.29
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:14:44+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 6,
+   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "periodo_cfe": "JUN-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.5964,
+    "capacidad": 344.26,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 0.922,
+    "punta": 1.242
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.5964
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 0.922
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.242
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 344.26
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:14:46+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 7,
+   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "periodo_cfe": "JUL-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.5964,
+    "capacidad": 344.27,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 0.922,
+    "punta": 1.242
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.5964
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 0.922
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.242
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 344.27
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:14:49+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 8,
+   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "periodo_cfe": "AGO-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.5964,
+    "capacidad": 344.27,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 0.922,
+    "punta": 1.242
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.5964
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 0.922
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.242
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 344.27
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:14:51+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 9,
+   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "periodo_cfe": "SEP-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|NOROESTE|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9706,
+    "capacidad": 392.2,
+    "distribucion": 90.85,
+    "fijo": 197.77,
+    "intermedia": 1.5557,
+    "punta": 1.7244
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9706
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5557
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.7244
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 392.2
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:15:00+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 1,
+   "municipio_consultado": "ACONCHI, SONORA",
+   "periodo_cfe": "ENE-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|NOROESTE|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.971,
+    "capacidad": 392.43,
+    "distribucion": 90.85,
+    "fijo": 197.77,
+    "intermedia": 1.5565,
+    "punta": 1.7253
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.971
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5565
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.7253
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 392.43
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:15:02+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 2,
+   "municipio_consultado": "ACONCHI, SONORA",
+   "periodo_cfe": "FEB-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|NOROESTE|2026-03": {
    "anio": 2026,
    "cargos": {
@@ -55,6 +759,390 @@
    "mes": 3,
    "municipio_consultado": "NAVOJOA, SONORA",
    "periodo_cfe": "MAR-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|NOROESTE|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9714,
+    "capacidad": 392.65,
+    "distribucion": 90.85,
+    "fijo": 197.77,
+    "intermedia": 1.5572,
+    "punta": 1.7261
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9714
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5572
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.7261
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 392.65
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:15:04+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 4,
+   "municipio_consultado": "ACONCHI, SONORA",
+   "periodo_cfe": "ABR-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|NOROESTE|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9637,
+    "capacidad": 388.73,
+    "distribucion": 90.85,
+    "fijo": 197.77,
+    "intermedia": 1.5436,
+    "punta": 1.7108
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9637
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5436
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.7108
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 388.73
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:15:07+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 5,
+   "municipio_consultado": "ACONCHI, SONORA",
+   "periodo_cfe": "MAY-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|NOROESTE|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.956,
+    "capacidad": 384.86,
+    "distribucion": 90.85,
+    "fijo": 197.77,
+    "intermedia": 1.5302,
+    "punta": 1.6958
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.956
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5302
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.6958
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 384.86
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:15:09+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 6,
+   "municipio_consultado": "ACONCHI, SONORA",
+   "periodo_cfe": "JUN-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|NOROESTE|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9408,
+    "capacidad": 377.16,
+    "distribucion": 90.85,
+    "fijo": 197.77,
+    "intermedia": 1.5035,
+    "punta": 1.6657
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9408
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5035
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.6657
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 377.16
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:15:11+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 7,
+   "municipio_consultado": "ACONCHI, SONORA",
+   "periodo_cfe": "JUL-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|NOROESTE|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9408,
+    "capacidad": 377.17,
+    "distribucion": 90.85,
+    "fijo": 197.77,
+    "intermedia": 1.5035,
+    "punta": 1.6657
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9408
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5035
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.6657
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 377.17
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:15:14+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 8,
+   "municipio_consultado": "ACONCHI, SONORA",
+   "periodo_cfe": "AGO-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|NOROESTE|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9408,
+    "capacidad": 377.17,
+    "distribucion": 90.85,
+    "fijo": 197.77,
+    "intermedia": 1.5035,
+    "punta": 1.6658
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9408
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5035
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.6658
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 377.17
+    }
+   ],
+   "fecha_captura": "2026-09-17T23:15:16+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 9,
+   "municipio_consultado": "ACONCHI, SONORA",
+   "periodo_cfe": "SEP-26",
    "region": "NOROESTE",
    "tarifa": "GDMTH",
    "unidades": {
