@@ -25,7 +25,7 @@ import urllib.request
 
 import certifi
 from cryptography import x509
-from cryptography.hazmat.primitives.serialization import Encoding
+from cryptography.hazmat.primitives.serialization import Encoding, pkcs7
 
 HOST_POR_OMISION = "app.cfe.mx"
 DESTINO = pathlib.Path(__file__).parent / "ca_bundle.pem"
@@ -54,13 +54,26 @@ def url_emisor(cert):
 
 
 def descargar(url, timeout=30):
-    """Los emisores suelen publicarse en DER; certifi necesita PEM."""
+    """Descarga el emisor. Devuelve lista: un .p7c trae varios certificados.
+
+    Se publican en tres formatos y hay que aceptar los tres: DER suelto, PEM
+    suelto y PKCS#7 (.p7c / .p7b), que es un contenedor.
+    """
     with urllib.request.urlopen(url, timeout=timeout) as r:
         datos = r.read()
-    try:
-        return x509.load_der_x509_certificate(datos)
-    except ValueError:
-        return x509.load_pem_x509_certificate(datos)
+    for cargar in (
+        lambda d: [x509.load_der_x509_certificate(d)],
+        lambda d: [x509.load_pem_x509_certificate(d)],
+        lambda d: list(pkcs7.load_der_pkcs7_certificates(d)),
+        lambda d: list(pkcs7.load_pem_pkcs7_certificates(d)),
+    ):
+        try:
+            certs = cargar(datos)
+            if certs:
+                return certs
+        except Exception:                      # noqa: BLE001
+            continue
+    raise ValueError(f"formato de certificado no reconocido en {url}")
 
 
 def nombre(cert_nombre):
@@ -84,9 +97,23 @@ def cadena_faltante(host, maximo=5):
             print("  sin enlace AIA: no hay más intermedios que bajar")
             break
         print(f"  bajando: {url}")
-        cert = descargar(url)
-        print(f"    -> {nombre(cert.subject)}")
-        fuera.append(cert)
+        try:
+            certs = descargar(url)
+        except Exception as e:                 # noqa: BLE001
+            # Un eslabón que falla no invalida los anteriores: lo más probable
+            # es que el que sigue sea una raíz que ya está en certifi.
+            print(f"    no se pudo leer ({e}); se sigue con lo que ya hay")
+            break
+        for c in certs:
+            if c.issuer == c.subject:
+                # Una raíz descargada no se agrega al almacén de confianza:
+                # confiar en algo que acabas de bajar no verifica nada. Si es
+                # legítima, ya viene en certifi.
+                print(f"    -> {nombre(c.subject)} (raíz, no se agrega)")
+            else:
+                print(f"    -> {nombre(c.subject)}")
+                fuera.append(c)
+        cert = certs[0]
     return fuera
 
 
