@@ -8,13 +8,13 @@ on:
   workflow_dispatch:
     inputs:
       estados:
-        description: "Estados para el catálogo, separados por espacio. Vacío = todo el país (tarda ~1 h)."
-        required: false
+        description: "Estados separados por espacio, o TODOS para el país completo (~1 h)."
+        required: true
         default: "SONORA"
       regiones:
-        description: "Regiones a capturar, separadas por espacio. Vacío = todas las del catálogo."
-        required: false
-        default: ""
+        description: "Regiones separadas por espacio, o TODAS."
+        required: true
+        default: "TODAS"
       desde:
         description: "Año inicial (CFE tiene histórico desde 2017)."
         required: false
@@ -54,20 +54,32 @@ jobs:
         run: cd scraper && python3 test_parser.py
 
       - name: Construir catálogo
+        env:
+          ESTADOS: ${{ inputs.estados }}
         run: |
           cd scraper
-          if [ -n "${{ inputs.estados }}" ]; then
-            python3 construir_catalogo.py --pausa 2 --estados ${{ inputs.estados }}
-          else
+          # "TODOS" (o vacío) significa sin filtro: el país completo.
+          if [ -z "$ESTADOS" ] || [ "$ESTADOS" = "TODOS" ]; then
+            echo "Catálogo del país completo."
             python3 construir_catalogo.py --pausa 2
+          else
+            echo "Catálogo de: $ESTADOS"
+            python3 construir_catalogo.py --pausa 2 --estados $ESTADOS
           fi
 
       - name: Capturar cargos
+        env:
+          REGIONES: ${{ inputs.regiones }}
+          DESDE: ${{ inputs.desde }}
+          HASTA: ${{ inputs.hasta }}
         run: |
           cd scraper
-          ARGS="--pausa 2 --desde ${{ inputs.desde }}"
-          [ -n "${{ inputs.hasta }}" ] && ARGS="$ARGS --hasta ${{ inputs.hasta }}"
-          [ -n "${{ inputs.regiones }}" ] && ARGS="$ARGS --regiones ${{ inputs.regiones }}"
+          ARGS="--pausa 2 --desde $DESDE"
+          if [ -n "$HASTA" ]; then ARGS="$ARGS --hasta $HASTA"; fi
+          if [ -n "$REGIONES" ] && [ "$REGIONES" != "TODAS" ]; then
+            ARGS="$ARGS --regiones $REGIONES"
+          fi
+          echo "Ejecutando: actualizar_tarifas.py $ARGS"
           python3 actualizar_tarifas.py $ARGS
 
       - name: Confirmar cambios
