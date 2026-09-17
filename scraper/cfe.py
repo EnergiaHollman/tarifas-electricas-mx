@@ -27,7 +27,7 @@ PAGINAS = {
 }
 
 AGENTE = ("tarifas-gdmth/1.0 (consulta mensual automatizada de tarifas "
-          "publicas; https://github.com/USUARIO/REPO)")
+          "publicas; https://github.com/EnergiaHollman/tarifas-electricas-mx/)")
 
 
 class ErrorCFE(RuntimeError):
