@@ -27,8 +27,8 @@ PAGINAS = {
     "PDBT": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
 }
 
-AGENTE = ("tarifas-gdmth/1.0 (consulta mensual automatizada de tarifas "
-          "publicas; https://github.com/USUARIO/REPO)")
+AGENTE = ("tarifas-electricas-mx/1.0 (consulta mensual automatizada de tarifas "
+          "publicas; https://github.com/EnergiaHollman/tarifas-electricas-mx)")
 
 
 class ErrorCFE(RuntimeError):

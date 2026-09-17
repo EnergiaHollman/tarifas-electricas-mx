@@ -148,7 +148,7 @@ check("404 de ruta", r.status, 404);
 
 console.log("\nMCP");
 r = await rpc("initialize", { protocolVersion: "2025-06-18" });
-check("initialize", r.cuerpo.result.serverInfo.name, "tarifas-gdmth");
+check("initialize", r.cuerpo.result.serverInfo.name, "tarifas-electricas-mx");
 check("anuncia tools", "tools" in r.cuerpo.result.capabilities, true);
 r = await rpc("tools/list", {});
 check("3 herramientas", r.cuerpo.result.tools.map((t) => t.name),

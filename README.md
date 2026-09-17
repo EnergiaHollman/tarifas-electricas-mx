@@ -99,7 +99,7 @@ npx wrangler login          # abre el navegador y autoriza
 npx wrangler deploy
 ```
 
-Te devuelve una URL tipo `https://tarifas-gdmth.TUCUENTA.workers.dev`.
+Te devuelve una URL tipo `https://tarifas-electricas-mx.contacto-746.workers.dev`.
 Pruébala:
 
 ```bash

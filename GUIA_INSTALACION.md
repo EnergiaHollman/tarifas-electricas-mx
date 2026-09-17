@@ -75,7 +75,7 @@ minutos confirmas que todo funciona antes de meter cuentas y tokens.
 
 ### 1.1 Descomprime el proyecto
 
-Descomprime `tarifas-gdmth.zip` donde guardes tus proyectos. Si quieres
+Descomprime el zip del proyecto donde guardes tus proyectos. Si quieres
 renombrar la carpeta a `tarifas-mx`, hazlo ahora.
 
 ### 1.2 Prueba el parser
@@ -176,11 +176,9 @@ escribir.
 
 ### 2.4 Pon tu nombre en la licencia
 
-Abre `LICENSE` y cambia `<TU NOMBRE O EL DE TU EMPRESA>` por lo que
-corresponda. También en `scraper/cfe.py`, la constante `AGENTE` trae
-`https://github.com/USUARIO/REPO`: ponle la URL real de tu repositorio. Es el
-User-Agent con el que el scraper se identifica ante CFE, y conviene que sea
-verdadero.
+Ya vienen puestos el nombre en `LICENSE` y la URL del repositorio en la
+constante `AGENTE` de `scraper/cfe.py` (el User-Agent con el que el scraper se
+identifica ante CFE). Si mueves el repositorio de cuenta, actualiza ambos.
 
 ---
 

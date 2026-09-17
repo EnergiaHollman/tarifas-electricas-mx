@@ -11,7 +11,7 @@
 import { consultarHorarios, consultarTarifa, resumenRegiones } from "./consultas";
 
 const VERSION_PROTOCOLO = "2025-06-18";
-const SERVIDOR = { name: "tarifas-gdmth", version: "1.0.0" };
+const SERVIDOR = { name: "tarifas-electricas-mx", version: "1.0.0" };
 
 const HERRAMIENTAS = [
   {
