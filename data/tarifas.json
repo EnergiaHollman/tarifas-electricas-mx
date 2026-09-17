@@ -1,0 +1,70 @@
+{
+ "actualizado": "2026-09-17T21:44:34+00:00",
+ "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+ "registros": {
+  "GDMTH|NOROESTE|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9715,
+    "capacidad": 392.66,
+    "distribucion": 90.85,
+    "fijo": 197.77,
+    "intermedia": 1.5573,
+    "punta": 1.7262
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9715
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5573
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.7262
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 392.66
+    }
+   ],
+   "fecha_captura": "2026-09-17T21:44:34+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 3,
+   "municipio_consultado": "NAVOJOA, SONORA",
+   "periodo_cfe": "MAR-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  }
+ }
+}

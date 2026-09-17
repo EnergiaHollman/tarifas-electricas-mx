@@ -1,0 +1,57 @@
+name: Actualizar tarifas
+
+# Día 3 de cada mes a las 15:00 UTC (9:00 en el centro de México). CFE suele
+# publicar el mes nuevo a finales del mes anterior, así que el día 3 ya está.
+# También se puede lanzar a mano desde la pestaña Actions.
+on:
+  schedule:
+    - cron: "0 15 3 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias del scraper
+        run: pip install -r scraper/requirements.txt
+
+      - name: Verificar que el parser siga funcionando
+        # Si CFE rediseñó la página, esto falla antes de tocar los datos.
+        run: cd scraper && python3 test_parser.py
+
+      - name: Capturar lo que falte
+        run: cd scraper && python3 actualizar_tarifas.py --faltantes --pausa 2
+
+      - name: Confirmar cambios
+        id: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "sin_cambios=1" >> "$GITHUB_OUTPUT"
+            echo "No hubo datos nuevos."
+          else
+            git commit -m "datos: captura automática $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Probar la API con los datos nuevos
+        if: steps.commit.outputs.sin_cambios != '1'
+        run: cd worker && npm install --no-audit --no-fund esbuild && node pruebas/prueba_api.mjs
+
+      - name: Desplegar
+        if: steps.commit.outputs.sin_cambios != '1'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: worker

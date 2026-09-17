@@ -1,0 +1,6 @@
+name = "tarifas-gdmth"
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+
+# Los JSON de data/ se empaquetan dentro del Worker al hacer deploy.
+# No hay base de datos ni almacenamiento externo: actualizar datos = deploy.

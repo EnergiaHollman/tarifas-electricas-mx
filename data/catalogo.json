@@ -1,0 +1,19 @@
+{
+ "estados": {
+  "SONORA": {
+   "id": "26",
+   "municipios": {
+    "NAVOJOA": {
+     "id": "1921",
+     "nombre": "NAVOJOA",
+     "region": "NOROESTE",
+     "region_id": "18"
+    }
+   },
+   "nombre": "SONORA"
+  }
+ },
+ "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+ "generado": "2026-09-17T21:44:34+00:00",
+ "parcial": true
+}

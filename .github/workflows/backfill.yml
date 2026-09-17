@@ -1,0 +1,91 @@
+name: Backfill (manual)
+
+# Captura histórica a demanda, en los servidores de GitHub. Sirve para el
+# primer llenado y para agregar estados o años después, sin ocupar tu equipo.
+#
+# Actions -> Backfill (manual) -> Run workflow, y llena los campos.
+on:
+  workflow_dispatch:
+    inputs:
+      estados:
+        description: "Estados para el catálogo, separados por espacio. Vacío = todo el país (tarda ~1 h)."
+        required: false
+        default: "SONORA"
+      regiones:
+        description: "Regiones a capturar, separadas por espacio. Vacío = todas las del catálogo."
+        required: false
+        default: ""
+      desde:
+        description: "Año inicial (CFE tiene histórico desde 2017)."
+        required: false
+        default: "2026"
+      hasta:
+        description: "Año final. Vacío = el año en curso."
+        required: false
+        default: ""
+      desplegar:
+        description: "Desplegar la API al terminar."
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    # El catálogo completo con pausa de 2 s puede pasar de una hora.
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r scraper/requirements.txt
+
+      - name: Verificar que el parser siga funcionando
+        run: cd scraper && python3 test_parser.py
+
+      - name: Construir catálogo
+        run: |
+          cd scraper
+          if [ -n "${{ inputs.estados }}" ]; then
+            python3 construir_catalogo.py --pausa 2 --estados ${{ inputs.estados }}
+          else
+            python3 construir_catalogo.py --pausa 2
+          fi
+
+      - name: Capturar cargos
+        run: |
+          cd scraper
+          ARGS="--pausa 2 --desde ${{ inputs.desde }}"
+          [ -n "${{ inputs.hasta }}" ] && ARGS="$ARGS --hasta ${{ inputs.hasta }}"
+          [ -n "${{ inputs.regiones }}" ] && ARGS="$ARGS --regiones ${{ inputs.regiones }}"
+          python3 actualizar_tarifas.py $ARGS
+
+      - name: Confirmar cambios
+        id: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "sin_cambios=1" >> "$GITHUB_OUTPUT"
+            echo "No hubo datos nuevos."
+          else
+            git commit -m "datos: backfill $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Probar la API con los datos nuevos
+        if: steps.commit.outputs.sin_cambios != '1'
+        run: cd worker && npm install --no-audit --no-fund esbuild && node pruebas/prueba_api.mjs
+
+      - name: Desplegar
+        if: inputs.desplegar && steps.commit.outputs.sin_cambios != '1'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: worker
