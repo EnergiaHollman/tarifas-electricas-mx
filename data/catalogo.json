@@ -29746,7 +29746,7 @@
    "BAJA CALIFORNIA"
   ],
   "BAJA CALIFORNIA SUR": [
-   "BAJA CALIFORNIA"
+   "BAJA CALIFORNIA SUR"
   ],
   "BAJIO": [
    "BAJIO"
@@ -29849,6 +29849,6 @@
   ]
  },
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
- "generado": "2026-09-18T18:25:54+00:00",
+ "generado": "2026-09-18T18:34:04+00:00",
  "parcial": true
 }

@@ -1,7 +1,583 @@
 {
- "actualizado": "2026-09-18T18:28:05+00:00",
+ "actualizado": "2026-09-18T18:36:31+00:00",
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
  "registros": {
+  "GDMTH|BAJA CALIFORNIA SUR|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "base": 2.0969,
+    "capacidad": 256.62,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 2.6624,
+    "punta": 3.7478
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 2.0969
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.6624
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 3.7478
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 256.62
+    }
+   ],
+   "fecha_captura": "2026-09-18T18:34:33+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 1,
+   "municipio_consultado": "COMONDU, BAJA CALIFORNIA SUR",
+   "periodo_cfe": "ENE-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA SUR|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "base": 2.098,
+    "capacidad": 256.77,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 2.6639,
+    "punta": 3.7499
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 2.098
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.6639
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 3.7499
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 256.77
+    }
+   ],
+   "fecha_captura": "2026-09-18T18:34:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 2,
+   "municipio_consultado": "COMONDU, BAJA CALIFORNIA SUR",
+   "periodo_cfe": "FEB-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA SUR|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "base": 2.0991,
+    "capacidad": 256.92,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 2.6654,
+    "punta": 3.752
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 2.0991
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.6654
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 3.752
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 256.92
+    }
+   ],
+   "fecha_captura": "2026-09-18T18:34:37+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 3,
+   "municipio_consultado": "COMONDU, BAJA CALIFORNIA SUR",
+   "periodo_cfe": "MAR-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA SUR|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "base": 2.099,
+    "capacidad": 256.91,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 2.6653,
+    "punta": 3.7519
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 2.099
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.6653
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 3.7519
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 256.91
+    }
+   ],
+   "fecha_captura": "2026-09-18T18:34:39+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 4,
+   "municipio_consultado": "COMONDU, BAJA CALIFORNIA SUR",
+   "periodo_cfe": "ABR-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA SUR|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "base": 2.08,
+    "capacidad": 254.35,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 2.6406,
+    "punta": 3.7164
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 2.08
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.6406
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 3.7164
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 254.35
+    }
+   ],
+   "fecha_captura": "2026-09-18T18:34:42+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 5,
+   "municipio_consultado": "COMONDU, BAJA CALIFORNIA SUR",
+   "periodo_cfe": "MAY-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA SUR|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "base": 2.0613,
+    "capacidad": 251.81,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 2.6163,
+    "punta": 3.6813
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 2.0613
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.6163
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 3.6813
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 251.81
+    }
+   ],
+   "fecha_captura": "2026-09-18T18:34:44+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 6,
+   "municipio_consultado": "COMONDU, BAJA CALIFORNIA SUR",
+   "periodo_cfe": "JUN-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA SUR|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "base": 2.0239,
+    "capacidad": 246.78,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 2.5678,
+    "punta": 3.6116
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 2.0239
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.5678
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 3.6116
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 246.78
+    }
+   ],
+   "fecha_captura": "2026-09-18T18:34:46+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 7,
+   "municipio_consultado": "COMONDU, BAJA CALIFORNIA SUR",
+   "periodo_cfe": "JUL-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA SUR|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "base": 2.0239,
+    "capacidad": 246.78,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 2.5678,
+    "punta": 3.6116
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 2.0239
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.5678
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 3.6116
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 246.78
+    }
+   ],
+   "fecha_captura": "2026-09-18T18:34:49+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 8,
+   "municipio_consultado": "COMONDU, BAJA CALIFORNIA SUR",
+   "periodo_cfe": "AGO-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA SUR|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "base": 2.024,
+    "capacidad": 246.78,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 2.5679,
+    "punta": 3.6117
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 2.024
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.5679
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 3.6117
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 246.78
+    }
+   ],
+   "fecha_captura": "2026-09-18T18:34:51+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 9,
+   "municipio_consultado": "COMONDU, BAJA CALIFORNIA SUR",
+   "periodo_cfe": "SEP-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|BAJA CALIFORNIA|2026-01": {
    "anio": 2026,
    "cargos": {
