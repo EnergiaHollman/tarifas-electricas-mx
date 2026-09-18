@@ -23,6 +23,10 @@ on:
         description: "Año final. Vacío = el año en curso."
         required: false
         default: ""
+      olvidar:
+        description: "Regiones a borrar antes de capturar, separadas por espacio. Vacío = ninguna."
+        required: false
+        default: ""
       desplegar:
         description: "Desplegar la API al terminar."
         type: boolean
@@ -72,6 +76,7 @@ jobs:
           REGIONES: ${{ inputs.regiones }}
           DESDE: ${{ inputs.desde }}
           HASTA: ${{ inputs.hasta }}
+          OLVIDAR: ${{ inputs.olvidar }}
         run: |
           cd scraper
           ARGS="--pausa 2 --desde $DESDE"
@@ -79,6 +84,7 @@ jobs:
           if [ -n "$REGIONES" ] && [ "$REGIONES" != "TODAS" ]; then
             ARGS="$ARGS --regiones $REGIONES"
           fi
+          if [ -n "$OLVIDAR" ]; then ARGS="$ARGS --olvidar $OLVIDAR"; fi
           echo "Ejecutando: actualizar_tarifas.py $ARGS"
           python3 actualizar_tarifas.py $ARGS
 

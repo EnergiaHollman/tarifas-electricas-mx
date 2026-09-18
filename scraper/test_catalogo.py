@@ -64,6 +64,12 @@ CATALOGO = {
                 {"id": "30", "etiqueta": "VALLE DE MEXICO NORTE"},
                 {"id": "31", "etiqueta": "CENTRO OCCIDENTE"}]},
         }},
+        "BAJA CALIFORNIA SUR": {"id": "3", "nombre": "BAJA CALIFORNIA SUR", "municipios": {
+            # CFE imprime el encabezado "Baja California" aunque la opción
+            # seleccionada sea Baja California Sur.
+            "COMONDU": {"id": "300", "nombre": "COMONDU", "opciones": [
+                {"id": "50", "etiqueta": "BAJA CALIFORNIA SUR"}]},
+        }},
         "GUANAJUATO": {"id": "11", "nombre": "GUANAJUATO", "municipios": {
             # Una sola opción cuyo texto abarca dos divisiones.
             "SAN LUIS DE LA PAZ": {"id": "1100", "nombre": "SAN LUIS DE LA PAZ",
@@ -81,6 +87,7 @@ POR_OPCION = {
     "31": ["Centro Occidente"],
     "40": ["Bajío", "Golfo Centro"],
     "41": ["Valle de México Centro", "Valle de México Sur"],
+    "50": ["Baja California"],          # encabezado equivocado a propósito
 }
 
 print("Lectura de varias tablas")
@@ -95,8 +102,8 @@ check("parsear_cargos sigue dando la primera", P.normalizar(P.parsear_cargos(h)[
 print("\nPortadores de etiqueta")
 port = A.portadores(CATALOGO)
 check("una entrada por etiqueta distinta", sorted(port),
-      ["BAJIO Y GOLFO CENTRO", "CENTRO OCCIDENTE", "NOROESTE",
-       "VALLE DE MEXICO CENTRO Y SUR", "VALLE DE MEXICO NORTE"])
+      ["BAJA CALIFORNIA SUR", "BAJIO Y GOLFO CENTRO", "CENTRO OCCIDENTE",
+       "NOROESTE", "VALLE DE MEXICO CENTRO Y SUR", "VALLE DE MEXICO NORTE"])
 check("guarda el id de la opción", port["CENTRO OCCIDENTE"][2], "31")
 
 print("\nResolución de etiquetas")
@@ -107,7 +114,9 @@ check("etiqueta simple", exp["NOROESTE"], ["NOROESTE"])
 check("compuesta con prefijo repetido", exp["BAJIO Y GOLFO CENTRO"], ["BAJIO", "GOLFO CENTRO"])
 check("compuesta con prefijo elidido", exp["VALLE DE MEXICO CENTRO Y SUR"],
       ["VALLE DE MEXICO CENTRO", "VALLE DE MEXICO SUR"])
-check("una consulta por etiqueta, no por municipio", len(s.consultas), 5)
+check("con una sola tabla manda la opción, no el encabezado",
+      exp["BAJA CALIFORNIA SUR"], ["BAJA CALIFORNIA SUR"])
+check("una consulta por etiqueta, no por municipio", len(s.consultas), 6)
 check("se guarda en el catálogo", cat["expansiones"]["BAJIO Y GOLFO CENTRO"],
       ["BAJIO", "GOLFO CENTRO"])
 
@@ -120,16 +129,27 @@ reps = A.representantes(cat, exp)
 check("una división real del Valle de México Sur, no 'SUR'",
       "SUR" in reps, False)
 check("todas las divisiones reales cubiertas", sorted(reps),
-      ["BAJIO", "CENTRO OCCIDENTE", "GOLFO CENTRO", "NOROESTE",
-       "VALLE DE MEXICO CENTRO", "VALLE DE MEXICO NORTE", "VALLE DE MEXICO SUR"])
+      ["BAJA CALIFORNIA SUR", "BAJIO", "CENTRO OCCIDENTE", "GOLFO CENTRO",
+       "NOROESTE", "VALLE DE MEXICO CENTRO", "VALLE DE MEXICO NORTE",
+       "VALLE DE MEXICO SUR"])
+check("BCS no se colapsa dentro de BC", "BAJA CALIFORNIA" in reps, False)
 check("prefiere la opción de una sola división",
       reps["VALLE DE MEXICO NORTE"][2], "30")
+check("lleva la etiqueta seleccionada", reps["BAJIO"][3], "BAJIO Y GOLFO CENTRO")
 check("usa la compuesta cuando no hay otra", reps["BAJIO"][2], "40")
 
 print("\nCompatibilidad con catálogos viejos")
 viejo = {"estados": {"SONORA": {"id": "26", "nombre": "SONORA", "municipios": {
     "NAVOJOA": {"id": "1921", "nombre": "NAVOJOA", "region": "NOROESTE", "region_id": "18"}}}}}
 check("se leen sin opciones", A.portadores(viejo)["NOROESTE"][2], "18")
+
+print("\nDivisiones de una respuesta")
+check("una tabla: manda la opción",
+      A.divisiones_de(html_con_regiones(["Baja California"]), "BAJA CALIFORNIA SUR"),
+      ["BAJA CALIFORNIA SUR"])
+check("dos tablas: mandan los encabezados",
+      A.divisiones_de(html_con_regiones(["Bajío", "Golfo Centro"]), "BAJIO Y GOLFO CENTRO"),
+      ["BAJIO", "GOLFO CENTRO"])
 
 print()
 if fallos:

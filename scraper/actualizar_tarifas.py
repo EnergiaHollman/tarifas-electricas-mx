@@ -83,8 +83,7 @@ def resolver_etiquetas(s, catalogo, anio, mes):
         if etiqueta in expansiones:
             continue
         s.consultar(anio, mes, eid, mid, region_id=oid)
-        reales = [P.normalizar(t["region"]) for t in P.parsear_todas(s.html)
-                  if t["cargos"] and t["region"]]
+        reales = divisiones_de(s.html, etiqueta)
         if not reales:
             print(f"   ? {etiqueta}: sin resultados en {anio}-{mes:02d}")
             continue
@@ -94,8 +93,24 @@ def resolver_etiquetas(s, catalogo, anio, mes):
     return expansiones
 
 
+def divisiones_de(html, etiqueta):
+    """Divisiones que responden a una selección concreta del desplegable.
+
+    Con una sola tabla, la división es la etiqueta que se seleccionó: el
+    encabezado de la página no es de fiar (para Baja California Sur imprime
+    "Baja California"). Con varias tablas la etiqueta es compuesta y solo los
+    encabezados dicen cuáles son.
+    """
+    tablas = [t for t in P.parsear_todas(html) if t["cargos"]]
+    if not tablas:
+        return []
+    if len(tablas) == 1:
+        return [P.normalizar(etiqueta)]
+    return [P.normalizar(t["region"]) for t in tablas if t["region"]]
+
+
 def representantes(catalogo, expansiones):
-    """{REGION: (estado_id, municipio_id, opcion_id, nombre)}: uno por región.
+    """{REGION: (estado_id, municipio_id, opcion_id, etiqueta, nombre)}: uno por región.
 
     Se prefiere una opción que cubra una sola división: es más rápida y no
     deja ambigüedad. Las compuestas solo se usan si no hay otra.
@@ -108,6 +123,7 @@ def representantes(catalogo, expansiones):
                 destino = puros if len(reales) == 1 else mixtos
                 for r in reales:
                     destino.setdefault(r, (estado["id"], municipio["id"], o["id"],
+                                           o["etiqueta"],
                                            f"{municipio['nombre']}, {estado['nombre']}"))
     fuera = dict(mixtos)
     fuera.update(puros)
@@ -127,6 +143,8 @@ def main():
     ap.add_argument("--faltantes", action="store_true",
                     help="solo lo que no esté capturado (modo cron)")
     ap.add_argument("--rehacer", action="store_true")
+    ap.add_argument("--olvidar", nargs="*", metavar="REGION",
+                    help="borra los registros de esas regiones antes de capturar")
     ap.add_argument("--pausa", type=float, default=1.5)
     ap.add_argument("--inseguro", action="store_true",
                     help="salta la verificación TLS; último recurso")
@@ -140,25 +158,37 @@ def main():
                                "registros": {}})
     registros = tarifas["registros"]
 
+    if args.olvidar:
+        borrar = {P.normalizar(r) for r in args.olvidar}
+        fuera = [k for k, v in registros.items() if P.normalizar(v["region"]) in borrar]
+        for k in fuera:
+            del registros[k]
+        print(f"Olvidados {len(fuera)} registro(s) de: {', '.join(sorted(borrar))}")
+
     s = cfe.SesionCFE(args.tarifa, pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
 
     # Los horarios vienen en cualquier respuesta de la página.
     escribir(HORARIOS, {"generado": ahora(), "fuente": s.url, "zonas": s.horarios()})
     print(f"horarios -> {HORARIOS.name}")
 
-    disponibles = sorted(s.anios(), reverse=True)
-    desde = args.desde or max(disponibles)
-    hasta = args.hasta or max(disponibles)
-    anios = [a for a in sorted(disponibles) if desde <= a <= hasta]
-    if not anios:
-        sys.exit(f"años disponibles en CFE: {min(disponibles)}–{max(disponibles)}")
+    # Al cargar la página, el desplegable de años puede traer solo el año en
+    # curso y ampliarse después de seleccionar ubicación. Por eso el rango se
+    # toma de lo que pidió el usuario y se contrasta región por región.
+    ofrecidos = sorted(s.anios(), reverse=True)
+    print(f"Años ofrecidos al cargar: {ofrecidos}")
+    desde = args.desde or max(ofrecidos)
+    hasta = args.hasta or max(ofrecidos)
+    if desde > hasta:
+        sys.exit(f"rango vacío: {desde}–{hasta}")
+    anios_pedidos = list(range(desde, hasta + 1))
 
     # Qué divisiones reales hay detrás de cada etiqueta. Una consulta por
     # etiqueta desconocida, y queda guardado en el catálogo.
     print("\nResolviendo etiquetas de división")
-    s.poner_anio(anios[-1])
+    anio_ref = max(ofrecidos)
+    s.poner_anio(anio_ref)
     mes_ref = max(s.meses()[:-1] or s.meses())      # el último suele estar vacío
-    expansiones = resolver_etiquetas(s, catalogo, anios[-1], mes_ref)
+    expansiones = resolver_etiquetas(s, catalogo, anio_ref, mes_ref)
     escribir(CATALOGO, catalogo)
     reales = sorted({r for v in expansiones.values() for r in v})
     print(f"   {len(expansiones)} etiqueta(s) -> {len(reales)} división(es) reales")
@@ -174,13 +204,21 @@ def main():
         sys.exit("el catálogo no tiene regiones")
 
     nuevos = omitidos = vacios = 0
-    for region, (eid, mid, oid, etiqueta) in sorted(reps.items()):
+    for region, (eid, mid, oid, etiqueta_division, etiqueta) in sorted(reps.items()):
         print(f"\n== {region}  ({etiqueta})")
         s.poner_estado(eid)
         s.poner_municipio(mid)
         s.poner_region(oid)
+        # Con la ubicación puesta, el desplegable ya trae todos los años.
+        anios = [a for a in s.anios() if desde <= a <= hasta] or anios_pedidos
+        fuera_de_rango = [a for a in anios_pedidos if a not in anios]
+        if fuera_de_rango:
+            print(f"   (CFE no ofrece: {fuera_de_rango})")
         for anio in anios:
             s.poner_anio(anio)
+            if s._actual(P.DD_ANIO)[0] != str(anio):
+                print(f"   {anio}  no se pudo seleccionar; se omite")
+                continue
             for mes in s.meses():          # CFE solo lista los meses publicados
                 k = clave(args.tarifa, region, anio, mes)
                 if k in registros and not args.rehacer:
@@ -195,11 +233,11 @@ def main():
                     print(f"   {anio}-{mes:02d}  sin publicación")
                     vacios += 1
                     continue
-                # Un municipio de dos divisiones devuelve dos tablas: cada una
-                # se guarda bajo la región que dice su propio encabezado.
+                # Con una tabla, la división es la que se seleccionó; con
+                # varias, la etiqueta era compuesta y cada encabezado manda.
+                nombres = divisiones_de(s.html, etiqueta_division)
                 guardadas = []
-                for t in tablas:
-                    real = P.normalizar(t["region"] or "")
+                for real, t in zip(nombres, tablas):
                     if not real:
                         continue
                     kr = clave(args.tarifa, real, anio, mes)
