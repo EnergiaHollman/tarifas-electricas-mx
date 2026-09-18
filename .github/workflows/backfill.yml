@@ -31,6 +31,10 @@ on:
         description: "Solo diagnóstico: inspecciona los desplegables y no captura nada."
         type: boolean
         default: false
+      diagnostico_anio:
+        description: "Año a probar en el diagnóstico."
+        required: false
+        default: "2019"
       desplegar:
         description: "Desplegar la API al terminar."
         type: boolean
@@ -63,7 +67,7 @@ jobs:
 
       - name: Diagnóstico de los desplegables
         if: inputs.diagnostico
-        run: cd scraper && python3 diagnostico.py --pausa 2 --anio 2019
+        run: cd scraper && python3 diagnostico.py --pausa 2 --anio "${{ inputs.diagnostico_anio }}"
 
       - name: Construir catálogo
         if: '!inputs.diagnostico' 
