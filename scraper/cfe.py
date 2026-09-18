@@ -138,6 +138,14 @@ class SesionCFE:
         actual, _ = self._actual(P.DD_MES)
         if actual == str(mes):
             return
+        # Enviar un mes que ya no está entre las opciones hace que el
+        # servidor responda 500 (el __EVENTVALIDATION lo rechaza). Puede
+        # pasar si el año cambió y el mes pedido ya no aplica.
+        ofrecidos = [v for v, _, _ in P.opciones(self.html, P.DD_MES)]
+        if str(mes) not in ofrecidos:
+            raise ErrorCFE(f"mes {mes} no está entre los que ofrece la página "
+                           f"ahora mismo ({ofrecidos}); hay que revisar meses() "
+                           f"después del año antes de pedir un mes")
         self._postback(P.DD_MES, {P.DD_MES: str(mes)})
 
     def poner_estado(self, estado_id):
