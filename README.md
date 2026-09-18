@@ -257,8 +257,11 @@ los despliegues anteriores.
 - El scraper nunca reescribe un registro ya capturado salvo con `--rehacer`.
   Si CFE corrigiera un mes cerrado, quieres enterarte, no que se sobrescriba
   en silencio.
-- Hay una pausa de 1.5 s entre peticiones y un User-Agent identificable. El
-  acceso es mensual, no continuo.
+- Hay una pausa de 1.5 s entre peticiones. El User-Agent y las cabeceras
+  imitan un navegador: con un User-Agent que se identificaba como bot, el
+  sitio dejaba de recalcular el desplegable de meses al cambiar de año — la
+  carga inicial funcionaba igual para ambos, pero cualquier interacción
+  dinámica solo se le servía a lo que pareciera un navegador real.
 
 ## Licencia
 
