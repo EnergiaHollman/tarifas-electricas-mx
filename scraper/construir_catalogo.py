@@ -40,7 +40,7 @@ def guardar(cat):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--estados", nargs="*", help="nombres de estado; omitir = todos")
+    ap.add_argument("--estados", help="nombres separados por coma; omitir = todos")
     ap.add_argument("--rehacer", action="store_true")
     ap.add_argument("--pausa", type=float, default=1.5)
     ap.add_argument("--inseguro", action="store_true",
@@ -52,7 +52,7 @@ def main():
     s = cfe.SesionCFE("GDMTH", pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
     estados = s.estados()
     if args.estados:
-        querer = {P.normalizar(e) for e in args.estados}
+        querer = {P.normalizar(e) for e in args.estados.split(",") if e.strip()}
         estados = [(v, t) for v, t in estados if P.normalizar(t) in querer]
         if not estados:
             sys.exit("ningún estado coincide; nombres válidos: " +

@@ -32,6 +32,17 @@ TARIFAS = DATA / "tarifas.json"
 HORARIOS = DATA / "horarios.json"
 
 
+def lista(texto):
+    """'A, B , C' -> ['A', 'B', 'C'].
+
+    Se separa por comas y no por espacios porque casi la mitad de los nombres
+    los llevan: "SAN LUIS POTOSI", "VALLE DE MEXICO NORTE", "BAJA CALIFORNIA".
+    """
+    if not texto:
+        return []
+    return [p.strip() for p in texto.split(",") if p.strip()]
+
+
 def ahora():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
@@ -137,14 +148,14 @@ def clave(tarifa, region, anio, mes):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tarifa", default="GDMTH", choices=sorted(cfe.PAGINAS))
-    ap.add_argument("--regiones", nargs="*", help="omitir = todas las del catálogo")
+    ap.add_argument("--regiones", help="separadas por coma; omitir = todas las del catálogo")
     ap.add_argument("--desde", type=int, help="año inicial")
     ap.add_argument("--hasta", type=int, help="año final")
     ap.add_argument("--faltantes", action="store_true",
                     help="solo lo que no esté capturado (modo cron)")
     ap.add_argument("--rehacer", action="store_true")
-    ap.add_argument("--olvidar", nargs="*", metavar="REGION",
-                    help="borra los registros de esas regiones antes de capturar")
+    ap.add_argument("--olvidar", metavar="REGIONES",
+                    help="separadas por coma; borra sus registros antes de capturar")
     ap.add_argument("--pausa", type=float, default=1.5)
     ap.add_argument("--inseguro", action="store_true",
                     help="salta la verificación TLS; último recurso")
@@ -159,7 +170,7 @@ def main():
     registros = tarifas["registros"]
 
     if args.olvidar:
-        borrar = {P.normalizar(r) for r in args.olvidar}
+        borrar = {P.normalizar(r) for r in lista(args.olvidar)}
         fuera = [k for k, v in registros.items() if P.normalizar(v["region"]) in borrar]
         for k in fuera:
             del registros[k]
@@ -195,7 +206,7 @@ def main():
 
     reps = representantes(catalogo, expansiones)
     if args.regiones:
-        querer = {P.normalizar(r) for r in args.regiones}
+        querer = {P.normalizar(r) for r in lista(args.regiones)}
         faltan = querer - set(reps)
         if faltan:
             sys.exit(f"no hay municipios en el catálogo para: {', '.join(sorted(faltan))}")

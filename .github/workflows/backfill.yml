@@ -8,23 +8,23 @@ on:
   workflow_dispatch:
     inputs:
       estados:
-        description: "Estados separados por espacio, o TODOS para el país completo (~1 h)."
+        description: "Estados separados por COMA, o TODOS para el país completo (~1 h)."
         required: true
         default: "SONORA"
       regiones:
-        description: "Regiones separadas por espacio, o TODAS."
+        description: "Regiones separadas por COMA, o TODAS."
         required: true
         default: "TODAS"
       desde:
-        description: "Año inicial (CFE tiene histórico desde 2017)."
-        required: false
-        default: "2026"
+        description: "Año inicial. CFE tiene histórico desde 2017."
+        required: true
+        default: "2017"
       hasta:
         description: "Año final. Vacío = el año en curso."
         required: false
         default: ""
       olvidar:
-        description: "Regiones a borrar antes de capturar, separadas por espacio. Vacío = ninguna."
+        description: "Regiones a borrar antes de capturar, separadas por COMA. Vacío = ninguna."
         required: false
         default: ""
       desplegar:
@@ -68,7 +68,7 @@ jobs:
             python3 construir_catalogo.py --pausa 2
           else
             echo "Catálogo de: $ESTADOS"
-            python3 construir_catalogo.py --pausa 2 --estados $ESTADOS
+            python3 construir_catalogo.py --pausa 2 --estados "$ESTADOS"
           fi
 
       - name: Capturar cargos
@@ -79,14 +79,16 @@ jobs:
           OLVIDAR: ${{ inputs.olvidar }}
         run: |
           cd scraper
-          ARGS="--pausa 2 --desde $DESDE"
-          if [ -n "$HASTA" ]; then ARGS="$ARGS --hasta $HASTA"; fi
+          # Array, no cadena: los nombres llevan espacios y una expansión sin
+          # comillas los partiría en argumentos sueltos.
+          ARGS=(--pausa 2 --desde "$DESDE")
+          if [ -n "$HASTA" ]; then ARGS+=(--hasta "$HASTA"); fi
           if [ -n "$REGIONES" ] && [ "$REGIONES" != "TODAS" ]; then
-            ARGS="$ARGS --regiones $REGIONES"
+            ARGS+=(--regiones "$REGIONES")
           fi
-          if [ -n "$OLVIDAR" ]; then ARGS="$ARGS --olvidar $OLVIDAR"; fi
-          echo "Ejecutando: actualizar_tarifas.py $ARGS"
-          python3 actualizar_tarifas.py $ARGS
+          if [ -n "$OLVIDAR" ]; then ARGS+=(--olvidar "$OLVIDAR"); fi
+          echo "Ejecutando: actualizar_tarifas.py ${ARGS[@]}"
+          python3 actualizar_tarifas.py "${ARGS[@]}"
 
       - name: Confirmar cambios
         id: commit
