@@ -240,11 +240,14 @@ los despliegues anteriores.
   California Sur imprime "Baja California". Cuando la respuesta trae una sola
   tabla, la división es la que se seleccionó en el desplegable; los encabezados
   solo se usan para desglosar las etiquetas compuestas, que devuelven varias.
-- El flujo real del sitio es **año, mes, estado, municipio, división** — en
-  ese orden. El desplegable de meses se calcula a partir del año con una
-  página recién cargada, antes de elegir ubicación; seleccionar el año con
-  la ubicación ya puesta deja los meses vacíos. Por eso el scraper recarga la
-  página al empezar cada año y sigue el orden real del formulario.
+- **El control de mes cambia de nombre según el año elegido.** Para el año en
+  curso la página usa `Fecha2$ddMes`; para cualquier año pasado, ese control
+  no se renderiza en absoluto y aparece uno distinto en su lugar,
+  `MesVerano3$ddMesConsulta`. No son variantes del mismo campo: son dos
+  controles ASP.NET diferentes. `parser.control_mes()` detecta cuál está
+  presente en cada respuesta y el resto del scraper lo usa de forma
+  transparente. Este fue el motivo real por el que el histórico nunca se
+  capturaba: se buscaba siempre el control del año en curso.
 - Las etiquetas compuestas **no se pueden partir por texto**: CFE elide el
   prefijo compartido, así que "Valle de México Centro y Sur" son Centro y Sur
   del Valle de México, no una división llamada "Sur". El scraper consulta una
@@ -257,11 +260,7 @@ los despliegues anteriores.
 - El scraper nunca reescribe un registro ya capturado salvo con `--rehacer`.
   Si CFE corrigiera un mes cerrado, quieres enterarte, no que se sobrescriba
   en silencio.
-- Hay una pausa de 1.5 s entre peticiones y un User-Agent identificable. El
-  acceso es mensual, no continuo. Se probó a imitar un User-Agent de
-  navegador para un problema de cambio de año (ver más abajo) y el sitio
-  respondió con 403: un User-Agent de Chrome sin la huella TLS de Chrome es
-  más sospechoso que uno honesto sobre ser un bot, así que se revirtió.
+- Hay una pausa de 1.5 s entre peticiones y un User-Agent identificable.
 
 ## Licencia
 

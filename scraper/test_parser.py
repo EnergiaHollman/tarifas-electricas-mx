@@ -13,6 +13,13 @@ import parser as P
 MUESTRA = pathlib.Path(__file__).parent / "muestra" / "GranDemandaMTH.html"
 HTML = MUESTRA.read_text(encoding="utf-8", errors="replace")
 
+# Página con un año PASADO seleccionado. El control de mes es otro por
+# completo (MesVerano3$ddMesConsulta): Fecha2$ddMes ni siquiera existe aquí.
+# Descubierto porque el scraper buscaba el control equivocado y por eso
+# nunca lograba traer histórico.
+MUESTRA_HIST = pathlib.Path(__file__).parent / "muestra" / "GranDemandaMTH_historico.html"
+HTML_HIST = MUESTRA_HIST.read_text(encoding="utf-8", errors="replace") if MUESTRA_HIST.exists() else None
+
 fallos = []
 
 
@@ -98,6 +105,27 @@ check("SIN verano termina el sábado anterior al último domingo de octubre",
       {"tipo": "ultimo_dia_semana", "mes": 10, "dia_semana": 6, "desplazamiento": -1})
 check("todas las temporadas tienen regla",
       all(t["regla"] for zz in h.values() for t in zz["temporadas"].values()), True)
+
+print("\nControl de mes según el año (año actual vs. histórico)")
+check("año actual usa Fecha2$ddMes", P.control_mes(HTML), P.DD_MES)
+if HTML_HIST is None:
+    print("  (omitida: falta muestra/GranDemandaMTH_historico.html)")
+    fallos.append("muestra histórica ausente")
+else:
+    check("año pasado usa MesVerano3$ddMesConsulta", P.control_mes(HTML_HIST), P.DD_MES_HISTORICO)
+    check("Fecha2$ddMes no existe en la página histórica",
+          P.seleccionado(HTML_HIST, P.DD_MES)[0], None)
+    meses_hist = [t for _, t, _ in P.opciones(HTML_HIST, P.DD_MES_HISTORICO)]
+    check("12 meses en el control histórico", len(meses_hist), 12)
+    check("mayo seleccionado", P.seleccionado(HTML_HIST, P.DD_MES_HISTORICO), ("5", "MAYO"))
+
+    r_hist = P.parsear_cargos(HTML_HIST)
+    check("hay resultado histórico", r_hist is not None, True)
+    check("región histórica", P.normalizar(r_hist["region"]), "NOROESTE")
+    check("periodo histórico", r_hist["periodo_cfe"], "MAY-19")
+    check("cargos de mayo 2019, Noroeste (dato real de CFE)", r_hist["cargos"], {
+        "fijo": 611.85, "base": 0.8801, "intermedia": 1.4083,
+        "punta": 1.5606, "distribucion": 87.59, "capacidad": 354.09})
 
 print()
 if fallos:

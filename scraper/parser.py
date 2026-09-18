@@ -16,6 +16,11 @@ DD_MES = "ctl00$ContentPlaceHolder1$Fecha2$ddMes"
 DD_ESTADO = "ctl00$ContentPlaceHolder1$EdoMpoDiv$ddEstado"
 DD_MUNICIPIO = "ctl00$ContentPlaceHolder1$EdoMpoDiv$ddMunicipio"
 DD_REGION = "ctl00$ContentPlaceHolder1$EdoMpoDiv$ddDivision"
+# El control de mes cambia de nombre según el año elegido: para el año en
+# curso la página usa DD_MES; para cualquier año pasado, ese control ni
+# siquiera se renderiza y aparece este otro en su lugar. No son variantes de
+# lo mismo: son dos controles ASP.NET distintos, con onchange propio.
+DD_MES_HISTORICO = "ctl00$ContentPlaceHolder1$MesVerano3$ddMesConsulta"
 # Ocultos que el servidor escribe con el año y mes vigentes. No hay JavaScript
 # que los actualice, así que al hacer postback hay que mandarlos coherentes.
 HD_ANIO = "ctl00$ContentPlaceHolder1$hdAnio"
@@ -84,6 +89,16 @@ def opciones(html, nombre_select):
             continue
         fuera.append((valor, texto, op.has_attr("selected")))
     return fuera
+
+
+def control_mes(html):
+    """Cuál de los dos controles de mes está presente en esta página."""
+    s = _sopa(html)
+    if s.find("select", attrs={"name": DD_MES}) is not None:
+        return DD_MES
+    if s.find("select", attrs={"name": DD_MES_HISTORICO}) is not None:
+        return DD_MES_HISTORICO
+    return None
 
 
 def seleccionado(html, nombre_select):

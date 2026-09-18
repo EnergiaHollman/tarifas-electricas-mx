@@ -123,6 +123,10 @@ class SesionCFE:
     # -- selección ---------------------------------------------------------
 
     def _actual(self, control):
+        # DD_MES es un alias especial: resuelve al control de mes que exista
+        # de verdad en la página en este momento (cambia según el año).
+        if control == P.DD_MES:
+            control = P.control_mes(self.html) or control
         return P.seleccionado(self.html, control)
 
     def anios(self):
@@ -134,9 +138,13 @@ class SesionCFE:
         """Meses publicados para el año seleccionado.
 
         En el año en curso CFE solo lista los meses ya publicados, así que hay
-        que leerlos en vez de asumir 12.
+        que leerlos en vez de asumir 12. Para años pasados, el control de mes
+        es otro por completo (ver control_mes en parser.py).
         """
-        return [int(v) for v, _, _ in P.opciones(self.html, P.DD_MES)]
+        control = P.control_mes(self.html)
+        if control is None:
+            return []
+        return [int(v) for v, _, _ in P.opciones(self.html, control)]
 
     def estados(self):
         if self.html is None:
@@ -156,18 +164,22 @@ class SesionCFE:
         self._postback(P.DD_ANIO, {P.DD_ANIO: str(anio)})
 
     def poner_mes(self, mes):
-        actual, _ = self._actual(P.DD_MES)
+        control = P.control_mes(self.html)
+        if control is None:
+            raise ErrorCFE("la página no tiene ningún control de mes ahora mismo "
+                           "(revisa meses() antes de llamar a poner_mes)")
+        actual, _ = self._actual(control)
         if actual == str(mes):
             return
         # Enviar un mes que ya no está entre las opciones hace que el
         # servidor responda 500 (el __EVENTVALIDATION lo rechaza). Puede
         # pasar si el año cambió y el mes pedido ya no aplica.
-        ofrecidos = [v for v, _, _ in P.opciones(self.html, P.DD_MES)]
+        ofrecidos = [v for v, _, _ in P.opciones(self.html, control)]
         if str(mes) not in ofrecidos:
             raise ErrorCFE(f"mes {mes} no está entre los que ofrece la página "
                            f"ahora mismo ({ofrecidos}); hay que revisar meses() "
                            f"después del año antes de pedir un mes")
-        self._postback(P.DD_MES, {P.DD_MES: str(mes)})
+        self._postback(control, {control: str(mes)})
 
     def poner_estado(self, estado_id):
         actual, _ = self._actual(P.DD_ESTADO)
