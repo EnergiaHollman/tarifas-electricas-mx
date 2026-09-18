@@ -70,11 +70,25 @@ export function regionDeMunicipio(estado: string, municipio: string): Municipio 
   return e.municipios[normalizar(municipio)] ?? null;
 }
 
+/**
+ * "BAJIO Y GOLFO CENTRO" -> ["BAJIO", "GOLFO CENTRO"].
+ *
+ * Hay municipios que CFE atiende con dos divisiones y los etiqueta así.
+ * Ninguna división real lleva " y " en el nombre, de modo que el corte es
+ * seguro.
+ */
+export function separarRegiones(etiqueta: string): string[] {
+  const t = normalizar(etiqueta);
+  const partes = t.split(/\s+Y\s+/).map((x) => x.trim()).filter(Boolean);
+  return partes.length ? partes : [t];
+}
+
 export function listarRegiones(): string[] {
   const s = new Set<string>();
   for (const r of Object.values(tarifas.registros)) s.add(r.region);
   for (const e of Object.values(catalogo.estados))
-    for (const m of Object.values(e.municipios)) s.add(m.region);
+    for (const m of Object.values(e.municipios))
+      for (const r of separarRegiones(m.region)) s.add(r);
   return [...s].sort();
 }
 

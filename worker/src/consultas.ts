@@ -6,6 +6,7 @@ import { franjas, periodoEn, temporadaDe, tipoDia } from "./calendario";
 import {
   AVISO,
   catalogo,
+  separarRegiones,
   listarEstados,
   listarRegiones,
   normalizar,
@@ -25,7 +26,10 @@ function entero(v: unknown): number | null {
 
 /** Resuelve la región desde región explícita o desde estado + municipio. */
 function resolverRegion(args: Args) {
-  if (args.region) return { region: normalizar(String(args.region)), via: "region" as const };
+  if (args.region) {
+    return { region: normalizar(String(args.region)), regiones: [normalizar(String(args.region))],
+             via: "region" as const };
+  }
   if (args.estado && args.municipio) {
     const m = regionDeMunicipio(String(args.estado), String(args.municipio));
     if (!m) {
@@ -39,8 +43,10 @@ function resolverRegion(args: Args) {
           : `Estados con catálogo: ${listarEstados().join(", ") || "ninguno todavía"}.`,
       };
     }
+    const regiones = separarRegiones(m.region);
     return {
-      region: m.region,
+      region: regiones[0],
+      regiones,                       // dos cuando CFE atiende con dos divisiones
       via: "municipio" as const,
       municipio: m.nombre,
       estado: catalogo.estados[normalizar(String(args.estado))].nombre,
@@ -59,6 +65,28 @@ export function consultarTarifa(args: Args) {
   if ("error" in ubic) return ubic;
 
   const tarifa = normalizar(String(args.tarifa ?? "GDMTH"));
+
+  // Municipio que CFE atiende con dos divisiones: se devuelven las dos, porque
+  // cuál aplica depende del punto de suministro y solo el recibo lo dice.
+  if (ubic.regiones.length > 1) {
+    const resultados = ubic.regiones
+      .map((reg) => {
+        const t = obtenerTarifa(tarifa, reg, anio, mes);
+        return t ? { region: reg, cargos: t.cargos, unidades: t.unidades,
+                     periodo_cfe: t.periodo_cfe, fecha_captura: t.fecha_captura } : null;
+      })
+      .filter(Boolean);
+    if (resultados.length) {
+      return {
+        tarifa, estado: ubic.estado, municipio: ubic.municipio,
+        regiones: ubic.regiones, anio, mes, resultados,
+        nota: "CFE atiende este municipio con dos divisiones tarifarias. Cuál " +
+              "aplica depende del punto de suministro; confírmalo en el recibo.",
+        aviso: AVISO,
+      };
+    }
+  }
+
   const r = obtenerTarifa(tarifa, ubic.region, anio, mes);
   if (!r) {
     const disponibles = periodosDe(tarifa, ubic.region);

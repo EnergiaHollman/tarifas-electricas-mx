@@ -49,13 +49,22 @@ def escribir(ruta, datos):
 
 
 def representantes(catalogo):
-    """{REGION: (estado_id, municipio_id, etiqueta)} tomando el primer municipio."""
-    fuera = {}
+    """{REGION: (estado_id, municipio_id, etiqueta)}: un municipio por región.
+
+    Se prefieren municipios de una sola división. Los que CFE atiende con dos
+    ("Bajío y Golfo Centro") devuelven dos tablas y solo se usan cuando no hay
+    otro municipio para esa región.
+    """
+    puros, mixtos = {}, {}
     for estado in catalogo.get("estados", {}).values():
         for municipio in estado["municipios"].values():
-            fuera.setdefault(municipio["region"],
-                             (estado["id"], municipio["id"],
-                              f"{municipio['nombre']}, {estado['nombre']}"))
+            regiones = P.separar_regiones(municipio["region"])
+            etiqueta = f"{municipio['nombre']}, {estado['nombre']}"
+            destino = puros if len(regiones) == 1 else mixtos
+            for r in regiones:
+                destino.setdefault(r, (estado["id"], municipio["id"], etiqueta))
+    fuera = dict(mixtos)
+    fuera.update(puros)          # un municipio puro desplaza al mixto
     return fuera
 
 
@@ -123,27 +132,40 @@ def main():
                 if args.faltantes and k in registros:
                     omitidos += 1
                     continue
-                r = s.consultar(anio, mes, eid, mid)
-                if r is None or not r["cargos"]:
+                s.consultar(anio, mes, eid, mid)
+                tablas = [t for t in P.parsear_todas(s.html) if t["cargos"]]
+                if not tablas:
                     print(f"   {anio}-{mes:02d}  sin publicación")
                     vacios += 1
                     continue
-                if P.normalizar(r["region"] or "") != region:
-                    print(f"   {anio}-{mes:02d}  ! la página respondió "
-                          f"{r['region']!r}, se esperaba {region}; se omite")
+                # Un municipio de dos divisiones devuelve dos tablas: cada una
+                # se guarda bajo la región que dice su propio encabezado.
+                guardadas = []
+                for t in tablas:
+                    real = P.normalizar(t["region"] or "")
+                    if not real:
+                        continue
+                    kr = clave(args.tarifa, real, anio, mes)
+                    if kr in registros and not args.rehacer:
+                        continue
+                    registros[kr] = {
+                        "tarifa": args.tarifa, "region": real,
+                        "anio": anio, "mes": mes,
+                        "periodo_cfe": t["periodo_cfe"],
+                        "cargos": t["cargos"], "unidades": t["unidades"],
+                        "conceptos": t["conceptos"],
+                        "municipio_consultado": etiqueta,
+                        "fuente": s.url, "fecha_captura": ahora(),
+                    }
+                    guardadas.append(real)
+                    nuevos += 1
+                if not guardadas:
+                    omitidos += 1
                     continue
-                registros[k] = {
-                    "tarifa": args.tarifa, "region": region,
-                    "anio": anio, "mes": mes,
-                    "periodo_cfe": r["periodo_cfe"],
-                    "cargos": r["cargos"], "unidades": r["unidades"],
-                    "conceptos": r["conceptos"],
-                    "municipio_consultado": etiqueta,
-                    "fuente": s.url, "fecha_captura": ahora(),
-                }
-                nuevos += 1
-                print(f"   {anio}-{mes:02d}  " +
-                      "  ".join(f"{k2}={v}" for k2, v in r["cargos"].items()))
+                for real in guardadas:
+                    cg = registros[clave(args.tarifa, real, anio, mes)]["cargos"]
+                    print(f"   {anio}-{mes:02d}  {real}  " +
+                          "  ".join(f"{k2}={v}" for k2, v in cg.items()))
                 tarifas["actualizado"] = ahora()
                 escribir(TARIFAS, tarifas)   # guardado incremental: reanudable
 

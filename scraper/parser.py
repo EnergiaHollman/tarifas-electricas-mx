@@ -123,11 +123,24 @@ def parsear_cargos(html):
     `conceptos` es la lectura literal de la tabla y sirve para cualquier
     tarifa; `cargos` es el atajo normalizado.
     """
-    s = _sopa(html)
-    tabla = s.find("table", class_=lambda c: c and "table-striped" in c)
-    if tabla is None:
-        return None
+    todas = parsear_todas(html)
+    return todas[0] if todas else None
 
+
+def parsear_todas(html):
+    """Todas las tablas de resultados de la página.
+
+    Normalmente hay una. Pero hay municipios que CFE atiende con dos
+    divisiones a la vez (el desplegable los etiqueta "Bajío y Golfo Centro",
+    por ejemplo) y entonces la página devuelve una tabla por división.
+    """
+    s = _sopa(html)
+    return [r for r in (_parsear_tabla(t) for t in
+                        s.find_all("table", class_=lambda c: c and "table-striped" in c))
+            if r is not None]
+
+
+def _parsear_tabla(tabla):
     filas = tabla.find_all("tr")
     if len(filas) < 2:
         return None
@@ -309,6 +322,17 @@ def regla_vigencia(texto):
     if r_ini is None or r_fin is None:
         return None
     return {"inicio": r_ini, "fin": r_fin}
+
+
+def separar_regiones(etiqueta):
+    """'Bajío y Golfo Centro' -> ['BAJIO', 'GOLFO CENTRO'].
+
+    Algunos municipios los atienden dos divisiones y CFE los etiqueta así en
+    el desplegable. Ninguna división real lleva " y " en el nombre, de modo
+    que el corte es seguro.
+    """
+    t = normalizar(etiqueta)
+    return [p.strip() for p in re.split(r"\s+Y\s+", t) if p.strip()] or [t]
 
 
 def _regiones_de_zona(zona):

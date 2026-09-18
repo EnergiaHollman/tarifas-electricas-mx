@@ -7,16 +7,50 @@
  * ya trae Request y Response, así que no hace falta simular nada.
  */
 import { build } from "esbuild";
-import { mkdtempSync } from "node:fs";
+import { cpSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 // En Windows, import() exige una URL file://; una ruta absoluta "C:\..." falla.
 import { pathToFileURL } from "node:url";
 
 const dir = mkdtempSync(path.join(tmpdir(), "worker-"));
+
+// Se trabaja sobre una copia: las pruebas inyectan datos de ejemplo para
+// cubrir casos que la semilla no trae, y eso nunca debe tocar data/ real.
+cpSync("src", path.join(dir, "worker", "src"), { recursive: true });
+cpSync("../data", path.join(dir, "data"), { recursive: true });
+
+const rutaDatos = (n) => path.join(dir, "data", n);
+const leer = (n) => JSON.parse(readFileSync(rutaDatos(n), "utf8"));
+const escribir = (n, d) => writeFileSync(rutaDatos(n), JSON.stringify(d, null, 1));
+
+// Municipio que CFE atiende con dos divisiones tarifarias.
+const cat = leer("catalogo.json");
+cat.estados["GUANAJUATO"] = {
+  id: "11", nombre: "GUANAJUATO",
+  municipios: {
+    "SAN LUIS DE LA PAZ": {
+      id: "999901", nombre: "SAN LUIS DE LA PAZ",
+      region: "BAJIO Y GOLFO CENTRO", region_id: "99",
+    },
+  },
+};
+escribir("catalogo.json", cat);
+
+const tar = leer("tarifas.json");
+const base = tar.registros["GDMTH|NOROESTE|2026-03"];
+for (const [reg, punta] of [["BAJIO", 1.5], ["GOLFO CENTRO", 1.6]]) {
+  const rec = JSON.parse(JSON.stringify(base));
+  rec.region = reg;
+  rec.cargos.punta = punta;
+  rec.municipio_consultado = "SAN LUIS DE LA PAZ, GUANAJUATO";
+  tar.registros[`GDMTH|${reg}|2026-03`] = rec;
+}
+escribir("tarifas.json", tar);
+
 const salida = path.join(dir, "bundle.mjs");
 await build({
-  entryPoints: ["src/index.ts"],
+  entryPoints: [path.join(dir, "worker", "src", "index.ts")],
   bundle: true,
   format: "esm",
   platform: "neutral",
@@ -145,6 +179,18 @@ r = await get("/");
 check("portada es HTML", r.cuerpo.startsWith("<!doctype html>"), true);
 r = await get("/no-existe");
 check("404 de ruta", r.status, 404);
+
+console.log("\nMunicipios que CFE atiende con dos divisiones");
+r = await get("/v1/tarifa?estado=GUANAJUATO&municipio=SAN LUIS DE LA PAZ&anio=2026&mes=3");
+check("status", r.status, 200);
+check("devuelve las dos regiones", r.cuerpo.regiones, ["BAJIO", "GOLFO CENTRO"]);
+check("un resultado por región", r.cuerpo.resultados.map((x) => x.region),
+  ["BAJIO", "GOLFO CENTRO"]);
+check("cada uno con sus cargos", r.cuerpo.resultados[0].cargos.punta, 1.5);
+check("advierte de la ambigüedad", r.cuerpo.nota.includes("dos divisiones"), true);
+r = await get("/v1/regiones");
+check("las dos aparecen en el listado",
+  ["BAJIO", "GOLFO CENTRO"].every((x) => r.cuerpo.regiones.some((y) => y.region === x)), true);
 
 console.log("\nMCP");
 r = await rpc("initialize", { protocolVersion: "2025-06-18" });
