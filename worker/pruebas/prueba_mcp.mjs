@@ -11,9 +11,9 @@ const worker = await crearWorker();
 const { check, contar } = crearVerificador();
 
 /** POST JSON-RPC a /mcp con cabeceras razonables por omisión. */
-async function rpc(metodo, params, { id = 1, version, sinContentType = false } = {}) {
-  const headers = { accept: "application/json, text/event-stream" };
-  if (!sinContentType) headers["content-type"] = "application/json";
+async function rpc(metodo, params, { id = 1, version, sinContentType = false, contentType, accept } = {}) {
+  const headers = { accept: accept ?? "application/json, text/event-stream" };
+  if (!sinContentType) headers["content-type"] = contentType ?? "application/json";
   if (version) headers["mcp-protocol-version"] = version;
   const cuerpo = id === undefined
     ? { jsonrpc: "2.0", method: metodo, params }          // notificación: sin id
@@ -100,6 +100,10 @@ check("consultar_horarios: requiere fecha",
   porNombre.consultar_horarios.inputSchema.required, ["fecha"]);
 check("listar_regiones: sin parámetros requeridos",
   porNombre.listar_regiones.inputSchema.required ?? [], []);
+
+for (const nombre of nombres) {
+  check(`${nombre}: additionalProperties: false`, porNombre[nombre].inputSchema.additionalProperties, false);
+}
 
 for (const nombre of nombres) {
   const t = porNombre[nombre];
@@ -200,6 +204,27 @@ check("JSON inválido: -32700 Parse error", r.cuerpo.error.code, -32700);
 r = await rpc("tools/call", { name: "consultar_horarios", arguments: { region: "NOROESTE", fecha: "no-es-una-fecha" } });
 check("fecha inválida: isError true", r.cuerpo.result.isError, true);
 
+// Periodo que la herramienta entiende perfectamente pero que no está
+// capturado: es un dato que no existe, no una llamada mal formada -> isError.
+r = await rpc("tools/call", { name: "consultar_tarifa", arguments: { region: "NOROESTE", anio: 2010, mes: 7 } });
+check("periodo inexistente: HTTP 200 (no es un fallo de protocolo)", r.status, 200);
+check("periodo inexistente: isError true", r.cuerpo.result.isError, true);
+check("periodo inexistente: lista qué periodos sí hay",
+  Array.isArray(JSON.parse(r.cuerpo.result.content[0].text).periodos_disponibles), true);
+
+// additionalProperties:false es real, no decorativo: una propiedad que el
+// schema no declara se rechaza como llamada mal formada (protocolo), no
+// como un valor de negocio que no aplica.
+r = await rpc("tools/call", {
+  name: "consultar_tarifa",
+  arguments: { region: "NOROESTE", anio: 2026, mes: 3, campo_inventado: "x" },
+});
+check("propiedad no declarada en el schema: error de protocolo, no isError",
+  "error" in r.cuerpo, true);
+check("propiedad no declarada: código -32602", r.cuerpo.error.code, -32602);
+check("propiedad no declarada: nombra la propiedad sobrante",
+  r.cuerpo.error.message.includes("campo_inventado"), true);
+
 // Batch: eliminado de la especificación desde 2025-06-18; se rechaza, no se procesa.
 r = await crudo(JSON.stringify([{ jsonrpc: "2.0", id: 1, method: "ping" }]));
 check("batch (array): se rechaza, no se ejecuta en silencio", r.status, 400);
@@ -215,6 +240,31 @@ check("GET /mcp: 405 (sin sesiones ni stream que ofrecer)", resp.status, 405);
 check("GET /mcp: Allow: POST", resp.headers.get("allow"), "POST");
 resp = await worker.fetch(new Request(BASE + "/mcp", { method: "DELETE" }));
 check("DELETE /mcp: 405 (no hay sesiones que terminar)", resp.status, 405);
+
+console.log("\n7b. HTTP: Content-Type y Accept");
+
+// Decisión explícita (documentada en el README): un Content-Type distinto de
+// application/json no se rechaza, siempre que el cuerpo SÍ sea JSON válido.
+// La especificación no manda al servidor a validar este header en el POST
+// -es una instrucción para el cliente-, y varios clientes y pasarelas reales
+// lo etiquetan mal; rechazar de más rompería compatibilidad sin que la
+// especificación lo exija.
+r = await rpc("ping", {}, { contentType: "text/plain" });
+check("Content-Type distinto de application/json, con JSON válido: se procesa igual",
+  r.status, 200);
+
+// Mismo criterio con Accept: este servidor nunca abre un stream SSE (siempre
+// responde application/json), así que no hay nada que negociar de verdad;
+// exigir el Accept exacto que pide la especificación sería más estricto de
+// lo que el propio servidor necesita para funcionar correctamente.
+r = await rpc("ping", {}, { accept: "application/json" });
+check("Accept sin text/event-stream: se procesa igual (el servidor nunca hace streaming)",
+  r.status, 200);
+r = await rpc("ping", {}, { accept: "" });
+check("Accept ausente: se procesa igual", r.status, 200);
+
+r = await rpc("ping", {});
+check("ping responde", r.cuerpo.result, {});
 
 // ---------------------------------------------------------------------
 // 8. Regresión REST (recordatorio: la batería completa vive en prueba_api.mjs)

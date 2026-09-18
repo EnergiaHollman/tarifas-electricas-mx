@@ -195,13 +195,32 @@ válida, no una carencia. Por el mismo motivo, `GET /mcp` y `DELETE /mcp`
 responden `405`: no hay stream que abrir ni sesión que terminar, y la propia
 especificación autoriza responder así en ambos casos.
 
+**`MCP-Protocol-Version`: opción A, no B.** Había dos caminos razonables:
+
+- **A.** Mantenerse sin estado y ser tolerante: aceptar que el header falte
+  (la propia especificación dice que, sin él, hay que asumir `2025-03-26` por
+  retrocompatibilidad) y solo rechazar cuando el header SÍ viene con un valor
+  que este servidor no reconoce en absoluto.
+- **B.** Implementar sesiones MCP de verdad, para poder exigir el header en
+  todas las llamadas posteriores a `initialize`.
+
+**Se eligió A.** No hay ningún estado por correlacionar entre llamadas -cada
+`tools/call` es autosuficiente-, así que una sesión no resolvería ningún
+problema real aquí; solo añadiría infraestructura (KV o Durable Objects para
+guardar sesiones, lógica de expiración) a cambio de nada. B se descartó
+explícitamente por parecer "más completo", no porque A fuera insuficiente.
+
 **Versión de protocolo.** Se negocian `2025-06-18` y `2025-11-25` (a efectos
 de transporte son la misma cosa). Existe una revisión candidata `2026-07-28`
 que elimina el handshake `initialize` y las sesiones por completo, pero al
 escribir esto sigue marcada como *release candidate* en la especificación
 oficial y ningún cliente mayor (Claude, ChatGPT, MCP Inspector) la habla de
 forma consistente todavía. Se optó por no adoptarla; es una decisión
-documentada, no un descuido.
+documentada, no un descuido. La negociación nunca miente: si el cliente pide
+una versión que no se reconoce, la respuesta de `initialize` trae la versión
+que el servidor realmente ofrece en `result.protocolVersion`, nunca la que
+pidió el cliente disfrazada de aceptada — así el cliente puede decidir con
+información correcta si quiere continuar o no.
 
 **Sin el SDK oficial de MCP, a propósito.** El `@modelcontextprotocol/sdk`
 está pensado para Node/Express o stdio; adaptarlo al runtime de Cloudflare
@@ -233,18 +252,31 @@ decida sin ambigüedad: cuándo usar `region` directamente frente a
 mes), que `fecha` va en ISO `AAAA-MM-DD` y `hora` en 24 horas `HH:MM`, y que
 `GDMTH` es la tarifa por omisión porque es la única con datos capturados hoy.
 
-### Errores: protocolo vs. resultado
+Los tres esquemas declaran `additionalProperties: false`, y no es solo
+decorativo: una propiedad que el esquema no reconoce se rechaza de verdad
+como error de protocolo (`-32602`), no se ignora en silencio ni se trata como
+un dato de negocio inválido.
+
+### Errores: protocolo vs. resultado, y lo inesperado
 
 Siguiendo la distinción que hace la propia especificación:
 
 - **Error de protocolo** (JSON-RPC `error`, sin `isError`): la petición en sí
   está mal formada — herramienta desconocida, método inexistente, falta el
-  nombre en `tools/call`, JSON roto. `Unknown tool: X` con código `-32602` es,
-  literalmente, el ejemplo que trae la especificación para este caso.
+  nombre en `tools/call`, JSON roto, o una propiedad que el esquema no
+  declara. `Unknown tool: X` con código `-32602` es, literalmente, el ejemplo
+  que trae la especificación para ese caso.
 - **Error de ejecución** (`isError: true` dentro de un resultado `200`): la
   llamada era válida pero el *dato* no aplica — mes 13, municipio que no está
-  en el catálogo, fecha con formato roto. La herramienta sí corrió; lo que
-  falló es la consulta.
+  en el catálogo, fecha con formato roto, o un periodo que no está capturado
+  todavía. La herramienta sí corrió; lo que falló es la consulta, y la
+  respuesta siempre dice por qué (por ejemplo, `periodos_disponibles` con lo
+  que sí existe).
+- **Error interno inesperado** (`-32603 Internal error`): red de seguridad
+  para cualquier excepción que no debería ocurrir -las funciones de
+  `consultas.ts` están escritas para devolver `{error: ...}` en vez de
+  lanzar-, pero si algo revienta de todos modos, se convierte en un error
+  JSON-RPC de verdad en lugar de tumbar la petición con un 500 sin envoltura.
 
 ### Ejemplo de sesión completa
 
@@ -268,6 +300,28 @@ Una pregunta como *"Obtén la tarifa GDMTH de Navojoa, Sonora, para marzo de
 2026"* se resuelve enteramente con esa última llamada: el agente ve en la
 descripción de `consultar_tarifa` que puede dar `estado`+`municipio` sin
 saber la región, y la herramienta resuelve sola SONORA+NAVOJOA → NOROESTE.
+
+### Probar contra el despliegue real, no solo en local
+
+`prueba_api.mjs` y `prueba_mcp.mjs` corren contra una copia del Worker
+empaquetada con esbuild en memoria — rápido y sin red, pero no es lo mismo
+que el servidor de verdad respondiendo desde el borde de Cloudflare.
+`prueba_mcp_remoto.mjs` sí le pega a la URL real:
+
+```bash
+cd worker
+MCP_URL=https://tarifas-electricas-mx.contacto-746.workers.dev/mcp node pruebas/prueba_mcp_remoto.mjs
+# o, para usar la URL pública del proyecto por omisión:
+npm run test:remote
+```
+
+Corre la cadena completa (`initialize` → `notifications/initialized` →
+`tools/list` → las tres herramientas), incluida la resolución
+`SONORA + NAVOJOA -> NOROESTE` contra los datos reales ya desplegados, y
+compara los cargos de marzo de 2026 contra la referencia de este README. Si
+no hay salida a Internet, lo dice explícitamente y termina con código de
+salida `2` (no `1`), para no confundir "no hay red" con "el servidor está
+mal" en un pipeline de CI.
 
 ### Probarlo con MCP Inspector
 
@@ -369,6 +423,7 @@ los despliegues anteriores.
 | `worker/pruebas/_entorno.mjs` | Bootstrap compartido (empaqueta el Worker con esbuild) |
 | `worker/pruebas/prueba_api.mjs` | Pruebas de REST, portada, llms.txt, robots.txt, CORS |
 | `worker/pruebas/prueba_mcp.mjs` | Pruebas del servidor MCP: initialize, tools/list, las tres herramientas, errores |
+| `worker/pruebas/prueba_mcp_remoto.mjs` | Prueba end-to-end contra el despliegue real (`MCP_URL`) |
 
 ## Notas de captura
 

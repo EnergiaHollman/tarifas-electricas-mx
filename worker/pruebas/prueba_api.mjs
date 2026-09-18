@@ -154,6 +154,8 @@ check("CORS preflight", pre.status, 204);
 check("CORS abierto", pre.headers.get("access-control-allow-origin"), "*");
 check("MCP-Protocol-Version queda expuesto para clientes en navegador",
   pre.headers.get("access-control-expose-headers")?.includes("mcp-protocol-version"), true);
+check("DELETE permitido en CORS (para que el 405 informativo llegue al cliente)",
+  pre.headers.get("access-control-allow-methods")?.includes("DELETE"), true);
 
 console.log();
 if (contar()) {

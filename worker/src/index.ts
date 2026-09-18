@@ -16,14 +16,29 @@ import {
 import { manejarMcp } from "./mcp";
 import { llmsTxt, portada } from "./portada";
 
+// CORS evaluado explícitamente para lo que MCP necesita, nada más:
+//   - content-type: el cliente lo manda en cada POST /mcp.
+//   - mcp-protocol-version: el cliente lo manda tras el initialize, y el
+//     servidor también lo devuelve en la respuesta (ver expose-headers).
+//   - mcp-session-id: este servidor NUNCA lo emite (es stateless a
+//     propósito), pero se sigue permitiendo en la petición: un cliente MCP
+//     genérico puede mandarlo por defensa, y rechazar el preflight solo
+//     porque nosotros no lo usamos rompería ese cliente sin necesidad.
+//   - accept: no hace falta declararlo aquí. Es uno de los headers
+//     "safelisted" del propio estándar CORS (junto con Accept-Language y
+//     Content-Language), así que el navegador ya lo permite sin que un
+//     servidor tenga que listarlo explícitamente.
+// GET, POST, OPTIONS y DELETE están en allow-methods porque el propio router
+// de /mcp responde algo a las cuatro (POST hace el trabajo real; GET y
+// DELETE responden 405 explicado). Sin DELETE aquí, un cliente en navegador
+// nunca llegaría a VER esa respuesta 405: el preflight lo bloquearía antes.
 const CORS = {
   "access-control-allow-origin": "*",
-  "access-control-allow-methods": "GET, POST, OPTIONS",
+  "access-control-allow-methods": "GET, POST, DELETE, OPTIONS",
   "access-control-allow-headers": "content-type, mcp-session-id, mcp-protocol-version",
-  // Sin esto, un cliente MCP en navegador no puede LEER el header de
+  // Sin exponer esto, un cliente MCP en navegador no puede LEER el header de
   // respuesta MCP-Protocol-Version que /mcp añade (CORS oculta por omisión
-  // cualquier header que no sea "simple"). Mcp-Session-Id no hace falta
-  // exponerlo: este servidor nunca lo emite.
+  // cualquier header que no sea "simple").
   "access-control-expose-headers": "mcp-protocol-version",
 };
 

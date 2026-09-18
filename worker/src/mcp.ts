@@ -92,6 +92,7 @@ const HERRAMIENTAS = [
         },
       },
       required: ["anio", "mes"],
+      additionalProperties: false,
     },
   },
   {
@@ -120,6 +121,7 @@ const HERRAMIENTAS = [
         hora: { type: "string", description: "Hora opcional en formato 24h HH:MM, p. ej. 20:30." },
       },
       required: ["fecha"],
+      additionalProperties: false,
     },
   },
   {
@@ -131,11 +133,27 @@ const HERRAMIENTAS = [
       "cargados en el catálogo de municipios. Sin parámetros. Úsala para saber " +
       "qué regiones existen antes de llamar a consultar_tarifa por región, o " +
       "para diagnosticar por qué una consulta no encontró datos.",
-    inputSchema: { type: "object", properties: {} },
+    inputSchema: { type: "object", properties: {}, additionalProperties: false },
   },
 ];
 
 const NOMBRES_HERRAMIENTA = new Set(HERRAMIENTAS.map((h) => h.name));
+const POR_NOMBRE = new Map(HERRAMIENTAS.map((h) => [h.name, h]));
+
+/**
+ * Cada schema declara additionalProperties:false; esto es lo que lo hace
+ * real y no solo decorativo. No se usa una librería de validación de JSON
+ * Schema completa (serían más dependencias por una sola regla): basta con
+ * comparar las claves recibidas contra las declaradas en el schema de esa
+ * herramienta. Una clave que el schema no declara es un error de la LLAMADA
+ * en sí -no un valor de negocio que no aplica-, así que se trata como error
+ * de protocolo, igual que un tools/call sin 'name'.
+ */
+function propiedadesDesconocidas(nombreHerramienta: string, args: Record<string, any>): string[] {
+  const tool = POR_NOMBRE.get(nombreHerramienta);
+  const conocidas = new Set(Object.keys(tool?.inputSchema?.properties ?? {}));
+  return Object.keys(args).filter((k) => !conocidas.has(k));
+}
 
 // Todas de solo lectura sobre un JSON estático empaquetado en el propio
 // Worker: no hay red, no hay CFE en vivo, no hay estado que mutar.
@@ -246,7 +264,22 @@ function despachar(msg: any) {
         // especificación para este caso exacto.
         return error(id, -32602, `Unknown tool: ${nombre}`);
       }
-      return respuesta(id, llamarHerramienta(nombre, params?.arguments));
+      const args = (params?.arguments && typeof params.arguments === "object" ? params.arguments : {}) as Record<string, any>;
+      const desconocidas = propiedadesDesconocidas(nombre, args);
+      if (desconocidas.length > 0) {
+        return error(id, -32602,
+          `Invalid params: propiedad(es) no reconocida(s) para ${nombre}: ${desconocidas.join(", ")}.`);
+      }
+      try {
+        return respuesta(id, llamarHerramienta(nombre, args));
+      } catch (e) {
+        // No debería pasar -las funciones de consultas.ts devuelven {error}
+        // en vez de lanzar-, pero si algo inesperado revienta aquí, se
+        // convierte en un error JSON-RPC de verdad en lugar de tumbar el
+        // Worker con un 500 sin envoltura JSON-RPC.
+        const msg = e instanceof Error ? e.message : String(e);
+        return error(id, -32603, `Internal error: ${msg}`);
+      }
     }
 
     default:
