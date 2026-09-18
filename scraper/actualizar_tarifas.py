@@ -48,23 +48,69 @@ def escribir(ruta, datos):
                     encoding="utf-8")
 
 
-def representantes(catalogo):
-    """{REGION: (estado_id, municipio_id, etiqueta)}: un municipio por región.
+def opciones_de(municipio):
+    """Compatibilidad con catálogos viejos, que traían un solo campo region."""
+    if municipio.get("opciones"):
+        return municipio["opciones"]
+    if municipio.get("region"):
+        return [{"id": municipio.get("region_id"), "etiqueta": municipio["region"]}]
+    return []
 
-    Se prefieren municipios de una sola división. Los que CFE atiende con dos
-    ("Bajío y Golfo Centro") devuelven dos tablas y solo se usan cuando no hay
-    otro municipio para esa región.
+
+def portadores(catalogo):
+    """{etiqueta: (estado_id, municipio_id, opcion_id, nombre)} para resolverlas.
+
+    Una etiqueta como "BAJIO Y GOLFO CENTRO" no se puede partir por texto: CFE
+    elide el prefijo compartido ("VALLE DE MEXICO CENTRO Y SUR" son Centro y
+    Sur del Valle de México, no "Sur"). La única fuente fiable son los
+    encabezados que devuelve la página, así que se consulta una vez por
+    etiqueta y se guarda la equivalencia.
+    """
+    fuera = {}
+    for estado in catalogo.get("estados", {}).values():
+        for municipio in estado["municipios"].values():
+            for o in opciones_de(municipio):
+                fuera.setdefault(o["etiqueta"],
+                                 (estado["id"], municipio["id"], o["id"],
+                                  f"{municipio['nombre']}, {estado['nombre']}"))
+    return fuera
+
+
+def resolver_etiquetas(s, catalogo, anio, mes):
+    """Aprende qué regiones reales hay detrás de cada etiqueta del catálogo."""
+    expansiones = catalogo.setdefault("expansiones", {})
+    for etiqueta, (eid, mid, oid, nombre) in sorted(portadores(catalogo).items()):
+        if etiqueta in expansiones:
+            continue
+        s.consultar(anio, mes, eid, mid, region_id=oid)
+        reales = [P.normalizar(t["region"]) for t in P.parsear_todas(s.html)
+                  if t["cargos"] and t["region"]]
+        if not reales:
+            print(f"   ? {etiqueta}: sin resultados en {anio}-{mes:02d}")
+            continue
+        expansiones[etiqueta] = reales
+        if reales != [etiqueta]:
+            print(f"   {etiqueta}  ->  {', '.join(reales)}")
+    return expansiones
+
+
+def representantes(catalogo, expansiones):
+    """{REGION: (estado_id, municipio_id, opcion_id, nombre)}: uno por región.
+
+    Se prefiere una opción que cubra una sola división: es más rápida y no
+    deja ambigüedad. Las compuestas solo se usan si no hay otra.
     """
     puros, mixtos = {}, {}
     for estado in catalogo.get("estados", {}).values():
         for municipio in estado["municipios"].values():
-            regiones = P.separar_regiones(municipio["region"])
-            etiqueta = f"{municipio['nombre']}, {estado['nombre']}"
-            destino = puros if len(regiones) == 1 else mixtos
-            for r in regiones:
-                destino.setdefault(r, (estado["id"], municipio["id"], etiqueta))
+            for o in opciones_de(municipio):
+                reales = expansiones.get(o["etiqueta"], [o["etiqueta"]])
+                destino = puros if len(reales) == 1 else mixtos
+                for r in reales:
+                    destino.setdefault(r, (estado["id"], municipio["id"], o["id"],
+                                           f"{municipio['nombre']}, {estado['nombre']}"))
     fuera = dict(mixtos)
-    fuera.update(puros)          # un municipio puro desplaza al mixto
+    fuera.update(puros)
     return fuera
 
 
@@ -90,16 +136,6 @@ def main():
     if not catalogo:
         sys.exit("falta data/catalogo.json: corre construir_catalogo.py primero")
 
-    reps = representantes(catalogo)
-    if args.regiones:
-        querer = {P.normalizar(r) for r in args.regiones}
-        faltan = querer - set(reps)
-        if faltan:
-            sys.exit(f"no hay municipios en el catálogo para: {', '.join(sorted(faltan))}")
-        reps = {k: v for k, v in reps.items() if k in querer}
-    if not reps:
-        sys.exit("el catálogo no tiene regiones")
-
     tarifas = cargar(TARIFAS, {"actualizado": None, "fuente": cfe.PAGINAS[args.tarifa],
                                "registros": {}})
     registros = tarifas["registros"]
@@ -117,11 +153,32 @@ def main():
     if not anios:
         sys.exit(f"años disponibles en CFE: {min(disponibles)}–{max(disponibles)}")
 
+    # Qué divisiones reales hay detrás de cada etiqueta. Una consulta por
+    # etiqueta desconocida, y queda guardado en el catálogo.
+    print("\nResolviendo etiquetas de división")
+    s.poner_anio(anios[-1])
+    mes_ref = max(s.meses()[:-1] or s.meses())      # el último suele estar vacío
+    expansiones = resolver_etiquetas(s, catalogo, anios[-1], mes_ref)
+    escribir(CATALOGO, catalogo)
+    reales = sorted({r for v in expansiones.values() for r in v})
+    print(f"   {len(expansiones)} etiqueta(s) -> {len(reales)} división(es) reales")
+
+    reps = representantes(catalogo, expansiones)
+    if args.regiones:
+        querer = {P.normalizar(r) for r in args.regiones}
+        faltan = querer - set(reps)
+        if faltan:
+            sys.exit(f"no hay municipios en el catálogo para: {', '.join(sorted(faltan))}")
+        reps = {k: v for k, v in reps.items() if k in querer}
+    if not reps:
+        sys.exit("el catálogo no tiene regiones")
+
     nuevos = omitidos = vacios = 0
-    for region, (eid, mid, etiqueta) in sorted(reps.items()):
+    for region, (eid, mid, oid, etiqueta) in sorted(reps.items()):
         print(f"\n== {region}  ({etiqueta})")
         s.poner_estado(eid)
         s.poner_municipio(mid)
+        s.poner_region(oid)
         for anio in anios:
             s.poner_anio(anio)
             for mes in s.meses():          # CFE solo lista los meses publicados
@@ -132,7 +189,7 @@ def main():
                 if args.faltantes and k in registros:
                     omitidos += 1
                     continue
-                s.consultar(anio, mes, eid, mid)
+                s.consultar(anio, mes, eid, mid, region_id=oid)
                 tablas = [t for t in P.parsear_todas(s.html) if t["cargos"]]
                 if not tablas:
                     print(f"   {anio}-{mes:02d}  sin publicación")

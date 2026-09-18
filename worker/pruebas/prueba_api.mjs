@@ -26,12 +26,25 @@ const escribir = (n, d) => writeFileSync(rutaDatos(n), JSON.stringify(d, null, 1
 
 // Municipio que CFE atiende con dos divisiones tarifarias.
 const cat = leer("catalogo.json");
+cat.expansiones = {
+  "BAJIO Y GOLFO CENTRO": ["BAJIO", "GOLFO CENTRO"],
+  // El prefijo elidido: no se podría deducir partiendo el texto.
+  "VALLE DE MEXICO CENTRO Y SUR": ["VALLE DE MEXICO CENTRO", "VALLE DE MEXICO SUR"],
+};
 cat.estados["GUANAJUATO"] = {
   id: "11", nombre: "GUANAJUATO",
   municipios: {
     "SAN LUIS DE LA PAZ": {
       id: "999901", nombre: "SAN LUIS DE LA PAZ",
-      region: "BAJIO Y GOLFO CENTRO", region_id: "99",
+      opciones: [{ id: "99", etiqueta: "BAJIO Y GOLFO CENTRO" }],
+    },
+    // Municipio con dos opciones separadas en el desplegable.
+    "CELAYA": {
+      id: "999902", nombre: "CELAYA",
+      opciones: [
+        { id: "1", etiqueta: "BAJIO" },
+        { id: "2", etiqueta: "GOLFO CENTRO" },
+      ],
     },
   },
 };
@@ -187,8 +200,14 @@ check("devuelve las dos regiones", r.cuerpo.regiones, ["BAJIO", "GOLFO CENTRO"])
 check("un resultado por región", r.cuerpo.resultados.map((x) => x.region),
   ["BAJIO", "GOLFO CENTRO"]);
 check("cada uno con sus cargos", r.cuerpo.resultados[0].cargos.punta, 1.5);
-check("advierte de la ambigüedad", r.cuerpo.nota.includes("dos divisiones"), true);
+check("advierte de la ambigüedad",
+  r.cuerpo.nota.includes("más de una división"), true);
+r = await get("/v1/tarifa?estado=GUANAJUATO&municipio=CELAYA&anio=2026&mes=3");
+check("municipio con dos opciones del desplegable", r.cuerpo.regiones,
+  ["BAJIO", "GOLFO CENTRO"]);
 r = await get("/v1/regiones");
+check("no aparece una región falsa por partir texto",
+  r.cuerpo.regiones.some((x) => x.region === "SUR"), false);
 check("las dos aparecen en el listado",
   ["BAJIO", "GOLFO CENTRO"].every((x) => r.cuerpo.regiones.some((y) => y.region === x)), true);
 

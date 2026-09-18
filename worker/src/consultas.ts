@@ -6,7 +6,7 @@ import { franjas, periodoEn, temporadaDe, tipoDia } from "./calendario";
 import {
   AVISO,
   catalogo,
-  separarRegiones,
+  regionesDeMunicipio,
   listarEstados,
   listarRegiones,
   normalizar,
@@ -43,7 +43,7 @@ function resolverRegion(args: Args) {
           : `Estados con catálogo: ${listarEstados().join(", ") || "ninguno todavía"}.`,
       };
     }
-    const regiones = separarRegiones(m.region);
+    const regiones = regionesDeMunicipio(m);
     return {
       region: regiones[0],
       regiones,                       // dos cuando CFE atiende con dos divisiones
@@ -80,8 +80,8 @@ export function consultarTarifa(args: Args) {
       return {
         tarifa, estado: ubic.estado, municipio: ubic.municipio,
         regiones: ubic.regiones, anio, mes, resultados,
-        nota: "CFE atiende este municipio con dos divisiones tarifarias. Cuál " +
-              "aplica depende del punto de suministro; confírmalo en el recibo.",
+        nota: "CFE ofrece más de una división tarifaria para este municipio. " +
+              "Cuál aplica depende del punto de suministro; confírmalo en el recibo.",
         aviso: AVISO,
       };
     }

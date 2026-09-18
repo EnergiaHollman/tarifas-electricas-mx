@@ -8,13 +8,20 @@ import horariosJson from "../../data/horarios.json";
 import tarifasJson from "../../data/tarifas.json";
 import type { Zona } from "./calendario";
 
-type Municipio = { id: string; nombre: string; region: string; region_id: string };
+type Opcion = { id: string; etiqueta: string };
+type Municipio = {
+  id: string; nombre: string;
+  opciones?: Opcion[];
+  region?: string; region_id?: string;   // formato viejo del catálogo
+};
 type Estado = { id: string; nombre: string; municipios: Record<string, Municipio> };
 
 export const catalogo = catalogoJson as unknown as {
   generado: string | null;
   fuente: string;
   parcial?: boolean;
+  /** Etiqueta del desplegable -> divisiones reales, aprendidas al capturar. */
+  expansiones?: Record<string, string[]>;
   estados: Record<string, Estado>;
 };
 
@@ -71,16 +78,29 @@ export function regionDeMunicipio(estado: string, municipio: string): Municipio 
 }
 
 /**
- * "BAJIO Y GOLFO CENTRO" -> ["BAJIO", "GOLFO CENTRO"].
+ * Divisiones reales detrás de una etiqueta del desplegable de CFE.
  *
- * Hay municipios que CFE atiende con dos divisiones y los etiqueta así.
- * Ninguna división real lleva " y " en el nombre, de modo que el corte es
- * seguro.
+ * Las etiquetas compuestas no se pueden partir por texto: CFE elide el
+ * prefijo compartido, así que "VALLE DE MEXICO CENTRO Y SUR" son Centro y Sur
+ * del Valle de México, no una división llamada "SUR". La equivalencia la
+ * aprende el scraper leyendo los encabezados que devuelve la página y la deja
+ * en `expansiones`.
  */
-export function separarRegiones(etiqueta: string): string[] {
+export function expandirEtiqueta(etiqueta: string): string[] {
   const t = normalizar(etiqueta);
-  const partes = t.split(/\s+Y\s+/).map((x) => x.trim()).filter(Boolean);
-  return partes.length ? partes : [t];
+  return catalogo.expansiones?.[t] ?? [t];
+}
+
+/** Todas las divisiones posibles de un municipio. */
+export function regionesDeMunicipio(m: Municipio): string[] {
+  const opciones = m.opciones?.length
+    ? m.opciones
+    : m.region
+      ? [{ id: m.region_id ?? "", etiqueta: m.region }]
+      : [];
+  const vistas = new Set<string>();
+  for (const o of opciones) for (const r of expandirEtiqueta(o.etiqueta)) vistas.add(r);
+  return [...vistas];
 }
 
 export function listarRegiones(): string[] {
@@ -88,7 +108,7 @@ export function listarRegiones(): string[] {
   for (const r of Object.values(tarifas.registros)) s.add(r.region);
   for (const e of Object.values(catalogo.estados))
     for (const m of Object.values(e.municipios))
-      for (const r of separarRegiones(m.region)) s.add(r);
+      for (const r of regionesDeMunicipio(m)) s.add(r);
   return [...s].sort();
 }
 

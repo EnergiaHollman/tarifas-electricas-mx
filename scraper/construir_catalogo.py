@@ -67,27 +67,35 @@ def main():
         entrada = {"id": eid, "nombre": estado,
                    "municipios": previo.get("municipios", {})}
 
+        # Migración sin red: las entradas viejas traían un solo campo `region`.
+        for m in entrada["municipios"].values():
+            if "opciones" not in m and m.get("region"):
+                m["opciones"] = [{"id": m.get("region_id"), "etiqueta": m["region"]}]
+
         for j, (mid, municipio) in enumerate(municipios, 1):
             k = P.normalizar(municipio)
-            if k in entrada["municipios"] and not args.rehacer:
+            if entrada["municipios"].get(k, {}).get("opciones") and not args.rehacer:
                 continue
-            rid, region = s.region_de_municipio(eid, mid)
-            if region is None:
-                print(f"    ! sin región: {municipio}")
+            opciones = s.opciones_de_municipio(eid, mid)
+            if not opciones:
+                print(f"    ! sin división: {municipio}")
                 continue
             entrada["municipios"][k] = {"id": mid, "nombre": municipio,
-                                        "region": P.normalizar(region),
-                                        "region_id": rid}
-            print(f"    {j}/{len(municipios)} {municipio} -> {region}")
+                                        "opciones": opciones}
+            etiquetas = ", ".join(o["etiqueta"] for o in opciones)
+            print(f"    {j}/{len(municipios)} {municipio} -> {etiquetas}")
 
         cat["estados"][clave] = entrada
         guardar(cat)          # se guarda estado por estado: reanudable
 
-    regiones = sorted({m["region"] for e in cat["estados"].values()
-                       for m in e["municipios"].values()})
+    etiquetas = sorted({o["etiqueta"] for e in cat["estados"].values()
+                        for m in e["municipios"].values()
+                        for o in m.get("opciones", [])})
     print(f"\nListo. {len(cat['estados'])} estado(s), "
           f"{sum(len(e['municipios']) for e in cat['estados'].values())} municipios, "
-          f"{len(regiones)} región(es): {', '.join(regiones)}")
+          f"{len(etiquetas)} etiqueta(s) de división.")
+    print("Las compuestas se resuelven al capturar, leyendo los encabezados "
+          "que devuelve la página.")
 
 
 if __name__ == "__main__":

@@ -184,16 +184,20 @@ class SesionCFE:
                 self.poner_region(disponibles[0][0])
         return P.parsear_cargos(self.html)
 
-    def region_de_municipio(self, estado_id, municipio_id):
-        """(id, nombre) de la región tarifaria que CFE asigna a ese municipio."""
+    def opciones_de_municipio(self, estado_id, municipio_id):
+        """Opciones de división que CFE ofrece para ese municipio.
+
+        Casi siempre es una y viene preseleccionada. Pero hay municipios
+        (Toluca, por ejemplo) donde el desplegable ofrece varias sin elegir
+        ninguna: ahí hay que devolverlas todas, no descartar el municipio.
+        """
         self.poner_estado(estado_id)
         self.poner_municipio(municipio_id)
         rid, nombre = self._actual(P.DD_REGION)
-        if rid is None:
-            disponibles = self.regiones_disponibles()
-            if len(disponibles) == 1:
-                rid, nombre = disponibles[0]
-        return rid, nombre
+        if rid is not None:
+            return [{"id": rid, "etiqueta": P.normalizar(nombre)}]
+        return [{"id": v, "etiqueta": P.normalizar(t)}
+                for v, t, _ in P.opciones(self.html, P.DD_REGION)]
 
     def horarios(self):
         if self.html is None:
