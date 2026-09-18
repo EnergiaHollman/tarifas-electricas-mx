@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-09-18T18:18:30+00:00",
+ "actualizado": "2026-09-18T18:28:05+00:00",
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
  "registros": {
   "GDMTH|BAJA CALIFORNIA|2026-01": {
@@ -50,10 +50,10 @@
      "valor": 357.99
     }
    ],
-   "fecha_captura": "2026-09-17T23:14:32+00:00",
+   "fecha_captura": "2026-09-18T18:26:05+00:00",
    "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
    "mes": 1,
-   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "municipio_consultado": "ENSENADA, BAJA CALIFORNIA",
    "periodo_cfe": "ENE-26",
    "region": "BAJA CALIFORNIA",
    "tarifa": "GDMTH",
@@ -114,10 +114,10 @@
      "valor": 358.2
     }
    ],
-   "fecha_captura": "2026-09-17T23:14:35+00:00",
+   "fecha_captura": "2026-09-18T18:26:07+00:00",
    "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
    "mes": 2,
-   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "municipio_consultado": "ENSENADA, BAJA CALIFORNIA",
    "periodo_cfe": "FEB-26",
    "region": "BAJA CALIFORNIA",
    "tarifa": "GDMTH",
@@ -178,10 +178,10 @@
      "valor": 358.41
     }
    ],
-   "fecha_captura": "2026-09-17T23:14:37+00:00",
+   "fecha_captura": "2026-09-18T18:26:10+00:00",
    "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
    "mes": 3,
-   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "municipio_consultado": "ENSENADA, BAJA CALIFORNIA",
    "periodo_cfe": "MAR-26",
    "region": "BAJA CALIFORNIA",
    "tarifa": "GDMTH",
@@ -242,10 +242,10 @@
      "valor": 358.4
     }
    ],
-   "fecha_captura": "2026-09-17T23:14:39+00:00",
+   "fecha_captura": "2026-09-18T18:26:12+00:00",
    "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
    "mes": 4,
-   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "municipio_consultado": "ENSENADA, BAJA CALIFORNIA",
    "periodo_cfe": "ABR-26",
    "region": "BAJA CALIFORNIA",
    "tarifa": "GDMTH",
@@ -306,10 +306,10 @@
      "valor": 354.82
     }
    ],
-   "fecha_captura": "2026-09-17T23:14:42+00:00",
+   "fecha_captura": "2026-09-18T18:26:14+00:00",
    "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
    "mes": 5,
-   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "municipio_consultado": "ENSENADA, BAJA CALIFORNIA",
    "periodo_cfe": "MAY-26",
    "region": "BAJA CALIFORNIA",
    "tarifa": "GDMTH",
@@ -370,10 +370,10 @@
      "valor": 351.29
     }
    ],
-   "fecha_captura": "2026-09-17T23:14:44+00:00",
+   "fecha_captura": "2026-09-18T18:26:17+00:00",
    "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
    "mes": 6,
-   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "municipio_consultado": "ENSENADA, BAJA CALIFORNIA",
    "periodo_cfe": "JUN-26",
    "region": "BAJA CALIFORNIA",
    "tarifa": "GDMTH",
@@ -434,10 +434,10 @@
      "valor": 344.26
     }
    ],
-   "fecha_captura": "2026-09-17T23:14:46+00:00",
+   "fecha_captura": "2026-09-18T18:26:19+00:00",
    "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
    "mes": 7,
-   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "municipio_consultado": "ENSENADA, BAJA CALIFORNIA",
    "periodo_cfe": "JUL-26",
    "region": "BAJA CALIFORNIA",
    "tarifa": "GDMTH",
@@ -498,10 +498,10 @@
      "valor": 344.27
     }
    ],
-   "fecha_captura": "2026-09-17T23:14:49+00:00",
+   "fecha_captura": "2026-09-18T18:26:21+00:00",
    "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
    "mes": 8,
-   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "municipio_consultado": "ENSENADA, BAJA CALIFORNIA",
    "periodo_cfe": "AGO-26",
    "region": "BAJA CALIFORNIA",
    "tarifa": "GDMTH",
@@ -562,10 +562,10 @@
      "valor": 344.27
     }
    ],
-   "fecha_captura": "2026-09-17T23:14:51+00:00",
+   "fecha_captura": "2026-09-18T18:26:24+00:00",
    "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
    "mes": 9,
-   "municipio_consultado": "PUERTO PENASCO, SONORA",
+   "municipio_consultado": "ENSENADA, BAJA CALIFORNIA",
    "periodo_cfe": "SEP-26",
    "region": "BAJA CALIFORNIA",
    "tarifa": "GDMTH",
