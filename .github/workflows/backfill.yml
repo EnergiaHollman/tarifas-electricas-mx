@@ -63,7 +63,7 @@ jobs:
 
       - name: Diagnóstico de los desplegables
         if: inputs.diagnostico
-        run: cd scraper && python3 diagnostico.py --pausa 2 --anio 2019 --mes 6
+        run: cd scraper && python3 diagnostico.py --pausa 2 --anio 2019
 
       - name: Construir catálogo
         if: '!inputs.diagnostico' 
