@@ -124,6 +124,20 @@ s2 = SesionFalsa(POR_OPCION)
 A.resolver_etiquetas(s2, cat, 2026, 3)
 check("no repite lo ya resuelto", len(s2.consultas), 0)
 
+# Una expansión guardada por una versión anterior, con el nombre equivocado.
+cat_malo = copy.deepcopy(cat)
+cat_malo["expansiones"]["BAJA CALIFORNIA SUR"] = ["BAJA CALIFORNIA"]
+s3 = SesionFalsa(POR_OPCION)
+exp_malo = A.resolver_etiquetas(s3, cat_malo, 2026, 3)
+check("detecta y corrige una expansión heredada mala",
+      exp_malo["BAJA CALIFORNIA SUR"], ["BAJA CALIFORNIA SUR"])
+check("solo vuelve a consultar la mala", len(s3.consultas), 1)
+
+cat_ok = copy.deepcopy(cat)
+s4 = SesionFalsa(POR_OPCION)
+A.resolver_etiquetas(s4, cat_ok, 2026, 3, rehacer=True)
+check("--reresolver las consulta todas", len(s4.consultas), 6)
+
 print("\nRepresentantes")
 reps = A.representantes(cat, exp)
 check("una división real del Valle de México Sur, no 'SUR'",

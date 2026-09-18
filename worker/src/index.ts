@@ -14,7 +14,7 @@ import {
   tarifas,
 } from "./datos";
 import { manejarMcp } from "./mcp";
-import { portada } from "./portada";
+import { llmsTxt, portada } from "./portada";
 
 const CORS = {
   "access-control-allow-origin": "*",
@@ -102,6 +102,21 @@ export default {
     }
 
     if (ruta === "/openapi.json") return json(OPENAPI);
+
+    // Convención llms.txt: resumen en Markdown para agentes.
+    if (ruta === "/llms.txt" || ruta === "/llms-full.txt") {
+      return new Response(llmsTxt(url.origin, resumenRegiones()), {
+        headers: { "content-type": "text/markdown; charset=utf-8",
+                   "cache-control": "public, max-age=3600", ...CORS },
+      });
+    }
+
+    if (ruta === "/robots.txt") {
+      return new Response(
+        `User-agent: *\nAllow: /\n\nSitemap: ${url.origin}/llms.txt\n`,
+        { headers: { "content-type": "text/plain; charset=utf-8", ...CORS } },
+      );
+    }
 
     if (ruta === "/v1/tarifa") {
       return resultado(

@@ -72,7 +72,7 @@ equipo no participa.
 
 ```bash
 cd scraper
-python3 construir_catalogo.py --estados SONORA SINALOA
+python3 construir_catalogo.py --estados SONORA,SINALOA
 python3 actualizar_tarifas.py --regiones NOROESTE --desde 2026
 ```
 
@@ -144,8 +144,14 @@ GET /v1/estados
 GET /v1/municipios?estado=SONORA
 GET /v1/salud
 GET /openapi.json
+GET /llms.txt
 POST /mcp
 ```
+
+La portada publica los endpoints como enlaces reales, no como texto en un
+bloque de código: los agentes que navegan solo abren URLs que hayan visto
+enlazadas. `/llms.txt` es un resumen en Markdown de la API, pensado para que
+un agente la entienda de una lectura sin deducirla del HTML.
 
 `/v1/horarios` no solo devuelve las franjas: resuelve la temporada vigente, el
 tipo de día y, si le pasas una hora, en qué periodo cae. Los días de descanso
@@ -207,6 +213,7 @@ los despliegues anteriores.
 | `scraper/actualizar_tarifas.py` | Captura de cargos y horarios. Lo que corre el cron |
 | `scraper/sembrar_desde_muestra.py` | Genera `data/` desde la muestra, sin red |
 | `scraper/test_parser.py` | Pruebas del parser contra HTML real |
+| `scraper/test_catalogo.py` | Pruebas de etiquetas compuestas y representantes |
 | `.github/workflows/backfill.yml` | Captura histórica a demanda, desde GitHub |
 | `.github/workflows/actualizar.yml` | Captura mensual automática |
 | `data/catalogo.json` | Estado → municipio → región |
@@ -224,6 +231,27 @@ los despliegues anteriores.
 - Los cargos dependen de la región tarifaria, no del municipio. El scraper usa
   un municipio representativo por región: ocho consultas por mes en lugar de
   2,400.
+- Un municipio puede tener **más de una división tarifaria**. Ocurre de dos
+  formas: el desplegable ofrece varias opciones (Toluca), o una sola opción
+  cuyo texto abarca varias ("Bajío y Golfo Centro"). En ambos casos la página
+  devuelve una tabla por división y la API las devuelve todas, porque cuál
+  aplica depende del punto de suministro y eso solo lo dice el recibo.
+- El encabezado de la página de resultados **no es de fiar**: para Baja
+  California Sur imprime "Baja California". Cuando la respuesta trae una sola
+  tabla, la división es la que se seleccionó en el desplegable; los encabezados
+  solo se usan para desglosar las etiquetas compuestas, que devuelven varias.
+- El desplegable de años trae solo el año en curso al cargar la página y se
+  amplía al seleccionar ubicación. El rango se toma de lo que pide el usuario
+  y se contrasta ya con el municipio puesto.
+- Las etiquetas compuestas **no se pueden partir por texto**: CFE elide el
+  prefijo compartido, así que "Valle de México Centro y Sur" son Centro y Sur
+  del Valle de México, no una división llamada "Sur". El scraper consulta una
+  vez cada etiqueta, lee los encabezados reales que devuelve la página y
+  guarda la equivalencia en `catalogo.json`, bajo `expansiones`. Esas
+  equivalencias se validan al leerlas: una de un solo elemento tiene que ser
+  la etiqueta misma, así que las heredadas de versiones con criterios
+  distintos se detectan y se vuelven a resolver solas. `--reresolver` fuerza
+  rehacerlas todas.
 - El scraper nunca reescribe un registro ya capturado salvo con `--rehacer`.
   Si CFE corrigiera un mes cerrado, quieres enterarte, no que se sobrescriba
   en silencio.

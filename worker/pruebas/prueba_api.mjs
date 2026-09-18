@@ -190,6 +190,18 @@ r = await get("/openapi.json");
 check("openapi", r.cuerpo.openapi, "3.1.0");
 r = await get("/");
 check("portada es HTML", r.cuerpo.startsWith("<!doctype html>"), true);
+check("los endpoints van como enlaces reales, no como texto",
+  r.cuerpo.includes('<a href="https://ejemplo.workers.dev/v1/regiones">'), true);
+check("la portada enlaza el llms.txt",
+  r.cuerpo.includes('href="https://ejemplo.workers.dev/llms.txt"'), true);
+r = await get("/llms.txt");
+check("llms.txt responde", r.status, 200);
+check("es markdown, no HTML", r.cuerpo.startsWith("# API de tarifas"), true);
+check("trae las URL completas", r.cuerpo.includes("https://ejemplo.workers.dev/v1/tarifa?"), true);
+check("documenta el endpoint MCP", r.cuerpo.includes("/mcp"), true);
+check("advierte del caso de varias divisiones", r.cuerpo.includes("más de una división"), true);
+r = await get("/robots.txt");
+check("robots.txt permite el rastreo", r.cuerpo.includes("Allow: /"), true);
 r = await get("/no-existe");
 check("404 de ruta", r.status, 404);
 

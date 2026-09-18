@@ -233,17 +233,23 @@ def main():
         s.poner_estado(eid)
         s.poner_municipio(mid)
         s.poner_region(oid)
-        # Con la ubicación puesta, el desplegable ya trae todos los años.
-        anios = [a for a in s.anios() if desde <= a <= hasta] or anios_pedidos
-        fuera_de_rango = [a for a in anios_pedidos if a not in anios]
-        if fuera_de_rango:
-            print(f"   (CFE no ofrece: {fuera_de_rango})")
+        # Con la ubicación puesta, el desplegable debería traer todos los años.
+        ofrece = s.anios()
+        anios = [a for a in ofrece if desde <= a <= hasta] or anios_pedidos
+        print(f"   años: {anios[0]}–{anios[-1]} ({len(anios)}); "
+              f"el sitio ofrece {len(ofrece)}")
         for anio in anios:
             s.poner_anio(anio)
-            if s._actual(P.DD_ANIO)[0] != str(anio):
-                print(f"   {anio}  no se pudo seleccionar; se omite")
+            seleccionado = s._actual(P.DD_ANIO)[0]
+            if seleccionado != str(anio):
+                print(f"   {anio}  no quedó seleccionado (quedó {seleccionado}); se omite")
                 continue
-            for mes in s.meses():          # CFE solo lista los meses publicados
+            meses = s.meses()
+            if not meses:
+                # Sin esto el año se saltaba en silencio y parecía capturado.
+                print(f"   {anio}  el sitio no ofrece meses; se omite")
+                continue
+            for mes in meses:              # CFE solo lista los meses publicados
                 k = clave(args.tarifa, region, anio, mes)
                 if k in registros and not args.rehacer:
                     omitidos += 1

@@ -292,7 +292,7 @@ números son correctos **antes** de traer diez años.
 3. Botón **Run workflow** (a la derecha)
 4. Llena los campos:
    - **estados**: `SONORA`
-   - **regiones**: `NOROESTE`
+   - **regiones**: `NOROESTE`  (o `TODAS` para no filtrar)
    - **desde**: `2026`
    - **hasta**: déjalo vacío
    - **desplegar**: marcado
@@ -360,9 +360,18 @@ Solo cuando la Fase 5 haya cuadrado.
 
 | Alcance | Estados | Regiones | Desde | Duración aprox. |
 |---|---|---|---|---|
-| Tu zona, histórico completo | `SONORA SINALOA` | `NOROESTE` | `2017` | ~15 min |
-| País, año en curso | vacío | vacío | `2026` | ~1 h 15 min |
-| País, histórico completo | vacío | vacío | `2017` | ~2 h |
+| Tu zona, histórico completo | `SONORA,SINALOA` | `NOROESTE` | `2017` | ~15 min |
+| País, año en curso | `TODOS` | `TODAS` | `2026` | ~1 h 15 min |
+| País, histórico completo | `TODOS` | `TODAS` | `2017` | ~2 h |
+
+> Dos trampas de este formulario:
+>
+> - Usa las palabras `TODOS` y `TODAS`; si vacías una caja, GitHub la rellena
+>   con el valor por omisión.
+> - Separa los nombres con **coma**, no con espacio. Muchos llevan espacios
+>   dentro: `SAN LUIS POTOSI`, `BAJA CALIFORNIA`, `VALLE DE MEXICO NORTE`.
+> - Revisa el campo **desde**: si lo dejas en el valor por omisión no traerás
+>   el histórico.
 
 Lo que domina el tiempo es el catálogo de municipios (~2,400 postbacks), no
 los cargos. El catálogo se construye una sola vez: si después amplías años, ya
@@ -413,11 +422,23 @@ github.com/settings/notifications, sección **Actions**.
 
 ### En Claude
 
-1. **Settings** → **Connectors**
-2. **Add custom connector**
-3. **Name**: Tarifas eléctricas MX
-4. **URL**: `https://tarifas-mx.tucuenta.workers.dev/mcp`
+**Plan Pro o Max:**
+
+1. **Customize** → **Connectors**
+2. Botón **+** → **Add custom connector**
+3. **URL**: `https://tarifas-electricas-mx.contacto-746.workers.dev/mcp`
+4. Los campos de OAuth en "Advanced settings" se dejan vacíos: el servidor no
+   pide autenticación
 5. **Add**
+
+**Plan Team o Enterprise:** solo un Owner puede agregarlo. Primero el Owner va
+a Settings → Organization Settings → Connectors y lo da de alta ahí. Después
+cada miembro entra a Customize → Connectors, lo busca en la lista (trae la
+etiqueta "Custom") y da clic en **Connect**.
+
+**En cada chat hay que encenderlo.** Agregar el conector no lo activa en todas
+las conversaciones: dentro del chat, botón **+** abajo a la izquierda → Add
+connectors → enciende el que quieras usar.
 
 Ya puedes preguntar cosas como "¿cuánto cuesta el kWh en punta en Navojoa en
 marzo de 2026?" o "¿el 15 de agosto a las 8 de la noche estoy en punta en
@@ -459,6 +480,20 @@ Agrega tu Account ID (el de la Fase 3.2) a `worker/wrangler.toml`:
 ```toml
 account_id = "tu-account-id"
 ```
+
+### "Updates were rejected" al hacer git push (en tu máquina)
+
+Alguien empujó antes que tú, casi siempre el propio Action con los datos que
+capturó. Se resuelve reintegrando:
+
+```
+git pull
+git push
+```
+
+Costumbre que lo evita: `git pull` **antes** de empezar a trabajar, no después.
+El Action escribe en `data/` por su cuenta, así que tu copia local se queda
+atrás sola.
 
 ### El Action no puede hacer push
 
