@@ -48,7 +48,13 @@ def main():
     if mid is None:
         raise SystemExit(f"municipio no encontrado: {args.municipio}")
     s.poner_municipio(mid)
-    estado_actual(s, f"ubicación puesta ({args.estado}, {args.municipio})")
+    rid, rn = s._actual(P.DD_REGION)
+    if rid is None:
+        opciones = s.regiones_disponibles()
+        if opciones:
+            rid, rn = opciones[0]
+            s.poner_region(rid)
+    estado_actual(s, f"ubicación puesta ({args.estado}, {args.municipio}, región {rn})")
 
     s.poner_anio(args.anio)
     estado_actual(s, f"año {args.anio} elegido")
