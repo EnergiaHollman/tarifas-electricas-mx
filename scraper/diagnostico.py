@@ -34,7 +34,13 @@ def main():
     ap.add_argument("--anio", type=int, default=2019)
     ap.add_argument("--pausa", type=float, default=1.5)
     ap.add_argument("--inseguro", action="store_true")
+    ap.add_argument("--cookies", default=None,
+                    help="cookies de una sesión real (o var. CFE_COOKIES)")
     args = ap.parse_args()
+
+    def nueva_sesion():
+        return cfe.SesionCFE("GDMTH", pausa=args.pausa,
+                             verificar_tls=not args.inseguro, cookies=args.cookies)
 
     def resolver_ids(s):
         eid = next((v for v, t in s.estados() if P.normalizar(t) == P.normalizar(args.estado)), None)
@@ -49,7 +55,7 @@ def main():
     print("=" * 70)
     print("ORDEN DE PRODUCCIÓN: estado, municipio, región, luego año y mes")
     print("=" * 70)
-    s = cfe.SesionCFE("GDMTH", pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
+    s = nueva_sesion().abrir()
     eid, mid = resolver_ids(s)
     s.poner_municipio(mid)
     rid, rnombre = s._actual(P.DD_REGION)
@@ -78,7 +84,7 @@ def main():
     print("\n" + "=" * 70)
     print("HIPÓTESIS: fijar un mes antes de cambiar de año")
     print("=" * 70)
-    s3 = cfe.SesionCFE("GDMTH", pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
+    s3 = nueva_sesion().abrir()
     eid3, mid3 = resolver_ids(s3)
     s3.poner_municipio(mid3)
     rid3, rnombre3 = s3._actual(P.DD_REGION)
@@ -111,7 +117,7 @@ def main():
     print("FLUJO REAL DEL SITIO: página fresca, año, mes, estado, municipio, división")
     print("(confirmado navegando el sitio a mano)")
     print("=" * 70)
-    s4 = cfe.SesionCFE("GDMTH", pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
+    s4 = nueva_sesion().abrir()
     estado_actual(s4, "página recién cargada, sin ubicación")
     s4.poner_anio(args.anio)
     estado_actual(s4, f"año {args.anio} elegido, todavía sin ubicación")
@@ -139,7 +145,7 @@ def main():
     print("\n" + "=" * 70)
     print("ORDEN QUE YA SABEMOS QUE FALLA: año antes de región (control)")
     print("=" * 70)
-    s2 = cfe.SesionCFE("GDMTH", pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
+    s2 = nueva_sesion().abrir()
     eid2, mid2 = resolver_ids(s2)
     s2.poner_municipio(mid2)
     try:

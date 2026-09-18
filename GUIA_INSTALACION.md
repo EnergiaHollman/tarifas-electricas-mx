@@ -511,6 +511,31 @@ CFE rediseñó la página. Procedimiento:
 
 Los datos ya capturados no se tocan y la API sigue sirviendo mientras tanto.
 
+### El sitio no recalcula los meses al cambiar de año (Incapsula)
+
+CFE tiene el sitio detrás de Imperva Incapsula, un firewall de aplicaciones.
+Sin una sesión que un navegador real ya haya "aprobado" —algo que exige
+ejecutar JavaScript, que `requests` de Python no hace— el sitio degrada en
+silencio ciertas interacciones dinámicas, en particular recalcular los meses
+disponibles al cambiar de año. La carga básica funciona igual para cualquiera;
+solo esa interacción específica queda bloqueada.
+
+La solución, dado que este proceso corre una vez al mes de cualquier forma:
+
+1. Abre la página de CFE en Chrome, en una pestaña normal (no hace falta
+   incógnito)
+2. F12 → pestaña **Red** → cambia el año en el formulario
+3. Clic en la petición POST a `GranDemandaMTH.aspx` → pestaña **Headers** →
+   **Request Headers** → copia el valor completo de `cookie`
+4. En tu repositorio: Settings → Secrets and variables → Actions → New
+   repository secret
+5. **Name**: `CFE_COOKIES` — **Secret**: pega el valor que copiaste
+6. Vuelve a lanzar el backfill o el diagnóstico
+
+Estas cookies caducan (horas, no días), así que antes de un backfill grande
+conviene refrescarlas: repite los pasos 1 a 3 y actualiza el secret antes de
+lanzar la corrida.
+
 ### Error de TLS: CERTIFICATE_VERIFY_FAILED
 
 El servidor de CFE no manda la cadena completa de certificados. Windows y los

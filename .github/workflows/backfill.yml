@@ -67,6 +67,8 @@ jobs:
 
       - name: Diagnóstico de los desplegables
         if: inputs.diagnostico
+        env:
+          CFE_COOKIES: ${{ secrets.CFE_COOKIES }}
         run: cd scraper && python3 diagnostico.py --pausa 2 --anio "${{ inputs.diagnostico_anio }}"
 
       - name: Construir catálogo
@@ -87,6 +89,7 @@ jobs:
       - name: Capturar cargos
         if: '!inputs.diagnostico'
         env:
+          CFE_COOKIES: ${{ secrets.CFE_COOKIES }}
           REGIONES: ${{ inputs.regiones }}
           DESDE: ${{ inputs.desde }}
           HASTA: ${{ inputs.hasta }}

@@ -27,23 +27,13 @@ PAGINAS = {
     "PDBT": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
 }
 
-# El User-Agent y las cabeceras que siguen imitan un navegador real. Se probó
-# primero con un User-Agent que se identificaba como bot (más honesto para un
-# acceso mensual de solo lectura) y el sitio dejaba de recalcular el
-# desplegable de meses al cambiar de año, aunque la carga inicial funcionaba
-# igual para ambos casos: algo en el servidor distingue por cabeceras, no
-# por el contenido del formulario. Con cabeceras de navegador el mismo
-# postback sí funciona.
-AGENTE = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-          "(KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36")
-
-CABECERAS_COMUNES = {
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-    "Accept-Language": "es-MX,es;q=0.9,en;q=0.8",
-    "sec-ch-ua": '"Chromium";v="130", "Google Chrome";v="130", "Not?A_Brand";v="99"',
-    "sec-ch-ua-mobile": "?0",
-    "sec-ch-ua-platform": '"Windows"',
-}
+# Un User-Agent de navegador sin la huella TLS real de un navegador es peor
+# que uno honesto: un firewall puede bloquear por completo la combinación
+# "dice ser Chrome pero no negocia TLS como Chrome" (se probó y dio 403
+# desde la primera petición). Mejor ser honesto sobre qué es este acceso.
+AGENTE = ("tarifas-electricas-mx/1.0 (consulta mensual automatizada de tarifas "
+          "publicas; https://github.com/EnergiaHollman/tarifas-electricas-mx)")
+CABECERAS_COMUNES = {"Accept-Language": "es-MX,es;q=0.9"}
 
 
 class ErrorCFE(RuntimeError):
@@ -54,7 +44,7 @@ class SesionCFE:
     """Una sesión contra una página de tarifas."""
 
     def __init__(self, tarifa="GDMTH", pausa=1.5, timeout=45, reintentos=3,
-                 verificar_tls=None):
+                 verificar_tls=None, cookies=None):
         if tarifa not in PAGINAS:
             raise ErrorCFE(f"tarifa desconocida: {tarifa}")
         self.tarifa = tarifa
@@ -76,20 +66,33 @@ class SesionCFE:
         self.s = requests.Session()
         self.s.headers.update({"User-Agent": AGENTE, **CABECERAS_COMUNES})
 
+        # El sitio está detrás de Imperva Incapsula: sin cookies de una sesión
+        # que un navegador real ya "aprobó" (algo que requiere ejecutar
+        # JavaScript, cosa que requests no hace), el sitio degrada en
+        # silencio la respuesta a ciertas interacciones dinámicas, como
+        # recalcular los meses al cambiar de año. La solución pragmática,
+        # dado que esto corre una vez al mes: copiar el encabezado Cookie de
+        # una visita real (DevTools → pestaña Red → la petición POST del
+        # formulario → Headers → Request Headers → Cookie) y pasarlo aquí, ya
+        # sea con este argumento o con la variable de entorno CFE_COOKIES.
+        cookies = cookies if cookies is not None else os.environ.get("CFE_COOKIES", "")
+        if cookies:
+            n = 0
+            for par in cookies.split(";"):
+                if "=" in par:
+                    k, v = par.strip().split("=", 1)
+                    self.s.cookies.set(k, v, domain="app.cfe.mx")
+                    n += 1
+            print(f"[cfe] usando {n} cookie(s) de una sesión real")
+
     # -- transporte --------------------------------------------------------
 
     def _pedir(self, metodo, **kw):
-        cabeceras = kw.pop("headers", {})
-        cabeceras.setdefault("Sec-Fetch-Site", "same-origin")
-        cabeceras.setdefault("Sec-Fetch-Mode", "navigate" if metodo == "GET" else "same-origin")
-        cabeceras.setdefault("Sec-Fetch-Dest", "document" if metodo == "GET" else "empty")
-        if metodo == "POST":
-            cabeceras.setdefault("Origin", "https://app.cfe.mx")
         ultimo = None
         for intento in range(self.reintentos):
             try:
                 r = self.s.request(metodo, self.url, timeout=self.timeout,
-                                   verify=self.verificar, headers=cabeceras, **kw)
+                                   verify=self.verificar, **kw)
                 r.raise_for_status()
                 if "__VIEWSTATE" not in r.text:
                     raise ErrorCFE("la respuesta no parece la página de tarifas")
