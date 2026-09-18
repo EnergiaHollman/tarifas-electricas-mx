@@ -20,6 +20,11 @@ const CORS = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, OPTIONS",
   "access-control-allow-headers": "content-type, mcp-session-id, mcp-protocol-version",
+  // Sin esto, un cliente MCP en navegador no puede LEER el header de
+  // respuesta MCP-Protocol-Version que /mcp añade (CORS oculta por omisión
+  // cualquier header que no sea "simple"). Mcp-Session-Id no hace falta
+  // exponerlo: este servidor nunca lo emite.
+  "access-control-expose-headers": "mcp-protocol-version",
 };
 
 function json(datos: unknown, status = 200) {

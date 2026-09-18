@@ -1,103 +1,20 @@
 /**
- * Pruebas del Worker sin desplegar nada.
+ * Pruebas de la API REST, sin desplegar nada.
  *
  *   cd worker && node pruebas/prueba_api.mjs
  *
- * Empaqueta src/ con esbuild y le manda Requests reales al handler. Node 22
- * ya trae Request y Response, así que no hace falta simular nada.
+ * Las pruebas del servidor MCP viven aparte, en prueba_mcp.mjs, para que
+ * cada archivo se pueda correr y leer por separado.
  */
-import { build } from "esbuild";
-import { cpSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
-import path from "node:path";
-// En Windows, import() exige una URL file://; una ruta absoluta "C:\..." falla.
-import { pathToFileURL } from "node:url";
+import { BASE, crearVerificador, crearWorker } from "./_entorno.mjs";
 
-const dir = mkdtempSync(path.join(tmpdir(), "worker-"));
+const worker = await crearWorker();
+const { check, contar } = crearVerificador();
 
-// Se trabaja sobre una copia: las pruebas inyectan datos de ejemplo para
-// cubrir casos que la semilla no trae, y eso nunca debe tocar data/ real.
-cpSync("src", path.join(dir, "worker", "src"), { recursive: true });
-cpSync("../data", path.join(dir, "data"), { recursive: true });
-
-const rutaDatos = (n) => path.join(dir, "data", n);
-const leer = (n) => JSON.parse(readFileSync(rutaDatos(n), "utf8"));
-const escribir = (n, d) => writeFileSync(rutaDatos(n), JSON.stringify(d, null, 1));
-
-// Municipio que CFE atiende con dos divisiones tarifarias.
-const cat = leer("catalogo.json");
-cat.expansiones = {
-  "BAJIO Y GOLFO CENTRO": ["BAJIO", "GOLFO CENTRO"],
-  // El prefijo elidido: no se podría deducir partiendo el texto.
-  "VALLE DE MEXICO CENTRO Y SUR": ["VALLE DE MEXICO CENTRO", "VALLE DE MEXICO SUR"],
-};
-cat.estados["GUANAJUATO"] = {
-  id: "11", nombre: "GUANAJUATO",
-  municipios: {
-    "SAN LUIS DE LA PAZ": {
-      id: "999901", nombre: "SAN LUIS DE LA PAZ",
-      opciones: [{ id: "99", etiqueta: "BAJIO Y GOLFO CENTRO" }],
-    },
-    // Municipio con dos opciones separadas en el desplegable.
-    "CELAYA": {
-      id: "999902", nombre: "CELAYA",
-      opciones: [
-        { id: "1", etiqueta: "BAJIO" },
-        { id: "2", etiqueta: "GOLFO CENTRO" },
-      ],
-    },
-  },
-};
-escribir("catalogo.json", cat);
-
-const tar = leer("tarifas.json");
-const base = tar.registros["GDMTH|NOROESTE|2026-03"];
-for (const [reg, punta] of [["BAJIO", 1.5], ["GOLFO CENTRO", 1.6]]) {
-  const rec = JSON.parse(JSON.stringify(base));
-  rec.region = reg;
-  rec.cargos.punta = punta;
-  rec.municipio_consultado = "SAN LUIS DE LA PAZ, GUANAJUATO";
-  tar.registros[`GDMTH|${reg}|2026-03`] = rec;
-}
-escribir("tarifas.json", tar);
-
-const salida = path.join(dir, "bundle.mjs");
-await build({
-  entryPoints: [path.join(dir, "worker", "src", "index.ts")],
-  bundle: true,
-  format: "esm",
-  platform: "neutral",
-  outfile: salida,
-  logLevel: "warning",
-});
-const worker = (await import(pathToFileURL(salida).href)).default;
-
-let fallos = 0;
-function check(nombre, obtenido, esperado) {
-  const ok = JSON.stringify(obtenido) === JSON.stringify(esperado);
-  console.log(`  ${ok ? "ok  " : "FALLA"} ${nombre}`);
-  if (!ok) {
-    console.log(`        esperado: ${JSON.stringify(esperado)}`);
-    console.log(`        obtenido: ${JSON.stringify(obtenido)}`);
-    fallos++;
-  }
-}
-
-const BASE = "https://ejemplo.workers.dev";
 const get = async (ruta) => {
   const r = await worker.fetch(new Request(BASE + ruta));
   const cuerpo = r.headers.get("content-type")?.includes("json") ? await r.json() : await r.text();
   return { status: r.status, cuerpo };
-};
-const rpc = async (metodo, params, id = 1) => {
-  const r = await worker.fetch(
-    new Request(BASE + "/mcp", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ jsonrpc: "2.0", id, method: metodo, params }),
-    }),
-  );
-  return { status: r.status, cuerpo: r.status === 202 ? null : await r.json() };
 };
 
 console.log("REST: cargos");
@@ -118,7 +35,9 @@ check("trae aviso", r.cuerpo.aviso.includes("no es un servicio oficial") ||
 r = await get("/v1/tarifa?region=NOROESTE&anio=2026&mes=3");
 check("consulta por región directa", r.cuerpo.cargos.punta, 1.7262);
 
-r = await get("/v1/tarifa?region=NOROESTE&anio=1999&mes=7");
+// 2010 es un año "válido" (dentro del rango de cordura) pero anterior al
+// histórico real de CFE, así que nunca va a tener datos capturados.
+r = await get("/v1/tarifa?region=NOROESTE&anio=2010&mes=7");
 check("mes sin capturar da 404", r.status, 404);
 check("404 dice qué periodos sí hay", Array.isArray(r.cuerpo.periodos_disponibles), true);
 
@@ -127,6 +46,9 @@ check("municipio fuera del catálogo da 404", r.status, 404);
 
 r = await get("/v1/tarifa?region=NOROESTE&anio=2026&mes=13");
 check("mes inválido", r.cuerpo.error.includes("1 a 12"), true);
+
+r = await get("/v1/tarifa?region=NOROESTE&anio=99999&mes=3");
+check("año fuera de rango da error claro", r.cuerpo.error.includes("cuatro dígitos"), true);
 
 r = await get("/v1/tarifa?anio=2026&mes=3");
 check("sin ubicación", r.cuerpo.error.includes("Falta la ubicación"), true);
@@ -176,6 +98,9 @@ r = await get("/v1/horarios?region=BAJA CALIFORNIA&fecha=2026-05-01");
 check("BC el 1 de mayo es verano", r.cuerpo.temporada, "verano");
 check("BC usa su propia zona", r.cuerpo.zona, "Región Baja California");
 
+r = await get("/v1/horarios?region=NOROESTE&fecha=2026-01-15&hora=25:99");
+check("hora fuera de rango da error claro", r.cuerpo.error.includes("00:00 y 23:59"), true);
+
 console.log("\nREST: catálogos y varios");
 r = await get("/v1/regiones");
 check("lista regiones", r.cuerpo.regiones.some((x) => x.region === "NOROESTE"), true);
@@ -223,38 +148,16 @@ check("no aparece una región falsa por partir texto",
 check("las dos aparecen en el listado",
   ["BAJIO", "GOLFO CENTRO"].every((x) => r.cuerpo.regiones.some((y) => y.region === x)), true);
 
-console.log("\nMCP");
-r = await rpc("initialize", { protocolVersion: "2025-06-18" });
-check("initialize", r.cuerpo.result.serverInfo.name, "tarifas-electricas-mx");
-check("anuncia tools", "tools" in r.cuerpo.result.capabilities, true);
-r = await rpc("tools/list", {});
-check("3 herramientas", r.cuerpo.result.tools.map((t) => t.name),
-  ["consultar_tarifa", "consultar_horarios", "listar_regiones"]);
-r = await rpc("tools/call", {
-  name: "consultar_tarifa",
-  arguments: { estado: "SONORA", municipio: "NAVOJOA", anio: 2026, mes: 3 },
-});
-check("tools/call devuelve cargos", r.cuerpo.result.structuredContent.cargos.punta, 1.7262);
-check("tools/call no marca error", r.cuerpo.result.isError, false);
-r = await rpc("tools/call", {
-  name: "consultar_horarios",
-  arguments: { region: "NOROESTE", fecha: "2026-01-15", hora: "20:30" },
-});
-check("horarios por MCP", r.cuerpo.result.structuredContent.consulta.periodo, "punta");
-r = await rpc("tools/call", { name: "inventada", arguments: {} });
-check("herramienta desconocida marca isError", r.cuerpo.result.isError, true);
-r = await rpc("notifications/initialized", {});
-check("notificación responde 202 sin cuerpo", r.status, 202);
-r = await rpc("metodo/raro", {});
-check("método no soportado", r.cuerpo.error.code, -32601);
-
+console.log("\nCORS");
 const pre = await worker.fetch(new Request(BASE + "/v1/regiones", { method: "OPTIONS" }));
 check("CORS preflight", pre.status, 204);
 check("CORS abierto", pre.headers.get("access-control-allow-origin"), "*");
+check("MCP-Protocol-Version queda expuesto para clientes en navegador",
+  pre.headers.get("access-control-expose-headers")?.includes("mcp-protocol-version"), true);
 
 console.log();
-if (fallos) {
-  console.log(`${fallos} prueba(s) fallaron.`);
+if (contar()) {
+  console.log(`${contar()} prueba(s) fallaron.`);
   process.exit(1);
 }
 console.log("Todas las pruebas pasaron.");

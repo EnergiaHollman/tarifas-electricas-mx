@@ -55,11 +55,18 @@ function resolverRegion(args: Args) {
   return { error: "Falta la ubicación: manda region, o estado y municipio." };
 }
 
+/** CFE no publica tarifas fuera de este rango; sirve para dar un error claro
+ * en vez de un genérico "no hay datos" cuando el año es obviamente basura. */
+function anioValido(anio: number): boolean {
+  return anio >= 2000 && anio <= 2100;
+}
+
 export function consultarTarifa(args: Args) {
   const anio = entero(args.anio);
   const mes = entero(args.mes);
   if (anio === null || mes === null) return { error: "Faltan anio y mes." };
   if (mes < 1 || mes > 12) return { error: "El mes debe ir de 1 a 12." };
+  if (!anioValido(anio)) return { error: "El año debe ser un número de cuatro dígitos razonable." };
 
   const ubic = resolverRegion(args);
   if ("error" in ubic) return ubic;
@@ -143,7 +150,10 @@ export function consultarHorarios(args: Args) {
   if (args.hora) {
     const m = /^(\d{1,2}):(\d{2})$/.exec(String(args.hora));
     if (!m) return { error: "hora debe ir como HH:MM." };
-    const minutos = parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+    const hh = parseInt(m[1], 10);
+    const mm = parseInt(m[2], 10);
+    if (hh > 23 || mm > 59) return { error: "hora debe estar entre 00:00 y 23:59." };
+    const minutos = hh * 60 + mm;
     enHora = { hora: String(args.hora), periodo: periodoEn(t.dias, tipo, minutos) };
   }
 

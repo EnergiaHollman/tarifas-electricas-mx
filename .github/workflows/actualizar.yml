@@ -71,7 +71,7 @@ jobs:
 
       - name: Probar la API con los datos nuevos
         if: steps.commit.outputs.sin_cambios != '1'
-        run: cd worker && npm install --no-audit --no-fund esbuild && node pruebas/prueba_api.mjs
+        run: cd worker && npm install --no-audit --no-fund esbuild && npm test
 
       - name: Desplegar
         if: steps.commit.outputs.sin_cambios != '1'

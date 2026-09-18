@@ -131,7 +131,9 @@ En Claude: Settings → Connectors → Add custom connector, con la URL
 `https://TU-URL/mcp`. Quedan disponibles tres herramientas y ya puedes
 preguntar en lenguaje natural por cargos y horarios.
 
-Cualquier otro cliente con soporte MCP funciona igual apuntando a esa URL.
+Cualquier otro cliente con soporte MCP funciona igual apuntando a esa URL. Ver
+la sección **Servidor MCP** más abajo para el detalle del protocolo, cómo
+probarlo con MCP Inspector y cómo conectarlo a ChatGPT específicamente.
 
 ## Endpoints
 
@@ -178,6 +180,148 @@ Ejemplo de respuesta:
 }
 ```
 
+## Servidor MCP
+
+`POST /mcp` habla [Model Context Protocol](https://modelcontextprotocol.io)
+sobre el transporte **Streamable HTTP** vigente (JSON-RPC 2.0, un objeto por
+petición). No es un servicio oficial de CFE: sirve los datos que ya están
+capturados en este repositorio, igual que el REST.
+
+**Sin estado, a propósito.** Cada llamada a una herramienta es independiente;
+no hay nada que una sesión resolviera aquí. Este servidor nunca emite
+`Mcp-Session-Id` — la especificación permite explícitamente no hacerlo
+("a server ... **MAY** assign a session ID"), así que omitirlo es una opción
+válida, no una carencia. Por el mismo motivo, `GET /mcp` y `DELETE /mcp`
+responden `405`: no hay stream que abrir ni sesión que terminar, y la propia
+especificación autoriza responder así en ambos casos.
+
+**Versión de protocolo.** Se negocian `2025-06-18` y `2025-11-25` (a efectos
+de transporte son la misma cosa). Existe una revisión candidata `2026-07-28`
+que elimina el handshake `initialize` y las sesiones por completo, pero al
+escribir esto sigue marcada como *release candidate* en la especificación
+oficial y ningún cliente mayor (Claude, ChatGPT, MCP Inspector) la habla de
+forma consistente todavía. Se optó por no adoptarla; es una decisión
+documentada, no un descuido.
+
+**Sin el SDK oficial de MCP, a propósito.** El `@modelcontextprotocol/sdk`
+está pensado para Node/Express o stdio; adaptarlo al runtime de Cloudflare
+Workers (que solo conoce `fetch`/`Request`/`Response`, sin streams de Node)
+exige una capa de compatibilidad no trivial a cambio de un beneficio marginal
+frente a una implementación manual de JSON-RPC de unas 250 líneas, que ya
+cubre el protocolo correctamente. Prioriza bajo mantenimiento y cero
+dependencias nuevas sobre usar el SDK porque existe.
+
+### Herramientas
+
+| Herramienta | Para qué |
+|---|---|
+| `consultar_tarifa` | Cargos de una tarifa (fijo, base, intermedia, punta, distribución, capacidad) para una ubicación y un mes |
+| `consultar_horarios` | Temporada, tipo de día y franjas base/intermedia/punta para una fecha; en qué periodo cae una hora concreta |
+| `listar_regiones` | Regiones tarifarias conocidas y cobertura de datos disponible |
+
+Las tres son de solo lectura sobre el JSON estático empaquetado en el Worker
+(sin red, sin CFE en vivo), y así lo declaran sus anotaciones:
+`readOnlyHint: true`, `destructiveHint: false`, `openWorldHint: false` (el
+universo de respuestas es el dataset ya capturado, no un sistema externo
+impredecible). No declaran `idempotentHint`: la propia especificación dice
+que esa anotación solo es significativa para herramientas que no son de solo
+lectura, así que declararla aquí sería una anotación que no corresponde.
+
+Las descripciones de cada herramienta están escritas para que un agente
+decida sin ambigüedad: cuándo usar `region` directamente frente a
+`estado`+`municipio`, que `mes` es un entero de 1 a 12 (no el nombre del
+mes), que `fecha` va en ISO `AAAA-MM-DD` y `hora` en 24 horas `HH:MM`, y que
+`GDMTH` es la tarifa por omisión porque es la única con datos capturados hoy.
+
+### Errores: protocolo vs. resultado
+
+Siguiendo la distinción que hace la propia especificación:
+
+- **Error de protocolo** (JSON-RPC `error`, sin `isError`): la petición en sí
+  está mal formada — herramienta desconocida, método inexistente, falta el
+  nombre en `tools/call`, JSON roto. `Unknown tool: X` con código `-32602` es,
+  literalmente, el ejemplo que trae la especificación para este caso.
+- **Error de ejecución** (`isError: true` dentro de un resultado `200`): la
+  llamada era válida pero el *dato* no aplica — mes 13, municipio que no está
+  en el catálogo, fecha con formato roto. La herramienta sí corrió; lo que
+  falló es la consulta.
+
+### Ejemplo de sesión completa
+
+```
+POST /mcp   {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}
+  -> {"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2025-06-18","serverInfo":{...},...}}
+
+POST /mcp   {"jsonrpc":"2.0","method":"notifications/initialized"}
+  -> 202 Accepted, sin cuerpo
+
+POST /mcp   {"jsonrpc":"2.0","id":2,"method":"tools/list"}
+  -> {"jsonrpc":"2.0","id":2,"result":{"tools":[consultar_tarifa, consultar_horarios, listar_regiones]}}
+
+POST /mcp   {"jsonrpc":"2.0","id":3,"method":"tools/call",
+             "params":{"name":"consultar_tarifa",
+                       "arguments":{"estado":"SONORA","municipio":"NAVOJOA","anio":2026,"mes":3}}}
+  -> {"jsonrpc":"2.0","id":3,"result":{"structuredContent":{"region":"NOROESTE","cargos":{...}},...}}
+```
+
+Una pregunta como *"Obtén la tarifa GDMTH de Navojoa, Sonora, para marzo de
+2026"* se resuelve enteramente con esa última llamada: el agente ve en la
+descripción de `consultar_tarifa` que puede dar `estado`+`municipio` sin
+saber la región, y la herramienta resuelve sola SONORA+NAVOJOA → NOROESTE.
+
+### Probarlo con MCP Inspector
+
+```bash
+npx @modelcontextprotocol/inspector
+```
+
+En la interfaz que abre:
+
+1. **Transport Type**: `Streamable HTTP`
+2. **URL**: `https://TU-URL/mcp`
+3. **Connect**
+4. Pestaña **Tools** → **List Tools**: deben aparecer las tres herramientas
+   con sus esquemas
+5. Selecciona `consultar_tarifa`, llena `estado=SONORA`, `municipio=NAVOJOA`,
+   `anio=2026`, `mes=3` → **Run Tool**
+
+Si el Inspector muestra el resultado con `region: "NOROESTE"` y los seis
+cargos, el servidor está funcionando de punta a punta.
+
+### Conectarlo a ChatGPT
+
+ChatGPT solo admite servidores MCP **remotos por HTTPS** (no hay stdio ni
+servidor local salvo con el Secure MCP Tunnel de empresa) y solo consume
+`tools` de un servidor MCP — ignora `resources`, `prompts`, `sampling` y
+`elicitation`, así que un servidor solo-herramientas como este es exactamente
+lo que espera.
+
+1. En ChatGPT: **Settings** → **Apps & Connectors** (o **Connectors**, según
+   el plan) → activa **Developer mode** si hace falta
+2. **Create** / **Add custom connector**
+3. **Name**: algo descriptivo, p. ej. "Tarifas eléctricas CFE"
+4. **URL del servidor**: `https://TU-URL/mcp` — el sufijo `/mcp` es
+   obligatorio, es el error de configuración más común
+5. **Autenticación**: ninguna. Este servidor no pide credenciales porque no
+   hay datos privados ni acciones sobre cuentas; los datos son públicos
+6. Guarda, abre una conversación, activa el conector desde el compositor y
+   pregunta algo como *"¿cuál fue la tarifa GDMTH de Navojoa, Sonora, en
+   marzo de 2026?"*
+
+### Limitaciones conocidas
+
+- No implementa las herramientas `search`/`fetch` que pide el patrón de
+  *deep research* / *company knowledge* de OpenAI. Ese es un contrato
+  distinto (búsqueda libre + recuperación de documentos) al de consulta
+  directa por parámetros que tienen `consultar_tarifa` y `consultar_horarios`;
+  añadirlo sería un cambio de diseño, no un ajuste de compatibilidad.
+- No declara `outputSchema` por herramienta. Es opcional en la especificación
+  y añadirlo bien (mantenerlo sincronizado con las formas de respuesta, que
+  varían cuando un municipio tiene más de una división) es más compromiso de
+  mantenimiento del que se justifica hoy.
+- No hay autenticación ni límite de uso propio más allá de lo que ya impone
+  Cloudflare. No hace falta: los datos son públicos y de solo lectura.
+
 ## Agregar otras tarifas
 
 El portal sirve GDMTO, PDBT, DIST y las domésticas con exactamente la misma
@@ -221,8 +365,10 @@ los despliegues anteriores.
 | `data/horarios.json` | Franjas por zona y temporada, con reglas de vigencia |
 | `worker/src/calendario.ts` | Temporada, festivos, tipo de día, periodo tarifario |
 | `worker/src/consultas.ts` | Lógica compartida entre REST y MCP |
-| `worker/src/mcp.ts` | Servidor MCP por JSON-RPC |
-| `worker/pruebas/prueba_api.mjs` | Pruebas de la API sin desplegar |
+| `worker/src/mcp.ts` | Servidor MCP: Streamable HTTP, JSON-RPC 2.0 |
+| `worker/pruebas/_entorno.mjs` | Bootstrap compartido (empaqueta el Worker con esbuild) |
+| `worker/pruebas/prueba_api.mjs` | Pruebas de REST, portada, llms.txt, robots.txt, CORS |
+| `worker/pruebas/prueba_mcp.mjs` | Pruebas del servidor MCP: initialize, tools/list, las tres herramientas, errores |
 
 ## Notas de captura
 
