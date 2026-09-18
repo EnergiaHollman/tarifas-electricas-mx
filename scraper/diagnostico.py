@@ -76,6 +76,38 @@ def main():
         print(f"\n>>> ORDEN DE PRODUCCIÓN FALLÓ: {e}")
 
     print("\n" + "=" * 70)
+    print("HIPÓTESIS: fijar un mes antes de cambiar de año")
+    print("=" * 70)
+    s3 = cfe.SesionCFE("GDMTH", pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
+    eid3, mid3 = resolver_ids(s3)
+    s3.poner_municipio(mid3)
+    rid3, rnombre3 = s3._actual(P.DD_REGION)
+    if rid3 is None:
+        opciones3 = s3.regiones_disponibles()
+        if opciones3:
+            rid3, rnombre3 = opciones3[0]
+            s3.poner_region(rid3)
+    estado_actual(s3, f"región puesta ({rnombre3})")
+    meses_antes = s3.meses()
+    if meses_antes:
+        s3.poner_mes(meses_antes[0])
+        estado_actual(s3, f"mes {meses_antes[0]} fijado, antes de tocar el año")
+    try:
+        s3.poner_anio(args.anio)
+        estado_actual(s3, f"tras elegir año {args.anio} (con mes ya fijado)")
+        meses3 = s3.meses()
+        if meses3:
+            s3.poner_mes(meses3[0])
+            estado_actual(s3, f"tras elegir mes {meses3[0]}")
+            r3 = P.parsear_cargos(s3.html)
+            print(f"    resultado: {r3['cargos'] if r3 else None}")
+            print("\n>>> HIPÓTESIS CONFIRMADA: fijar el mes antes lo resuelve")
+        else:
+            print("\n>>> HIPÓTESIS DESCARTADA: sigue sin ofrecer meses")
+    except cfe.ErrorCFE as e:
+        print(f"\n>>> HIPÓTESIS FALLÓ: {e}")
+
+    print("\n" + "=" * 70)
     print("ORDEN QUE YA SABEMOS QUE FALLA: año antes de región (control)")
     print("=" * 70)
     s2 = cfe.SesionCFE("GDMTH", pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
