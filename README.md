@@ -240,9 +240,11 @@ los despliegues anteriores.
   California Sur imprime "Baja California". Cuando la respuesta trae una sola
   tabla, la división es la que se seleccionó en el desplegable; los encabezados
   solo se usan para desglosar las etiquetas compuestas, que devuelven varias.
-- El desplegable de años trae solo el año en curso al cargar la página y se
-  amplía al seleccionar ubicación. El rango se toma de lo que pide el usuario
-  y se contrasta ya con el municipio puesto.
+- El flujo real del sitio es **año, mes, estado, municipio, división** — en
+  ese orden. El desplegable de meses se calcula a partir del año con una
+  página recién cargada, antes de elegir ubicación; seleccionar el año con
+  la ubicación ya puesta deja los meses vacíos. Por eso el scraper recarga la
+  página al empezar cada año y sigue el orden real del formulario.
 - Las etiquetas compuestas **no se pueden partir por texto**: CFE elide el
   prefijo compartido, así que "Valle de México Centro y Sur" son Centro y Sur
   del Valle de México, no una división llamada "Sur". El scraper consulta una

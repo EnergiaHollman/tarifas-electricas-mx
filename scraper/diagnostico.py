@@ -108,6 +108,35 @@ def main():
         print(f"\n>>> HIPÓTESIS FALLÓ: {e}")
 
     print("\n" + "=" * 70)
+    print("FLUJO REAL DEL SITIO: página fresca, año, mes, estado, municipio, división")
+    print("(confirmado navegando el sitio a mano)")
+    print("=" * 70)
+    s4 = cfe.SesionCFE("GDMTH", pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
+    estado_actual(s4, "página recién cargada, sin ubicación")
+    s4.poner_anio(args.anio)
+    estado_actual(s4, f"año {args.anio} elegido, todavía sin ubicación")
+    meses4 = s4.meses()
+    if not meses4:
+        print(f"\n>>> FLUJO REAL: el año {args.anio} no ofrece meses ni así")
+    else:
+        s4.poner_mes(meses4[0])
+        eid4, mid4 = resolver_ids(s4)
+        s4.poner_municipio(mid4)
+        rid4, rn4 = s4._actual(P.DD_REGION)
+        if rid4 is None:
+            opciones4 = s4.regiones_disponibles()
+            if opciones4:
+                rid4, rn4 = opciones4[0]
+                s4.poner_region(rid4)
+        estado_actual(s4, f"mes {meses4[0]} y ubicación puestos, en ese orden")
+        r4 = P.parsear_cargos(s4.html)
+        if r4 and r4["cargos"]:
+            print(f"    resultado: {r4['cargos']}")
+            print("\n>>> FLUJO REAL: FUNCIONA")
+        else:
+            print("\n>>> FLUJO REAL: sin cargos en la respuesta")
+
+    print("\n" + "=" * 70)
     print("ORDEN QUE YA SABEMOS QUE FALLA: año antes de región (control)")
     print("=" * 70)
     s2 = cfe.SesionCFE("GDMTH", pausa=args.pausa, verificar_tls=not args.inseguro).abrir()

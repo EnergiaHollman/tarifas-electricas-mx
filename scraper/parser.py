@@ -16,6 +16,10 @@ DD_MES = "ctl00$ContentPlaceHolder1$Fecha2$ddMes"
 DD_ESTADO = "ctl00$ContentPlaceHolder1$EdoMpoDiv$ddEstado"
 DD_MUNICIPIO = "ctl00$ContentPlaceHolder1$EdoMpoDiv$ddMunicipio"
 DD_REGION = "ctl00$ContentPlaceHolder1$EdoMpoDiv$ddDivision"
+# Ocultos que el servidor escribe con el año y mes vigentes. No hay JavaScript
+# que los actualice, así que al hacer postback hay que mandarlos coherentes.
+HD_ANIO = "ctl00$ContentPlaceHolder1$hdAnio"
+HD_MES = "ctl00$ContentPlaceHolder1$hdMes"
 
 MESES = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO",
          "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"]

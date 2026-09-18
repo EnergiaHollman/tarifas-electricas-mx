@@ -230,15 +230,15 @@ def main():
     nuevos = omitidos = vacios = 0
     for region, (eid, mid, oid, etiqueta_division, etiqueta) in sorted(reps.items()):
         print(f"\n== {region}  ({etiqueta})")
-        s.poner_estado(eid)
-        s.poner_municipio(mid)
-        s.poner_region(oid)
-        # Con la ubicación puesta, el desplegable debería traer todos los años.
-        ofrece = s.anios()
-        anios = [a for a in ofrece if desde <= a <= hasta] or anios_pedidos
-        print(f"   años: {anios[0]}–{anios[-1]} ({len(anios)}); "
-              f"el sitio ofrece {len(ofrece)}")
-        for anio in anios:
+        for anio in anios_pedidos:
+            if not (desde <= anio <= hasta):
+                continue
+            # El sitio calcula los meses de un año ANTES de que haya ubicación
+            # elegida: el flujo real es año, mes, estado, municipio, división
+            # (lo confirmó el usuario probando el sitio a mano). Seleccionar
+            # el año con una ubicación ya puesta deja los meses vacíos. Por
+            # eso cada año arranca desde una página recién cargada.
+            s.abrir()
             s.poner_anio(anio)
             seleccionado = s._actual(P.DD_ANIO)[0]
             if seleccionado != str(anio):
@@ -246,7 +246,6 @@ def main():
                 continue
             meses = s.meses()
             if not meses:
-                # Sin esto el año se saltaba en silencio y parecía capturado.
                 print(f"   {anio}  el sitio no ofrece meses; se omite")
                 continue
             for mes in meses:              # CFE solo lista los meses publicados
@@ -257,6 +256,9 @@ def main():
                 if args.faltantes and k in registros:
                     omitidos += 1
                     continue
+                # consultar() ya sigue el orden año, mes, estado, municipio,
+                # división; año quedó fijo arriba, así que solo avanza mes y
+                # ubicación.
                 s.consultar(anio, mes, eid, mid, region_id=oid)
                 tablas = [t for t in P.parsear_todas(s.html) if t["cargos"]]
                 if not tablas:
