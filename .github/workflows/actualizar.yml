@@ -45,10 +45,27 @@ jobs:
           if git diff --cached --quiet; then
             echo "sin_cambios=1" >> "$GITHUB_OUTPUT"
             echo "No hubo datos nuevos."
-          else
-            git commit -m "datos: captura automática $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "datos: captura automática $(date -u +%Y-%m-%d)"
+
+          # Mientras corría la captura alguien pudo empujar (tú, u otra
+          # corrida). Se reintegra y se reintenta en vez de perder los datos,
+          # que en el runner no sobreviven al final del job.
+          for intento in 1 2 3; do
+            if git push; then
+              echo "Cambios publicados."
+              exit 0
+            fi
+            echo "Push rechazado; reintegrando cambios remotos (intento $intento)."
+            if ! git pull --rebase --autostash origin main; then
+              git rebase --abort || true
+              echo "Conflicto al reintegrar. Revisa data/ a mano."
+              exit 1
+            fi
+          done
+          echo "No se pudo publicar tras 3 intentos."
+          exit 1
 
       - name: Probar la API con los datos nuevos
         if: steps.commit.outputs.sin_cambios != '1'
