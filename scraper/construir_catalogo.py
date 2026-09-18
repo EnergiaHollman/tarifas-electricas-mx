@@ -88,6 +88,16 @@ def main():
         cat["estados"][clave] = entrada
         guardar(cat)          # se guarda estado por estado: reanudable
 
+    # El catálogo es parcial si falta algún estado de los que ofrece CFE.
+    # Se recalcula aquí en vez de arrastrar la bandera que dejó la siembra.
+    todos = {P.normalizar(t) for _, t in s.estados()}
+    faltantes = sorted(todos - set(cat["estados"]))
+    cat["parcial"] = bool(faltantes)
+    guardar(cat)
+    if faltantes:
+        print(f"\nCatálogo parcial, faltan {len(faltantes)} estado(s): "
+              f"{', '.join(faltantes)}")
+
     etiquetas = sorted({o["etiqueta"] for e in cat["estados"].values()
                         for m in e["municipios"].values()
                         for o in m.get("opciones", [])})
