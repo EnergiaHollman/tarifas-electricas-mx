@@ -87,12 +87,22 @@ def portadores(catalogo):
     return fuera
 
 
-def resolver_etiquetas(s, catalogo, anio, mes):
+def resolver_etiquetas(s, catalogo, anio, mes, rehacer=False):
     """Aprende qué regiones reales hay detrás de cada etiqueta del catálogo."""
+    if rehacer:
+        catalogo["expansiones"] = {}
     expansiones = catalogo.setdefault("expansiones", {})
     for etiqueta, (eid, mid, oid, nombre) in sorted(portadores(catalogo).items()):
-        if etiqueta in expansiones:
-            continue
+        previa = expansiones.get(etiqueta)
+        if previa is not None:
+            # Una expansión de un solo elemento tiene que ser la etiqueta
+            # misma. Si no lo es, viene de cuando se creía en el encabezado de
+            # la página, y hay que volver a resolverla.
+            if len(previa) == 1 and P.normalizar(previa[0]) != etiqueta:
+                print(f"   corrigiendo {etiqueta}: estaba guardada como {previa[0]}")
+                del expansiones[etiqueta]
+            else:
+                continue
         s.consultar(anio, mes, eid, mid, region_id=oid)
         reales = divisiones_de(s.html, etiqueta)
         if not reales:
@@ -154,6 +164,8 @@ def main():
     ap.add_argument("--faltantes", action="store_true",
                     help="solo lo que no esté capturado (modo cron)")
     ap.add_argument("--rehacer", action="store_true")
+    ap.add_argument("--reresolver", action="store_true",
+                    help="vuelve a resolver todas las etiquetas de división")
     ap.add_argument("--olvidar", metavar="REGIONES",
                     help="separadas por coma; borra sus registros antes de capturar")
     ap.add_argument("--pausa", type=float, default=1.5)
@@ -199,7 +211,8 @@ def main():
     anio_ref = max(ofrecidos)
     s.poner_anio(anio_ref)
     mes_ref = max(s.meses()[:-1] or s.meses())      # el último suele estar vacío
-    expansiones = resolver_etiquetas(s, catalogo, anio_ref, mes_ref)
+    expansiones = resolver_etiquetas(s, catalogo, anio_ref, mes_ref,
+                                     rehacer=args.reresolver)
     escribir(CATALOGO, catalogo)
     reales = sorted({r for v in expansiones.values() for r in v})
     print(f"   {len(expansiones)} etiqueta(s) -> {len(reales)} división(es) reales")
