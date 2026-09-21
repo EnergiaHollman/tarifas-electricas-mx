@@ -103,7 +103,11 @@ def resolver_etiquetas(s, catalogo, anio, mes, rehacer=False):
                 del expansiones[etiqueta]
             else:
                 continue
-        s.consultar(anio, mes, eid, mid, region_id=oid)
+        try:
+            s.consultar(anio, mes, eid, mid, region_id=oid, region_etiqueta=etiqueta)
+        except cfe.ErrorCFE as e:
+            print(f"   ! {etiqueta}: {e}")
+            continue
         reales = divisiones_de(s.html, etiqueta)
         if not reales:
             print(f"   ? {etiqueta}: sin resultados en {anio}-{mes:02d}")
@@ -168,6 +172,13 @@ def main():
                     help="vuelve a resolver todas las etiquetas de división")
     ap.add_argument("--olvidar", metavar="REGIONES",
                     help="separadas por coma; borra sus registros antes de capturar")
+    ap.add_argument("--limpiar-todo", action="store_true",
+                    help="vacía TODOS los registros de tarifas.json antes de capturar "
+                         "(el catálogo y horarios no se tocan). Con --rehacer, un mes "
+                         "que falla al reverificar simplemente no se sobreescribe, así "
+                         "que un dato viejo contaminado podría sobrevivir; --limpiar-todo "
+                         "no deja ningún dato viejo por delante, contaminado o no. "
+                         "Como tarifas.json está versionado en git, es reversible.")
     ap.add_argument("--pausa", type=float, default=1.5)
     ap.add_argument("--inseguro", action="store_true",
                     help="salta la verificación TLS; último recurso")
@@ -180,6 +191,12 @@ def main():
     tarifas = cargar(TARIFAS, {"actualizado": None, "fuente": cfe.PAGINAS[args.tarifa],
                                "registros": {}})
     registros = tarifas["registros"]
+
+    if args.limpiar_todo:
+        n = len(registros)
+        registros.clear()
+        escribir(TARIFAS, tarifas)   # visible de inmediato, no solo al final de la corrida
+        print(f"Limpiados TODOS los registros ({n}). Arrancando tarifas.json desde cero.")
 
     if args.olvidar:
         borrar = {P.normalizar(r) for r in lista(args.olvidar)}
@@ -227,7 +244,7 @@ def main():
     if not reps:
         sys.exit("el catálogo no tiene regiones")
 
-    nuevos = omitidos = vacios = 0
+    nuevos = omitidos = vacios = sospechosos = 0
     for region, (eid, mid, oid, etiqueta_division, etiqueta) in sorted(reps.items()):
         print(f"\n== {region}  ({etiqueta})")
         for anio in anios_pedidos:
@@ -258,8 +275,16 @@ def main():
                     continue
                 # consultar() ya sigue el orden año, mes, estado, municipio,
                 # división; año quedó fijo arriba, así que solo avanza mes y
-                # ubicación.
-                s.consultar(anio, mes, eid, mid, region_id=oid)
+                # ubicación. region_etiqueta hace que reviente aquí, fuerte y
+                # claro, si la sesión trae otra división seleccionada -pasó
+                # de verdad en un backfill real- en vez de guardar en
+                # silencio el dato de la región equivocada.
+                try:
+                    s.consultar(anio, mes, eid, mid, region_id=oid, region_etiqueta=etiqueta_division)
+                except cfe.ErrorCFE as e:
+                    print(f"   {anio}-{mes:02d}  ! SOSPECHOSO, no se guarda: {e}")
+                    sospechosos += 1
+                    continue
                 tablas = [t for t in P.parsear_todas(s.html) if t["cargos"]]
                 if not tablas:
                     print(f"   {anio}-{mes:02d}  sin publicación")
@@ -298,8 +323,17 @@ def main():
 
     tarifas["actualizado"] = ahora()
     escribir(TARIFAS, tarifas)
-    print(f"\n{nuevos} nuevo(s), {omitidos} ya estaban, {vacios} sin publicación. "
-          f"Total en base: {len(registros)}")
+    print(f"\n{nuevos} nuevo(s), {omitidos} ya estaban, {vacios} sin publicación, "
+          f"{sospechosos} sospechoso(s) descartados. Total en base: {len(registros)}")
+    if sospechosos:
+        print("\nHubo meses donde la sesión mostró una división distinta a la pedida.")
+        print("No se guardaron (mejor un hueco que un dato mal etiquetado), pero conviene")
+        print("investigar: revisa las líneas '! SOSPECHOSO' de este mismo log para ver")
+        print("exactamente qué región se pidió y cuál mostró la página. Puede ser un")
+        print("problema pasajero del sitio; relanzar con --rehacer para esas regiones")
+        print("suele bastar. Si --cookies/CFE_COOKIES está en uso, prueba sin ella primero:")
+        print("se confirmó que el histórico se captura bien sin ninguna cookie.")
+        sys.exit(1)   # falla de verdad: hay que mirar el log, no solo relanzar
     if nuevos == 0 and not omitidos:
         sys.exit(2)      # el cron lo marca como falla: algo cambió en CFE
 

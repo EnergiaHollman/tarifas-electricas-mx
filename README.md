@@ -412,6 +412,7 @@ los despliegues anteriores.
 | `scraper/sembrar_desde_muestra.py` | Genera `data/` desde la muestra, sin red |
 | `scraper/test_parser.py` | Pruebas del parser contra HTML real |
 | `scraper/test_catalogo.py` | Pruebas de etiquetas compuestas y representantes |
+| `scraper/test_cfe_session.py` | Prueba del guardián contra sesiones con la región contaminada |
 | `.github/workflows/backfill.yml` | Captura histórica a demanda, desde GitHub |
 | `.github/workflows/actualizar.yml` | Captura mensual automática |
 | `data/catalogo.json` | Estado → municipio → región |
@@ -458,6 +459,29 @@ los despliegues anteriores.
   la etiqueta misma, así que las heredadas de versiones con criterios
   distintos se detectan y se vuelven a resolver solas. `--reresolver` fuerza
   rehacerlas todas.
+- **Incidente real, ya corregido:** `poner_region` comparaba solo el *id*
+  numérico de la división, nunca el nombre visible. En un backfill largo, en
+  algún punto la página quedó mostrando "Valle de México Sur" mientras el
+  código pedía "Baja California" con un id que coincidía por casualidad;
+  como el id ya coincidía, el código viejo no volvía a seleccionar nada y
+  guardó varios meses de 2023-2025 bajo la región equivocada. Ahora
+  `poner_region` y `consultar()` verifican también el **nombre visible**, no
+  solo el id, y revientan con un error claro (`ErrorCFE`, contado como
+  "sospechoso" en el resumen final) en vez de guardar en silencio un dato mal
+  etiquetado. Cubierto por `scraper/test_cfe_session.py`, que reproduce el
+  escenario exacto con HTML sintético. Si `actualizar_tarifas.py` reporta
+  algún "sospechoso", la corrida termina con código de salida distinto de
+  cero a propósito: hay que mirar el log, no solo relanzar. (Se sospechó que
+  una cookie de sesión reutilizada tenía algo que ver, y por eso el proyecto
+  llegó a soportar `CFE_COOKIES`; se probó sin cookie después de este
+  arreglo y el histórico se captura igual, así que ya no se usa ni hace
+  falta configurarla.) Importante: `--rehacer` sobreescribe un registro solo
+  si el reintento tiene éxito; si el guardián lo detiene de nuevo, el dato
+  viejo (contaminado o no) se queda tal cual. Para partir de cero de verdad
+  -y no depender de que cada reintento salga bien- existe `--limpiar-todo`,
+  que vacía todos los registros de `tarifas.json` antes de capturar. Es
+  seguro: el archivo está versionado en git, así que nada se pierde de
+  verdad.
 - El scraper nunca reescribe un registro ya capturado salvo con `--rehacer`.
   Si CFE corrigiera un mes cerrado, quieres enterarte, no que se sobrescriba
   en silencio.

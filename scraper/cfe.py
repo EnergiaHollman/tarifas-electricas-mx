@@ -66,15 +66,16 @@ class SesionCFE:
         self.s = requests.Session()
         self.s.headers.update({"User-Agent": AGENTE, **CABECERAS_COMUNES})
 
-        # El sitio está detrás de Imperva Incapsula: sin cookies de una sesión
-        # que un navegador real ya "aprobó" (algo que requiere ejecutar
-        # JavaScript, cosa que requests no hace), el sitio degrada en
-        # silencio la respuesta a ciertas interacciones dinámicas, como
-        # recalcular los meses al cambiar de año. La solución pragmática,
-        # dado que esto corre una vez al mes: copiar el encabezado Cookie de
-        # una visita real (DevTools → pestaña Red → la petición POST del
-        # formulario → Headers → Request Headers → Cookie) y pasarlo aquí, ya
-        # sea con este argumento o con la variable de entorno CFE_COOKIES.
+        # Soporte de cookies dejado por compatibilidad, pero NO hace falta en
+        # uso normal. Se agregó cuando se sospechaba que un firewall
+        # (Imperva Incapsula) degradaba la respuesta a sesiones sin aprobar
+        # por un navegador real. Esa hipótesis resultó ser falsa: la causa
+        # real de que el histórico no se pudiera traer era que el control de
+        # mes cambia de nombre según el año (ver control_mes en parser.py),
+        # nada que tuviera que ver con cookies. Confirmado sin cookies: el
+        # scraper trae histórico igual. Se deja el parámetro por si algún
+        # día aparece un problema genuino de sesión, pero no se necesita
+        # configurar CFE_COOKIES para nada del funcionamiento normal.
         cookies = cookies if cookies is not None else os.environ.get("CFE_COOKIES", "")
         if cookies:
             n = 0
@@ -197,19 +198,45 @@ class SesionCFE:
         self._postback(P.DD_MUNICIPIO, {P.DD_MUNICIPIO: str(municipio_id),
                                         P.DD_REGION: "0"})
 
-    def poner_region(self, region_id):
-        actual, _ = self._actual(P.DD_REGION)
+    def poner_region(self, region_id, etiqueta_esperada=None):
+        actual, nombre = self._actual(P.DD_REGION)
         if actual == str(region_id):
+            self._verificar_region(nombre, etiqueta_esperada, ya_seleccionada=True)
             return
         self._postback(P.DD_REGION, {P.DD_REGION: str(region_id)})
+        _, nombre = self._actual(P.DD_REGION)
+        self._verificar_region(nombre, etiqueta_esperada, ya_seleccionada=False)
+
+    def _verificar_region(self, nombre_visible, etiqueta_esperada, ya_seleccionada):
+        """El id no basta: si el sitio (o la cookie de sesión reutilizada)
+        ya trae ese id apuntando a una división distinta, hay que notarlo en
+        vez de guardar en silencio el dato de la región equivocada. Pasó de
+        verdad: un backfill largo terminó guardando meses de 2023-2025 bajo
+        'BAJA CALIFORNIA' con los cargos reales de 'VALLE DE MEXICO SUR'.
+        """
+        if etiqueta_esperada is None:
+            return
+        if P.normalizar(nombre_visible or "") != P.normalizar(etiqueta_esperada):
+            estado = "ya estaba seleccionada" if ya_seleccionada else "quedó seleccionada tras el postback"
+            raise ErrorCFE(
+                f"se pidió la región '{etiqueta_esperada}' pero la página muestra "
+                f"'{nombre_visible}' ({estado}). Probablemente la sesión (la cookie "
+                f"reutilizada) recuerda una selección de otra región del lado del "
+                f"servidor; no se confía en el resultado.")
 
     # -- consulta ----------------------------------------------------------
 
-    def consultar(self, anio, mes, estado_id, municipio_id, region_id=None):
+    def consultar(self, anio, mes, estado_id, municipio_id, region_id=None, region_etiqueta=None):
         """Selecciona todo y devuelve los cargos, o None si no hay publicación.
 
         El orden importa: año antes que mes (cambiar de año repuebla los
         meses) y estado antes que municipio.
+
+        region_etiqueta, si se da, es el nombre visible que DEBE quedar
+        seleccionado en el desplegable de división. No es opcional por
+        pereza: sin esto, una sesión contaminada puede dejar seleccionada
+        una división distinta a la pedida sin que nada lo note (ver
+        _verificar_region).
         """
         if self.html is None:
             self.abrir()
@@ -218,7 +245,7 @@ class SesionCFE:
         self.poner_estado(estado_id)
         self.poner_municipio(municipio_id)
         if region_id is not None:
-            self.poner_region(region_id)
+            self.poner_region(region_id, etiqueta_esperada=region_etiqueta)
         elif self._actual(P.DD_REGION) == (None, None):
             disponibles = self.regiones_disponibles()
             if disponibles:

@@ -27,6 +27,10 @@ on:
         description: "Regiones a borrar antes de capturar, separadas por COMA. Vacío = ninguna."
         required: false
         default: ""
+      limpiar_todo:
+        description: "Vaciar TODOS los registros de tarifas.json antes de capturar (reversible: está en git). Úsalo tras detectar datos mal etiquetados."
+        type: boolean
+        default: false
       diagnostico:
         description: "Solo diagnóstico: inspecciona los desplegables y no captura nada."
         type: boolean
@@ -63,12 +67,10 @@ jobs:
         run: cd scraper && python3 preparar_tls.py --github-env
 
       - name: Verificar que el parser siga funcionando
-        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py
+        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py && python3 test_cfe_session.py
 
       - name: Diagnóstico de los desplegables
         if: inputs.diagnostico
-        env:
-          CFE_COOKIES: ${{ secrets.CFE_COOKIES }}
         run: cd scraper && python3 diagnostico.py --pausa 2 --anio "${{ inputs.diagnostico_anio }}"
 
       - name: Construir catálogo
@@ -89,7 +91,6 @@ jobs:
       - name: Capturar cargos
         if: '!inputs.diagnostico'
         env:
-          CFE_COOKIES: ${{ secrets.CFE_COOKIES }}
           REGIONES: ${{ inputs.regiones }}
           DESDE: ${{ inputs.desde }}
           HASTA: ${{ inputs.hasta }}
@@ -104,6 +105,7 @@ jobs:
             ARGS+=(--regiones "$REGIONES")
           fi
           if [ -n "$OLVIDAR" ]; then ARGS+=(--olvidar "$OLVIDAR"); fi
+          if [ "${{ inputs.limpiar_todo }}" = "true" ]; then ARGS+=(--limpiar-todo); fi
           echo "Ejecutando: actualizar_tarifas.py ${ARGS[@]}"
           python3 actualizar_tarifas.py "${ARGS[@]}"
 

@@ -511,30 +511,20 @@ CFE rediseñó la página. Procedimiento:
 
 Los datos ya capturados no se tocan y la API sigue sirviendo mientras tanto.
 
-### El sitio no recalcula los meses al cambiar de año (Incapsula)
+### El sitio no recalcula los meses al cambiar de año
 
-CFE tiene el sitio detrás de Imperva Incapsula, un firewall de aplicaciones.
-Sin una sesión que un navegador real ya haya "aprobado" —algo que exige
-ejecutar JavaScript, que `requests` de Python no hace— el sitio degrada en
-silencio ciertas interacciones dinámicas, en particular recalcular los meses
-disponibles al cambiar de año. La carga básica funciona igual para cualquiera;
-solo esa interacción específica queda bloqueada.
+No es un firewall ni requiere cookies de ninguna sesión (se sospechó eso al
+principio; resultó ser una pista falsa). La causa real: **el control de mes
+cambia de nombre según el año elegido.** Para el año en curso la página usa
+`Fecha2$ddMes`; para cualquier año pasado, ese control no se renderiza en
+absoluto y aparece uno distinto, `MesVerano3$ddMesConsulta`. Si ves que
+`meses()` devuelve una lista vacía al cambiar de año, es señal de que
+`parser.control_mes()` no está reconociendo el control correcto para esa
+página — revisa `scraper/parser.py` y `scraper/test_parser.py`, que incluye
+una prueba con datos reales de un año pasado precisamente para esto.
 
-La solución, dado que este proceso corre una vez al mes de cualquier forma:
-
-1. Abre la página de CFE en Chrome, en una pestaña normal (no hace falta
-   incógnito)
-2. F12 → pestaña **Red** → cambia el año en el formulario
-3. Clic en la petición POST a `GranDemandaMTH.aspx` → pestaña **Headers** →
-   **Request Headers** → copia el valor completo de `cookie`
-4. En tu repositorio: Settings → Secrets and variables → Actions → New
-   repository secret
-5. **Name**: `CFE_COOKIES` — **Secret**: pega el valor que copiaste
-6. Vuelve a lanzar el backfill o el diagnóstico
-
-Estas cookies caducan (horas, no días), así que antes de un backfill grande
-conviene refrescarlas: repite los pasos 1 a 3 y actualiza el secret antes de
-lanzar la corrida.
+Confirmado con `scraper/diagnostico.py --anio 2019`: sin ninguna cookie ni
+configuración especial, el histórico se captura igual.
 
 ### Error de TLS: CERTIFICATE_VERIFY_FAILED
 

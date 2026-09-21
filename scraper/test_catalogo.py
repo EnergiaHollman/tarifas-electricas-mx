@@ -46,7 +46,7 @@ class SesionFalsa:
         self.consultas = []
         self.html = HTML
 
-    def consultar(self, anio, mes, eid, mid, region_id=None):
+    def consultar(self, anio, mes, eid, mid, region_id=None, region_etiqueta=None):
         self.consultas.append((anio, mes, eid, mid, region_id))
         self.html = html_con_regiones(self.por_opcion.get(region_id, ["Noroeste"]))
         return P.parsear_cargos(self.html)

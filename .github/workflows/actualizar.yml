@@ -31,11 +31,9 @@ jobs:
 
       - name: Verificar que el parser siga funcionando
         # Si CFE rediseñó la página, esto falla antes de tocar los datos.
-        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py
+        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py && python3 test_cfe_session.py
 
       - name: Capturar lo que falte
-        env:
-          CFE_COOKIES: ${{ secrets.CFE_COOKIES }}
         run: cd scraper && python3 actualizar_tarifas.py --faltantes --pausa 2
 
       - name: Confirmar cambios
