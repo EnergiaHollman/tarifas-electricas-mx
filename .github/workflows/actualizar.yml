@@ -38,6 +38,7 @@ jobs:
 
       - name: Confirmar cambios
         id: commit
+        if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -68,11 +69,11 @@ jobs:
           exit 1
 
       - name: Probar la API con los datos nuevos
-        if: steps.commit.outputs.sin_cambios != '1'
+        if: always() && steps.commit.outputs.sin_cambios != '1'
         run: cd worker && npm install --no-audit --no-fund esbuild && npm test
 
       - name: Desplegar
-        if: steps.commit.outputs.sin_cambios != '1'
+        if: always() && steps.commit.outputs.sin_cambios != '1'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

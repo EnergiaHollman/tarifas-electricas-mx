@@ -475,6 +475,18 @@ los despliegues anteriores.
   completos-, así que por ahora se trata igual de estricto en ambos casos.
   Cubierto por `test_catalogo.py`, que reproduce el escenario exacto (una
   etiqueta pura recibiendo una tabla de sobra) y confirma que se rechaza.
+- **Incidente en el propio automatismo, ya corregido:** cuando el guardián de
+  arriba detecta un sospechoso, `actualizar_tarifas.py` sale con código de
+  error a propósito -para que alguien lo note-, pero el paso "Confirmar
+  cambios" de los workflows no tenía `if: always()`. Un solo mes sospechoso
+  en una corrida de casi dos horas hacía que GitHub Actions saltara por
+  completo el commit y el push, perdiendo TODOS los datos buenos que sí se
+  habían capturado bien, no solo el mes problemático. Pasó de verdad en un
+  backfill real: 1768 registros capturados correctamente, descartados porque
+  el paso de guardarlos nunca corrió. Ahora "Confirmar cambios", "Probar la
+  API" y "Desplegar" llevan `always()`: se comitea y despliega lo que sí se
+  capturó bien, y el job sigue marcándose en rojo (para que se note que hay
+  sospechosos que revisar), pero sin tirar el trabajo bueno a la basura.
 - **Incidente real, ya corregido:** `poner_region` comparaba solo el *id*
   numérico de la división, nunca el nombre visible. En un backfill largo, en
   algún punto la página quedó mostrando "Valle de México Sur" mientras el

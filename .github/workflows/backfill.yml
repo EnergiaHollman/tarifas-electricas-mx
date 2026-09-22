@@ -111,6 +111,13 @@ jobs:
 
       - name: Confirmar cambios
         id: commit
+        # SIEMPRE, incluso si "Capturar cargos" salió con error por
+        # sospechosos: ese exit code es una alerta para que alguien revise
+        # el log, no una señal de "descarta todo lo bueno que se capturó".
+        # El script ya escribe data/ de forma incremental; sin este
+        # always(), un solo mes sospechoso tiraba a la basura una corrida
+        # completa de casi dos horas -pasó de verdad-.
+        if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -141,11 +148,11 @@ jobs:
           exit 1
 
       - name: Probar la API con los datos nuevos
-        if: steps.commit.outputs.sin_cambios != '1'
+        if: always() && steps.commit.outputs.sin_cambios != '1'
         run: cd worker && npm install --no-audit --no-fund esbuild && npm test
 
       - name: Desplegar
-        if: inputs.desplegar && steps.commit.outputs.sin_cambios != '1'
+        if: always() && inputs.desplegar && steps.commit.outputs.sin_cambios != '1'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
