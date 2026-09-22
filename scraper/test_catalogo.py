@@ -165,6 +165,33 @@ check("dos tablas: mandan los encabezados",
       A.divisiones_de(html_con_regiones(["Bajío", "Golfo Centro"]), "BAJIO Y GOLFO CENTRO"),
       ["BAJIO", "GOLFO CENTRO"])
 
+print("\nDivisiones de una respuesta: cruce contra lo ya conocido (expansiones)")
+check("sin regiones_esperadas: se comporta como antes (compatibilidad)",
+      A.divisiones_de(html_con_regiones(["Baja California"]), "BAJA CALIFORNIA"),
+      ["BAJA CALIFORNIA"])
+check("una tabla, coincide con lo esperado: se acepta",
+      A.divisiones_de(html_con_regiones(["Baja California"]), "BAJA CALIFORNIA",
+                      regiones_esperadas=["BAJA CALIFORNIA"]),
+      ["BAJA CALIFORNIA"])
+
+# La corrupción real: "BAJA CALIFORNIA" es una etiqueta de una sola región
+# (ya lo sabíamos por expansiones), pero la página devolvió DOS tablas -una
+# ajena, de "Valle de México Sur"-. Sin este cruce, el código viejo se
+# creía las dos. Con él, se rechaza de plano: no hay forma de saber cuál de
+# las dos tablas es la real, así que no se guarda ninguna.
+check("dos tablas cuando se esperaba una: se rechaza (None), no se elige ninguna",
+      A.divisiones_de(html_con_regiones(["Baja California", "Valle de México Sur"]), "BAJA CALIFORNIA",
+                      regiones_esperadas=["BAJA CALIFORNIA"]),
+      None)
+check("compuesta genuina, coincide en cantidad: se acepta igual que antes",
+      A.divisiones_de(html_con_regiones(["Bajío", "Golfo Centro"]), "BAJIO Y GOLFO CENTRO",
+                      regiones_esperadas=["BAJIO", "GOLFO CENTRO"]),
+      ["BAJIO", "GOLFO CENTRO"])
+check("compuesta con una tabla de más también se rechaza",
+      A.divisiones_de(html_con_regiones(["Bajío", "Golfo Centro", "Oriente"]), "BAJIO Y GOLFO CENTRO",
+                      regiones_esperadas=["BAJIO", "GOLFO CENTRO"]),
+      None)
+
 print()
 if fallos:
     print(f"{len(fallos)} prueba(s) fallaron: {', '.join(fallos)}")

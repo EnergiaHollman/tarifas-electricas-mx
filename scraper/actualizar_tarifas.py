@@ -118,17 +118,30 @@ def resolver_etiquetas(s, catalogo, anio, mes, rehacer=False):
     return expansiones
 
 
-def divisiones_de(html, etiqueta):
+def divisiones_de(html, etiqueta, regiones_esperadas=None):
     """Divisiones que responden a una selección concreta del desplegable.
 
     Con una sola tabla, la división es la etiqueta que se seleccionó: el
     encabezado de la página no es de fiar (para Baja California Sur imprime
     "Baja California"). Con varias tablas la etiqueta es compuesta y solo los
     encabezados dicen cuáles son.
+
+    regiones_esperadas, si se da, es la lista YA RESUELTA (por
+    resolver_etiquetas, antes de esta llamada) de a qué división real
+    corresponde esta etiqueta. Es la verificación más fuerte que hay: no
+    depende de leer nada de la página en el momento, solo de contar. Pasó de
+    verdad que una etiqueta "pura" (una sola región, como "BAJA CALIFORNIA")
+    devolvió DOS tablas en cierto tramo de una corrida -probablemente el
+    desplegable derivó a otra selección sin que el guardián de nombre lo
+    notara- y el código viejo, sin nada con qué comparar, se las creyó las
+    dos. Si el número de tablas no coincide con el número ya conocido de
+    regiones, se devuelve None: "no confíes en esto".
     """
     tablas = [t for t in P.parsear_todas(html) if t["cargos"]]
     if not tablas:
         return []
+    if regiones_esperadas is not None and len(tablas) != len(regiones_esperadas):
+        return None
     if len(tablas) == 1:
         return [P.normalizar(etiqueta)]
     return [P.normalizar(t["region"]) for t in tablas if t["region"]]
@@ -292,7 +305,21 @@ def main():
                     continue
                 # Con una tabla, la división es la que se seleccionó; con
                 # varias, la etiqueta era compuesta y cada encabezado manda.
-                nombres = divisiones_de(s.html, etiqueta_division)
+                # regiones_esperadas es lo que YA SABÍAMOS (de resolver_
+                # etiquetas, antes de este bucle) que esta etiqueta debía
+                # devolver. Si el número de tablas no coincide -pasó de
+                # verdad: una etiqueta de una sola región devolvió dos
+                # tablas, una ajena, sin que el guardián de nombre lo
+                # notara- no se confía en nada de lo recibido.
+                regiones_esperadas = expansiones.get(P.normalizar(etiqueta_division), [etiqueta_division])
+                nombres = divisiones_de(s.html, etiqueta_division, regiones_esperadas=regiones_esperadas)
+                if nombres is None:
+                    vistas = [P.normalizar(t["region"] or "?") for t in tablas]
+                    print(f"   {anio}-{mes:02d}  ! SOSPECHOSO, no se guarda: se esperaban "
+                          f"{len(regiones_esperadas)} tabla(s) ({', '.join(regiones_esperadas)}) "
+                          f"y llegaron {len(tablas)} ({', '.join(vistas)})")
+                    sospechosos += 1
+                    continue
                 guardadas = []
                 for real, t in zip(nombres, tablas):
                     if not real:

@@ -459,6 +459,22 @@ los despliegues anteriores.
   la etiqueta misma, así que las heredadas de versiones con criterios
   distintos se detectan y se vuelven a resolver solas. `--reresolver` fuerza
   rehacerlas todas.
+- **Incidente real, ya corregido (segunda parte):** el guardián de nombre
+  visible de arriba no bastó. En una corrida real, `BAJA CALIFORNIA` -una
+  etiqueta de una sola región, ya confirmada así por `resolver_etiquetas`-
+  devolvió en cierto tramo **dos tablas** en la respuesta (una ajena, de
+  "Valle de México Sur"), y como nada comparaba el número de tablas contra
+  lo que ya se sabía, el código se creyó las dos. Ahora `divisiones_de`
+  recibe `regiones_esperadas` -la lista ya resuelta antes, en
+  `resolver_etiquetas`- y si el número de tablas no coincide exactamente,
+  devuelve `None`: no se guarda ninguna de las tablas de ese mes, y se cuenta
+  como sospechoso. La asimetría importa: de más tablas que las esperadas
+  siempre es sospechoso; de menos, en teoría podría ser una etiqueta
+  compuesta con publicación parcial, aunque no hay evidencia de que eso
+  ocurra -CFE publica todo o nada, según lo visto en varios backfills
+  completos-, así que por ahora se trata igual de estricto en ambos casos.
+  Cubierto por `test_catalogo.py`, que reproduce el escenario exacto (una
+  etiqueta pura recibiendo una tabla de sobra) y confirma que se rechaza.
 - **Incidente real, ya corregido:** `poner_region` comparaba solo el *id*
   numérico de la división, nunca el nombre visible. En un backfill largo, en
   algún punto la página quedó mostrando "Valle de México Sur" mientras el
