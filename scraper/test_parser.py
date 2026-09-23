@@ -20,6 +20,12 @@ HTML = MUESTRA.read_text(encoding="utf-8", errors="replace")
 MUESTRA_HIST = pathlib.Path(__file__).parent / "muestra" / "GranDemandaMTH_historico.html"
 HTML_HIST = MUESTRA_HIST.read_text(encoding="utf-8", errors="replace") if MUESTRA_HIST.exists() else None
 
+# Un mes que CFE republicó (febrero de 2018, Noroeste): la página trae DOS
+# tablas de resultados, cada una precedida por su propio texto "2.1.1 ..." /
+# "2.1.2 ...". Confirmado contra el sitio real por el usuario del proyecto.
+MUESTRA_FACT = pathlib.Path(__file__).parent / "muestra" / "GranDemandaMTH_facturacion.html"
+HTML_FACT = MUESTRA_FACT.read_text(encoding="utf-8", errors="replace") if MUESTRA_FACT.exists() else None
+
 fallos = []
 
 
@@ -126,6 +132,32 @@ else:
     check("cargos de mayo 2019, Noroeste (dato real de CFE)", r_hist["cargos"], {
         "fijo": 611.85, "base": 0.8801, "intermedia": 1.4083,
         "punta": 1.5606, "distribucion": 87.59, "capacidad": 354.09})
+
+print("\nUn mes republicado por CFE trae dos tablas (febrero de 2018, Noroeste)")
+if HTML_FACT is None:
+    print("  (omitida: falta muestra/GranDemandaMTH_facturacion.html)")
+    fallos.append("muestra de facturación ausente")
+else:
+    tablas_fact = P.parsear_todas(HTML_FACT)
+    check("dos tablas, no una", len(tablas_fact), 2)
+    check("las dos son de la misma región", {P.normalizar(t["region"]) for t in tablas_fact}, {"NOROESTE"})
+    facturaciones = {t["facturacion"] for t in tablas_fact}
+    check("una marcada 'mismo_mes' y otra 'mes_siguiente'",
+          facturaciones, {"mismo_mes", "mes_siguiente"})
+
+    por_tipo = {t["facturacion"]: t for t in tablas_fact}
+    check("mismo_mes: cargos exactos de la tabla 2.1.1", por_tipo["mismo_mes"]["cargos"], {
+        "fijo": 591.73, "base": 0.6011, "intermedia": 0.87,
+        "punta": 1.0022, "distribucion": 84.16, "capacidad": 195.84})
+    check("mes_siguiente: cargos exactos de la tabla 2.1.2 (la que casi siempre se factura)",
+          por_tipo["mes_siguiente"]["cargos"], {
+        "fijo": 591.73, "base": 0.5589, "intermedia": 0.851,
+        "punta": 0.9353, "distribucion": 84.16, "capacidad": 195.84})
+    check("los cargos fijos coinciden entre ambas (correcto: el ajuste es solo en energía)",
+          por_tipo["mismo_mes"]["cargos"]["fijo"], por_tipo["mes_siguiente"]["cargos"]["fijo"])
+
+    check("un mes normal (marzo 2026, una sola tabla) no trae marca de facturación",
+          P.parsear_cargos(HTML)["facturacion"], None)
 
 print()
 if fallos:

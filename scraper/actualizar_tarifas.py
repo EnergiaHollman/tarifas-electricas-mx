@@ -147,6 +147,38 @@ def divisiones_de(html, etiqueta, regiones_esperadas=None):
     return [P.normalizar(t["region"]) for t in tablas if t["region"]]
 
 
+def cargos_iguales(tablas):
+    """¿Todas las tablas tienen exactamente los mismos cargos?
+
+    Es la diferencia entre un duplicado sin importancia (se puede aceptar
+    cualquiera de las copias) y una ambigüedad real (los números difieren y
+    hace falta un criterio -por ejemplo, comparar contra el sitio a mano-
+    para saber cuál es la vigente).
+    """
+    firmas = {tuple(sorted(t["cargos"].items())) for t in tablas}
+    return len(firmas) == 1
+
+
+def tabla_definitiva(tablas):
+    """Cuando CFE republicó un mes, ¿cuál de las tablas es la que se factura
+    de verdad?
+
+    Confirmado contra el sitio real (febrero de 2018, Noroeste): CFE publica
+    dos cuotas para el mismo mes, cada una marcada con su propio texto
+    ("2.1.1 ... facturados en el mes de X, con consumos dentro del propio
+    mes" / "2.1.2 ... facturados en el mes de Y, con consumos dentro del mes
+    de X"). Casi ningún recibo llega el mismo mes del consumo -llega el
+    siguiente-, así que "mes_siguiente" es la cuota que casi todo el mundo
+    factura de verdad; "mismo_mes" es la provisional.
+
+    Devuelve la tabla marcada "mes_siguiente" si hay exactamente una, o None
+    si el patrón no aplica (ninguna tabla trae esa marca, o hay más de una)
+    -en ese caso no hay que adivinar, se deja como sospechoso de verdad.
+    """
+    candidatas = [t for t in tablas if t.get("facturacion") == "mes_siguiente"]
+    return candidatas[0] if len(candidatas) == 1 else None
+
+
 def representantes(catalogo, expansiones):
     """{REGION: (estado_id, municipio_id, opcion_id, etiqueta, nombre)}: uno por región.
 
@@ -314,10 +346,72 @@ def main():
                 regiones_esperadas = expansiones.get(P.normalizar(etiqueta_division), [etiqueta_division])
                 nombres = divisiones_de(s.html, etiqueta_division, regiones_esperadas=regiones_esperadas)
                 if nombres is None:
+                    # Antes de rendirse: si las tablas "de más" son duplicados
+                    # exactos (mismos cargos), no hay nada que decidir -se
+                    # puede aceptar una de ellas con toda confianza-. Solo se
+                    # deja como sospechoso cuando los números genuinamente
+                    # difieren, que es cuando de verdad hace falta un
+                    # criterio (p. ej. comparar contra el sitio a mano) para
+                    # saber cuál es la vigente.
+                    if len(regiones_esperadas) == 1 and cargos_iguales(tablas):
+                        t = tablas[0]
+                        kr = clave(args.tarifa, regiones_esperadas[0], anio, mes)
+                        if kr not in registros or args.rehacer:
+                            registros[kr] = {
+                                "tarifa": args.tarifa, "region": regiones_esperadas[0],
+                                "anio": anio, "mes": mes,
+                                "periodo_cfe": t["periodo_cfe"],
+                                "cargos": t["cargos"], "unidades": t["unidades"],
+                                "conceptos": t["conceptos"],
+                                "municipio_consultado": etiqueta,
+                                "fuente": s.url, "fecha_captura": ahora(),
+                                "nota": f"la página devolvió {len(tablas)} tablas idénticas; se usó una",
+                            }
+                            nuevos += 1
+                            print(f"   {anio}-{mes:02d}  {regiones_esperadas[0]}  "
+                                  f"(duplicado idéntico, aceptado)  " +
+                                  "  ".join(f"{k2}={v}" for k2, v in t["cargos"].items()))
+                        else:
+                            omitidos += 1
+                        continue
+
+                    # CFE republicó el mes: dos tablas, cargos distintos.
+                    # Confirmado contra el sitio real que la marcada "el
+                    # recibo llega el mes siguiente" (mes_siguiente) es la
+                    # que casi todo el mundo factura de verdad.
+                    if len(regiones_esperadas) == 1:
+                        t = tabla_definitiva(tablas)
+                        if t is not None:
+                            kr = clave(args.tarifa, regiones_esperadas[0], anio, mes)
+                            if kr not in registros or args.rehacer:
+                                registros[kr] = {
+                                    "tarifa": args.tarifa, "region": regiones_esperadas[0],
+                                    "anio": anio, "mes": mes,
+                                    "periodo_cfe": t["periodo_cfe"],
+                                    "cargos": t["cargos"], "unidades": t["unidades"],
+                                    "conceptos": t["conceptos"],
+                                    "municipio_consultado": etiqueta,
+                                    "fuente": s.url, "fecha_captura": ahora(),
+                                    "nota": ("la página republicó este mes con dos cuotas "
+                                             "distintas; se usó la marcada como facturada el "
+                                             "mes siguiente al consumo (la que casi siempre "
+                                             "se cobra de verdad), no la del propio mes"),
+                                }
+                                nuevos += 1
+                                print(f"   {anio}-{mes:02d}  {regiones_esperadas[0]}  "
+                                      f"(republicado; se usó 'mes_siguiente')  " +
+                                      "  ".join(f"{k2}={v}" for k2, v in t["cargos"].items()))
+                            else:
+                                omitidos += 1
+                            continue
+
                     vistas = [P.normalizar(t["region"] or "?") for t in tablas]
                     print(f"   {anio}-{mes:02d}  ! SOSPECHOSO, no se guarda: se esperaban "
                           f"{len(regiones_esperadas)} tabla(s) ({', '.join(regiones_esperadas)}) "
                           f"y llegaron {len(tablas)} ({', '.join(vistas)})")
+                    print(f"      cargos DISTINTOS entre las tablas, ambigüedad real:")
+                    for i, t in enumerate(tablas):
+                        print(f"        tabla {i+1} ({P.normalizar(t['region'] or '?')}): {t['cargos']}")
                     sospechosos += 1
                     continue
                 guardadas = []

@@ -165,6 +165,39 @@ check("dos tablas: mandan los encabezados",
       A.divisiones_de(html_con_regiones(["Bajío", "Golfo Centro"]), "BAJIO Y GOLFO CENTRO"),
       ["BAJIO", "GOLFO CENTRO"])
 
+print("\ncargos_iguales: duplicado sin importancia vs. ambigüedad real")
+def tabla_de_prueba(cargos, region="Bajío"):
+    return {"cargos": cargos, "region": region, "unidades": {}, "conceptos": [], "periodo_cfe": "FEB-18"}
+
+c = {"fijo": 100.0, "base": 1.0}
+check("dos tablas con los mismos cargos: iguales",
+      A.cargos_iguales([tabla_de_prueba(c), tabla_de_prueba(dict(c))]), True)
+check("dos tablas con cargos distintos: no iguales",
+      A.cargos_iguales([tabla_de_prueba(c), tabla_de_prueba({"fijo": 200.0, "base": 2.0})]), False)
+check("tres tablas, dos iguales y una distinta: no iguales (basta una para romperlo)",
+      A.cargos_iguales([tabla_de_prueba(c), tabla_de_prueba(dict(c)),
+                        tabla_de_prueba({"fijo": 999.0})]), False)
+check("una sola tabla: siempre 'iguales' (nada con qué comparar)",
+      A.cargos_iguales([tabla_de_prueba(c)]), True)
+
+print("\ntabla_definitiva: preferir 'mes_siguiente' cuando CFE republicó el mes")
+def tabla_fact(cargos, facturacion):
+    d = tabla_de_prueba(cargos)
+    d["facturacion"] = facturacion
+    return d
+
+check("elige la marcada mes_siguiente",
+      A.tabla_definitiva([tabla_fact({"fijo": 1}, "mismo_mes"),
+                          tabla_fact({"fijo": 2}, "mes_siguiente")])["cargos"],
+      {"fijo": 2})
+check("sin ninguna marca (caso normal, no aplica): None",
+      A.tabla_definitiva([tabla_de_prueba({"fijo": 1}), tabla_de_prueba({"fijo": 2})]), None)
+check("dos marcadas mes_siguiente (no debería pasar, pero no se adivina): None",
+      A.tabla_definitiva([tabla_fact({"fijo": 1}, "mes_siguiente"),
+                          tabla_fact({"fijo": 2}, "mes_siguiente")]), None)
+check("una sola tabla, sin marca: None (no hay nada que elegir, no es este caso)",
+      A.tabla_definitiva([tabla_de_prueba({"fijo": 1})]), None)
+
 print("\nDivisiones de una respuesta: cruce contra lo ya conocido (expansiones)")
 check("sin regiones_esperadas: se comporta como antes (compatibilidad)",
       A.divisiones_de(html_con_regiones(["Baja California"]), "BAJA CALIFORNIA"),

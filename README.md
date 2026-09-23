@@ -475,6 +475,25 @@ los despliegues anteriores.
   completos-, así que por ahora se trata igual de estricto en ambos casos.
   Cubierto por `test_catalogo.py`, que reproduce el escenario exacto (una
   etiqueta pura recibiendo una tabla de sobra) y confirma que se rechaza.
+- **Resuelto con datos reales, tras un backfill real:** un mismo mes
+  (febrero de 2018) salió "sospechoso" en las 17 regiones a la vez, siempre
+  con dos tablas del mismo nombre de región. No era corrupción: es que CFE
+  **republicó** ese mes. La página, cuando eso pasa, muestra dos cuotas para
+  el mismo periodo, cada una precedida por su propio texto explicativo -
+  confirmado contra el sitio real por quien usa este proyecto-: "2.1.1 ...
+  facturados en el mes de X, con consumos dentro del propio mes" (la
+  provisional) y "2.1.2 ... facturados en el mes de Y, con consumos dentro
+  del mes de X" (la definitiva, la que casi todo el mundo factura de verdad,
+  porque el recibo llega el mes siguiente al consumo, no el mismo mes).
+  `parser._clasificar_facturacion()` detecta cuál tabla es cuál leyendo ese
+  texto, y `actualizar_tarifas.tabla_definitiva()` prefiere automáticamente
+  la marcada "mes_siguiente" -deja una nota explícita en el registro-; solo
+  si el patrón no aplica con claridad (ninguna tabla marcada así, o más de
+  una) se sigue dejando como sospechoso de verdad. Se verificó que este caso
+  de dos tablas **no** afecta al resto del histórico: las muestras usadas
+  desde el principio del proyecto (marzo de 2026, mayo de 2019) traen una
+  sola tabla cada una, sin este patrón -CFE solo lo usa cuando corrige un
+  mes ya publicado.
 - **Incidente en el propio automatismo, ya corregido:** cuando el guardián de
   arriba detecta un sospechoso, `actualizar_tarifas.py` sale con código de
   error a propósito -para que alguien lo note-, pero el paso "Confirmar

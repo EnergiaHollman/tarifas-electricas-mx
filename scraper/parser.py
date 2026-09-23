@@ -203,7 +203,33 @@ def _parsear_tabla(tabla):
             unidades_norm[k] = c["unidades"]
 
     return {"tarifa": tarifa, "region": region, "periodo_cfe": periodo_cfe,
-            "conceptos": conceptos, "cargos": cargos, "unidades": unidades_norm}
+            "conceptos": conceptos, "cargos": cargos, "unidades": unidades_norm,
+            "facturacion": _clasificar_facturacion(tabla)}
+
+
+# Cuando CFE corrige o republica un mes, la página no muestra una tabla sino
+# dos, cada una precedida por un mini-bloque de texto ("2.1.1 Para los
+# servicios facturados en el mes de X, con consumos dentro del propio mes"
+# / "2.1.2 ... facturados en el mes de Y, con consumos dentro del mes de
+# X"). Pasó de verdad para febrero de 2018. La segunda variante es la que
+# casi todo el mundo factura de verdad -el recibo llega el mes siguiente al
+# consumo-, así que conviene distinguirlas, no solo notar que hay dos.
+_RE_MISMO_MES = re.compile(r"consumos?\s+dentro\s+del\s+propio\s+mes", re.I)
+_RE_MES_SIGUIENTE = re.compile(r"facturados?\s+en\s+el\s+mes\s+de\s+\S+.{0,40}"
+                               r"consumos?\s+dentro\s+del\s+mes\s+de", re.I)
+
+
+def _clasificar_facturacion(tabla):
+    """"mismo_mes" | "mes_siguiente" | None (el caso normal, una sola tabla)."""
+    previa = tabla.find_previous("table")
+    if previa is None:
+        return None
+    texto = previa.get_text(" ", strip=True)
+    if _RE_MES_SIGUIENTE.search(texto):
+        return "mes_siguiente"
+    if _RE_MISMO_MES.search(texto):
+        return "mismo_mes"
+    return None
 
 
 # --------------------------------------------------------------------------
