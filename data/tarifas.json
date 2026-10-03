@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-09-23T17:26:16+00:00",
+ "actualizado": "2026-10-03T18:53:07+00:00",
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
  "registros": {
   "GDMTH|BAJA CALIFORNIA SUR|2018-01": {
@@ -6675,6 +6675,70 @@
     "punta": "$/kWh"
    }
   },
+  "GDMTH|BAJA CALIFORNIA SUR|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 2.024,
+    "capacidad": 246.78,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 2.5679,
+    "punta": 3.6117
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 2.024
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.5679
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 3.6117
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 246.78
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:49:45+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "COMONDU, BAJA CALIFORNIA SUR",
+   "periodo_cfe": "OCT-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|BAJA CALIFORNIA|2018-01": {
    "anio": 2018,
    "cargos": {
@@ -13337,6 +13401,70 @@
    "mes": 9,
    "municipio_consultado": "PUERTO PENASCO, SONORA",
    "periodo_cfe": "SEP-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|BAJA CALIFORNIA|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.5964,
+    "capacidad": 344.27,
+    "distribucion": 90.01,
+    "fijo": 414.9,
+    "intermedia": 0.9221,
+    "punta": 1.242
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 414.9
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.5964
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 0.9221
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.242
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.01
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 344.27
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:49:32+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "ENSENADA, BAJA CALIFORNIA",
+   "periodo_cfe": "OCT-26",
    "region": "BAJA CALIFORNIA",
    "tarifa": "GDMTH",
    "unidades": {
@@ -20069,6 +20197,70 @@
     "punta": "$/kWh"
    }
   },
+  "GDMTH|BAJIO|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 1.0228,
+    "capacidad": 377.17,
+    "distribucion": 97.88,
+    "fijo": 427.19,
+    "intermedia": 1.8108,
+    "punta": 2.062
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 427.19
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 1.0228
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.8108
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 2.062
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 97.88
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 377.17
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:49:58+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "AGUASCALIENTES, AGUASCALIENTES",
+   "periodo_cfe": "OCT-26",
+   "region": "BAJIO",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|CENTRO OCCIDENTE|2018-01": {
    "anio": 2018,
    "cargos": {
@@ -26779,6 +26971,70 @@
    "mes": 9,
    "municipio_consultado": "ARMERIA, COLIMA",
    "periodo_cfe": "SEP-26",
+   "region": "CENTRO OCCIDENTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|CENTRO OCCIDENTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 1.0206,
+    "capacidad": 377.02,
+    "distribucion": 155.41,
+    "fijo": 252.5,
+    "intermedia": 1.8133,
+    "punta": 2.0412
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 252.5
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 1.0206
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.8133
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 2.0412
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 155.41
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 377.02
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:50:11+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "ARMERIA, COLIMA",
+   "periodo_cfe": "OCT-26",
    "region": "CENTRO OCCIDENTE",
    "tarifa": "GDMTH",
    "unidades": {
@@ -33511,6 +33767,70 @@
     "punta": "$/kWh"
    }
   },
+  "GDMTH|CENTRO ORIENTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 1.0181,
+    "capacidad": 373.67,
+    "distribucion": 149.44,
+    "fijo": 335.36,
+    "intermedia": 1.8141,
+    "punta": 2.0466
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 335.36
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 1.0181
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.8141
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 2.0466
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 149.44
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 373.67
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:50:25+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "ATENANGO DEL RIO, GUERRERO",
+   "periodo_cfe": "OCT-26",
+   "region": "CENTRO ORIENTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|CENTRO SUR|2018-01": {
    "anio": 2018,
    "cargos": {
@@ -40221,6 +40541,70 @@
    "mes": 9,
    "municipio_consultado": "ACAMBAY, ESTADO DE MÉXICO",
    "periodo_cfe": "SEP-26",
+   "region": "CENTRO SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|CENTRO SUR|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9368,
+    "capacidad": 350.9,
+    "distribucion": 221.09,
+    "fijo": 264.38,
+    "intermedia": 1.6485,
+    "punta": 1.8649
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 264.38
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9368
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.6485
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.8649
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 221.09
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 350.9
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:50:38+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "ACAMBAY, ESTADO DE MÉXICO",
+   "periodo_cfe": "OCT-26",
    "region": "CENTRO SUR",
    "tarifa": "GDMTH",
    "unidades": {
@@ -46953,6 +47337,70 @@
     "punta": "$/kWh"
    }
   },
+  "GDMTH|GOLFO CENTRO|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9703,
+    "capacidad": 377.17,
+    "distribucion": 124.41,
+    "fijo": 461.75,
+    "intermedia": 1.6358,
+    "punta": 1.8944
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 461.75
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9703
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.6358
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.8944
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 124.41
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 377.17
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:50:51+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "AGUA BLANCA DE ITURBIDE, HIDALGO",
+   "periodo_cfe": "OCT-26",
+   "region": "GOLFO CENTRO",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|GOLFO NORTE|2018-01": {
    "anio": 2018,
    "cargos": {
@@ -53663,6 +54111,70 @@
    "mes": 9,
    "municipio_consultado": "ABASOLO, COAHUILA",
    "periodo_cfe": "SEP-26",
+   "region": "GOLFO NORTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|GOLFO NORTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9904,
+    "capacidad": 386.39,
+    "distribucion": 57.74,
+    "fijo": 502.03,
+    "intermedia": 1.5334,
+    "punta": 1.6634
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 502.03
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9904
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5334
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.6634
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 57.74
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 386.39
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:51:04+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "ABASOLO, COAHUILA",
+   "periodo_cfe": "OCT-26",
    "region": "GOLFO NORTE",
    "tarifa": "GDMTH",
    "unidades": {
@@ -60395,6 +60907,70 @@
     "punta": "$/kWh"
    }
   },
+  "GDMTH|JALISCO|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9834,
+    "capacidad": 377.17,
+    "distribucion": 160.25,
+    "fijo": 330.66,
+    "intermedia": 1.7494,
+    "punta": 1.9675
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 330.66
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9834
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.7494
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.9675
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 160.25
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 377.17
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:51:18+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "ACATIC, JALISCO",
+   "periodo_cfe": "OCT-26",
+   "region": "JALISCO",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|NOROESTE|2018-01": {
    "anio": 2018,
    "cargos": {
@@ -67105,6 +67681,70 @@
    "mes": 9,
    "municipio_consultado": "ACONCHI, SONORA",
    "periodo_cfe": "SEP-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|NOROESTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9408,
+    "capacidad": 377.17,
+    "distribucion": 90.85,
+    "fijo": 197.77,
+    "intermedia": 1.5035,
+    "punta": 1.6658
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9408
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5035
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.6658
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 377.17
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:51:31+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "OCT-26",
    "region": "NOROESTE",
    "tarifa": "GDMTH",
    "unidades": {
@@ -73837,6 +74477,70 @@
     "punta": "$/kWh"
    }
   },
+  "GDMTH|NORTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9908,
+    "capacidad": 386.39,
+    "distribucion": 72.92,
+    "fijo": 1113.73,
+    "intermedia": 1.5711,
+    "punta": 1.8372
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 1113.73
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9908
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5711
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.8372
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 72.92
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 386.39
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:51:44+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "AHUMADA, CHIHUAHUA",
+   "periodo_cfe": "OCT-26",
+   "region": "NORTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|ORIENTE|2018-01": {
    "anio": 2018,
    "cargos": {
@@ -80547,6 +81251,70 @@
    "mes": 9,
    "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
    "periodo_cfe": "SEP-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|ORIENTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9018,
+    "capacidad": 346.2,
+    "distribucion": 202.45,
+    "fijo": 636.28,
+    "intermedia": 1.5799,
+    "punta": 1.7739
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9018
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.5799
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.7739
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 346.2
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:51:58+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "OCT-26",
    "region": "ORIENTE",
    "tarifa": "GDMTH",
    "unidades": {
@@ -87279,6 +88047,70 @@
     "punta": "$/kWh"
    }
   },
+  "GDMTH|PENINSULAR|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 1.1951,
+    "capacidad": 377.17,
+    "distribucion": 91.87,
+    "fijo": 452.58,
+    "intermedia": 2.0069,
+    "punta": 2.2385
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 452.58
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 1.1951
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 2.0069
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 2.2385
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 91.87
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 377.17
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:52:11+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "CALAKMUL, CAMPECHE",
+   "periodo_cfe": "OCT-26",
+   "region": "PENINSULAR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|SURESTE|2018-01": {
    "anio": 2018,
    "cargos": {
@@ -93989,6 +94821,70 @@
    "mes": 9,
    "municipio_consultado": "PALIZADA, CAMPECHE",
    "periodo_cfe": "SEP-26",
+   "region": "SURESTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|SURESTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 0.9804,
+    "capacidad": 331.76,
+    "distribucion": 141.76,
+    "fijo": 487.31,
+    "intermedia": 1.6963,
+    "punta": 1.9016
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 487.31
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 0.9804
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.6963
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 1.9016
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 141.76
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 331.76
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:52:24+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "PALIZADA, CAMPECHE",
+   "periodo_cfe": "OCT-26",
    "region": "SURESTE",
    "tarifa": "GDMTH",
    "unidades": {
@@ -100721,6 +101617,70 @@
     "punta": "$/kWh"
    }
   },
+  "GDMTH|VALLE DE MEXICO CENTRO|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 1.0739,
+    "capacidad": 386.39,
+    "distribucion": 60.82,
+    "fijo": 540.49,
+    "intermedia": 1.7685,
+    "punta": 2.0639
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 540.49
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 1.0739
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.7685
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 2.0639
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 60.82
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 386.39
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:52:38+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "BENITO JUAREZ, CIUDAD DE MÉXICO",
+   "periodo_cfe": "OCT-26",
+   "region": "VALLE DE MEXICO CENTRO",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|VALLE DE MEXICO NORTE|2018-01": {
    "anio": 2018,
    "cargos": {
@@ -107442,6 +108402,70 @@
     "punta": "$/kWh"
    }
   },
+  "GDMTH|VALLE DE MEXICO NORTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 1.0711,
+    "capacidad": 386.39,
+    "distribucion": 86.15,
+    "fijo": 703.36,
+    "intermedia": 1.7563,
+    "punta": 2.0518
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 703.36
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 1.0711
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.7563
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 2.0518
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 86.15
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 386.39
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:52:51+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "ACOLMAN, ESTADO DE MÉXICO",
+   "periodo_cfe": "OCT-26",
+   "region": "VALLE DE MEXICO NORTE",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
   "GDMTH|VALLE DE MEXICO SUR|2018-01": {
    "anio": 2018,
    "cargos": {
@@ -114152,6 +115176,70 @@
    "mes": 9,
    "municipio_consultado": "COYOACAN, CIUDAD DE MÉXICO",
    "periodo_cfe": "SEP-26",
+   "region": "VALLE DE MEXICO SUR",
+   "tarifa": "GDMTH",
+   "unidades": {
+    "base": "$/kWh",
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "fijo": "$/mes",
+    "intermedia": "$/kWh",
+    "punta": "$/kWh"
+   }
+  },
+  "GDMTH|VALLE DE MEXICO SUR|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "base": 1.0816,
+    "capacidad": 386.39,
+    "distribucion": 67.68,
+    "fijo": 422.07,
+    "intermedia": 1.7787,
+    "punta": 2.0788
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 422.07
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Base",
+     "unidades": "$/kWh",
+     "valor": 1.0816
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Intermedia",
+     "unidades": "$/kWh",
+     "valor": 1.7787
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Punta",
+     "unidades": "$/kWh",
+     "valor": 2.0788
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 67.68
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 386.39
+    }
+   ],
+   "fecha_captura": "2026-10-03T18:53:04+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
+   "mes": 10,
+   "municipio_consultado": "COYOACAN, CIUDAD DE MÉXICO",
+   "periodo_cfe": "OCT-26",
    "region": "VALLE DE MEXICO SUR",
    "tarifa": "GDMTH",
    "unidades": {
