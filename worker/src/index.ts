@@ -14,6 +14,14 @@ import {
   tarifas,
 } from "./datos";
 import { manejarMcp } from "./mcp";
+import { actualizarTipoCambio, consultarTipoCambio } from "./tipo_cambio";
+import type { Base } from "./tipo_cambio";
+
+/** Bindings del Worker. DB: historial del tipo de cambio (D1). BANXICO_TOKEN: secreto. */
+export interface Env {
+  DB?: Base;
+  BANXICO_TOKEN?: string;
+}
 import { llmsTxt, portada } from "./portada";
 
 // CORS evaluado explícitamente para lo que MCP necesita, nada más:
@@ -106,6 +114,16 @@ const OPENAPI = {
         responses: { "200": { description: "Calendario" } },
       },
     },
+    "/v1/tipo-cambio": {
+      get: {
+        summary: "Tipo de cambio USD/MXN de Banxico vigente en una fecha (FIX o DOF)",
+        parameters: [
+          { name: "fecha", in: "query", schema: { type: "string", format: "date" } },
+          { name: "serie", in: "query", schema: { type: "string", enum: ["fix", "dof"], default: "fix" } },
+        ],
+        responses: { "200": { description: "Tipo de cambio" }, "404": { description: "Sin datos" } },
+      },
+    },
     "/v1/regiones": { get: { summary: "Regiones y cobertura disponible" } },
     "/v1/estados": { get: { summary: "Estados con catálogo cargado" } },
     "/v1/municipios": {
@@ -118,14 +136,14 @@ const OPENAPI = {
 };
 
 export default {
-  async fetch(req: Request): Promise<Response> {
+  async fetch(req: Request, env: Env = {}): Promise<Response> {
     const url = new URL(req.url);
     const ruta = url.pathname.replace(/\/+$/, "") || "/";
     const q = (k: string) => url.searchParams.get(k) ?? undefined;
 
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
 
-    if (ruta === "/mcp") return manejarMcp(req, CORS);
+    if (ruta === "/mcp") return manejarMcp(req, CORS, { DB: env.DB });
 
     if (ruta === "/") {
       return new Response(portada(url.origin, resumenRegiones()), {
@@ -186,6 +204,11 @@ export default {
       );
     }
 
+    if (ruta === "/v1/tipo-cambio") {
+      const r = await consultarTipoCambio(env.DB, { fecha: q("fecha"), serie: q("serie") }, Date.now());
+      return resultado(r);
+    }
+
     if (ruta === "/v1/regiones") return json(resumenRegiones());
 
     if (ruta === "/v1/estados") {
@@ -210,5 +233,15 @@ export default {
     }
 
     return json({ error: "Ruta no encontrada.", rutas: Object.keys(OPENAPI.paths) }, 404);
+  },
+  /** Cron diario: tipo de cambio de Banxico a D1. Un fallo queda en el log; las consultas leen lo guardado. */
+  async scheduled(_evento: unknown, env: Env): Promise<void> {
+    if (!env.DB) return;
+    try {
+      const r = await actualizarTipoCambio(env.DB, env.BANXICO_TOKEN, Date.now());
+      console.log(`Tipo de cambio: ${r.guardados} valores de Banxico (${r.desde} a ${r.hasta}).`);
+    } catch (e) {
+      console.error(`Tipo de cambio: ${(e as Error).message}`);
+    }
   },
 };

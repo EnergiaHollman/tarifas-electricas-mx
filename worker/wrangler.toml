@@ -2,5 +2,18 @@ name = "tarifas-electricas-mx"
 main = "src/index.ts"
 compatibility_date = "2026-09-01"
 
-# Los JSON de data/ se empaquetan dentro del Worker al hacer deploy.
-# No hay base de datos ni almacenamiento externo: actualizar datos = deploy.
+# Los JSON de data/ (tarifas, horarios, catálogo) se empaquetan dentro del Worker al hacer
+# deploy: actualizar esos datos = deploy.
+# El tipo de cambio de Banxico cambia cada día hábil, así que vive aparte: un cron lo guarda en
+# D1 (sin commits ni deploys). Su token es el secreto BANXICO_TOKEN del Worker.
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tarifas-electricas-mx"
+database_id = "2f468315-35ed-487e-9ec6-15f1246ac7ce"
+migrations_dir = "migrations"
+
+# Banxico publica el FIX alrededor de las 12:00 de la Ciudad de México; la segunda corrida
+# recupera una publicación tardía. Idempotente.
+[triggers]
+crons = ["30 18 * * *", "0 22 * * *"]
