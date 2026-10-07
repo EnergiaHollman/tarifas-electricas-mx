@@ -89,7 +89,10 @@ export function festivos(anio: number): string[] {
     nEsimoLunes(11, 3), // conmemoración del 20 de noviembre
     fechaUTC(anio, 12, 25),
   ];
-  if (anio % 6 === 0) f.push(fechaUTC(anio, 12, 1)); // transmisión del Poder Ejecutivo
+  // Transmisión del Poder Ejecutivo Federal (art. 74, fracc. VII): cada seis años.
+  // Hasta 2018, el 1 de diciembre; desde 2024, el 1 de octubre (DOF 30-sep-2024).
+  if (anio >= 2024 && (anio - 2024) % 6 === 0) f.push(fechaUTC(anio, 10, 1));
+  if (anio < 2024 && (2024 - anio) % 6 === 0) f.push(fechaUTC(anio, 12, 1));
   return f.map(iso).sort();
 }
 

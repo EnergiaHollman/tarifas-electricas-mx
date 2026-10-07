@@ -101,6 +101,39 @@ check("BC usa su propia zona", r.cuerpo.zona, "Región Baja California");
 r = await get("/v1/horarios?region=NOROESTE&fecha=2026-01-15&hora=25:99");
 check("hora fuera de rango da error claro", r.cuerpo.error.includes("00:00 y 23:59"), true);
 
+console.log("\nREST: calendario anual");
+r = await get("/v1/calendario?region=NOROESTE&anio=2026");
+check("status", r.status, 200);
+check("verano 2026: primer domingo de abril", r.cuerpo.verano.inicio, "2026-04-05");
+check("verano 2026: sábado anterior al último domingo de octubre", r.cuerpo.verano.fin, "2026-10-24");
+check("festivos 2026", r.cuerpo.festivos, [
+  "2026-01-01", "2026-02-02", "2026-03-16", "2026-05-01", "2026-09-16", "2026-11-16", "2026-12-25",
+]);
+check("punta en verano, día hábil", r.cuerpo.dias.verano.habil.punta, [[1200, 1320]]);
+check("sin punta en domingo de verano", r.cuerpo.dias.verano.domingo.punta, []);
+
+// Transmisión del Ejecutivo: 1 de diciembre hasta 2018; 1 de octubre desde 2024 (DOF 30-sep-2024).
+r = await get("/v1/calendario?region=NOROESTE&anio=2024");
+check("1 oct 2024 es festivo", r.cuerpo.festivos.includes("2024-10-01"), true);
+check("1 dic 2024 no es festivo", r.cuerpo.festivos.includes("2024-12-01"), false);
+r = await get("/v1/calendario?region=NOROESTE&anio=2018");
+check("1 dic 2018 es festivo", r.cuerpo.festivos.includes("2018-12-01"), true);
+r = await get("/v1/calendario?region=NOROESTE&anio=2028");
+check("2028 no tiene transmisión", r.cuerpo.festivos.length, 7);
+r = await get("/v1/calendario?region=NOROESTE&anio=2030");
+check("1 oct 2030 es festivo", r.cuerpo.festivos.includes("2030-10-01"), true);
+
+r = await get("/v1/calendario?region=BAJA CALIFORNIA&anio=2026");
+check("Baja California: verano desde el 1 de mayo", r.cuerpo.verano.inicio, "2026-05-01");
+
+r = await get("/v1/calendario?estado=SONORA&municipio=NAVOJOA&anio=2026");
+check("región resuelta desde el municipio", r.cuerpo.region, "NOROESTE");
+
+r = await get("/v1/calendario?region=NOROESTE");
+check("sin año da error", r.cuerpo.error, "Falta anio.");
+r = await get("/v1/calendario?region=MARTE&anio=2026");
+check("región desconocida da 404", r.status, 404);
+
 console.log("\nREST: catálogos y varios");
 r = await get("/v1/regiones");
 check("lista regiones", r.cuerpo.regiones.some((x) => x.region === "NOROESTE"), true);

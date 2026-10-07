@@ -141,6 +141,7 @@ probarlo con MCP Inspector y cómo conectarlo a ChatGPT específicamente.
 GET /v1/tarifa?estado=SONORA&municipio=NAVOJOA&anio=2026&mes=3
 GET /v1/tarifa?region=NOROESTE&anio=2026&mes=3&tarifa=GDMTH
 GET /v1/horarios?region=NOROESTE&fecha=2026-08-15&hora=20:30
+GET /v1/calendario?region=NOROESTE&anio=2026
 GET /v1/regiones
 GET /v1/estados
 GET /v1/municipios?estado=SONORA
@@ -159,6 +160,14 @@ un agente la entienda de una lectura sin deducirla del HTML.
 tipo de día y, si le pasas una hora, en qué periodo cae. Los días de descanso
 obligatorio del artículo 74 de la LFT (salvo la fracción IX) se tratan como
 domingo, como manda la tarifa.
+
+`/v1/calendario` devuelve el año completo de una región en una sola consulta:
+rango del verano (fechas inclusivas), festivos y franjas por temporada y tipo
+de día en minutos desde medianoche. Sirve a clientes que evalúan muchos días
+(por ejemplo, un motor de facturación) sin una consulta por día.
+
+Transmisión del Poder Ejecutivo (art. 74, fracc. VII): 1 de diciembre hasta
+2018; 1 de octubre desde 2024 (DOF 30-sep-2024), cada seis años.
 
 Ejemplo de respuesta:
 
