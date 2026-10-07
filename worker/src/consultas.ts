@@ -2,7 +2,7 @@
  * La lógica de consulta, compartida entre REST y MCP para que ambos den
  * exactamente la misma respuesta.
  */
-import { franjas, periodoEn, temporadaDe, tipoDia } from "./calendario";
+import { festivos, franjas, iso, periodoEn, resolver, temporadaDe, tipoDia } from "./calendario";
 import {
   AVISO,
   catalogo,
@@ -170,6 +170,53 @@ export function consultarHorarios(args: Args) {
     nota:
       "Los días de descanso obligatorio del artículo 74 de la LFT, salvo la " +
       "fracción IX, se tratan como domingo.",
+    fuente: zonaFuente(),
+    aviso: AVISO,
+  };
+}
+
+/**
+ * Calendario completo de un año para una región: rango del verano, festivos
+ * que se tratan como domingo y franjas por temporada y tipo de día (minutos
+ * desde medianoche, [inicio, fin)). Pensado para clientes que evalúan muchos
+ * días sin hacer una consulta por día (por ejemplo, un motor de facturación).
+ */
+export function consultarCalendario(args: Args) {
+  const anio = entero(args.anio);
+  if (anio === null) return { error: "Falta anio." };
+  if (!anioValido(anio)) return { error: "El año debe ser un número de cuatro dígitos razonable." };
+
+  const ubic = resolverRegion(args);
+  if ("error" in ubic) return ubic;
+
+  const zona = zonaDeRegion(ubic.region);
+  if (!zona) return { error: `Región desconocida: ${ubic.region}.`, regiones: listarRegiones() };
+
+  const verano = zona.temporadas["verano"];
+  const invierno = zona.temporadas["invierno"];
+  if (!verano?.regla || !invierno) return { error: "No se pudo determinar la temporada para esa zona." };
+
+  return {
+    region: ubic.region,
+    ...(ubic.via === "municipio" ? { estado: ubic.estado, municipio: ubic.municipio } : {}),
+    zona: zona.zona,
+    anio,
+    verano: {
+      inicio: iso(resolver(verano.regla.inicio, anio)),
+      fin: iso(resolver(verano.regla.fin, anio)),
+      vigencia: verano.vigencia,
+    },
+    invierno: { vigencia: invierno.vigencia },
+    festivos: festivos(anio),
+    dias: { verano: verano.dias, invierno: invierno.dias },
+    ...(ubic.regiones.length > 1
+      ? { nota_region: `El municipio tiene más de una división (${ubic.regiones.join(", ")}); ` +
+          "se devuelve la primera. Confírmala en el recibo." }
+      : {}),
+    nota:
+      "verano.inicio y verano.fin son inclusivos; el resto del año es invierno. " +
+      "Los festivos (art. 74 LFT salvo fracción IX) se tratan como domingo. " +
+      "Las franjas van en minutos desde medianoche, [inicio, fin).",
     fuente: zonaFuente(),
     aviso: AVISO,
   };

@@ -5,7 +5,7 @@
  * empaquetados en el Worker. Por eso responde en milisegundos y no se cae
  * aunque el portal de CFE esté fuera de servicio.
  */
-import { consultarHorarios, consultarTarifa, resumenRegiones } from "./consultas";
+import { consultarCalendario, consultarHorarios, consultarTarifa, resumenRegiones } from "./consultas";
 import {
   AVISO,
   catalogo,
@@ -94,6 +94,18 @@ const OPENAPI = {
         responses: { "200": { description: "Horarios" } },
       },
     },
+    "/v1/calendario": {
+      get: {
+        summary: "Calendario de un año: verano, festivos y franjas por temporada y tipo de día",
+        parameters: [
+          { name: "region", in: "query", schema: { type: "string" } },
+          { name: "estado", in: "query", schema: { type: "string" } },
+          { name: "municipio", in: "query", schema: { type: "string" } },
+          { name: "anio", in: "query", required: true, schema: { type: "integer" } },
+        ],
+        responses: { "200": { description: "Calendario" } },
+      },
+    },
     "/v1/regiones": { get: { summary: "Regiones y cobertura disponible" } },
     "/v1/estados": { get: { summary: "Estados con catálogo cargado" } },
     "/v1/municipios": {
@@ -159,6 +171,17 @@ export default {
           municipio: q("municipio"),
           fecha: q("fecha"),
           hora: q("hora"),
+        }),
+      );
+    }
+
+    if (ruta === "/v1/calendario") {
+      return resultado(
+        consultarCalendario({
+          region: q("region"),
+          estado: q("estado"),
+          municipio: q("municipio"),
+          anio: q("anio"),
         }),
       );
     }
