@@ -142,6 +142,7 @@ GET /v1/tarifa?estado=SONORA&municipio=NAVOJOA&anio=2026&mes=3
 GET /v1/tarifa?region=NOROESTE&anio=2026&mes=3&tarifa=GDMTH
 GET /v1/horarios?region=NOROESTE&fecha=2026-08-15&hora=20:30
 GET /v1/calendario?region=NOROESTE&anio=2026
+GET /v1/tipo-cambio?fecha=2026-10-07&serie=fix
 GET /v1/regiones
 GET /v1/estados
 GET /v1/municipios?estado=SONORA
@@ -165,6 +166,14 @@ domingo, como manda la tarifa.
 rango del verano (fechas inclusivas), festivos y franjas por temporada y tipo
 de día en minutos desde medianoche. Sirve a clientes que evalúan muchos días
 (por ejemplo, un motor de facturación) sin una consulta por día.
+
+`/v1/tipo-cambio` devuelve el tipo de cambio pesos por dólar de Banxico vigente en una fecha
+(el último publicado en o antes de ella). `serie=fix` (por defecto) es la SF43718, el FIX por
+fecha de determinación; `serie=dof` es la SF60653, el mismo valor por fecha de publicación en el
+Diario Oficial (día hábil siguiente), útil cuando un contrato cita "el tipo de cambio publicado en
+el DOF". Un cron del Worker lo consulta dos veces al día y lo guarda en D1 (secreto
+`BANXICO_TOKEN`); las consultas nunca llaman a Banxico. También está la herramienta MCP
+`consultar_tipo_cambio`.
 
 Transmisión del Poder Ejecutivo (art. 74, fracc. VII): 1 de diciembre hasta
 2018; 1 de octubre desde 2024 (DOF 30-sep-2024), cada seis años.

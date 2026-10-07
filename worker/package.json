@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "test": "node pruebas/prueba_api.mjs && node pruebas/prueba_mcp.mjs",
+    "test": "node pruebas/prueba_api.mjs && node pruebas/prueba_mcp.mjs && node pruebas/prueba_tipo_cambio.mjs",
     "test:rest": "node pruebas/prueba_api.mjs",
     "test:mcp": "node pruebas/prueba_mcp.mjs",
     "test:remote": "node pruebas/prueba_mcp_remoto.mjs"

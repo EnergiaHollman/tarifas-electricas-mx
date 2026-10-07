@@ -84,8 +84,8 @@ console.log("\n3. tools/list");
 r = await rpc("tools/list", {});
 check("HTTP 200", r.status, 200);
 const nombres = r.cuerpo.result.tools.map((t) => t.name);
-check("exactamente las tres herramientas esperadas", nombres,
-  ["consultar_tarifa", "consultar_horarios", "listar_regiones"]);
+check("exactamente las cuatro herramientas esperadas", nombres,
+  ["consultar_tarifa", "consultar_horarios", "consultar_tipo_cambio", "listar_regiones"]);
 
 const porNombre = Object.fromEntries(r.cuerpo.result.tools.map((t) => [t.name, t]));
 

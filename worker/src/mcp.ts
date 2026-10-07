@@ -35,6 +35,8 @@
  * de protocolo, en vez de mantener una compatibilidad que el estándar
  * vigente retiró.
  */
+import { consultarTipoCambio } from "./tipo_cambio";
+import type { Base } from "./tipo_cambio";
 import { consultarHorarios, consultarTarifa, resumenRegiones } from "./consultas";
 
 // Versiones que este servidor entiende de verdad, de la más a la menos
@@ -44,6 +46,9 @@ const VERSIONES_SOPORTADAS = ["2025-11-25", "2025-06-18"] as const;
 const VERSION_POR_OMISION = VERSIONES_SOPORTADAS[0];
 
 const SERVIDOR = { name: "tarifas-electricas-mx", version: "1.0.0" };
+
+/** Entorno del Worker que necesitan algunas herramientas (tipo de cambio en D1). */
+export interface EntornoMcp { DB?: Base }
 
 const HERRAMIENTAS = [
   {
@@ -125,6 +130,22 @@ const HERRAMIENTAS = [
     },
   },
   {
+    name: "consultar_tipo_cambio",
+    title: "Tipo de cambio USD/MXN (Banxico)",
+    description:
+      "Tipo de cambio pesos por dólar de Banxico vigente en una fecha: el último publicado en " +
+      "o antes de ella. serie=fix (SF43718, fecha de determinación; por defecto) o dof " +
+      "(SF60653, fecha de publicación en el Diario Oficial). Sin fecha, el más reciente.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        fecha: { type: "string", description: "AAAA-MM-DD. Opcional." },
+        serie: { type: "string", enum: ["fix", "dof"], description: "fix (por defecto) o dof." },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
     name: "listar_regiones",
     title: "Listar las regiones tarifarias y qué cobertura de datos hay",
     description:
@@ -191,7 +212,7 @@ function fallo(mensaje: string, extra?: unknown) {
   };
 }
 
-function llamarHerramienta(nombre: unknown, args: unknown) {
+async function llamarHerramienta(nombre: unknown, args: unknown, entorno: EntornoMcp) {
   const a = (args && typeof args === "object" ? args : {}) as Record<string, any>;
   if (nombre === "consultar_tarifa") {
     const r = consultarTarifa(a);
@@ -199,6 +220,10 @@ function llamarHerramienta(nombre: unknown, args: unknown) {
   }
   if (nombre === "consultar_horarios") {
     const r = consultarHorarios(a);
+    return "error" in r ? fallo(r.error as string, r) : texto(r);
+  }
+  if (nombre === "consultar_tipo_cambio") {
+    const r = await consultarTipoCambio(entorno.DB, a, Date.now());
     return "error" in r ? fallo(r.error as string, r) : texto(r);
   }
   if (nombre === "listar_regiones") return texto(resumenRegiones());
@@ -227,7 +252,7 @@ function negociarVersion(pedida: unknown): string {
   return VERSION_POR_OMISION;
 }
 
-function despachar(msg: any) {
+async function despachar(msg: any, entorno: EntornoMcp) {
   const { id, method, params } = msg ?? {};
 
   if (typeof msg !== "object" || msg === null || Array.isArray(msg) || msg.jsonrpc !== "2.0") {
@@ -244,8 +269,8 @@ function despachar(msg: any) {
           "Consulta cargos y horarios de las tarifas eléctricas que CFE publica " +
           "en México. No es un servicio oficial de CFE ni está afiliado a ella. " +
           "Usa consultar_tarifa para cargos, consultar_horarios para saber si una " +
-          "fecha/hora cae en periodo punta, y listar_regiones para ver la " +
-          "cobertura disponible.",
+          "fecha/hora cae en periodo punta, consultar_tipo_cambio para el tipo de cambio " +
+          "de Banxico y listar_regiones para ver la cobertura disponible.",
       });
 
     case "ping":
@@ -271,7 +296,7 @@ function despachar(msg: any) {
           `Invalid params: propiedad(es) no reconocida(s) para ${nombre}: ${desconocidas.join(", ")}.`);
       }
       try {
-        return respuesta(id, llamarHerramienta(nombre, args));
+        return respuesta(id, await llamarHerramienta(nombre, args, entorno));
       } catch (e) {
         // No debería pasar -las funciones de consultas.ts devuelven {error}
         // en vez de lanzar-, pero si algo inesperado revienta aquí, se
@@ -293,7 +318,7 @@ function cabecerasJson(cors: Record<string, string>, version: string) {
   return { "content-type": "application/json", "mcp-protocol-version": version, ...cors };
 }
 
-export async function manejarMcp(req: Request, cors: Record<string, string>): Promise<Response> {
+export async function manejarMcp(req: Request, cors: Record<string, string>, entorno: EntornoMcp = {}): Promise<Response> {
   // GET: la especificación permite abrir aquí un stream SSE para mensajes que
   // el servidor inicia por su cuenta. Este servidor no tiene nada que
   // empujar de forma proactiva -cada respuesta es la respuesta directa a una
@@ -362,7 +387,7 @@ export async function manejarMcp(req: Request, cors: Record<string, string>): Pr
     );
   }
 
-  const salida = despachar(cuerpo);
+  const salida = await despachar(cuerpo, entorno);
 
   if (salida === null) {
     // Notificación o respuesta del cliente: 202 sin cuerpo, como pide el
