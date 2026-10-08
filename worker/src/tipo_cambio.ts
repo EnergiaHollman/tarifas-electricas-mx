@@ -10,7 +10,6 @@
  * las consultas leen de D1, nunca de Banxico. Si la tabla está vacía, el cron trae el
  * historial desde 2024; si no, los últimos 10 días (idempotente: no duplica).
  */
-import { AVISO } from "./datos";
 
 export const SERIES = {
   fix: { id: "SF43718", nombre: "FIX por fecha de determinación" },
@@ -21,6 +20,11 @@ export type ClaveSerie = keyof typeof SERIES;
 const BANXICO = "https://www.banxico.org.mx/SieAPIRest/service/v1";
 const INICIO_HISTORIAL = "2024-01-01";
 const DIAS_AVISO = 5;
+/** El dato viene de Banxico, no de CFE: aviso propio en lugar del general de tarifas. */
+export const AVISO_TIPO_CAMBIO =
+  "Datos descargados automáticamente de la API pública del SIE de Banco de México. Este no " +
+  "es un servicio oficial de Banxico ni está afiliado a él. La fuente autoritativa es el SIE " +
+  "de Banxico; verifica ahí antes de usar estas cifras en contratos o facturación.";
 
 /** Superficie mínima de D1 que se usa (también la cumple el adaptador de pruebas). */
 export interface Base {
@@ -76,6 +80,6 @@ export async function consultarTipoCambio(db: Base | undefined, args: Record<str
     fecha_solicitada: fecha, fecha: fila.fecha, valor: fila.valor,
     ...(dias > DIAS_AVISO ? { aviso_antiguedad: `El último valor es del ${fila.fecha} (${dias} días antes de la fecha pedida).` } : {}),
     fuente: "Banco de México, Sistema de Información Económica (SIE)",
-    aviso: AVISO,
+    aviso: AVISO_TIPO_CAMBIO,
   };
 }
