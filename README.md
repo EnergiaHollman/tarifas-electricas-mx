@@ -169,9 +169,10 @@ de día en minutos desde medianoche. Sirve a clientes que evalúan muchos días
 
 `/v1/tipo-cambio` devuelve el tipo de cambio pesos por dólar de Banxico vigente en una fecha
 (el último publicado en o antes de ella). `serie=fix` (por defecto) es la SF43718, el FIX por
-fecha de determinación; `serie=dof` es la SF60653, el mismo valor por fecha de publicación en el
-Diario Oficial (día hábil siguiente), útil cuando un contrato cita "el tipo de cambio publicado en
-el DOF". Un cron del Worker lo consulta dos veces al día y lo guarda en D1 (secreto
+fecha de determinación; `serie=dof` es la SF60653, el mismo valor por fecha de liquidación (el FIX
+del día D se publica en el Diario Oficial el día hábil D+1 y se usa para solventar obligaciones el
+día hábil D+2), útil cuando un contrato o una regla fiscal cita "el tipo de cambio publicado en el
+DOF el día anterior". Un cron del Worker lo consulta dos veces al día y lo guarda en D1 (secreto
 `BANXICO_TOKEN`); las consultas nunca llaman a Banxico. También está la herramienta MCP
 `consultar_tipo_cambio`.
 

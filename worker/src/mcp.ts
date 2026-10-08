@@ -135,7 +135,8 @@ const HERRAMIENTAS = [
     description:
       "Tipo de cambio pesos por dólar de Banxico vigente en una fecha: el último publicado en " +
       "o antes de ella. serie=fix (SF43718, fecha de determinación; por defecto) o dof " +
-      "(SF60653, fecha de publicación en el Diario Oficial). Sin fecha, el más reciente.",
+      "(SF60653, fecha de liquidación: el publicado en el Diario Oficial el día hábil anterior, " +
+      "para solventar obligaciones en dólares en esa fecha). Sin fecha, el más reciente.",
     inputSchema: {
       type: "object",
       properties: {
