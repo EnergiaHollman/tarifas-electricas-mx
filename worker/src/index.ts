@@ -15,6 +15,9 @@ import {
 } from "./datos";
 import { manejarMcp } from "./mcp";
 import { actualizarTipoCambio, consultarTipoCambio } from "./tipo_cambio";
+
+/** Los mismos de [triggers] en wrangler.toml (12:30 y 16:00 de la Ciudad de México). */
+const CRONS_TIPO_CAMBIO = ["30 18 * * *", "0 22 * * *"];
 import type { Base } from "./tipo_cambio";
 
 /** Bindings del Worker. DB: historial del tipo de cambio (D1). BANXICO_TOKEN: secreto. */
@@ -235,8 +238,14 @@ export default {
     return json({ error: "Ruta no encontrada.", rutas: Object.keys(OPENAPI.paths) }, 404);
   },
   /** Cron diario: tipo de cambio de Banxico a D1. Un fallo queda en el log; las consultas leen lo guardado. */
-  async scheduled(_evento: unknown, env: Env): Promise<void> {
+  async scheduled(evento: { cron?: string }, env: Env): Promise<void> {
     if (!env.DB) return;
+    // Solo los crons de wrangler.toml. Cloudflare siguió disparando un cron temporal ("* * * * *")
+    // después de quitarlo de la configuración; sin este filtro cada disparo consultaría a Banxico.
+    if (evento.cron && !CRONS_TIPO_CAMBIO.includes(evento.cron)) {
+      console.warn(`Cron ignorado: "${evento.cron}" no está en la configuración.`);
+      return;
+    }
     try {
       const r = await actualizarTipoCambio(env.DB, env.BANXICO_TOKEN, Date.now());
       console.log(`Tipo de cambio: ${r.guardados} valores de Banxico (${r.desde} a ${r.hasta}).`);

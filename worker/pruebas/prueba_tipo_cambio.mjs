@@ -60,6 +60,11 @@ await worker.scheduled({}, { DB, BANXICO_TOKEN: "tok" });
 check("con historial, solo pide los últimos días", llamadas[0].url.includes("2024-01-01"), false);
 check("no duplica ni guarda N/E", s.prepare("SELECT count(*) AS n FROM tipo_cambio").get().n, 4);
 const sinToken = await worker.scheduled({}, { DB }).then(() => "sin error");
+llamadas = banxico({ fix: [], dof: [] });
+await worker.scheduled({ cron: "* * * * *" }, { DB, BANXICO_TOKEN: "tok" });
+check("ignora un cron que no está en la configuración", llamadas.length, 0);
+await worker.scheduled({ cron: "30 18 * * *" }, { DB, BANXICO_TOKEN: "tok" });
+check("corre con un cron de la configuración", llamadas.length, 1);
 check("sin token no truena el cron", sinToken, "sin error");
 
 console.log("\nTipo de cambio: REST");
