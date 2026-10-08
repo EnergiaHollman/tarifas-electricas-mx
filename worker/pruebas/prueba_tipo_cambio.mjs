@@ -68,7 +68,7 @@ check("FIX del día", [r.status, r.cuerpo.serie, r.cuerpo.id_serie, r.cuerpo.val
 r = await get("/v1/tipo-cambio?fecha=2026-10-11", { DB });
 check("fin de semana: el último publicado antes", [r.cuerpo.fecha, r.cuerpo.valor], ["2026-10-07", 17.978]);
 r = await get("/v1/tipo-cambio?fecha=2026-10-07&serie=dof", { DB });
-check("DOF: publicado el día hábil siguiente", [r.cuerpo.id_serie, r.cuerpo.valor], ["SF60653", 18.0123]);
+check("DOF: serie por fecha de liquidación", [r.cuerpo.id_serie, r.cuerpo.valor], ["SF60653", 18.0123]);
 r = await get("/v1/tipo-cambio?fecha=2026-10-30", { DB });
 check("aviso si el valor es viejo", typeof r.cuerpo.aviso_antiguedad, "string");
 check("el aviso cita a Banxico, no a CFE", /Banco de México/.test(r.cuerpo.aviso) && !/CFE/.test(r.cuerpo.aviso), true);

@@ -3,8 +3,11 @@
  *
  * Dos series del mismo valor:
  *   fix -> SF43718: FIX por fecha de determinación (el que usa la calculadora de Hollman).
- *   dof -> SF60653: el mismo FIX por fecha de publicación en el Diario Oficial (día hábil
- *          siguiente). Útil cuando un contrato cita "el tipo de cambio publicado en el DOF".
+ *   dof -> SF60653: el mismo FIX por fecha de liquidación. El FIX determinado el día D se
+ *          publica en el Diario Oficial el día hábil D+1 y sirve para solventar obligaciones en
+ *          dólares el día hábil D+2; esta serie lo pone en D+2. Es el valor que corresponde a
+ *          una fecha cuando un contrato o una regla fiscal cita "el tipo de cambio publicado
+ *          en el DOF el día anterior".
  *
  * Un cron diario lo consulta con el token del Worker (secreto BANXICO_TOKEN) y lo guarda;
  * las consultas leen de D1, nunca de Banxico. Si la tabla está vacía, el cron trae el
@@ -13,7 +16,7 @@
 
 export const SERIES = {
   fix: { id: "SF43718", nombre: "FIX por fecha de determinación" },
-  dof: { id: "SF60653", nombre: "FIX por fecha de publicación en el DOF" },
+  dof: { id: "SF60653", nombre: "FIX por fecha de liquidación (publicado en el DOF el día hábil anterior)" },
 } as const;
 export type ClaveSerie = keyof typeof SERIES;
 
