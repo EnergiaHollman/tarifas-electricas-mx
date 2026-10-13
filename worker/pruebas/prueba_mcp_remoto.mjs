@@ -91,8 +91,13 @@ console.log("\n3. tools/list");
 r = await rpc("tools/list", {});
 check("HTTP 200", r.status, 200);
 const nombres = (r.cuerpo?.result?.tools ?? []).map((t) => t.name);
-check("las tres herramientas esperadas", nombres.sort(),
-  ["consultar_horarios", "consultar_tarifa", "listar_regiones"].sort());
+// Se exige que estén las herramientas base, no que sean EXACTAMENTE esas: el
+// servidor puede ganar herramientas (p. ej. consultar_tipo_cambio) sin que eso
+// sea una regresión. Una que desaparezca sí falla.
+const requeridas = ["consultar_horarios", "consultar_tarifa", "listar_regiones"];
+check("están las herramientas base", requeridas.filter((n) => !nombres.includes(n)), []);
+const extras = nombres.filter((n) => !requeridas.includes(n));
+if (extras.length) console.log(`  (además expone: ${extras.join(", ")})`);
 
 console.log("\n4. consultar_tarifa: SONORA + NAVOJOA -> NOROESTE, marzo 2026");
 r = await rpc("tools/call", {
@@ -125,8 +130,25 @@ r = await rpc("tools/call", { name: "listar_regiones", arguments: {} });
 check("HTTP 200", r.status, 200);
 check("devuelve regiones reales", Array.isArray(r.cuerpo?.result?.structuredContent?.regiones), true);
 check("incluye NOROESTE", r.cuerpo?.result?.structuredContent?.regiones?.some((x) => x.region === "NOROESTE"), true);
+const regs = r.cuerpo?.result?.structuredContent?.regiones ?? [];
+check("TODAS las divisiones tienen zona de horario (antes 12 de 17 no)",
+  regs.filter((x) => !x.zona).map((x) => x.region), []);
+check("todas traen sistema_horario (SIN, BC o BCS)",
+  regs.every((x) => ["SIN", "BC", "BCS"].includes(x.sistema_horario)), true);
 
-console.log("\n7. Un error de protocolo también funciona en producción");
+console.log("\n7. Horario de una división que antes fallaba: ORIENTE (Boca del Río, Veracruz)");
+r = await rpc("tools/call", {
+  name: "consultar_horarios",
+  arguments: { estado: "VERACRUZ", municipio: "BOCA DEL RIO", fecha: "2026-08-14", hora: "20:30" },
+});
+check("HTTP 200", r.status, 200);
+check("ya no es 'Región desconocida' (isError false)", r.cuerpo?.result?.isError, false);
+const h = r.cuerpo?.result?.structuredContent ?? {};
+check("división ORIENTE", h.division, "ORIENTE");
+check("sistema de horario SIN (Acuerdo CNE, numeral 3.1.5 c)", h.sistema_horario, "SIN");
+check("viernes de verano 20:30: punta", h.consulta?.periodo, "punta");
+
+console.log("\n8. Un error de protocolo también funciona en producción");
 r = await rpc("tools/call", { name: "no_existe", arguments: {} });
 check("herramienta inexistente -> error de protocolo -32602", r.cuerpo?.error?.code, -32602);
 
