@@ -1,0 +1,41 @@
+{
+  "_comentario": "Archivo CURADO A MANO. El scraper no lo genera ni lo sobreescribe (a diferencia de horarios.json, que se regenera en cada corrida). Si aparece una división nueva en tarifas.json sin entrada aquí, worker/pruebas/prueba_sistemas_horario.mjs falla a propósito: no se asume ningún sistema por omisión.",
+  "fuente": "Acuerdo CNE CT/11.SE/8-2025 (tarifas finales del suministro básico, 1 ene-31 dic 2026), numeral 3.1.5, incisos b y c. https://sidof.segob.gob.mx/notas/docFuente/5783862",
+  "regla_literal": "Los periodos horarios de los sistemas interconectados de BC y BCS se deben aplicar en las divisiones tarifarias del mismo nombre; los periodos horarios del SIN se deben aplicar en el resto de las divisiones.",
+  "vigencia_confirmada": "2026 (texto literal del inciso c). Los Acuerdos A/053/2022 y A/158/2024 definen los horarios GDMTH por los mismos tres sistemas (Baja California, Baja California Sur y Nacional); la frase de asignación a divisiones no se encontró textualmente en ellos, así que para periodos anteriores a 2026 es muy probable pero no está comprobado palabra por palabra.",
+  "verificado": "2026-10-13",
+  "sistemas": {
+    "SIN": {
+      "nombre": "Sistema Interconectado Nacional",
+      "zona_contiene": "NOROESTE",
+      "nota": "El portal de CFE rotula la zona del SIN con nombres heredados: 'Regiones Central, Noreste, Noroeste, Norte, Peninsular y Sur'. zona_contiene es un nombre que debe aparecer en la lista de regiones de esa zona de horarios.json; sirve solo para localizarla."
+    },
+    "BC": {
+      "nombre": "Sistema Interconectado Baja California",
+      "zona_contiene": "BAJA CALIFORNIA"
+    },
+    "BCS": {
+      "nombre": "Sistema Interconectado Baja California Sur",
+      "zona_contiene": "BAJA CALIFORNIA SUR"
+    }
+  },
+  "divisiones": {
+    "BAJA CALIFORNIA": "BC",
+    "BAJA CALIFORNIA SUR": "BCS",
+    "BAJIO": "SIN",
+    "CENTRO OCCIDENTE": "SIN",
+    "CENTRO ORIENTE": "SIN",
+    "CENTRO SUR": "SIN",
+    "GOLFO CENTRO": "SIN",
+    "GOLFO NORTE": "SIN",
+    "JALISCO": "SIN",
+    "NOROESTE": "SIN",
+    "NORTE": "SIN",
+    "ORIENTE": "SIN",
+    "PENINSULAR": "SIN",
+    "SURESTE": "SIN",
+    "VALLE DE MEXICO CENTRO": "SIN",
+    "VALLE DE MEXICO NORTE": "SIN",
+    "VALLE DE MEXICO SUR": "SIN"
+  }
+}

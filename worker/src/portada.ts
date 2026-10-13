@@ -137,6 +137,10 @@ día (hábil, sábado, o domingo y festivo) y las franjas horarias. Los días de
 descanso obligatorio del artículo 74 de la LFT, salvo la fracción IX, se
 tratan como domingo.
 
+Los cargos dependen de la división tarifaria (17); los horarios, del sistema
+interconectado (SIN, BC o BCS). Las respuestas traen \`division\` y
+\`sistema_horario\` por separado; \`region\` es la división, como siempre.
+
 ## Advertencias
 
 Un municipio puede pertenecer a más de una división tarifaria. En ese caso la

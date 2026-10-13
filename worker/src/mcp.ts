@@ -115,7 +115,10 @@ const HERRAMIENTAS = [
       "sola (igual que en consultar_tarifa). fecha va en formato ISO AAAA-MM-DD " +
       "(p. ej. 2026-08-15). hora es opcional, formato HH:MM en 24 horas (p. ej. " +
       "20:30 para las 8:30 de la noche); si se omite, la respuesta trae las " +
-      "franjas del día completo sin marcar ninguna hora en particular.",
+      "franjas del día completo sin marcar ninguna hora en particular. " +
+      "Ojo: los cargos dependen de la división tarifaria, pero el horario depende " +
+      "del sistema interconectado (SIN, BC o BCS); la respuesta trae ambos en " +
+      "division y sistema_horario para no confundirlos.",
     inputSchema: {
       type: "object",
       properties: {

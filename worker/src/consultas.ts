@@ -6,6 +6,7 @@ import { festivos, franjas, iso, periodoEn, resolver, temporadaDe, tipoDia } fro
 import {
   AVISO,
   catalogo,
+  describirHorario,
   regionesDeMunicipio,
   listarEstados,
   listarRegiones,
@@ -79,7 +80,7 @@ export function consultarTarifa(args: Args) {
     const resultados = ubic.regiones
       .map((reg) => {
         const t = obtenerTarifa(tarifa, reg, anio, mes);
-        return t ? { region: reg, cargos: t.cargos, unidades: t.unidades,
+        return t ? { region: reg, ...describirHorario(reg), cargos: t.cargos, unidades: t.unidades,
                      periodo_cfe: t.periodo_cfe, fecha_captura: t.fecha_captura } : null;
       })
       .filter(Boolean);
@@ -110,6 +111,9 @@ export function consultarTarifa(args: Args) {
   return {
     tarifa: r.tarifa,
     region: r.region,
+    // Aditivo: `region` se queda como siempre; estos dos separan los conceptos
+    // (cargos por DIVISIÓN, horarios por SISTEMA interconectado).
+    ...describirHorario(r.region),
     ...(ubic.via === "municipio" ? { estado: ubic.estado, municipio: ubic.municipio } : {}),
     anio: r.anio,
     mes: r.mes,
@@ -159,6 +163,7 @@ export function consultarHorarios(args: Args) {
 
   return {
     region: ubic.region,
+    ...describirHorario(ubic.region),
     ...(ubic.via === "municipio" ? { estado: ubic.estado, municipio: ubic.municipio } : {}),
     zona: zona.zona,
     fecha: texto,
@@ -198,6 +203,7 @@ export function consultarCalendario(args: Args) {
 
   return {
     region: ubic.region,
+    ...describirHorario(ubic.region),
     ...(ubic.via === "municipio" ? { estado: ubic.estado, municipio: ubic.municipio } : {}),
     zona: zona.zona,
     anio,
@@ -230,6 +236,7 @@ export function resumenRegiones() {
   const regiones = listarRegiones().map((r) => ({
     region: r,
     zona: zonaDeRegion(r)?.zona ?? null,
+    sistema_horario: describirHorario(r).sistema_horario,
     periodos: periodosDe("GDMTH", r).length,
   }));
   return {
