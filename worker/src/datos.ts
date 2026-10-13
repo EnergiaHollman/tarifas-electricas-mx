@@ -5,6 +5,7 @@
  */
 import catalogoJson from "../../data/catalogo.json";
 import horariosJson from "../../data/horarios.json";
+import sistemasJson from "../../data/sistemas_horario.json";
 import tarifasJson from "../../data/tarifas.json";
 import type { Zona } from "./calendario";
 
@@ -29,6 +30,26 @@ export const horarios = horariosJson as unknown as {
   generado: string | null;
   fuente: string;
   zonas: Record<string, Zona>;
+};
+
+/**
+ * División tarifaria -> sistema interconectado de horario.
+ *
+ * Los CARGOS dependen de la división (17); los HORARIOS dependen del sistema
+ * interconectado (3: SIN, BC y BCS). Son conceptos distintos: la regla oficial
+ * (Acuerdo CNE CT/11.SE/8-2025, numeral 3.1.5 c) asigna BC y BCS a las
+ * divisiones del mismo nombre y el SIN al resto. Vive en un archivo curado
+ * aparte (data/sistemas_horario.json) porque horarios.json lo regenera el
+ * scraper en cada corrida y borraría cualquier edición manual.
+ */
+export type ClaveSistema = "SIN" | "BC" | "BCS";
+
+export const sistemasHorario = sistemasJson as unknown as {
+  fuente: string;
+  regla_literal: string;
+  vigencia_confirmada: string;
+  sistemas: Record<string, { nombre: string; zona_contiene: string }>;
+  divisiones: Record<string, string>;
 };
 
 export type Registro = {
@@ -131,12 +152,66 @@ export function periodosDe(tarifa: string, region: string): string[] {
     .sort();
 }
 
+/** Sistema de horario de una división tarifaria; null si no está en el mapa. */
+export function sistemaDeDivision(region: string): ClaveSistema | null {
+  const s = sistemasHorario.divisiones[normalizar(region)];
+  return s && s in sistemasHorario.sistemas ? (s as ClaveSistema) : null;
+}
+
+/** La zona de horarios.json que corresponde a un sistema (se ubica por nombre). */
+export function zonaDeSistema(clave: string): Zona | null {
+  const ancla = sistemasHorario.sistemas[clave]?.zona_contiene;
+  if (!ancla) return null;
+  const a = normalizar(ancla);
+  for (const z of Object.values(horarios.zonas)) {
+    if (z.regiones.map(normalizar).includes(a)) return z;
+  }
+  return null;
+}
+
+/**
+ * Zona de horarios de una división.
+ *
+ * Primero por el mapa oficial división -> sistema. Si el nombre no es una
+ * división (p. ej. CENTRAL, NORESTE o SUR, nombres heredados que el portal
+ * imprime en la zona del SIN y que ya se aceptaban) se cae al emparejamiento
+ * por nombre de siempre, para no romper a quien ya los use.
+ *
+ * Deliberadamente NO hay un valor por omisión: una división desconocida
+ * devuelve null y la consulta falla en vez de heredar en silencio el horario
+ * del SIN.
+ */
 export function zonaDeRegion(region: string): Zona | null {
+  const sistema = sistemaDeDivision(region);
+  if (sistema) return zonaDeSistema(sistema);
   const r = normalizar(region);
   for (const z of Object.values(horarios.zonas)) {
     if (z.regiones.map(normalizar).includes(r)) return z;
   }
   return null;
+}
+
+/** Sistema (SIN/BC/BCS) al que pertenece una zona de horarios.json. */
+export function sistemaDeZona(zona: Zona): ClaveSistema | null {
+  const regiones = zona.regiones.map(normalizar);
+  for (const [clave, def] of Object.entries(sistemasHorario.sistemas)) {
+    if (regiones.includes(normalizar(def.zona_contiene))) return clave as ClaveSistema;
+  }
+  return null;
+}
+
+/**
+ * Lo que el cliente necesita para no confundir los dos conceptos:
+ *  - division: la división tarifaria (cargos); null si el nombre pedido es uno
+ *    de los heredados (CENTRAL, NORESTE, SUR...) y no una división.
+ *  - sistema_horario: SIN, BC o BCS.
+ */
+export function describirHorario(region: string): { division: string | null; sistema_horario: ClaveSistema | null } {
+  const zona = zonaDeRegion(region);
+  return {
+    division: sistemaDeDivision(region) ? normalizar(region) : null,
+    sistema_horario: zona ? sistemaDeZona(zona) : null,
+  };
 }
 
 export const AVISO =

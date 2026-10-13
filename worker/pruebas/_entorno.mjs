@@ -16,7 +16,13 @@ import { pathToFileURL } from "node:url";
 
 export const BASE = "https://ejemplo.workers.dev";
 
-export async function crearWorker() {
+/**
+ * `preparar(dirDatos)`, opcional: se ejecuta sobre la COPIA temporal de data/
+ * justo antes de empaquetar, para fabricar escenarios (p. ej. una división
+ * nueva sin zona de horario). Quien no lo pasa obtiene exactamente el
+ * comportamiento de siempre.
+ */
+export async function crearWorker({ preparar } = {}) {
   const dir = mkdtempSync(path.join(tmpdir(), "worker-"));
 
   cpSync("src", path.join(dir, "worker", "src"), { recursive: true });
@@ -61,6 +67,8 @@ export async function crearWorker() {
     tar.registros[`GDMTH|${reg}|2026-03`] = rec;
   }
   escribir("tarifas.json", tar);
+
+  if (preparar) preparar(path.join(dir, "data"));
 
   const salida = path.join(dir, "bundle.mjs");
   await build({

@@ -167,6 +167,34 @@ rango del verano (fechas inclusivas), festivos y franjas por temporada y tipo
 de día en minutos desde medianoche. Sirve a clientes que evalúan muchos días
 (por ejemplo, un motor de facturación) sin una consulta por día.
 
+### División tarifaria vs. sistema de horario
+
+Son dos conceptos distintos y las respuestas ya los separan:
+
+- **División tarifaria** (17): de ella dependen los **cargos** (`/v1/tarifa`).
+  El campo histórico `region` es esa división y se conserva tal cual.
+- **Sistema interconectado** (3: `SIN`, `BC`, `BCS`): de él dependen los
+  **horarios** (`/v1/horarios`, `/v1/calendario`).
+
+Las respuestas de tarifa, horarios y calendario traen además `division` y
+`sistema_horario` (aditivos: no se quitó ni renombró nada). `division` es
+`null` cuando se pidió uno de los nombres heredados del portal (CENTRAL,
+NORESTE, SUR), que siguen aceptándose y caen en el SIN.
+
+La asignación sale de la regla oficial, no de una deducción: Acuerdo CNE
+CT/11.SE/8-2025, numeral 3.1.5 c (<https://sidof.segob.gob.mx/notas/docFuente/5783862>):
+*los periodos horarios de los sistemas interconectados de BC y BCS se aplican en
+las divisiones del mismo nombre; los del SIN, en el resto.* El portal de CFE no
+publica esa tabla por división; el mapa curado vive en `data/sistemas_horario.json`
+(el scraper no lo toca, a diferencia de `horarios.json`, que regenera).
+
+Límites que conviene conocer: el texto literal de esa regla está confirmado para
+2026; los Acuerdos A/053/2022 y A/158/2024 definen los horarios GDMTH por los
+mismos tres sistemas, pero no se encontró la frase de asignación textual en
+ellos. Y `prueba_sistemas_horario.mjs` hace fallar `npm test` (y por tanto el
+despliegue) si el scraper captura una división sin entrada en el mapa: no se
+asume ningún sistema por omisión.
+
 `/v1/tipo-cambio` devuelve el tipo de cambio pesos por dólar de Banxico vigente en una fecha
 (el último publicado en o antes de ella). `serie=fix` (por defecto) es la SF43718, el FIX por
 fecha de determinación; `serie=dof` es la SF60653, el mismo valor por fecha de liquidación (el FIX
@@ -437,6 +465,7 @@ los despliegues anteriores.
 | `data/catalogo.json` | Estado → municipio → región |
 | `data/tarifas.json` | Cargos por tarifa, región y mes |
 | `data/horarios.json` | Franjas por zona y temporada, con reglas de vigencia |
+| `data/sistemas_horario.json` | Mapa curado a mano: división tarifaria → sistema de horario (SIN/BC/BCS), con la cita al Acuerdo |
 | `worker/src/calendario.ts` | Temporada, festivos, tipo de día, periodo tarifario |
 | `worker/src/consultas.ts` | Lógica compartida entre REST y MCP |
 | `worker/src/mcp.ts` | Servidor MCP: Streamable HTTP, JSON-RPC 2.0 |
