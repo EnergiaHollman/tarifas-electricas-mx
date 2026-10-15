@@ -6,6 +6,7 @@
 import catalogoJson from "../../data/catalogo.json";
 import horariosJson from "../../data/horarios.json";
 import sistemasJson from "../../data/sistemas_horario.json";
+import complementoJson from "../../data/municipios_complemento.json";
 import tarifasJson from "../../data/tarifas.json";
 import type { Zona } from "./calendario";
 
@@ -14,6 +15,7 @@ type Municipio = {
   id: string; nombre: string;
   opciones?: Opcion[];
   region?: string; region_id?: string;   // formato viejo del catálogo
+  origen?: "acuerdo";                    // no viene del portal: se completó con el Acuerdo
 };
 type Estado = { id: string; nombre: string; municipios: Record<string, Municipio> };
 
@@ -86,16 +88,57 @@ export function listarEstados(): string[] {
   return Object.values(catalogo.estados).map((e) => e.nombre).sort();
 }
 
+/**
+ * Respaldo del catálogo de municipios, generado del numeral 5.9 del Acuerdo CNE
+ * (data/municipios_complemento.json, curado a mano; el scraper no lo toca).
+ *
+ * El catálogo sale del desplegable del portal de CFE y está atrasado frente al
+ * Acuerdo: le faltan municipios de creación reciente (San Felipe, San Quintín,
+ * Seybaplaya...) y usa nombres abreviados o truncados a 30 caracteres ("DR.
+ * ARROYO", "COAHUAYUTLA DE JOSE MARIA IZAZ"). Se consulta SOLO cuando el
+ * catálogo no encuentra el municipio, así que lo que ya resolvía no cambia.
+ *   alias    -> nombre oficial del Acuerdo -> clave del municipio en el catálogo
+ *   ausentes -> el portal no lo trae; la división sale del Acuerdo
+ */
+export const complemento = complementoJson as unknown as {
+  fuente: string;
+  alias: Record<string, { oficial: string; catalogo: string }[]>;
+  ausentes: Record<string, { oficial: string; divisiones: string[] }[]>;
+};
+
+const indiceAlias = new Map<string, string>();                                   // "ESTADO|NOMBRE" -> clave
+const indiceAusentes = new Map<string, { oficial: string; divisiones: string[] }>();
+for (const [estado, lista] of Object.entries(complemento.alias ?? {}))
+  for (const a of lista) indiceAlias.set(`${estado}|${normalizar(a.oficial)}`, a.catalogo);
+for (const [estado, lista] of Object.entries(complemento.ausentes ?? {}))
+  for (const a of lista) indiceAusentes.set(`${estado}|${normalizar(a.oficial)}`, a);
+
+function municipioDelAcuerdo(a: { oficial: string; divisiones: string[] }): Municipio {
+  return { id: "", nombre: normalizar(a.oficial), origen: "acuerdo",
+           opciones: a.divisiones.map((d) => ({ id: "", etiqueta: d })) };
+}
+
 export function listarMunicipios(estado: string): Municipio[] | null {
-  const e = catalogo.estados[normalizar(estado)];
+  const clave = normalizar(estado);
+  const e = catalogo.estados[clave];
   if (!e) return null;
-  return Object.values(e.municipios).sort((a, b) => a.nombre.localeCompare(b.nombre));
+  const lista: Municipio[] = Object.values(e.municipios);
+  for (const a of complemento.ausentes?.[clave] ?? []) lista.push(municipioDelAcuerdo(a));
+  return lista.sort((a, b) => a.nombre.localeCompare(b.nombre));
 }
 
 export function regionDeMunicipio(estado: string, municipio: string): Municipio | null {
-  const e = catalogo.estados[normalizar(estado)];
+  const clave = normalizar(estado);
+  const e = catalogo.estados[clave];
   if (!e) return null;
-  return e.municipios[normalizar(municipio)] ?? null;
+  const nombre = normalizar(municipio);
+  const directo = e.municipios[nombre];
+  if (directo) return directo;                       // el camino de siempre
+  const k = `${clave}|${nombre}`;
+  const alias = indiceAlias.get(k);
+  if (alias && e.municipios[alias]) return e.municipios[alias];
+  const ausente = indiceAusentes.get(k);
+  return ausente ? municipioDelAcuerdo(ausente) : null;
 }
 
 /**

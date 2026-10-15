@@ -1,0 +1,472 @@
+{
+ "_comentario": "Archivo GENERADO por scraper/cruzar_catalogo.py --complemento a partir del numeral 5.9 del Acuerdo y REVISADO a mano; el scraper no lo toca. alias: mismo municipio con otro nombre en el portal. ausentes: el portal no los trae y la division sale del Acuerdo. Se consulta SOLO cuando el catalogo no encuentra el municipio.",
+ "fuente": "Acuerdo CNE CT/11.SE/8-2025, numeral 5.9 (2026)",
+ "alias": {
+  "CHIAPAS": [
+   {
+    "oficial": "Cintalapa de Figueroa",
+    "catalogo": "CINTALAPA"
+   }
+  ],
+  "CHIHUAHUA": [
+   {
+    "oficial": "Batopilas de Manuel Gómez Morín",
+    "catalogo": "BATOPILAS"
+   }
+  ],
+  "ESTADO DE MEXICO": [
+   {
+    "oficial": "Acambay de Ruíz Castañeda",
+    "catalogo": "ACAMBAY"
+   }
+  ],
+  "GUANAJUATO": [
+   {
+    "oficial": "Dolores Hidalgo Cuna de la Independencia Nacional",
+    "catalogo": "DOLORES HIDALGO CUNA DE LA IND"
+   },
+   {
+    "oficial": "San Francisco del Rincón",
+    "catalogo": "SAN FRANCISCO DEL RINCEN"
+   },
+   {
+    "oficial": "Silao de la Victoria",
+    "catalogo": "SILAO"
+   }
+  ],
+  "GUERRERO": [
+   {
+    "oficial": "Coahuayutla de José María Izazaga",
+    "catalogo": "COAHUAYUTLA DE JOSE MARIA IZAZ"
+   },
+   {
+    "oficial": "Cuautepec",
+    "catalogo": "CUAUHTEPEC"
+   },
+   {
+    "oficial": "La Unión de Isidoro Montes de Oca",
+    "catalogo": "LA UNION DE ISIDORO MONTES DE"
+   }
+  ],
+  "HIDALGO": [
+   {
+    "oficial": "Santiago Tulantepec de Lugo Guerrero",
+    "catalogo": "SANTIAGO TULANTEPEC DE LUGO GU"
+   }
+  ],
+  "JALISCO": [
+   {
+    "oficial": "San Pedro Tlaquepaque",
+    "catalogo": "TLAQUEPAQUE"
+   }
+  ],
+  "MORELOS": [
+   {
+    "oficial": "Jonacatepec de Leandro Valle",
+    "catalogo": "JONACATEPEC"
+   },
+   {
+    "oficial": "Tlaltizapán de Zapata",
+    "catalogo": "TLALTIZAPAN"
+   },
+   {
+    "oficial": "Zacualpan de Amilpas",
+    "catalogo": "ZACUALPAN"
+   }
+  ],
+  "NUEVO LEON": [
+   {
+    "oficial": "Doctor Arroyo",
+    "catalogo": "DR. ARROYO"
+   },
+   {
+    "oficial": "Doctor Coss",
+    "catalogo": "DR. COSS"
+   },
+   {
+    "oficial": "Doctor González",
+    "catalogo": "DR. GONZALEZ"
+   },
+   {
+    "oficial": "El Carmen",
+    "catalogo": "CARMEN"
+   },
+   {
+    "oficial": "General Bravo",
+    "catalogo": "GRAL. BRAVO"
+   },
+   {
+    "oficial": "General Escobedo",
+    "catalogo": "GRAL. ESCOBEDO"
+   },
+   {
+    "oficial": "General Terán",
+    "catalogo": "GRAL. TERAN"
+   },
+   {
+    "oficial": "General Treviño",
+    "catalogo": "GRAL. TREVINO"
+   },
+   {
+    "oficial": "General Zaragoza",
+    "catalogo": "GRAL. ZARAGOZA"
+   },
+   {
+    "oficial": "General Zuazua",
+    "catalogo": "GRAL. ZUAZUA"
+   }
+  ],
+  "OAXACA": [
+   {
+    "oficial": "Heroica Villa de San Blas Atempa",
+    "catalogo": "SAN BLAS ATEMPA"
+   },
+   {
+    "oficial": "Heroica Villa Tezoatlán de Segura y Luna, Cuna de la Independencia de Oaxaca",
+    "catalogo": "TEZOATLAN DE SEGURA Y LUNA"
+   },
+   {
+    "oficial": "Heroico San Martín de los Cansecos",
+    "catalogo": "SAN MARTIN DE LOS CANSECOS"
+   },
+   {
+    "oficial": "Juchitán de Zaragoza",
+    "catalogo": "HEROICA CIUDAD DE JUCHITAN DE"
+   },
+   {
+    "oficial": "San Juan Bautista Tlacoatzintepec",
+    "catalogo": "SAN JUAN BAUTISTA TLACOATZINTE"
+   },
+   {
+    "oficial": "San Juan Mixtepec 26",
+    "catalogo": "SAN JUAN MIXTEPEC -DTO. 26 -"
+   },
+   {
+    "oficial": "San Juan Mixtepec 8",
+    "catalogo": "SAN JUAN MIXTEPEC -DTO. 08 -"
+   },
+   {
+    "oficial": "San Pedro Mixtepec 22",
+    "catalogo": "SAN PEDRO MIXTEPEC -DTO. 22 -"
+   },
+   {
+    "oficial": "San Pedro Mixtepec 26",
+    "catalogo": "SAN PEDRO MIXTEPEC -DTO. 26 -"
+   },
+   {
+    "oficial": "Villa de Tututepec",
+    "catalogo": "VILLA DE TUTUTEPEC DE MELCHOR OCAMPO"
+   }
+  ],
+  "PUEBLA": [
+   {
+    "oficial": "San Diego la Mesa Tochimiltzingo",
+    "catalogo": "SAN DIEGO LA MESA TOCHIMILTZIN"
+   }
+  ],
+  "TLAXCALA": [
+   {
+    "oficial": "Apetatitlán de Antonio Carvajal",
+    "catalogo": "APETATITLAN DE ANTONIO CARVAJA"
+   },
+   {
+    "oficial": "Ixtacuixtla de Mariano Matamoros",
+    "catalogo": "IXTACUIXTLA DE MARIANO MATAMOR"
+   },
+   {
+    "oficial": "Mazatecochco de José María Morelos",
+    "catalogo": "MAZATECOCHCO DE JOSE MARIA MOR"
+   },
+   {
+    "oficial": "Ziltlaltépec de Trinidad Sánchez Santos",
+    "catalogo": "ZILTLALTEPEC DE TRINIDAD SANCH"
+   }
+  ],
+  "VERACRUZ": [
+   {
+    "oficial": "Alto Lucero de Gutiérrez Barrios",
+    "catalogo": "ALTO LUCERO DE GUTIERREZ BARRI"
+   },
+   {
+    "oficial": "Medellín de Bravo",
+    "catalogo": "MEDELLIN"
+   },
+   {
+    "oficial": "Nanchital de Lázaro Cárdenas del Río",
+    "catalogo": "NANCHITAL DE LAZARO CARDENAS D"
+   },
+   {
+    "oficial": "Zontecomatlán de López y Fuentes",
+    "catalogo": "ZONTECOMATLAN DE LOPEZ Y FUENT"
+   }
+  ],
+  "YUCATAN": [
+   {
+    "oficial": "Sanahcat",
+    "catalogo": "SANANHCAT"
+   }
+  ]
+ },
+ "ausentes": {
+  "BAJA CALIFORNIA": [
+   {
+    "oficial": "San Felipe",
+    "divisiones": [
+     "BAJA CALIFORNIA"
+    ]
+   },
+   {
+    "oficial": "San Quintín",
+    "divisiones": [
+     "BAJA CALIFORNIA"
+    ]
+   }
+  ],
+  "CAMPECHE": [
+   {
+    "oficial": "Dzitbalché",
+    "divisiones": [
+     "PENINSULAR"
+    ]
+   },
+   {
+    "oficial": "Seybaplaya",
+    "divisiones": [
+     "PENINSULAR"
+    ]
+   }
+  ],
+  "CHIAPAS": [
+   {
+    "oficial": "Capitán Luis Ángel Vidal",
+    "divisiones": [
+     "SURESTE"
+    ]
+   },
+   {
+    "oficial": "El Parral",
+    "divisiones": [
+     "SURESTE"
+    ]
+   },
+   {
+    "oficial": "Emiliano Zapata",
+    "divisiones": [
+     "SURESTE"
+    ]
+   },
+   {
+    "oficial": "Honduras de la Sierra",
+    "divisiones": [
+     "SURESTE"
+    ]
+   },
+   {
+    "oficial": "Mezcalapa",
+    "divisiones": [
+     "SURESTE"
+    ]
+   },
+   {
+    "oficial": "Rincón Chamula San Pedro",
+    "divisiones": [
+     "SURESTE"
+    ]
+   }
+  ],
+  "DURANGO": [
+   {
+    "oficial": "Indé",
+    "divisiones": [
+     "NORTE"
+    ]
+   }
+  ],
+  "ESTADO DE MEXICO": [
+   {
+    "oficial": "Almoloya de Alquisiras",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Amatepec",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Coatepec Harinas",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Ixtapan de la Sal",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "San Simón de Guerrero",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Sultepec",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Temascaltepec",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Tonatico",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Villa de Allende",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Zacualpan",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   }
+  ],
+  "GUERRERO": [
+   {
+    "oficial": "Las Vigas",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Ñuu Savi",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "San Nicolás",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Santa Cruz del Rincón",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   }
+  ],
+  "JALISCO": [
+   {
+    "oficial": "San Ignacio Cerro Gordo",
+    "divisiones": [
+     "JALISCO"
+    ]
+   },
+   {
+    "oficial": "San Juanito de Escobedo",
+    "divisiones": [
+     "JALISCO"
+    ]
+   }
+  ],
+  "MICHOACAN": [
+   {
+    "oficial": "Puruándiro",
+    "divisiones": [
+     "CENTRO OCCIDENTE"
+    ]
+   },
+   {
+    "oficial": "Santa Ana Maya",
+    "divisiones": [
+     "BAJIO"
+    ]
+   }
+  ],
+  "MORELOS": [
+   {
+    "oficial": "Coatetelco",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Hueyapan",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "oficial": "Xoxocotla",
+    "divisiones": [
+     "CENTRO SUR"
+    ]
+   }
+  ],
+  "OAXACA": [
+   {
+    "oficial": "San Mateo Yucutindoo",
+    "divisiones": [
+     "SURESTE"
+    ]
+   }
+  ],
+  "SINALOA": [
+   {
+    "oficial": "El Dorado",
+    "divisiones": [
+     "NOROESTE"
+    ]
+   },
+   {
+    "oficial": "Juan José Ríos",
+    "divisiones": [
+     "NOROESTE"
+    ]
+   }
+  ],
+  "SONORA": [
+   {
+    "oficial": "General Plutarco Elías Calles",
+    "divisiones": [
+     "BAJA CALIFORNIA"
+    ]
+   },
+   {
+    "oficial": "Ures",
+    "divisiones": [
+     "NOROESTE"
+    ]
+   }
+  ],
+  "VERACRUZ": [
+   {
+    "oficial": "Hidalgotitlán",
+    "divisiones": [
+     "ORIENTE"
+    ]
+   },
+   {
+    "oficial": "Paso de Ovejas",
+    "divisiones": [
+     "ORIENTE"
+    ]
+   }
+  ]
+ }
+}
