@@ -182,6 +182,15 @@ const h2 = r.cuerpo?.result?.structuredContent ?? {};
 check("Seybaplaya: horario por MCP (SIN, viernes de verano 20:30 = punta)",
   [r.cuerpo?.result?.isError, h2.sistema_horario, h2.consulta?.periodo], [false, "SIN", "punta"]);
 
+r = await tarifaDe("ESTADO DE MEXICO", "Texcoco");
+t = r.cuerpo?.result?.structuredContent ?? {};
+check("divergencia portal/Acuerdo (Texcoco): sigue al portal y advierte lo que dice el Acuerdo",
+  [t.region, t.divisiones_segun_acuerdo], ["VALLE DE MEXICO CENTRO", ["VALLE DE MEXICO CENTRO", "VALLE DE MEXICO NORTE"]]);
+r = await tarifaDe("ESTADO DE MEXICO", "Toluca");
+t = r.cuerpo?.result?.structuredContent ?? {};
+check("divergencia en un municipio con dos divisiones (Toluca): 2 resultados y la advertencia",
+  [t.resultados?.length, t.divisiones_segun_acuerdo], [2, ["VALLE DE MEXICO SUR"]]);
+
 r = await tarifaDe("SONORA", "Municipio Inventado");
 check("un municipio que no existe sigue siendo error de herramienta (isError), no de protocolo",
   [r.status, r.cuerpo?.result?.isError, "error" in (r.cuerpo ?? {})], [200, true, false]);

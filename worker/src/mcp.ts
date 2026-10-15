@@ -68,6 +68,9 @@ const HERRAMIENTAS = [
       "...) y ahórrate estado/municipio. No mezcles las dos formas sin necesidad: " +
       "con region basta. Algunos municipios tienen más de una región tarifaria " +
       "válida; en ese caso la respuesta trae un resultado por cada una. " +
+      "Si el portal de CFE y el Acuerdo de tarifas no coinciden en la división de un municipio, " +
+      "la respuesta sigue al portal y agrega divisiones_segun_acuerdo y nota_division; para " +
+      "consultar otra división, pasa region. " +
       "tarifa: la clave de la tarifa, en mayúsculas; si no se indica se asume " +
       "GDMTH (Gran Demanda en Media Tensión Horaria), que es la única con datos " +
       "capturados por ahora. mes va de 1 (enero) a 12 (diciembre), como entero, " +

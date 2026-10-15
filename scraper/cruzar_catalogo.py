@@ -187,6 +187,10 @@ def proponer_complemento(catalogo, oficial):
     alias    -> {estado: [{"oficial", "catalogo"}]}   mismo municipio, otro nombre en el portal
     ausentes -> {estado: [{"oficial", "divisiones"}]} el portal no lo trae; la división sale del Acuerdo
     extras   -> [{"estado", "municipio"}]             el catálogo lo tiene y el Acuerdo no (solo se informa)
+    divergencias -> {estado: [{"catalogo", "oficial", "portal", "acuerdo"}]}
+                    el portal y el Acuerdo asignan divisiones DISTINTAS al mismo municipio. No se
+                    corrige ninguno de los dos: se informan, porque son dos fuentes de CFE y hay
+                    que decidir cuál manda.
     """
     inf = cruzar(catalogo, oficial)
     if not inf["resumen"]["tabla_oficial_completa"]:
@@ -208,7 +212,49 @@ def proponer_complemento(catalogo, oficial):
             ausentes.setdefault(estado, []).append({"oficial": nombre, "divisiones": f["divisiones_oficiales"]})
     extras = [{"estado": e, "municipio": m} for e, ms in sorted(libres.items()) for m in ms]
     ordenar = lambda d, k: {e: sorted(v, key=lambda x: norm(x[k])) for e, v in sorted(d.items())}
-    return {"alias": ordenar(alias, "oficial"), "ausentes": ordenar(ausentes, "oficial"), "extras": extras}
+    return {"alias": ordenar(alias, "oficial"), "ausentes": ordenar(ausentes, "oficial"), "extras": extras,
+            "divergencias": ordenar(_divergencias(catalogo, oficial, alias, extras), "catalogo")}
+
+
+def _divergencias(catalogo, oficial, alias, extras):
+    """Municipios que el portal y el Acuerdo asignan a divisiones distintas.
+
+    Se compara cada clave del catálogo contra su municipio oficial, emparejado por: nombre
+    exacto, alias, o nombre truncado a ~30 caracteres (el portal repite algunos municipios con
+    el nombre completo y con el recortado, y cada copia puede traer una de sus divisiones).
+    """
+    cat = divisiones_de_catalogo(catalogo)
+    of = {}
+    for division, por_entidad in oficial["divisiones"].items():
+        for entidad, municipios in por_entidad.items():
+            estado = clave_entidad(entidad)
+            if estado not in cat:
+                continue
+            for m in municipios:
+                r = of.setdefault(estado, {}).setdefault(norm(m), {"nombre": m, "divisiones": set()})
+                r["divisiones"].add(norm(division))
+
+    oficial_de = {}          # (estado, clave del catálogo) -> registro oficial
+    for estado, claves in cat.items():
+        for n, dato in claves.items():
+            if n in of.get(estado, {}):
+                oficial_de[(estado, dato["nombre"])] = of[estado][n]
+    for estado, lista in alias.items():
+        for a in lista:
+            if norm(a["oficial"]) in of.get(estado, {}):
+                oficial_de.setdefault((estado, a["catalogo"]), of[estado][norm(a["oficial"])])
+    for e in extras:       # copia truncada de un municipio que sí está (con su nombre completo)
+        candidatos = [r for r in of.get(e["estado"], {}).values() if _es_truncado(r["nombre"], e["municipio"])]
+        if len(candidatos) == 1:
+            oficial_de.setdefault((e["estado"], e["municipio"]), candidatos[0])
+
+    salida = {}
+    for (estado, clave), r in oficial_de.items():
+        portal = cat[estado][norm(clave)]["divisiones"]
+        if portal != r["divisiones"]:
+            salida.setdefault(estado, []).append({"catalogo": clave, "oficial": r["nombre"],
+                                                  "portal": sorted(portal), "acuerdo": sorted(r["divisiones"])})
+    return salida
 
 
 def imprimir(informe):
@@ -245,14 +291,18 @@ if __name__ == "__main__":
             "_comentario": ("Archivo GENERADO por scraper/cruzar_catalogo.py --complemento a partir del "
                             "numeral 5.9 del Acuerdo y REVISADO a mano; el scraper no lo toca. "
                             "alias: mismo municipio con otro nombre en el portal. ausentes: el portal no los "
-                            "trae y la division sale del Acuerdo. Se consulta SOLO cuando el catalogo no "
-                            "encuentra el municipio."),
+                            "trae y la division sale del Acuerdo. Se consultan SOLO cuando el catalogo no "
+                            "encuentra el municipio. divergencias: el portal y el Acuerdo asignan "
+                            "divisiones distintas; la respuesta sigue al portal y lo advierte."),
             "fuente": json.load(open(ruta_oficial, encoding="utf-8")).get("fuente", ""),
             "alias": comp["alias"], "ausentes": comp["ausentes"],
+            "divergencias": comp["divergencias"],
         }
         json.dump(salida, open(destino, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print(f"\ncomplemento guardado en {destino}: {sum(len(v) for v in comp['alias'].values())} alias, "
-              f"{sum(len(v) for v in comp['ausentes'].values())} ausentes, {len(comp['extras'])} extras (solo informativos)")
+              f"{sum(len(v) for v in comp['ausentes'].values())} ausentes, "
+              f"{sum(len(v) for v in comp['divergencias'].values())} divergencias, "
+              f"{len(comp['extras'])} extras (solo informativos)")
         for e in comp["extras"]:
             print("   extra del catálogo:", json.dumps(e, ensure_ascii=False))
     if "--salida" in sys.argv:

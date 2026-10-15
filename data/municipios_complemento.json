@@ -1,5 +1,5 @@
 {
- "_comentario": "Archivo GENERADO por scraper/cruzar_catalogo.py --complemento a partir del numeral 5.9 del Acuerdo y REVISADO a mano; el scraper no lo toca. alias: mismo municipio con otro nombre en el portal. ausentes: el portal no los trae y la division sale del Acuerdo. Se consulta SOLO cuando el catalogo no encuentra el municipio.",
+ "_comentario": "Archivo GENERADO por scraper/cruzar_catalogo.py --complemento a partir del numeral 5.9 del Acuerdo y REVISADO a mano; el scraper no lo toca. alias: mismo municipio con otro nombre en el portal. ausentes: el portal no los trae y la division sale del Acuerdo. Se consultan SOLO cuando el catalogo no encuentra el municipio. divergencias: el portal y el Acuerdo asignan divisiones distintas; la respuesta sigue al portal y lo advierte.",
  "fuente": "Acuerdo CNE CT/11.SE/8-2025, numeral 5.9 (2026)",
  "alias": {
   "CHIAPAS": [
@@ -465,6 +465,356 @@
     "oficial": "Paso de Ovejas",
     "divisiones": [
      "ORIENTE"
+    ]
+   }
+  ]
+ },
+ "divergencias": {
+  "ESTADO DE MEXICO": [
+   {
+    "catalogo": "ALMOLOYA DE JUAREZ",
+    "oficial": "Almoloya de Juárez",
+    "portal": [
+     "CENTRO SUR",
+     "VALLE DE MEXICO SUR"
+    ],
+    "acuerdo": [
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "catalogo": "TENANCINGO",
+    "oficial": "Tenancingo",
+    "portal": [
+     "VALLE DE MEXICO SUR"
+    ],
+    "acuerdo": [
+     "CENTRO SUR",
+     "VALLE DE MEXICO SUR"
+    ]
+   },
+   {
+    "catalogo": "TEXCOCO",
+    "oficial": "Texcoco",
+    "portal": [
+     "VALLE DE MEXICO CENTRO"
+    ],
+    "acuerdo": [
+     "VALLE DE MEXICO CENTRO",
+     "VALLE DE MEXICO NORTE"
+    ]
+   },
+   {
+    "catalogo": "TOLUCA",
+    "oficial": "Toluca",
+    "portal": [
+     "CENTRO SUR",
+     "VALLE DE MEXICO SUR"
+    ],
+    "acuerdo": [
+     "VALLE DE MEXICO SUR"
+    ]
+   }
+  ],
+  "GUERRERO": [
+   {
+    "catalogo": "PILCAYA",
+    "oficial": "Pilcaya",
+    "portal": [
+     "CENTRO SUR",
+     "SURESTE"
+    ],
+    "acuerdo": [
+     "CENTRO SUR"
+    ]
+   }
+  ],
+  "HIDALGO": [
+   {
+    "catalogo": "HUEHUETLA",
+    "oficial": "Huehuetla",
+    "portal": [
+     "GOLFO CENTRO",
+     "ORIENTE"
+    ],
+    "acuerdo": [
+     "GOLFO CENTRO"
+    ]
+   },
+   {
+    "catalogo": "IXMIQUILPAN",
+    "oficial": "Ixmiquilpan",
+    "portal": [
+     "BAJIO",
+     "GOLFO CENTRO"
+    ],
+    "acuerdo": [
+     "BAJIO"
+    ]
+   }
+  ],
+  "OAXACA": [
+   {
+    "catalogo": "HEROICA CIUDAD DE HUAJUAPAN DE",
+    "oficial": "Heroica Ciudad de Huajuapan de León",
+    "portal": [
+     "CENTRO ORIENTE"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE",
+     "SURESTE"
+    ]
+   },
+   {
+    "catalogo": "HEROICA CIUDAD DE HUAJUAPAN DE LEON",
+    "oficial": "Heroica Ciudad de Huajuapan de León",
+    "portal": [
+     "SURESTE"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE",
+     "SURESTE"
+    ]
+   },
+   {
+    "catalogo": "SAN JOSE ESTANCIA GRANDE",
+    "oficial": "San José Estancia Grande",
+    "portal": [
+     "ORIENTE",
+     "SURESTE"
+    ],
+    "acuerdo": [
+     "SURESTE"
+    ]
+   },
+   {
+    "catalogo": "SAN JUAN BAUTISTA VALLE NACION",
+    "oficial": "San Juan Bautista Valle Nacional",
+    "portal": [
+     "ORIENTE"
+    ],
+    "acuerdo": [
+     "ORIENTE",
+     "SURESTE"
+    ]
+   },
+   {
+    "catalogo": "SAN JUAN BAUTISTA VALLE NACIONAL",
+    "oficial": "San Juan Bautista Valle Nacional",
+    "portal": [
+     "SURESTE"
+    ],
+    "acuerdo": [
+     "ORIENTE",
+     "SURESTE"
+    ]
+   },
+   {
+    "catalogo": "SAN JUAN PETLAPA",
+    "oficial": "San Juan Petlapa",
+    "portal": [
+     "SURESTE"
+    ],
+    "acuerdo": [
+     "ORIENTE",
+     "SURESTE"
+    ]
+   },
+   {
+    "catalogo": "SAN PEDRO Y SAN PABLO TEQUIXTE",
+    "oficial": "San Pedro y San Pablo Tequixtepec",
+    "portal": [
+     "CENTRO ORIENTE"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE",
+     "SURESTE"
+    ]
+   },
+   {
+    "catalogo": "SAN PEDRO Y SAN PABLO TEQUIXTEPEC",
+    "oficial": "San Pedro y San Pablo Tequixtepec",
+    "portal": [
+     "SURESTE"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE",
+     "SURESTE"
+    ]
+   },
+   {
+    "catalogo": "SANTO DOMINGO IXCATLAN",
+    "oficial": "Santo Domingo Ixcatlán",
+    "portal": [
+     "ORIENTE",
+     "SURESTE"
+    ],
+    "acuerdo": [
+     "SURESTE"
+    ]
+   }
+  ],
+  "PUEBLA": [
+   {
+    "catalogo": "CHIGNAHUAPAN",
+    "oficial": "Chignahuapan",
+    "portal": [
+     "CENTRO ORIENTE",
+     "ORIENTE"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE"
+    ]
+   },
+   {
+    "catalogo": "COHETZALA",
+    "oficial": "Cohetzala",
+    "portal": [
+     "CENTRO ORIENTE",
+     "ORIENTE"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE"
+    ]
+   },
+   {
+    "catalogo": "ORIENTAL",
+    "oficial": "Oriental",
+    "portal": [
+     "CENTRO ORIENTE",
+     "GOLFO CENTRO"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE"
+    ]
+   },
+   {
+    "catalogo": "SAN FELIPE TEPATLAN",
+    "oficial": "San Felipe Tepatlán",
+    "portal": [
+     "CENTRO ORIENTE"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE",
+     "ORIENTE"
+    ]
+   },
+   {
+    "catalogo": "TEPEXCO",
+    "oficial": "Tepexco",
+    "portal": [
+     "CENTRO ORIENTE"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE",
+     "CENTRO SUR"
+    ]
+   },
+   {
+    "catalogo": "TZICATLACOYAN",
+    "oficial": "Tzicatlacoyan",
+    "portal": [
+     "CENTRO ORIENTE",
+     "ORIENTE"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE"
+    ]
+   },
+   {
+    "catalogo": "ZACAPALA",
+    "oficial": "Zacapala",
+    "portal": [
+     "CENTRO ORIENTE",
+     "ORIENTE"
+    ],
+    "acuerdo": [
+     "CENTRO ORIENTE"
+    ]
+   }
+  ],
+  "TABASCO": [
+   {
+    "catalogo": "CARDENAS",
+    "oficial": "Cárdenas",
+    "portal": [
+     "SURESTE"
+    ],
+    "acuerdo": [
+     "ORIENTE",
+     "SURESTE"
+    ]
+   }
+  ],
+  "TAMAULIPAS": [
+   {
+    "catalogo": "HIDALGO",
+    "oficial": "Hidalgo",
+    "portal": [
+     "GOLFO CENTRO"
+    ],
+    "acuerdo": [
+     "GOLFO CENTRO",
+     "GOLFO NORTE"
+    ]
+   }
+  ],
+  "VERACRUZ": [
+   {
+    "catalogo": "BENITO JUAREZ",
+    "oficial": "Benito Juárez",
+    "portal": [
+     "ORIENTE"
+    ],
+    "acuerdo": [
+     "GOLFO CENTRO",
+     "ORIENTE"
+    ]
+   },
+   {
+    "catalogo": "EL HIGO",
+    "oficial": "El Higo",
+    "portal": [
+     "GOLFO CENTRO"
+    ],
+    "acuerdo": [
+     "GOLFO CENTRO",
+     "ORIENTE"
+    ]
+   },
+   {
+    "catalogo": "TAMPICO ALTO",
+    "oficial": "Tampico Alto",
+    "portal": [
+     "GOLFO CENTRO"
+    ],
+    "acuerdo": [
+     "GOLFO CENTRO",
+     "ORIENTE"
+    ]
+   },
+   {
+    "catalogo": "ZACUALPAN",
+    "oficial": "Zacualpan",
+    "portal": [
+     "GOLFO CENTRO"
+    ],
+    "acuerdo": [
+     "GOLFO CENTRO",
+     "ORIENTE"
+    ]
+   }
+  ],
+  "ZACATECAS": [
+   {
+    "catalogo": "PINOS",
+    "oficial": "Pinos",
+    "portal": [
+     "BAJIO"
+    ],
+    "acuerdo": [
+     "BAJIO",
+     "GOLFO CENTRO"
     ]
    }
   ]

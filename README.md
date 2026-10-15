@@ -208,13 +208,15 @@ cortado a 30 caracteres, "COAHUAYUTLA DE JOSE MARIA IZAZ"). Otros 27 tenían una
 división distinta (ver abajo).
 
 `data/municipios_complemento.json` (generado del Acuerdo, revisado a mano; el
-scraper no lo toca) lo cubre con dos listas que se consultan **solo si el catálogo
-no encuentra el municipio**, así que lo que ya resolvía no cambia:
+scraper no lo toca) lo cubre con tres listas. `alias` y `ausentes` se consultan
+**solo si el catálogo no encuentra el municipio**, así que lo que ya resolvía no
+cambia; `divergencias` únicamente agrega una advertencia (ver más abajo):
 
 - `alias`: nombre oficial -> el nombre con que el portal lo trae.
 - `ausentes`: el municipio que el portal no trae; la división sale del Acuerdo. La
   respuesta lleva `nota_municipio` para que se sepa que no vino del portal, y
   `/v1/municipios` los lista con `origen: "acuerdo"`.
+- `divergencias`: municipios que el portal y el Acuerdo asignan a divisiones distintas.
 
 Cada año, al salir el Acuerdo nuevo (extraer es una herramienta offline: necesita
 `pdfplumber` y `poppler`, no corre en el CI):
@@ -233,10 +235,14 @@ pierde cientos de municipios sin avisar. `worker/pruebas/prueba_municipios_acuer
 hace fallar `npm test` si el complemento apunta a algo que ya no existe o a una
 división sin horario o sin tarifas; los datos obsoletos pero inofensivos solo avisan.
 
-**No resuelto: 27 municipios con división distinta** entre el portal y el Acuerdo
-(sobre todo municipios que el portal asigna a dos divisiones y el Acuerdo a una, o
-al revés). No se corrigieron: son dos fuentes de CFE que no coinciden y hay que
-decidir cuál manda. Salen con `python3 cruzar_catalogo.py ... --salida informe.json`.
+**Divisiones distintas entre el portal y el Acuerdo (30 municipios, casi todos del
+centro y sur).** Se verificó a mano contra el portal en 8 casos (Toluca, Texcoco,
+Tenancingo, Ixmiquilpan, Chignahuapan, Pinos, Tampico Alto, Cárdenas): el catálogo
+refleja fielmente al portal y el portal no coincide con el Acuerdo en ninguno. Son
+dos fuentes de CFE que difieren, así que no se sobrescribe ninguna: la respuesta
+sigue al portal y, cuando el Acuerdo dice otra cosa, agrega `divisiones_segun_acuerdo`
+y `nota_division`. La otra división se consulta con `region`. Si el recibo indica
+una división, esa manda. Los municipios están listados en `divergencias`.
 
 `/v1/tipo-cambio` devuelve el tipo de cambio pesos por dólar de Banxico vigente en una fecha
 (el último publicado en o antes de ella). `serie=fix` (por defecto) es la SF43718, el FIX por
