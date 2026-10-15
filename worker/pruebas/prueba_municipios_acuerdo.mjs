@@ -67,6 +67,27 @@ function problemasDelComplemento(dir) {
       vistos.add(k);
     }
   }
+  // Divergencias portal/Acuerdo: lo que se advierte al usuario no puede estar roto ni desactualizado.
+  const divisionesDe = (e, clave) => new Set((cat.estados[e].municipios[clave].opciones ?? [])
+    .flatMap((o) => cat.expansiones?.[normalizar(o.etiqueta)] ?? [normalizar(o.etiqueta)]));
+  for (const [estado, lista] of Object.entries(comp.divergencias ?? {})) {
+    const e = cat.estados[estado];
+    if (!e) { problemas.push(`divergencias: el estado ${estado} no está en el catálogo`); continue; }
+    for (const d of lista) {
+      if (!(d.catalogo in e.municipios)) {
+        problemas.push(`divergencia ${estado}: '${d.catalogo}' no existe en el catálogo`);
+        continue;
+      }
+      for (const div of d.acuerdo) {
+        if (!conTarifa.has(div)) problemas.push(`divergencia ${estado}: '${d.catalogo}' -> el Acuerdo manda a una división sin tarifas capturadas: ${div}`);
+      }
+      const portal = [...divisionesDe(estado, d.catalogo)].sort();
+      if (JSON.stringify(portal) === JSON.stringify([...d.acuerdo].sort()))
+        avisos.push(`divergencia ${estado}: '${d.catalogo}' ya coincide con el Acuerdo (el portal cambió; se puede quitar)`);
+      else if (JSON.stringify(portal) !== JSON.stringify([...d.portal].sort()))
+        avisos.push(`divergencia ${estado}: '${d.catalogo}' ya no dice lo mismo en el portal (${portal.join("+")}); regenerar con cruzar_catalogo.py`);
+    }
+  }
   return { errores: problemas, avisos };
 }
 
@@ -79,6 +100,7 @@ const comp = leer("../data", "municipios_complemento.json");
 const nAlias = Object.values(comp.alias).flat().length;
 const nAus = Object.values(comp.ausentes).flat().length;
 check("hay alias y ausentes (el archivo no está vacío)", nAlias > 0 && nAus > 0, true);
+check("hay divergencias registradas", Object.values(comp.divergencias).flat().length > 0, true);
 
 console.log("\n2. La guarda realmente FALLA cuando debe (datos mutados)");
 function copiaMutada(mutar) {
@@ -101,6 +123,18 @@ check("un 'ausente' con una división sin sistema de horario se detecta",
 check("un 'ausente' que ya está en el catálogo se AVISA, sin fallar",
   (({ errores, avisos }) => [errores.length, avisos.some((p) => p.includes("no está ausente"))])(
     problemasDelComplemento(copiaMutada((c) => { c.ausentes["SONORA"][0].oficial = "Navojoa"; }))), [0, true]);
+check("una divergencia hacia una división sin tarifas se detecta",
+  problemasDelComplemento(copiaMutada((c) => { c.divergencias["ESTADO DE MEXICO"][0].acuerdo = ["DIVISION NUEVA"]; }))
+    .errores.some((p) => p.includes("sin tarifas capturadas")), true);
+check("una divergencia que apunta a un municipio inexistente se detecta",
+  problemasDelComplemento(copiaMutada((c) => { c.divergencias["ESTADO DE MEXICO"][0].catalogo = "NO EXISTE"; }))
+    .errores.some((p) => p.includes("no existe en el catálogo")), true);
+const resuelta = problemasDelComplemento(copiaMutada((c) => {
+  const d = c.divergencias["ESTADO DE MEXICO"].find((x) => x.catalogo === "TEXCOCO");
+  d.acuerdo = [...d.portal];                       // el Acuerdo "coincide" con el portal
+}));
+check("una divergencia que el portal ya corrigió se AVISA, sin fallar",
+  [resuelta.errores.length, resuelta.avisos.some((p) => p.includes("ya coincide con el Acuerdo"))], [0, true]);
 check("un estado desconocido en el complemento se detecta",
   problemasDelComplemento(copiaMutada((c) => { c.ausentes["ATLANTIDA"] = [{ oficial: "X", divisiones: ["NOROESTE"] }]; }))
     .errores.some((p) => p.includes("no está en el catálogo")), true);
@@ -158,6 +192,51 @@ check("regresión: sin nota para un municipio del portal", r.cuerpo.nota_municip
 check("regresión: cargos de marzo 2026 intactos", r.cuerpo.cargos.base, 0.9715);
 r = await tarifa("VERACRUZ", "BOCA DEL RIO");
 check("regresión: VERACRUZ + BOCA DEL RIO sigue en ORIENTE", [r.status, r.cuerpo.region], [200, "ORIENTE"]);
+
+// Divergencias: el portal manda; el Acuerdo se advierte, nunca reemplaza.
+r = await tarifa("ESTADO DE MEXICO", "Texcoco");
+check("divergencia (el portal da UNA división, el Acuerdo dos): la respuesta sigue al portal",
+  [r.status, r.cuerpo.region], [200, "VALLE DE MEXICO CENTRO"]);
+check("...y advierte lo que dice el Acuerdo", r.cuerpo.divisiones_segun_acuerdo, ["VALLE DE MEXICO CENTRO", "VALLE DE MEXICO NORTE"]);
+check("...con una nota que dice cómo consultar la otra", /region/.test(r.cuerpo.nota_division ?? ""), true);
+const otra = await get("/v1/tarifa?region=VALLE DE MEXICO NORTE&anio=2026&mes=3");
+check("la otra división del Acuerdo se puede consultar con region", [otra.status, otra.cuerpo.region], [200, "VALLE DE MEXICO NORTE"]);
+
+r = await tarifa("ESTADO DE MEXICO", "Toluca");
+check("divergencia en un municipio con DOS divisiones en el portal (rama con 'resultados')",
+  [r.status, r.cuerpo.resultados?.length, r.cuerpo.divisiones_segun_acuerdo], [200, 2, ["VALLE DE MEXICO SUR"]]);
+check("...conserva estado y municipio en esa rama", [r.cuerpo.estado, r.cuerpo.municipio], ["ESTADO DE MÉXICO", "TOLUCA"]);
+r = await tarifa("TABASCO", "Cárdenas");
+check("divergencia: Cárdenas (portal SURESTE, Acuerdo ORIENTE y SURESTE)",
+  [r.cuerpo.region, r.cuerpo.divisiones_segun_acuerdo], ["SURESTE", ["ORIENTE", "SURESTE"]]);
+
+// Las dos copias del mismo municipio que el portal repite (nombre completo y truncado).
+r = await tarifa("OAXACA", "Heroica Ciudad de Huajuapan de León");
+check("copia con el nombre completo: portal SURESTE, Acuerdo CENTRO ORIENTE y SURESTE",
+  [r.cuerpo.region, r.cuerpo.divisiones_segun_acuerdo], ["SURESTE", ["CENTRO ORIENTE", "SURESTE"]]);
+r = await tarifa("OAXACA", "HEROICA CIUDAD DE HUAJUAPAN DE");
+check("copia truncada: portal CENTRO ORIENTE, el Acuerdo dice lo mismo que arriba",
+  [r.cuerpo.region, r.cuerpo.divisiones_segun_acuerdo], ["CENTRO ORIENTE", ["CENTRO ORIENTE", "SURESTE"]]);
+
+// Sin divergencia no aparece nada (lo que ya funcionaba no cambia).
+for (const [est, mun] of [["SONORA", "NAVOJOA"], ["VERACRUZ", "BOCA DEL RIO"], ["BAJA CALIFORNIA", "San Quintín"]]) {
+  r = await tarifa(est, mun);
+  check(`sin divergencia, sin campos nuevos: ${mun}`, [r.cuerpo.divisiones_segun_acuerdo, r.cuerpo.nota_division], [undefined, undefined]);
+}
+
+// La rama con VARIOS resultados también advierte los municipios del Acuerdo (defecto corregido:
+// esa rama armaba estado/municipio a mano y se saltaba la nota). Hoy ningún ausente real tiene dos
+// divisiones, así que se prueba con un dato fabricado.
+const conDoble = await crearWorker({
+  preparar: (dirDatos) => {
+    const c = leer(dirDatos, "municipios_complemento.json");
+    c.ausentes["SONORA"].push({ oficial: "Municipio De Prueba", divisiones: ["NOROESTE", "NORTE"] });
+    writeFileSync(path.join(dirDatos, "municipios_complemento.json"), JSON.stringify(c));
+  },
+});
+const rd = await (await conDoble.fetch(new Request(BASE + "/v1/tarifa?estado=SONORA&municipio=Municipio De Prueba&anio=2026&mes=3"))).json();
+check("un ausente con DOS divisiones devuelve las dos", rd.resultados?.map((x) => x.region), ["NOROESTE", "NORTE"]);
+check("...y conserva la nota de que no vino del portal", typeof rd.nota_municipio, "string");
 
 // Lo desconocido sigue fallando.
 r = await tarifa("SONORA", "Municipio Inventado");

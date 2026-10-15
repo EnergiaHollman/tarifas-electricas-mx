@@ -16,6 +16,7 @@ type Municipio = {
   opciones?: Opcion[];
   region?: string; region_id?: string;   // formato viejo del catálogo
   origen?: "acuerdo";                    // no viene del portal: se completó con el Acuerdo
+  acuerdo?: string[];                    // el Acuerdo asigna OTRAS divisiones que el portal
 };
 type Estado = { id: string; nombre: string; municipios: Record<string, Municipio> };
 
@@ -104,6 +105,7 @@ export const complemento = complementoJson as unknown as {
   fuente: string;
   alias: Record<string, { oficial: string; catalogo: string }[]>;
   ausentes: Record<string, { oficial: string; divisiones: string[] }[]>;
+  divergencias: Record<string, { catalogo: string; oficial: string; portal: string[]; acuerdo: string[] }[]>;
 };
 
 const indiceAlias = new Map<string, string>();                                   // "ESTADO|NOMBRE" -> clave
@@ -112,6 +114,18 @@ for (const [estado, lista] of Object.entries(complemento.alias ?? {}))
   for (const a of lista) indiceAlias.set(`${estado}|${normalizar(a.oficial)}`, a.catalogo);
 for (const [estado, lista] of Object.entries(complemento.ausentes ?? {}))
   for (const a of lista) indiceAusentes.set(`${estado}|${normalizar(a.oficial)}`, a);
+
+// Municipios que el portal y el Acuerdo asignan a divisiones distintas. No se corrige ninguno
+// de los dos: la respuesta sigue al portal y advierte lo que dice el Acuerdo.
+const indiceDivergencias = new Map<string, string[]>();                          // "ESTADO|CLAVE" -> divisiones del Acuerdo
+for (const [estado, lista] of Object.entries(complemento.divergencias ?? {}))
+  for (const d of lista) indiceDivergencias.set(`${estado}|${d.catalogo}`, d.acuerdo);
+
+/** El municipio del catálogo, con lo que dice el Acuerdo si difiere (sin tocar el objeto original). */
+function conAcuerdo(estado: string, clave: string, m: Municipio): Municipio {
+  const acuerdo = indiceDivergencias.get(`${estado}|${clave}`);
+  return acuerdo ? { ...m, acuerdo } : m;
+}
 
 function municipioDelAcuerdo(a: { oficial: string; divisiones: string[] }): Municipio {
   return { id: "", nombre: normalizar(a.oficial), origen: "acuerdo",
@@ -133,10 +147,10 @@ export function regionDeMunicipio(estado: string, municipio: string): Municipio 
   if (!e) return null;
   const nombre = normalizar(municipio);
   const directo = e.municipios[nombre];
-  if (directo) return directo;                       // el camino de siempre
+  if (directo) return conAcuerdo(clave, nombre, directo);                  // el camino de siempre
   const k = `${clave}|${nombre}`;
   const alias = indiceAlias.get(k);
-  if (alias && e.municipios[alias]) return e.municipios[alias];
+  if (alias && e.municipios[alias]) return conAcuerdo(clave, alias, e.municipios[alias]);
   const ausente = indiceAusentes.get(k);
   return ausente ? municipioDelAcuerdo(ausente) : null;
 }

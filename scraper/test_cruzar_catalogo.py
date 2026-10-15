@@ -148,6 +148,43 @@ check("dos nombres parecidos pero de municipios distintos NO se emparejan",
           {"completo": True, "divisiones": {"Baja California": {"Sonora": ["San Felipe"]}, "Noroeste": {"Sonora": ["San Felipe de Jesús"]}}}
       )["ausentes"], {"SONORA": [{"oficial": "San Felipe", "divisiones": ["BAJA CALIFORNIA"]}]})
 
+print("\n11. divergencias: el portal y el Acuerdo asignan divisiones distintas")
+def cat_ops(estado, municipios):
+    return {"estado": estado, "nombre": estado,
+            "municipios": {n: {"opciones": [{"etiqueta": d, "id": "1"} for d in divs]} for n, divs in municipios.items()}}
+
+CAT_D = {"expansiones": {}, "estados": {
+    "ESTADO DE MEXICO": cat_ops("ESTADO DE MEXICO", {
+        "TOLUCA": ["CENTRO SUR", "VALLE DE MEXICO SUR"], "TEXCOCO": ["VALLE DE MEXICO CENTRO"], "METEPEC": ["VALLE DE MEXICO SUR"]}),
+    "OAXACA": cat_ops("OAXACA", {
+        "HEROICA CIUDAD DE HUAJUAPAN DE LEON": ["SURESTE"], "HEROICA CIUDAD DE HUAJUAPAN DE": ["CENTRO ORIENTE"]}),
+    "NUEVO LEON": cat_ops("NUEVO LEON", {"DR. COSS": ["GOLFO NORTE"]}),
+}}
+OF_D = {"completo": True, "fuente": "prueba", "divisiones": {
+    "Valle de México Sur": {"México": ["Toluca", "Metepec"]},
+    "Valle de México Centro": {"México": ["Texcoco"]},
+    "Valle de México Norte": {"México": ["Texcoco"]},
+    "Centro Oriente": {"Oaxaca": ["Heroica Ciudad de Huajuapan de León"]},
+    "Sureste": {"Oaxaca": ["Heroica Ciudad de Huajuapan de León"]},
+    "Golfo Norte": {"Nuevo León": ["Doctor Coss"]},
+}}
+div = C.proponer_complemento(CAT_D, OF_D)["divergencias"]
+mx = {d["catalogo"]: d for d in div["ESTADO DE MEXICO"]}
+check("el portal da una división de MÁS (Toluca): se informa lo que dice cada fuente",
+      (mx["TOLUCA"]["portal"], mx["TOLUCA"]["acuerdo"]), (["CENTRO SUR", "VALLE DE MEXICO SUR"], ["VALLE DE MEXICO SUR"]))
+check("el portal da una división de MENOS (Texcoco)",
+      (mx["TEXCOCO"]["portal"], mx["TEXCOCO"]["acuerdo"]), (["VALLE DE MEXICO CENTRO"], ["VALLE DE MEXICO CENTRO", "VALLE DE MEXICO NORTE"]))
+check("si coinciden (Metepec) no hay divergencia", "METEPEC" in mx, False)
+check("el alias que coincide en divisiones (Doctor Coss = DR. COSS) tampoco genera divergencia", "NUEVO LEON" in div, False)
+oax = {d["catalogo"]: d for d in div["OAXACA"]}
+check("las DOS copias del mismo municipio (nombre completo y truncado) se comparan contra lo oficial",
+      sorted(oax), ["HEROICA CIUDAD DE HUAJUAPAN DE", "HEROICA CIUDAD DE HUAJUAPAN DE LEON"])
+check("la copia truncada trae solo CENTRO ORIENTE; el Acuerdo dice las dos",
+      (oax["HEROICA CIUDAD DE HUAJUAPAN DE"]["portal"], oax["HEROICA CIUDAD DE HUAJUAPAN DE"]["acuerdo"]),
+      (["CENTRO ORIENTE"], ["CENTRO ORIENTE", "SURESTE"]))
+check("la divergencia lleva el nombre oficial, para mostrarlo", oax["HEROICA CIUDAD DE HUAJUAPAN DE"]["oficial"],
+      "Heroica Ciudad de Huajuapan de León")
+
 print()
 if fallos:
     print(f"{len(fallos)} prueba(s) fallaron: {', '.join(fallos)}")

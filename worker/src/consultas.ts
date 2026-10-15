@@ -30,12 +30,18 @@ const NOTA_MUNICIPIO_ACUERDO =
   "Este municipio no aparece en el desplegable del portal de CFE; su división sale de la tabla " +
   "oficial del numeral 5.9 del Acuerdo CNE CT/11.SE/8-2025 (tarifas 2026).";
 
-/** estado y municipio de la respuesta; la nota solo aparece cuando el municipio no vino del portal. */
-function datosMunicipio(ubic: { via?: string; estado?: string; municipio?: string; origen?: string }) {
+const NOTA_DIVISION =
+  "El portal de CFE y el numeral 5.9 del Acuerdo CNE CT/11.SE/8-2025 no coinciden en la división de este " +
+  "municipio. La respuesta sigue al portal; en divisiones_segun_acuerdo va lo que dice el Acuerdo. Si tu " +
+  "recibo indica otra división, consúltala con el parámetro region.";
+
+/** estado y municipio de la respuesta, más las advertencias que apliquen (solo cuando aplican). */
+function datosMunicipio(ubic: { via?: string; estado?: string; municipio?: string; origen?: string; acuerdo?: string[] }) {
   if (ubic.via !== "municipio") return {};
   return {
     estado: ubic.estado, municipio: ubic.municipio,
     ...(ubic.origen === "acuerdo" ? { nota_municipio: NOTA_MUNICIPIO_ACUERDO } : {}),
+    ...(ubic.acuerdo ? { divisiones_segun_acuerdo: ubic.acuerdo, nota_division: NOTA_DIVISION } : {}),
   };
 }
 
@@ -64,6 +70,7 @@ function resolverRegion(args: Args) {
       via: "municipio" as const,
       municipio: m.nombre,
       origen: m.origen,
+      acuerdo: m.acuerdo,
       estado: catalogo.estados[normalizar(String(args.estado))].nombre,
     };
   }
@@ -100,7 +107,7 @@ export function consultarTarifa(args: Args) {
       .filter(Boolean);
     if (resultados.length) {
       return {
-        tarifa, estado: ubic.estado, municipio: ubic.municipio,
+        tarifa, ...datosMunicipio(ubic),
         regiones: ubic.regiones, anio, mes, resultados,
         nota: "CFE ofrece más de una división tarifaria para este municipio. " +
               "Cuál aplica depende del punto de suministro; confírmalo en el recibo.",
