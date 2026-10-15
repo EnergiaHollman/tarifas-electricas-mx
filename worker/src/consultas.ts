@@ -26,6 +26,19 @@ function entero(v: unknown): number | null {
 }
 
 /** Resuelve la región desde región explícita o desde estado + municipio. */
+const NOTA_MUNICIPIO_ACUERDO =
+  "Este municipio no aparece en el desplegable del portal de CFE; su división sale de la tabla " +
+  "oficial del numeral 5.9 del Acuerdo CNE CT/11.SE/8-2025 (tarifas 2026).";
+
+/** estado y municipio de la respuesta; la nota solo aparece cuando el municipio no vino del portal. */
+function datosMunicipio(ubic: { via?: string; estado?: string; municipio?: string; origen?: string }) {
+  if (ubic.via !== "municipio") return {};
+  return {
+    estado: ubic.estado, municipio: ubic.municipio,
+    ...(ubic.origen === "acuerdo" ? { nota_municipio: NOTA_MUNICIPIO_ACUERDO } : {}),
+  };
+}
+
 function resolverRegion(args: Args) {
   if (args.region) {
     return { region: normalizar(String(args.region)), regiones: [normalizar(String(args.region))],
@@ -50,6 +63,7 @@ function resolverRegion(args: Args) {
       regiones,                       // dos cuando CFE atiende con dos divisiones
       via: "municipio" as const,
       municipio: m.nombre,
+      origen: m.origen,
       estado: catalogo.estados[normalizar(String(args.estado))].nombre,
     };
   }
@@ -114,7 +128,7 @@ export function consultarTarifa(args: Args) {
     // Aditivo: `region` se queda como siempre; estos dos separan los conceptos
     // (cargos por DIVISIÓN, horarios por SISTEMA interconectado).
     ...describirHorario(r.region),
-    ...(ubic.via === "municipio" ? { estado: ubic.estado, municipio: ubic.municipio } : {}),
+    ...datosMunicipio(ubic),
     anio: r.anio,
     mes: r.mes,
     periodo_cfe: r.periodo_cfe,
@@ -164,7 +178,7 @@ export function consultarHorarios(args: Args) {
   return {
     region: ubic.region,
     ...describirHorario(ubic.region),
-    ...(ubic.via === "municipio" ? { estado: ubic.estado, municipio: ubic.municipio } : {}),
+    ...datosMunicipio(ubic),
     zona: zona.zona,
     fecha: texto,
     temporada,
@@ -204,7 +218,7 @@ export function consultarCalendario(args: Args) {
   return {
     region: ubic.region,
     ...describirHorario(ubic.region),
-    ...(ubic.via === "municipio" ? { estado: ubic.estado, municipio: ubic.municipio } : {}),
+    ...datosMunicipio(ubic),
     zona: zona.zona,
     anio,
     verano: {

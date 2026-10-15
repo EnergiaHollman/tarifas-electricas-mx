@@ -148,7 +148,45 @@ check("división ORIENTE", h.division, "ORIENTE");
 check("sistema de horario SIN (Acuerdo CNE, numeral 3.1.5 c)", h.sistema_horario, "SIN");
 check("viernes de verano 20:30: punta", h.consulta?.periodo, "punta");
 
-console.log("\n8. Un error de protocolo también funciona en producción");
+console.log("\n8. Municipios que el portal de CFE no trae (complemento del numeral 5.9 del Acuerdo)");
+const tarifaDe = (estado, municipio) => rpc("tools/call", {
+  name: "consultar_tarifa", arguments: { estado, municipio, anio: 2026, mes: 3 },
+});
+const bcDivision = (await rpc("tools/call", {
+  name: "consultar_tarifa", arguments: { region: "BAJA CALIFORNIA", anio: 2026, mes: 3 },
+})).cuerpo?.result?.structuredContent ?? {};
+
+r = await tarifaDe("BAJA CALIFORNIA", "San Quintín");
+let t = r.cuerpo?.result?.structuredContent ?? {};
+check("San Quintín (ausente del portal): resuelve", [r.status, r.cuerpo?.result?.isError], [200, false]);
+check("San Quintín: va a la división BAJA CALIFORNIA", t.region, "BAJA CALIFORNIA");
+check("San Quintín: advierte que el municipio no vino del portal", typeof t.nota_municipio, "string");
+check("San Quintín: los cargos son EXACTAMENTE los de la división", t.cargos, bcDivision.cargos);
+
+r = await tarifaDe("SONORA", "General Plutarco Elías Calles");
+t = r.cuerpo?.result?.structuredContent ?? {};
+check("Plutarco Elías Calles (Sonora, división BC): resuelve a BAJA CALIFORNIA", [r.cuerpo?.result?.isError, t.region], [false, "BAJA CALIFORNIA"]);
+
+r = await tarifaDe("NUEVO LEON", "Doctor Coss");
+t = r.cuerpo?.result?.structuredContent ?? {};
+const portal = (await tarifaDe("NUEVO LEON", "DR. COSS")).cuerpo?.result?.structuredContent ?? {};
+check("alias: 'Doctor Coss' resuelve aunque el portal diga 'DR. COSS'", [r.cuerpo?.result?.isError, t.region], [false, "GOLFO NORTE"]);
+check("alias: da lo mismo que el nombre del portal", t.cargos, portal.cargos);
+check("alias: sin nota (el municipio sí está en el portal)", t.nota_municipio, undefined);
+
+r = await rpc("tools/call", {
+  name: "consultar_horarios",
+  arguments: { estado: "CAMPECHE", municipio: "Seybaplaya", fecha: "2026-08-14", hora: "20:30" },
+});
+const h2 = r.cuerpo?.result?.structuredContent ?? {};
+check("Seybaplaya: horario por MCP (SIN, viernes de verano 20:30 = punta)",
+  [r.cuerpo?.result?.isError, h2.sistema_horario, h2.consulta?.periodo], [false, "SIN", "punta"]);
+
+r = await tarifaDe("SONORA", "Municipio Inventado");
+check("un municipio que no existe sigue siendo error de herramienta (isError), no de protocolo",
+  [r.status, r.cuerpo?.result?.isError, "error" in (r.cuerpo ?? {})], [200, true, false]);
+
+console.log("\n9. Un error de protocolo también funciona en producción");
 r = await rpc("tools/call", { name: "no_existe", arguments: {} });
 check("herramienta inexistente -> error de protocolo -32602", r.cuerpo?.error?.code, -32602);
 

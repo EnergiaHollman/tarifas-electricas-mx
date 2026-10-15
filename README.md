@@ -197,6 +197,47 @@ Y `prueba_sistemas_horario.mjs` hace fallar `npm test` (y por tanto el
 despliegue) si el scraper captura una división sin entrada en el mapa: no se
 asume ningún sistema por omisión.
 
+### Municipios: el catálogo del portal está atrasado frente al Acuerdo
+
+El catálogo de municipios sale del desplegable del portal de CFE. Cotejado contra
+el numeral 5.9 del Acuerdo CNE CT/11.SE/8-2025 (2,477 municipios), **39 no estaban
+en el catálogo** (de creación reciente, como San Felipe, San Quintín, Seybaplaya,
+Dzitbalché o Ñuu Savi, y otros antiguos que el desplegable no trae, como Ures o
+Paso de Ovejas) y **44 estaban con otro nombre** (abreviado, "DR. ARROYO"; o
+cortado a 30 caracteres, "COAHUAYUTLA DE JOSE MARIA IZAZ"). Otros 27 tenían una
+división distinta (ver abajo).
+
+`data/municipios_complemento.json` (generado del Acuerdo, revisado a mano; el
+scraper no lo toca) lo cubre con dos listas que se consultan **solo si el catálogo
+no encuentra el municipio**, así que lo que ya resolvía no cambia:
+
+- `alias`: nombre oficial -> el nombre con que el portal lo trae.
+- `ausentes`: el municipio que el portal no trae; la división sale del Acuerdo. La
+  respuesta lleva `nota_municipio` para que se sepa que no vino del portal, y
+  `/v1/municipios` los lista con `origen: "acuerdo"`.
+
+Cada año, al salir el Acuerdo nuevo (extraer es una herramienta offline: necesita
+`pdfplumber` y `poppler`, no corre en el CI):
+
+```bash
+cd scraper
+pip install pdfplumber
+python3 extraer_5_9.py ACUERDO.pdf /tmp/oficial.json        # falla si no cubre todas las palabras del PDF
+python3 cruzar_catalogo.py /tmp/oficial.json ../data/catalogo.json --complemento ../data/municipios_complemento.json
+```
+
+`extraer_5_9.py` compara lo extraído palabra por palabra contra poppler y se niega
+a entregar una tabla incompleta: en la de 2026 una fila de Oaxaca ocupa varias
+páginas y su continuación no trae bordes, así que un extractor que solo lea tablas
+pierde cientos de municipios sin avisar. `worker/pruebas/prueba_municipios_acuerdo.mjs`
+hace fallar `npm test` si el complemento apunta a algo que ya no existe o a una
+división sin horario o sin tarifas; los datos obsoletos pero inofensivos solo avisan.
+
+**No resuelto: 27 municipios con división distinta** entre el portal y el Acuerdo
+(sobre todo municipios que el portal asigna a dos divisiones y el Acuerdo a una, o
+al revés). No se corrigieron: son dos fuentes de CFE que no coinciden y hay que
+decidir cuál manda. Salen con `python3 cruzar_catalogo.py ... --salida informe.json`.
+
 `/v1/tipo-cambio` devuelve el tipo de cambio pesos por dólar de Banxico vigente en una fecha
 (el último publicado en o antes de ella). `serie=fix` (por defecto) es la SF43718, el FIX por
 fecha de determinación; `serie=dof` es la SF60653, el mismo valor por fecha de liquidación (el FIX
@@ -468,6 +509,7 @@ los despliegues anteriores.
 | `data/tarifas.json` | Cargos por tarifa, región y mes |
 | `data/horarios.json` | Franjas por zona y temporada, con reglas de vigencia |
 | `data/sistemas_horario.json` | Mapa curado a mano: división tarifaria → sistema de horario (SIN/BC/BCS), con la cita al Acuerdo |
+| `data/municipios_complemento.json` | Alias y municipios ausentes del portal, generado del numeral 5.9 del Acuerdo (revisado a mano) |
 | `worker/src/calendario.ts` | Temporada, festivos, tipo de día, periodo tarifario |
 | `worker/src/consultas.ts` | Lógica compartida entre REST y MCP |
 | `worker/src/mcp.ts` | Servidor MCP: Streamable HTTP, JSON-RPC 2.0 |
