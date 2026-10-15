@@ -1,8 +1,8 @@
 {
   "_comentario": "Archivo CURADO A MANO. El scraper no lo genera ni lo sobreescribe (a diferencia de horarios.json, que se regenera en cada corrida). Si aparece una división nueva en tarifas.json sin entrada aquí, worker/pruebas/prueba_sistemas_horario.mjs falla a propósito: no se asume ningún sistema por omisión.",
   "fuente": "Acuerdo CNE CT/11.SE/8-2025 (tarifas finales del suministro básico, 1 ene-31 dic 2026), numeral 3.1.5, incisos b y c. https://sidof.segob.gob.mx/notas/docFuente/5783862",
-  "regla_literal": "Los periodos horarios de los sistemas interconectados de BC y BCS se deben aplicar en las divisiones tarifarias del mismo nombre; los periodos horarios del SIN se deben aplicar en el resto de las divisiones.",
-  "vigencia_confirmada": "2026 (texto literal del inciso c). Los Acuerdos A/053/2022 y A/158/2024 definen los horarios GDMTH por los mismos tres sistemas (Baja California, Baja California Sur y Nacional); la frase de asignación a divisiones no se encontró textualmente en ellos, así que para periodos anteriores a 2026 es muy probable pero no está comprobado palabra por palabra.",
+  "regla_literal": "2026: «Los periodos horarios de los sistemas interconectados de BC y BCS se deben aplicar en las divisiones tarifarias del mismo nombre; los periodos horarios del SIN se deben aplicar en el resto de las divisiones.» 2025 (A/158/2024): la misma frase con «se aplicarán» en lugar de «se deben aplicar».",
+  "vigencia_confirmada": "2025 y 2026, con el texto literal del inciso c en ambos Acuerdos (las tablas GDMTH de los tres sistemas coinciden entre los dos años). NO se ha revisado la regla de asignación en los Acuerdos de 2023 y anteriores (A/053/2022 define los horarios GDMTH por los mismos tres sistemas, pero no se leyó su inciso de asignación), así que para periodos anteriores a 2025 sigue sin comprobarse palabra por palabra.",
   "verificado": "2026-10-13",
   "sistemas": {
     "SIN": {
@@ -37,5 +37,6 @@
     "VALLE DE MEXICO CENTRO": "SIN",
     "VALLE DE MEXICO NORTE": "SIN",
     "VALLE DE MEXICO SUR": "SIN"
-  }
+  },
+  "fuente_2025": "Acuerdo CRE A/158/2024 (tarifas 1 ene-31 dic 2025), Anexo Único, numeral 3.1.5, incisos b y c; DOF 24-ene-2025, p. 156 (es el Acuerdo que cita el portal de CFE). Copia del PDF: http://www.apta.com.mx/apta2008/ce/dof/descargapdf/2025/01Enero/20250124/cfe25012410-13.pdf"
 }

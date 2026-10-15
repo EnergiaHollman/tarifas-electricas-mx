@@ -189,9 +189,11 @@ publica esa tabla por división; el mapa curado vive en `data/sistemas_horario.j
 (el scraper no lo toca, a diferencia de `horarios.json`, que regenera).
 
 Límites que conviene conocer: el texto literal de esa regla está confirmado para
-2026; los Acuerdos A/053/2022 y A/158/2024 definen los horarios GDMTH por los
-mismos tres sistemas, pero no se encontró la frase de asignación textual en
-ellos. Y `prueba_sistemas_horario.mjs` hace fallar `npm test` (y por tanto el
+2025 (Acuerdo CRE A/158/2024, numeral 3.1.5 c, DOF 24-ene-2025, el que cita el
+portal) y para 2026; las tablas GDMTH de los tres sistemas coinciden entre ambos
+años. Para 2023 y anteriores no se ha leído la frase de asignación (el A/053/2022
+define los horarios por los mismos tres sistemas, pero no se revisó ese inciso).
+Y `prueba_sistemas_horario.mjs` hace fallar `npm test` (y por tanto el
 despliegue) si el scraper captura una división sin entrada en el mapa: no se
 asume ningún sistema por omisión.
 
