@@ -15,6 +15,7 @@ import {
 } from "./datos";
 import { manejarMcp } from "./mcp";
 import { actualizarTipoCambio, consultarTipoCambio } from "./tipo_cambio";
+import { actualizarTasas, consultarTasa } from "./tasas";
 
 /** Los mismos de [triggers] en wrangler.toml (12:30 y 16:00 de la Ciudad de México). */
 const CRONS_TIPO_CAMBIO = ["30 18 * * *", "0 22 * * *"];
@@ -127,6 +128,16 @@ const OPENAPI = {
         responses: { "200": { description: "Tipo de cambio" }, "404": { description: "Sin datos" } },
       },
     },
+    "/v1/tasas-referencia": {
+      get: {
+        summary: "Tasa de referencia de Banxico (TIIE de Fondeo a un día) vigente en una fecha",
+        parameters: [
+          { name: "fecha", in: "query", schema: { type: "string", format: "date" } },
+          { name: "serie", in: "query", schema: { type: "string", enum: ["fondeo"], default: "fondeo" } },
+        ],
+        responses: { "200": { description: "Tasa de referencia, en % anual" }, "404": { description: "Sin datos" } },
+      },
+    },
     "/v1/regiones": { get: { summary: "Regiones y cobertura disponible" } },
     "/v1/estados": { get: { summary: "Estados con catálogo cargado" } },
     "/v1/municipios": {
@@ -212,6 +223,11 @@ export default {
       return resultado(r);
     }
 
+    if (ruta === "/v1/tasas-referencia") {
+      const r = await consultarTasa(env.DB, { fecha: q("fecha"), serie: q("serie") }, Date.now());
+      return resultado(r);
+    }
+
     if (ruta === "/v1/regiones") return json(resumenRegiones());
 
     if (ruta === "/v1/estados") {
@@ -251,6 +267,13 @@ export default {
       console.log(`Tipo de cambio: ${r.guardados} valores de Banxico (${r.desde} a ${r.hasta}).`);
     } catch (e) {
       console.error(`Tipo de cambio: ${(e as Error).message}`);
+    }
+    // Cada serie falla por separado: un error con una no frena a la otra.
+    try {
+      const r = await actualizarTasas(env.DB, env.BANXICO_TOKEN, Date.now());
+      console.log(`Tasas de referencia: ${r.guardados} valores de Banxico (${r.desde} a ${r.hasta}).`);
+    } catch (e) {
+      console.error(`Tasas de referencia: ${(e as Error).message}`);
     }
   },
 };

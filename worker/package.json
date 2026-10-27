@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "test": "node pruebas/prueba_api.mjs && node pruebas/prueba_mcp.mjs && node pruebas/prueba_tipo_cambio.mjs && node pruebas/prueba_sistemas_horario.mjs && node pruebas/prueba_municipios_acuerdo.mjs",
+    "test": "node pruebas/prueba_api.mjs && node pruebas/prueba_mcp.mjs && node pruebas/prueba_tipo_cambio.mjs && node pruebas/prueba_sistemas_horario.mjs && node pruebas/prueba_municipios_acuerdo.mjs && node pruebas/prueba_tasas.mjs",
     "test:rest": "node pruebas/prueba_api.mjs",
     "test:mcp": "node pruebas/prueba_mcp.mjs",
     "test:remote": "node pruebas/prueba_mcp_remoto.mjs",

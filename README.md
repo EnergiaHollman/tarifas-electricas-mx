@@ -253,6 +253,13 @@ DOF el día anterior". Un cron del Worker lo consulta dos veces al día y lo gua
 `BANXICO_TOKEN`); las consultas nunca llaman a Banxico. También está la herramienta MCP
 `consultar_tipo_cambio`.
 
+`/v1/tasas-referencia` devuelve la TIIE de Fondeo a un día hábil bancario de Banxico (serie SF331451, en %
+anual) vigente en una fecha: el último valor publicado en o antes de ella. Es la tasa de referencia de los
+financiamientos nuevos (Banxico retira la TIIE a 28, 91 y 182 días en operaciones nuevas). Mismo esquema que el
+tipo de cambio: el cron del Worker la consulta con el mismo secreto `BANXICO_TOKEN` y la guarda en D1 (tabla
+`tasa_referencia`, migración 0002); las consultas nunca llaman a Banxico. También está la herramienta MCP
+`consultar_tasa_referencia`.
+
 Transmisión del Poder Ejecutivo (art. 74, fracc. VII): 1 de diciembre hasta
 2018; 1 de octubre desde 2024 (DOF 30-sep-2024), cada seis años.
 

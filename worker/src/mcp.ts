@@ -36,6 +36,7 @@
  * vigente retiró.
  */
 import { consultarTipoCambio } from "./tipo_cambio";
+import { consultarTasa } from "./tasas";
 import type { Base } from "./tipo_cambio";
 import { consultarHorarios, consultarTarifa, resumenRegiones } from "./consultas";
 
@@ -153,6 +154,22 @@ const HERRAMIENTAS = [
     },
   },
   {
+    name: "consultar_tasa_referencia",
+    title: "Tasa de referencia de Banxico (TIIE de Fondeo)",
+    description:
+      "TIIE de Fondeo a un día hábil bancario (SF331451, en % anual) vigente en una fecha: el último " +
+      "publicado en o antes de ella. Es la tasa de referencia de los financiamientos nuevos (la TIIE a " +
+      "28, 91 y 182 días se retira en operaciones nuevas). Sin fecha, la más reciente.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        fecha: { type: "string", description: "AAAA-MM-DD. Opcional." },
+        serie: { type: "string", enum: ["fondeo"], description: "fondeo (por defecto)." },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
     name: "listar_regiones",
     title: "Listar las regiones tarifarias y qué cobertura de datos hay",
     description:
@@ -231,6 +248,10 @@ async function llamarHerramienta(nombre: unknown, args: unknown, entorno: Entorn
   }
   if (nombre === "consultar_tipo_cambio") {
     const r = await consultarTipoCambio(entorno.DB, a, Date.now());
+    return "error" in r ? fallo(r.error as string, r) : texto(r);
+  }
+  if (nombre === "consultar_tasa_referencia") {
+    const r = await consultarTasa(entorno.DB, a, Date.now());
     return "error" in r ? fallo(r.error as string, r) : texto(r);
   }
   if (nombre === "listar_regiones") return texto(resumenRegiones());
