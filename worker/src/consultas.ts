@@ -6,6 +6,7 @@ import { festivos, franjas, iso, periodoEn, resolver, temporadaDe, tipoDia } fro
 import {
   AVISO,
   catalogo,
+  describirHorario,
   regionesDeMunicipio,
   listarEstados,
   listarRegiones,
@@ -25,6 +26,25 @@ function entero(v: unknown): number | null {
 }
 
 /** Resuelve la región desde región explícita o desde estado + municipio. */
+const NOTA_MUNICIPIO_ACUERDO =
+  "Este municipio no aparece en el desplegable del portal de CFE; su división sale de la tabla " +
+  "oficial del numeral 5.9 del Acuerdo CNE CT/11.SE/8-2025 (tarifas 2026).";
+
+const NOTA_DIVISION =
+  "El portal de CFE y el numeral 5.9 del Acuerdo CNE CT/11.SE/8-2025 no coinciden en la división de este " +
+  "municipio. La respuesta sigue al portal; en divisiones_segun_acuerdo va lo que dice el Acuerdo. Si tu " +
+  "recibo indica otra división, consúltala con el parámetro region.";
+
+/** estado y municipio de la respuesta, más las advertencias que apliquen (solo cuando aplican). */
+function datosMunicipio(ubic: { via?: string; estado?: string; municipio?: string; origen?: string; acuerdo?: string[] }) {
+  if (ubic.via !== "municipio") return {};
+  return {
+    estado: ubic.estado, municipio: ubic.municipio,
+    ...(ubic.origen === "acuerdo" ? { nota_municipio: NOTA_MUNICIPIO_ACUERDO } : {}),
+    ...(ubic.acuerdo ? { divisiones_segun_acuerdo: ubic.acuerdo, nota_division: NOTA_DIVISION } : {}),
+  };
+}
+
 function resolverRegion(args: Args) {
   if (args.region) {
     return { region: normalizar(String(args.region)), regiones: [normalizar(String(args.region))],
@@ -49,6 +69,8 @@ function resolverRegion(args: Args) {
       regiones,                       // dos cuando CFE atiende con dos divisiones
       via: "municipio" as const,
       municipio: m.nombre,
+      origen: m.origen,
+      acuerdo: m.acuerdo,
       estado: catalogo.estados[normalizar(String(args.estado))].nombre,
     };
   }
@@ -79,13 +101,13 @@ export function consultarTarifa(args: Args) {
     const resultados = ubic.regiones
       .map((reg) => {
         const t = obtenerTarifa(tarifa, reg, anio, mes);
-        return t ? { region: reg, cargos: t.cargos, unidades: t.unidades,
+        return t ? { region: reg, ...describirHorario(reg), cargos: t.cargos, unidades: t.unidades,
                      periodo_cfe: t.periodo_cfe, fecha_captura: t.fecha_captura } : null;
       })
       .filter(Boolean);
     if (resultados.length) {
       return {
-        tarifa, estado: ubic.estado, municipio: ubic.municipio,
+        tarifa, ...datosMunicipio(ubic),
         regiones: ubic.regiones, anio, mes, resultados,
         nota: "CFE ofrece más de una división tarifaria para este municipio. " +
               "Cuál aplica depende del punto de suministro; confírmalo en el recibo.",
@@ -110,7 +132,10 @@ export function consultarTarifa(args: Args) {
   return {
     tarifa: r.tarifa,
     region: r.region,
-    ...(ubic.via === "municipio" ? { estado: ubic.estado, municipio: ubic.municipio } : {}),
+    // Aditivo: `region` se queda como siempre; estos dos separan los conceptos
+    // (cargos por DIVISIÓN, horarios por SISTEMA interconectado).
+    ...describirHorario(r.region),
+    ...datosMunicipio(ubic),
     anio: r.anio,
     mes: r.mes,
     periodo_cfe: r.periodo_cfe,
@@ -159,7 +184,8 @@ export function consultarHorarios(args: Args) {
 
   return {
     region: ubic.region,
-    ...(ubic.via === "municipio" ? { estado: ubic.estado, municipio: ubic.municipio } : {}),
+    ...describirHorario(ubic.region),
+    ...datosMunicipio(ubic),
     zona: zona.zona,
     fecha: texto,
     temporada,
@@ -198,7 +224,8 @@ export function consultarCalendario(args: Args) {
 
   return {
     region: ubic.region,
-    ...(ubic.via === "municipio" ? { estado: ubic.estado, municipio: ubic.municipio } : {}),
+    ...describirHorario(ubic.region),
+    ...datosMunicipio(ubic),
     zona: zona.zona,
     anio,
     verano: {
@@ -230,6 +257,7 @@ export function resumenRegiones() {
   const regiones = listarRegiones().map((r) => ({
     region: r,
     zona: zonaDeRegion(r)?.zona ?? null,
+    sistema_horario: describirHorario(r).sistema_horario,
     periodos: periodosDe("GDMTH", r).length,
   }));
   return {

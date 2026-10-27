@@ -69,6 +69,9 @@ const HERRAMIENTAS = [
       "...) y ahórrate estado/municipio. No mezcles las dos formas sin necesidad: " +
       "con region basta. Algunos municipios tienen más de una región tarifaria " +
       "válida; en ese caso la respuesta trae un resultado por cada una. " +
+      "Si el portal de CFE y el Acuerdo de tarifas no coinciden en la división de un municipio, " +
+      "la respuesta sigue al portal y agrega divisiones_segun_acuerdo y nota_division; para " +
+      "consultar otra división, pasa region. " +
       "tarifa: la clave de la tarifa, en mayúsculas; si no se indica se asume " +
       "GDMTH (Gran Demanda en Media Tensión Horaria), que es la única con datos " +
       "capturados por ahora. mes va de 1 (enero) a 12 (diciembre), como entero, " +
@@ -116,7 +119,10 @@ const HERRAMIENTAS = [
       "sola (igual que en consultar_tarifa). fecha va en formato ISO AAAA-MM-DD " +
       "(p. ej. 2026-08-15). hora es opcional, formato HH:MM en 24 horas (p. ej. " +
       "20:30 para las 8:30 de la noche); si se omite, la respuesta trae las " +
-      "franjas del día completo sin marcar ninguna hora en particular.",
+      "franjas del día completo sin marcar ninguna hora en particular. " +
+      "Ojo: los cargos dependen de la división tarifaria, pero el horario depende " +
+      "del sistema interconectado (SIN, BC o BCS); la respuesta trae ambos en " +
+      "division y sistema_horario para no confundirlos.",
     inputSchema: {
       type: "object",
       properties: {

@@ -31,7 +31,7 @@ jobs:
 
       - name: Verificar que el parser siga funcionando
         # Si CFE rediseñó la página, esto falla antes de tocar los datos.
-        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py && python3 test_cfe_session.py
+        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py && python3 test_cfe_session.py && python3 test_cruzar_catalogo.py
 
       - name: Capturar lo que falte
         run: cd scraper && python3 actualizar_tarifas.py --faltantes --pausa 2
@@ -69,11 +69,15 @@ jobs:
           exit 1
 
       - name: Probar la API con los datos nuevos
+        id: pruebas
         if: always() && steps.commit.outputs.sin_cambios != '1'
         run: cd worker && npm install --no-audit --no-fund esbuild && npm test
 
       - name: Desplegar
-        if: always() && steps.commit.outputs.sin_cambios != '1'
+        # always() existe para que el commit/prueba/despliegue sigan aunque la captura
+        # haya salido con 'sospechosos'; pero NUNCA se despliega si las pruebas fallaron
+        # (incluida la guarda de que toda división tenga sistema de horario).
+        if: always() && steps.commit.outputs.sin_cambios != '1' && steps.pruebas.outcome == 'success'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

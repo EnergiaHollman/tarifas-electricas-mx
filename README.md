@@ -167,6 +167,83 @@ rango del verano (fechas inclusivas), festivos y franjas por temporada y tipo
 de día en minutos desde medianoche. Sirve a clientes que evalúan muchos días
 (por ejemplo, un motor de facturación) sin una consulta por día.
 
+### División tarifaria vs. sistema de horario
+
+Son dos conceptos distintos y las respuestas ya los separan:
+
+- **División tarifaria** (17): de ella dependen los **cargos** (`/v1/tarifa`).
+  El campo histórico `region` es esa división y se conserva tal cual.
+- **Sistema interconectado** (3: `SIN`, `BC`, `BCS`): de él dependen los
+  **horarios** (`/v1/horarios`, `/v1/calendario`).
+
+Las respuestas de tarifa, horarios y calendario traen además `division` y
+`sistema_horario` (aditivos: no se quitó ni renombró nada). `division` es
+`null` cuando se pidió uno de los nombres heredados del portal (CENTRAL,
+NORESTE, SUR), que siguen aceptándose y caen en el SIN.
+
+La asignación sale de la regla oficial, no de una deducción: Acuerdo CNE
+CT/11.SE/8-2025, numeral 3.1.5 c (<https://sidof.segob.gob.mx/notas/docFuente/5783862>):
+*los periodos horarios de los sistemas interconectados de BC y BCS se aplican en
+las divisiones del mismo nombre; los del SIN, en el resto.* El portal de CFE no
+publica esa tabla por división; el mapa curado vive en `data/sistemas_horario.json`
+(el scraper no lo toca, a diferencia de `horarios.json`, que regenera).
+
+Límites que conviene conocer: el texto literal de esa regla está confirmado para
+2025 (Acuerdo CRE A/158/2024, numeral 3.1.5 c, DOF 24-ene-2025, el que cita el
+portal) y para 2026; las tablas GDMTH de los tres sistemas coinciden entre ambos
+años. Para 2023 y anteriores no se ha leído la frase de asignación (el A/053/2022
+define los horarios por los mismos tres sistemas, pero no se revisó ese inciso).
+Y `prueba_sistemas_horario.mjs` hace fallar `npm test` (y por tanto el
+despliegue) si el scraper captura una división sin entrada en el mapa: no se
+asume ningún sistema por omisión.
+
+### Municipios: el catálogo del portal está atrasado frente al Acuerdo
+
+El catálogo de municipios sale del desplegable del portal de CFE. Cotejado contra
+el numeral 5.9 del Acuerdo CNE CT/11.SE/8-2025 (2,477 municipios), **39 no estaban
+en el catálogo** (de creación reciente, como San Felipe, San Quintín, Seybaplaya,
+Dzitbalché o Ñuu Savi, y otros antiguos que el desplegable no trae, como Ures o
+Paso de Ovejas) y **44 estaban con otro nombre** (abreviado, "DR. ARROYO"; o
+cortado a 30 caracteres, "COAHUAYUTLA DE JOSE MARIA IZAZ"). Otros 27 tenían una
+división distinta (ver abajo).
+
+`data/municipios_complemento.json` (generado del Acuerdo, revisado a mano; el
+scraper no lo toca) lo cubre con tres listas. `alias` y `ausentes` se consultan
+**solo si el catálogo no encuentra el municipio**, así que lo que ya resolvía no
+cambia; `divergencias` únicamente agrega una advertencia (ver más abajo):
+
+- `alias`: nombre oficial -> el nombre con que el portal lo trae.
+- `ausentes`: el municipio que el portal no trae; la división sale del Acuerdo. La
+  respuesta lleva `nota_municipio` para que se sepa que no vino del portal, y
+  `/v1/municipios` los lista con `origen: "acuerdo"`.
+- `divergencias`: municipios que el portal y el Acuerdo asignan a divisiones distintas.
+
+Cada año, al salir el Acuerdo nuevo (extraer es una herramienta offline: necesita
+`pdfplumber` y `poppler`, no corre en el CI):
+
+```bash
+cd scraper
+pip install pdfplumber
+python3 extraer_5_9.py ACUERDO.pdf /tmp/oficial.json        # falla si no cubre todas las palabras del PDF
+python3 cruzar_catalogo.py /tmp/oficial.json ../data/catalogo.json --complemento ../data/municipios_complemento.json
+```
+
+`extraer_5_9.py` compara lo extraído palabra por palabra contra poppler y se niega
+a entregar una tabla incompleta: en la de 2026 una fila de Oaxaca ocupa varias
+páginas y su continuación no trae bordes, así que un extractor que solo lea tablas
+pierde cientos de municipios sin avisar. `worker/pruebas/prueba_municipios_acuerdo.mjs`
+hace fallar `npm test` si el complemento apunta a algo que ya no existe o a una
+división sin horario o sin tarifas; los datos obsoletos pero inofensivos solo avisan.
+
+**Divisiones distintas entre el portal y el Acuerdo (30 municipios, casi todos del
+centro y sur).** Se verificó a mano contra el portal en 8 casos (Toluca, Texcoco,
+Tenancingo, Ixmiquilpan, Chignahuapan, Pinos, Tampico Alto, Cárdenas): el catálogo
+refleja fielmente al portal y el portal no coincide con el Acuerdo en ninguno. Son
+dos fuentes de CFE que difieren, así que no se sobrescribe ninguna: la respuesta
+sigue al portal y, cuando el Acuerdo dice otra cosa, agrega `divisiones_segun_acuerdo`
+y `nota_division`. La otra división se consulta con `region`. Si el recibo indica
+una división, esa manda. Los municipios están listados en `divergencias`.
+
 `/v1/tipo-cambio` devuelve el tipo de cambio pesos por dólar de Banxico vigente en una fecha
 (el último publicado en o antes de ella). `serie=fix` (por defecto) es la SF43718, el FIX por
 fecha de determinación; `serie=dof` es la SF60653, el mismo valor por fecha de liquidación (el FIX
@@ -444,6 +521,8 @@ los despliegues anteriores.
 | `data/catalogo.json` | Estado → municipio → región |
 | `data/tarifas.json` | Cargos por tarifa, región y mes |
 | `data/horarios.json` | Franjas por zona y temporada, con reglas de vigencia |
+| `data/sistemas_horario.json` | Mapa curado a mano: división tarifaria → sistema de horario (SIN/BC/BCS), con la cita al Acuerdo |
+| `data/municipios_complemento.json` | Alias y municipios ausentes del portal, generado del numeral 5.9 del Acuerdo (revisado a mano) |
 | `worker/src/calendario.ts` | Temporada, festivos, tipo de día, periodo tarifario |
 | `worker/src/consultas.ts` | Lógica compartida entre REST y MCP |
 | `worker/src/mcp.ts` | Servidor MCP: Streamable HTTP, JSON-RPC 2.0 |

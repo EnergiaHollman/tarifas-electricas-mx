@@ -67,7 +67,7 @@ jobs:
         run: cd scraper && python3 preparar_tls.py --github-env
 
       - name: Verificar que el parser siga funcionando
-        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py && python3 test_cfe_session.py
+        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py && python3 test_cfe_session.py && python3 test_cruzar_catalogo.py
 
       - name: Diagnóstico de los desplegables
         if: inputs.diagnostico
@@ -148,11 +148,12 @@ jobs:
           exit 1
 
       - name: Probar la API con los datos nuevos
+        id: pruebas
         if: always() && steps.commit.outputs.sin_cambios != '1'
         run: cd worker && npm install --no-audit --no-fund esbuild && npm test
 
       - name: Desplegar
-        if: always() && inputs.desplegar && steps.commit.outputs.sin_cambios != '1'
+        if: always() && inputs.desplegar && steps.commit.outputs.sin_cambios != '1' && steps.pruebas.outcome == 'success'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
