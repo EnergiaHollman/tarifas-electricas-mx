@@ -68,7 +68,15 @@ export type Registro = {
   municipio_consultado?: string;
   fuente: string;
   fecha_captura: string;
+  // Solo domésticas (1, 1A a 1F): escalones en kWh y, de la 1A a la 1F, los
+  // cargos van por temporada en vez de en `cargos`.
+  minimo_mensual_kwh?: number;
+  escalones?: Escalon[];
+  temporadas?: Record<string, { cargos: Record<string, number>; unidades: Record<string, string>;
+                                escalones: Escalon[]; conceptos: Registro["conceptos"] }>;
 };
+
+export type Escalon = { nombre: string; desde_kwh: number; hasta_kwh: number | null; valor: number };
 
 export const tarifas = tarifasJson as unknown as {
   actualizado: string | null;
@@ -279,11 +287,11 @@ export function describirHorario(region: string): { division: string | null; sis
  * (base/intermedia/punta). Una tarifa sin horarios no lleva sistema_horario ni
  * división de horario en la respuesta: no le aplican.
  */
-export type Ubicacion = "division" | "region_dac";
+export type Ubicacion = "division" | "region_dac" | "nacional";
 
 export const META_TARIFAS: Record<
   string,
-  { descripcion: string; horarios: boolean; ubicacion: Ubicacion; notas?: string[] }
+  { descripcion: string; horarios: boolean; ubicacion: Ubicacion; estacional?: boolean; notas?: string[] }
 > = {
   GDMTH: { descripcion: "Gran demanda en media tensión, horaria", horarios: true, ubicacion: "division" },
   GDMTO: { descripcion: "Gran demanda en media tensión, ordinaria", horarios: false, ubicacion: "division" },
@@ -303,6 +311,41 @@ export const META_TARIFAS: Record<
     ],
   },
 };
+
+/** Domésticas: precio nacional por escalones; de la 1A a la 1F, con temporada de verano. */
+const NOTAS_DOMESTICAS = (estacional: boolean): string[] => [
+  "Precio nacional: no depende de estado ni municipio.",
+  ...(estacional
+    ? [
+        "Requiere inicio_verano (2 a 5: el mes en que comienza el verano en la localidad; el verano dura " +
+          "seis meses seguidos) o temporada (verano | fuera_verano). El tamaño de los escalones cambia con la " +
+          "temporada.",
+      ]
+    : []),
+  "Los escalones están en kWh MENSUALES. Con facturación bimestral los límites se duplican; eso lo " +
+    "aplica quien consulta, no estos datos.",
+  "Los apoyos o subsidios domésticos no están en estos datos.",
+  "Los precios se leen del portal de CFE y este servicio no los ha validado contra recibos reales.",
+];
+const DOMESTICAS: [string, string][] = [
+  ["1", "Doméstica, sin temporada de verano"],
+  ["1A", "Doméstica, localidades con temperatura media mínima en verano de 25 °C"],
+  ["1B", "Doméstica, localidades con temperatura media mínima en verano de 28 °C"],
+  ["1C", "Doméstica, localidades con temperatura media mínima en verano de 30 °C"],
+  ["1D", "Doméstica, localidades con temperatura media mínima en verano de 31 °C"],
+  ["1E", "Doméstica, localidades con temperatura media mínima en verano de 32 °C"],
+  ["1F", "Doméstica, localidades con temperatura media mínima en verano de 33 °C"],
+];
+for (const [clave, descripcion] of DOMESTICAS) {
+  META_TARIFAS[clave] = {
+    descripcion, horarios: false, ubicacion: "nacional", estacional: clave !== "1",
+    notas: NOTAS_DOMESTICAS(clave !== "1"),
+  };
+}
+
+export function esEstacional(tarifa: string): boolean {
+  return META_TARIFAS[normalizar(tarifa)]?.estacional ?? false;
+}
 
 /** División tarifaria -> región de DAC. Solo divisiones confirmadas. */
 export const regionesDac = regionesDacJson as unknown as {

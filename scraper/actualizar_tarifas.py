@@ -26,6 +26,7 @@ import time
 from datetime import datetime, timezone
 
 import actualizar_dac
+import actualizar_domestica
 import cfe
 import parser as P
 
@@ -290,10 +291,10 @@ def emitir_resumen(alertas, vacios_confirmados, tarifa):
                   "CFE devolvió la página sin resultados tras reintentar.")
 
 
-def main_dac(args, s, tarifas, registros):
-    """DAC: sin catálogo ni regiones del catálogo; una consulta por mes."""
+def main_casa(args, s, tarifas, registros):
+    """DAC y domésticas: sin catálogo ni regiones; consultas solo por año y mes."""
     if args.regiones:
-        print("AVISO: --regiones no aplica a DAC (la página trae sus seis regiones juntas); se ignora.")
+        print("AVISO: --regiones no aplica a DAC ni a las domésticas (no piden ubicación); se ignora.")
     ofrecidos = sorted(s.anios(), reverse=True)
     print(f"Años ofrecidos al cargar: {ofrecidos}")
     desde = args.desde or max(ofrecidos)
@@ -308,10 +309,16 @@ def main_dac(args, s, tarifas, registros):
         tarifas["actualizado"] = ahora()
         escribir(TARIFAS, tarifas)   # guardado incremental: reanudable
 
-    print("\n== DAC (seis regiones por mes)")
-    r = actualizar_dac.capturar(s, registros, list(range(desde, hasta + 1)), meses_filtro,
-                                args.rehacer, args.faltantes, args.reintentos_vacios,
-                                args.pausa, ahora, guardar)
+    anios = list(range(desde, hasta + 1))
+    if cfe.estructura(args.tarifa) == "dac":
+        print("\n== DAC (seis regiones por mes)")
+        r = actualizar_dac.capturar(s, registros, anios, meses_filtro, args.rehacer, args.faltantes,
+                                    args.reintentos_vacios, args.pausa, ahora, guardar)
+    else:
+        print(f"\n== {args.tarifa} (precio nacional; un registro por mes)")
+        r = actualizar_domestica.capturar(s, registros, anios, meses_filtro, args.rehacer,
+                                          args.faltantes, args.reintentos_vacios, args.pausa,
+                                          ahora, guardar, args.tarifa)
     guardar()
     print(f"\n{r['nuevos']} registro(s) nuevo(s), {r['omitidos']} mes(es) ya estaban, "
           f"{r['vacios']} sin publicación, {r['sospechosos']} sospechoso(s) descartados. "
@@ -347,16 +354,16 @@ def main():
     ap.add_argument("--reintentos-vacios", type=int, default=3,
                     help="veces que se reabre la página si responde sin tabla, antes de "
                          "darla por 'sin publicación'")
-    ap.add_argument("--meses", help="solo DAC: meses a capturar, separados por coma (1-12); "
+    ap.add_argument("--meses", help="solo DAC y domésticas: meses a capturar, separados por coma (1-12); "
                                     "omitir = todos los que publique el año")
     ap.add_argument("--pausa", type=float, default=1.5)
     ap.add_argument("--inseguro", action="store_true",
                     help="salta la verificación TLS; último recurso")
     args = ap.parse_args()
 
-    es_dac = cfe.estructura(args.tarifa) == "dac"
+    es_casa = cfe.estructura(args.tarifa) in ("dac", "domestica")
     catalogo = cargar(CATALOGO, None)
-    if not catalogo and not es_dac:
+    if not catalogo and not es_casa:
         sys.exit("falta data/catalogo.json: corre construir_catalogo.py primero")
 
     tarifas = cargar(TARIFAS, {"actualizado": None, "fuente": cfe.PAGINAS[args.tarifa],
@@ -376,8 +383,8 @@ def main():
 
     s = cfe.SesionCFE(args.tarifa, pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
 
-    if es_dac:
-        return main_dac(args, s, tarifas, registros)
+    if es_casa:
+        return main_casa(args, s, tarifas, registros)
 
     # Los horarios vienen en cualquier respuesta de la página de GDMTH. Las
     # demás tarifas no los publican: nunca deben pisar el archivo.

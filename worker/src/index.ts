@@ -89,6 +89,10 @@ const OPENAPI = {
           { name: "anio", in: "query", required: true, schema: { type: "integer" } },
           { name: "mes", in: "query", required: true, schema: { type: "integer" } },
           { name: "tarifa", in: "query", schema: { type: "string", default: "GDMTH" } },
+          { name: "inicio_verano", in: "query", schema: { type: "integer", minimum: 2, maximum: 5 },
+            description: "Solo domésticas 1A a 1F: mes en que comienza el verano en la localidad (2 = febrero ... 5 = mayo)." },
+          { name: "temporada", in: "query", schema: { type: "string", enum: ["verano", "fuera_verano"] },
+            description: "Solo domésticas 1A a 1F: alternativa a inicio_verano." },
         ],
         responses: { "200": { description: "Cargos" }, "404": { description: "Sin datos" } },
       },
@@ -197,6 +201,8 @@ export default {
           anio: q("anio"),
           mes: q("mes"),
           tarifa: q("tarifa"),
+          inicio_verano: q("inicio_verano"),
+          temporada: q("temporada"),
         }),
       );
     }

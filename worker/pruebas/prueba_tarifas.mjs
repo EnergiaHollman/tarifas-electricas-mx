@@ -103,6 +103,56 @@ r = await get("/v1/regiones");
 check("NORTE Y NORESTE no aparece como región", r.cuerpo.regiones.some((x) => x.region === "NORTE Y NORESTE"), false);
 check("SUR Y PENINSULAR tampoco", r.cuerpo.regiones.some((x) => x.region === "SUR Y PENINSULAR"), false);
 check("las divisiones de siempre siguen", r.cuerpo.regiones.some((x) => x.region === "NOROESTE"), true);
+check("NACIONAL (domésticas) tampoco", r.cuerpo.regiones.some((x) => x.region === "NACIONAL"), false);
+
+console.log("\nDomésticas: precio nacional, escalones y temporada explícita");
+r = await get("/v1/tarifa?tarifa=1&anio=2026&mes=9");
+check("tarifa 1, sin ubicación ni temporada", r.status, 200);
+check("cargos (publicados por CFE)", r.cuerpo.cargos, { basico: 1.136, excedente: 4.041, intermedio: 1.381 });
+check("escalones en kWh: 75, luego 65 más, luego sin tope", r.cuerpo.escalones.map((e) => [e.nombre, e.desde_kwh, e.hasta_kwh, e.valor]),
+  [["basico", 0, 75, 1.136], ["intermedio", 75, 140, 1.381], ["excedente", 140, null, 4.041]]);
+check("mínimo mensual y periodo de facturación", [r.cuerpo.minimo_mensual_kwh, r.cuerpo.periodo_facturacion], [25, "mensual"]);
+check("sin temporada ni región de división", ["temporada" in r.cuerpo, "sistema_horario" in r.cuerpo, r.cuerpo.region], [false, false, "NACIONAL"]);
+check("la nota avisa de la facturación bimestral y de los apoyos",
+  r.cuerpo.nota.includes("bimestral") && r.cuerpo.nota.includes("subsidios"), true);
+r = await get("/v1/tarifa?tarifa=1&estado=SONORA&municipio=NAVOJOA&anio=2026&mes=9");
+check("la ubicación se ignora (precio nacional)", r.cuerpo.cargos.basico, 1.136);
+
+r = await get("/v1/tarifa?tarifa=1F&anio=2026&mes=9&inicio_verano=5");
+check("1F, septiembre con inicio en mayo: verano", [r.status, r.cuerpo.temporada, r.cuerpo.inicio_verano], [200, "verano", 5]);
+check("verano de 1F: cuatro escalones, 300 / 900 / 1300 kWh", r.cuerpo.escalones.map((e) => [e.nombre, e.desde_kwh, e.hasta_kwh, e.valor]),
+  [["basico", 0, 300, 0.851], ["intermedio_bajo", 300, 1200, 1.051], ["intermedio_alto", 1200, 2500, 2.558], ["excedente", 2500, null, 4.041]]);
+r = await get("/v1/tarifa?tarifa=1F&anio=2026&mes=9&inicio_verano=2");
+check("1F, septiembre con inicio en febrero: fuera de verano", [r.cuerpo.temporada, r.cuerpo.cargos],
+  ["fuera_verano", { basico: 1.136, excedente: 4.041, intermedio: 1.381 }]);
+check("fuera de verano de 1F: tres escalones, 75 / 125 kWh", r.cuerpo.escalones.map((e) => [e.nombre, e.desde_kwh, e.hasta_kwh]),
+  [["basico", 0, 75], ["intermedio", 75, 200], ["excedente", 200, null]]);
+r = await get("/v1/tarifa?tarifa=1f&anio=2026&mes=9&inicio_verano=4");
+check("septiembre con inicio en abril: verano (abril a septiembre)", r.cuerpo.temporada, "verano");
+r = await get("/v1/tarifa?tarifa=1A&anio=2026&mes=9&inicio_verano=3");
+check("septiembre con inicio en marzo: fuera de verano (marzo a agosto)", r.cuerpo.temporada, "fuera_verano");
+r = await get("/v1/tarifa?tarifa=1A&anio=2026&mes=9&temporada=verano");
+check("temporada explícita en lugar del inicio", [r.cuerpo.temporada, r.cuerpo.cargos.basico, "inicio_verano" in r.cuerpo], ["verano", 1.016, false]);
+r = await get("/v1/tarifa?tarifa=1A&anio=2026&mes=9&temporada=fuera%20de%20verano");
+check("temporada con espacios y mayúsculas", r.cuerpo.temporada, "fuera_verano");
+r = await get("/v1/tarifa?tarifa=1A&anio=2026&mes=9&inicio_verano=4&temporada=verano");
+check("inicio y temporada coherentes", r.cuerpo.temporada, "verano");
+
+console.log("\nDomésticas: lo que no se infiere ni se adivina");
+r = await get("/v1/tarifa?tarifa=1B&anio=2026&mes=9");
+check("sin inicio_verano ni temporada: error que lo pide", [r.status, r.cuerpo.error.includes("inicio_verano")], [404, true]);
+r = await get("/v1/tarifa?tarifa=1B&anio=2026&mes=9&inicio_verano=4&temporada=fuera_verano");
+check("inicio y temporada que se contradicen", [r.status, r.cuerpo.error.includes("se contradicen")], [404, true]);
+r = await get("/v1/tarifa?tarifa=1B&anio=2026&mes=9&inicio_verano=9");
+check("inicio fuera de 2 a 5", [r.status, r.cuerpo.error.includes("de 2 (febrero) a 5 (mayo)")], [404, true]);
+r = await get("/v1/tarifa?tarifa=1B&anio=2026&mes=9&temporada=invierno");
+check("temporada desconocida", [r.status, r.cuerpo.error.includes("verano")], [404, true]);
+r = await get("/v1/tarifa?tarifa=1B&anio=2026&mes=1&temporada=verano");
+check("enero no tiene verano con los inicios que ofrece CFE: lo dice", [r.status, r.cuerpo.temporadas_disponibles], [404, ["fuera_verano"]]);
+r = await get("/v1/tarifa?tarifa=1B&anio=2026&mes=1&inicio_verano=2");
+check("enero con cualquier inicio: fuera de verano", r.cuerpo.temporada, "fuera_verano");
+r = await get("/v1/tarifa?tarifa=1B&anio=2024&mes=9&inicio_verano=2");
+check("doméstica sin datos de ese año: 404 con lo que sí hay", [r.status, r.cuerpo.periodos_disponibles.includes("2025-01")], [404, true]);
 
 console.log("\nGDMTH sigue igual");
 r = await get("/v1/tarifa?estado=SONORA&municipio=NAVOJOA&anio=2026&mes=3");
@@ -121,12 +171,14 @@ check("y sin periodos disponibles", r.cuerpo.periodos_disponibles, []);
 
 r = await get("/v1/tarifa?tarifa=NOEXISTE&region=NOROESTE&anio=2026&mes=9");
 check("tarifa desconocida: 404", r.status, 404);
-check("lista las tarifas disponibles", r.cuerpo.tarifas_disponibles, ["DAC", "GDMTH", "GDMTO", "PDBT"]);
+check("lista las tarifas disponibles", r.cuerpo.tarifas_disponibles,
+  ["1", "1A", "1B", "1C", "1D", "1E", "1F", "DAC", "GDMTH", "GDMTO", "PDBT"]);
 
 console.log("\n/v1/tarifas");
 r = await get("/v1/tarifas");
 check("status", r.status, 200);
-check("claves", r.cuerpo.tarifas.map((t) => t.tarifa), ["DAC", "GDMTH", "GDMTO", "PDBT"]);
+check("claves", r.cuerpo.tarifas.map((t) => t.tarifa),
+  ["1", "1A", "1B", "1C", "1D", "1E", "1F", "DAC", "GDMTH", "GDMTO", "PDBT"]);
 const por = Object.fromEntries(r.cuerpo.tarifas.map((t) => [t.tarifa, t]));
 const { GDMTH: h, GDMTO: o, PDBT: pd, DAC: dac } = por;
 check("GDMTH tiene horarios y 17 regiones", [h.horarios, h.regiones.length], [true, 17]);
@@ -143,6 +195,14 @@ check("DAC: seis regiones de DAC, sin horarios, por región de DAC",
 check("DAC incluye el registro de validación de 2019-09", dac.periodo_desde, "2019-09");
 check("DAC: seis registros por mes", dac.registros >= 6 * 24, true);
 check("DAC declara que el fijo de 2025-2026 no está validado", dac.notas.some((n) => n.includes("NO está validado")), true);
+check("domésticas: precio nacional, por escalones",
+  ["1", "1A", "1B", "1C", "1D", "1E", "1F"].map((c) => [por[c].ubicacion, por[c].regiones, por[c].horarios, por[c].periodo_desde]),
+  Array(7).fill(["nacional", ["NACIONAL"], false, "2025-01"]));
+check("las domésticas con temporada piden inicio_verano o temporada; la 1 no",
+  [por["1"].parametros.includes("inicio_verano"), por["1A"].parametros.includes("inicio_verano")], [false, true]);
+check("las domésticas avisan que los apoyos no están y que los límites son mensuales",
+  por["1F"].notas.some((n) => n.includes("subsidios")) && por["1F"].notas.some((n) => n.includes("MENSUALES")), true);
+check("la 1 no menciona temporada en sus notas", por["1"].notas.some((n) => n.includes("inicio_verano")), false);
 check("DAC declara que solo Noroeste está confirmada", dac.notas.some((n) => n.includes("Solo la división NOROESTE")), true);
 check("las demás tarifas no llevan notas", [h.notas, o.notas, pd.notas], [undefined, undefined, undefined]);
 check("GDMTO llega al menos a 2026-09", o.periodo_hasta >= "2026-09", true);

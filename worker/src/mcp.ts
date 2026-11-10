@@ -97,7 +97,18 @@ const HERRAMIENTAS = [
         tarifa: {
           type: "string",
           default: "GDMTH",
-          description: "Clave de la tarifa en mayúsculas (GDMTH, GDMTO, PDBT, DAC). Por omisión GDMTH. DAC se ubica por región de DAC (Central, Noroeste, ...).",
+          description: "Clave de la tarifa en mayúsculas (GDMTH, GDMTO, PDBT, DAC, 1, 1A a 1F). Por omisión GDMTH. DAC se ubica por región de DAC (Central, Noroeste, ...). Las domésticas (1, 1A a 1F) no llevan ubicación.",
+        },
+        inicio_verano: {
+          type: "integer",
+          minimum: 2,
+          maximum: 5,
+          description: "Solo domésticas 1A a 1F: mes en que comienza el verano en la localidad (2 = febrero ... 5 = mayo); el verano dura seis meses seguidos.",
+        },
+        temporada: {
+          type: "string",
+          enum: ["verano", "fuera_verano"],
+          description: "Solo domésticas 1A a 1F: alternativa a inicio_verano si ya se sabe la temporada del periodo.",
         },
       },
       required: ["anio", "mes"],

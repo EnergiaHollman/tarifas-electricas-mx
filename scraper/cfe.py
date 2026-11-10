@@ -67,6 +67,37 @@ TARIFAS = {
     },
 }
 
+# Domésticas. Viven en TarifasCRECasa, no piden estado, municipio ni división (el
+# precio es nacional) y, de la 1A a la 1F, dependen de la temporada de verano de
+# la localidad: la página pide "el mes en que comienza el verano" (febrero a
+# mayo) y el verano dura seis meses seguidos desde ese mes. La 1 no tiene
+# temporadas. Las 1C a 1F traen cuatro escalones en verano (dos "intermedio",
+# bajo y alto) y tres fuera de verano; la 1, la 1A y la 1B, tres siempre.
+_CASA = "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/"
+_TRES = frozenset({"basico", "intermedio", "excedente"})
+_CUATRO = frozenset({"basico", "intermedio_bajo", "intermedio_alto", "excedente"})
+REGION_NACIONAL = "NACIONAL"
+# Mes en que comienza el verano que ofrece la página; con febrero y mayo se
+# obtienen las dos temporadas de cualquier mes (comprobado contra marzo y abril).
+INICIOS_VERANO = (2, 5)
+TEMP_DOMESTICAS = {
+    "1": ("sin temporadas", {None: [_TRES]}),
+    "1A": ("temperatura media mínima en verano de 25 °C", {"verano": [_TRES], "fuera_verano": [_TRES]}),
+    "1B": ("temperatura media mínima en verano de 28 °C", {"verano": [_TRES], "fuera_verano": [_TRES]}),
+    "1C": ("temperatura media mínima en verano de 30 °C", {"verano": [_CUATRO], "fuera_verano": [_TRES]}),
+    "1D": ("temperatura media mínima en verano de 31 °C", {"verano": [_CUATRO], "fuera_verano": [_TRES]}),
+    "1E": ("temperatura media mínima en verano de 32 °C", {"verano": [_CUATRO], "fuera_verano": [_TRES]}),
+    "1F": ("temperatura media mínima en verano de 33 °C", {"verano": [_CUATRO], "fuera_verano": [_TRES]}),
+}
+for _clave_dom, (_desc, _validos) in TEMP_DOMESTICAS.items():
+    TARIFAS[_clave_dom] = {
+        "url": _CASA + f"Tarifa{_clave_dom}.aspx",
+        "tiene_horarios": False,
+        "estructura": "domestica",
+        "temporadas": _clave_dom != "1",
+        "cargos_validos": _validos,
+    }
+
 # Las regiones que publica la tabla de DAC. No son las 17 divisiones de GDMTH.
 # Si CFE agrega, quita o renombra una, la captura de ese mes es sospechosa en
 # vez de guardarse a medias.
@@ -75,7 +106,7 @@ REGIONES_DAC = frozenset({"BAJA CALIFORNIA", "BAJA CALIFORNIA SUR", "CENTRAL",
 
 
 def estructura(tarifa):
-    """'negocio' (estado, municipio, división) o 'dac' (solo año y mes)."""
+    """'negocio' (estado, municipio, división), 'dac' (año y mes) o 'domestica'."""
     return TARIFAS[tarifa]["estructura"]
 
 # Compatibilidad: el resto del código sigue pidiendo la URL por aquí.
@@ -83,8 +114,15 @@ PAGINAS = {clave: meta["url"] for clave, meta in TARIFAS.items()}
 
 
 def tabla_completa(tarifa, tabla):
-    """¿La tabla trae exactamente las claves de cargo que esa tarifa publica?"""
-    return frozenset(tabla["cargos"]) in TARIFAS[tarifa]["cargos_validos"]
+    """¿La tabla trae exactamente las claves de cargo que esa tarifa publica?
+
+    En las domésticas la lista de claves válidas depende de la temporada de la
+    tabla (cuatro escalones en verano en la 1C a la 1F, tres fuera de verano).
+    """
+    validos = TARIFAS[tarifa]["cargos_validos"]
+    if isinstance(validos, dict):
+        validos = validos.get(tabla.get("temporada"), [])
+    return frozenset(tabla["cargos"]) in validos
 
 
 def tiene_horarios(tarifa):
@@ -244,6 +282,30 @@ class SesionCFE:
             raise ErrorCFE(f"mes {mes} no está entre los que ofrece la página "
                            f"ahora mismo ({ofrecidos}); hay que revisar meses() "
                            f"después del año antes de pedir un mes")
+        self._postback(control, {control: str(mes)})
+
+    def poner_inicio_verano(self, mes):
+        """Domésticas 1A a 1F: mes en que comienza el verano (febrero a mayo)."""
+        actual, _ = self._actual(P.DD_INICIO_VERANO)
+        if actual == str(mes):
+            return
+        ofrecidos = [v for v, _, _ in P.opciones(self.html, P.DD_INICIO_VERANO)]
+        if str(mes) not in ofrecidos:
+            raise ErrorCFE(f"el inicio de verano {mes} no está entre los que ofrece la página ({ofrecidos})")
+        self._postback(P.DD_INICIO_VERANO, {P.DD_INICIO_VERANO: str(mes)})
+
+    def forzar_mes(self, mes):
+        """Vuelve a pedir el mes aunque ya esté seleccionado.
+
+        Cambiar el inicio de verano deja el mes puesto; pedirlo otra vez asegura
+        que la tabla sea la del inicio nuevo y no la que quedó de antes.
+        """
+        control = P.control_mes(self.html)
+        if control is None:
+            raise ErrorCFE("la página no tiene ningún control de mes ahora mismo")
+        ofrecidos = [v for v, _, _ in P.opciones(self.html, control)]
+        if str(mes) not in ofrecidos:
+            raise ErrorCFE(f"mes {mes} no está entre los que ofrece la página ({ofrecidos})")
         self._postback(control, {control: str(mes)})
 
     def poner_estado(self, estado_id):

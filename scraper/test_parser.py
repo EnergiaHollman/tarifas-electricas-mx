@@ -231,6 +231,72 @@ check("la misma forma en 2019", sorted(dac19) == sorted(dac), True)
 check("una página de GDMTH no trae tablas de DAC", P.parsear_dac(HTML), [])
 check("una página vacía tampoco", P.parsear_dac("<html></html>"), [])
 
+print("\nDomésticas (1 y 1A a 1F): escalones, temporada y mínimo")
+def dom(nombre):
+    return P.parsear_domestica((pathlib.Path(__file__).parent / "muestra" / f"{nombre}.html").read_text(
+        encoding="utf-8", errors="replace"))
+d1 = dom("Dom1_2026-09")
+check("tarifa 1: control de mes propio", P.control_mes((pathlib.Path(__file__).parent / "muestra" / "Dom1_2026-09.html")
+      .read_text(encoding="utf-8", errors="replace")), P.DD_MES_CASA_1)
+check("tarifa 1 no tiene temporada ni inicio de verano", (d1["temporada"], d1["inicio_verano"]), (None, None))
+check("tarifa 1: periodo derivado del mes elegido", d1["periodo_cfe"], "SEP-26")
+check("tarifa 1: cargos (publicados por CFE)", d1["cargos"], {"basico": 1.136, "intermedio": 1.381, "excedente": 4.041})
+check("tarifa 1: escalones acumulados (75, luego 65 más, luego sin tope)", d1["escalones"], [
+    {"nombre": "basico", "desde_kwh": 0, "hasta_kwh": 75, "valor": 1.136},
+    {"nombre": "intermedio", "desde_kwh": 75, "hasta_kwh": 140, "valor": 1.381},
+    {"nombre": "excedente", "desde_kwh": 140, "hasta_kwh": None, "valor": 4.041}])
+check("mínimo mensual: 25 kWh", d1["minimo_mensual_kwh"], 25)
+check("unidades derivadas: $/kWh", d1["unidades"], {"basico": "$/kWh", "intermedio": "$/kWh", "excedente": "$/kWh"})
+check("conceptos con la forma de siempre", d1["conceptos"][0],
+      {"int_horario": "-", "cargo": "Consumo básico", "unidades": "$/kWh", "valor": 1.136})
+check("tarifa 1 en 2019 (año pasado, mismos controles)", dom("Dom1_2019-09")["cargos"],
+      {"basico": 0.82, "intermedio": 0.992, "excedente": 2.901})
+check("tarifa 1 en 2019: periodo", dom("Dom1_2019-09")["periodo_cfe"], "SEP-19")
+
+v = dom("Dom1A_2026-09_ini4")
+check("1A control de mes con inicio de verano", P.control_mes((pathlib.Path(__file__).parent / "muestra" / "Dom1A_2026-09_ini4.html")
+      .read_text(encoding="utf-8", errors="replace")), P.DD_MES_CASA_2)
+check("1A septiembre con inicio en abril: verano", (v["temporada"], v["inicio_verano"]), ("verano", "4"))
+check("1A verano: 100 + 50 kWh", [(e["nombre"], e["desde_kwh"], e["hasta_kwh"], e["valor"]) for e in v["escalones"]],
+      [("basico", 0, 100, 1.016), ("intermedio", 100, 150, 1.179), ("excedente", 150, None, 4.041)])
+f = dom("Dom1A_2026-09_ini2")
+check("1A septiembre con inicio en febrero: fuera de verano", (f["temporada"], f["inicio_verano"]), ("fuera_verano", "2"))
+check("1A fuera de verano: 75 + 75 kWh (otro tamaño que en verano)",
+      [(e["nombre"], e["desde_kwh"], e["hasta_kwh"], e["valor"]) for e in f["escalones"]],
+      [("basico", 0, 75, 1.136), ("intermedio", 75, 150, 1.381), ("excedente", 150, None, 4.041)])
+c = dom("Dom1C_2026-09_ini5")
+check("1C verano trae CUATRO escalones: dos intermedios, bajo y alto (CFE los rotula así)",
+      [(e["nombre"], e["desde_kwh"], e["hasta_kwh"], e["valor"]) for e in c["escalones"]],
+      [("basico", 0, 150, 1.016), ("intermedio_bajo", 150, 300, 1.179),
+       ("intermedio_alto", 300, 450, 1.515), ("excedente", 450, None, 4.041)])
+f6 = dom("Dom1F_2026-09_ini5")
+check("1F verano: 300, 900 y 1300 kWh", [(e["nombre"], e["desde_kwh"], e["hasta_kwh"], e["valor"]) for e in f6["escalones"]],
+      [("basico", 0, 300, 0.851), ("intermedio_bajo", 300, 1200, 1.051),
+       ("intermedio_alto", 1200, 2500, 2.558), ("excedente", 2500, None, 4.041)])
+f6f = dom("Dom1F_2026-09_ini2")
+check("1F fuera de verano: tres escalones (75 + 125 kWh)", [(e["nombre"], e["desde_kwh"], e["hasta_kwh"], e["valor"]) for e in f6f["escalones"]],
+      [("basico", 0, 75, 1.136), ("intermedio", 75, 200, 1.381), ("excedente", 200, None, 4.041)])
+check("el excedente es el mismo en todas las tarifas en septiembre de 2026",
+      {x["escalones"][-1]["valor"] for x in (d1, v, f, c, f6, f6f)}, {4.041})
+check("una página de DAC no trae tabla doméstica", P.parsear_domestica(HTML_DAC), None)
+check("una página de GDMTH tampoco", P.parsear_domestica(HTML), None)
+check("una página vacía tampoco", P.parsear_domestica("<html></html>"), None)
+
+print("\nUn texto que el parser no reconoce no se inventa")
+html_dom = (pathlib.Path(__file__).parent / "muestra" / "Dom1_2026-09.html").read_text(encoding="utf-8", errors="replace")
+def falla(html):
+    try:
+        P.parsear_domestica(html)
+        return "no falló"
+    except P.ErrorParseo as e:
+        return "ErrorParseo"
+check("tamaño de escalón con otra redacción", falla(html_dom.replace("los primeros 75", "los primerísimos 75")), "ErrorParseo")
+check("'siguientes' donde va 'primeros'", falla(html_dom.replace("los primeros 75", "los siguientes 75")), "ErrorParseo")
+check("excedente sin 'adicional'", falla(html_dom.replace("adicional a los anteriores", "extra")), "ErrorParseo")
+mutado = html_dom.replace("1.136", "n/d")
+check("la mutación de la prueba sí cambió el HTML (no es una prueba vacía)", mutado != html_dom, True)
+check("precio ilegible", falla(mutado), "ErrorParseo")
+
 print()
 if fallos:
     print(f"{len(fallos)} prueba(s) fallaron: {', '.join(fallos)}")
