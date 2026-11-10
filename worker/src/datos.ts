@@ -280,6 +280,7 @@ export function describirHorario(region: string): { division: string | null; sis
 export const META_TARIFAS: Record<string, { descripcion: string; horarios: boolean }> = {
   GDMTH: { descripcion: "Gran demanda en media tensión, horaria", horarios: true },
   GDMTO: { descripcion: "Gran demanda en media tensión, ordinaria", horarios: false },
+  PDBT: { descripcion: "Pequeña demanda en baja tensión, hasta 25 kW-mes", horarios: false },
 };
 
 export function tieneHorarios(tarifa: string): boolean {
