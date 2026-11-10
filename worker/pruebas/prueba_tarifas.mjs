@@ -44,6 +44,22 @@ check("Oriente 2025-10 (antes del cambio de enero de 2026)", r.cuerpo.cargos,
 r = await get("/v1/tarifa?tarifa=gdmto&region=noroeste&anio=2026&mes=9");
 check("clave de tarifa y región sin importar mayúsculas", r.cuerpo.cargos.capacidad, 327.96);
 
+console.log("\nPDBT: cargos reales de CFE (Noroeste, marzo 2026)");
+r = await get("/v1/tarifa?tarifa=PDBT&estado=SONORA&municipio=NAVOJOA&anio=2026&mes=3");
+check("status", r.status, 200);
+check("tarifa y región", [r.cuerpo.tarifa, r.cuerpo.region], ["PDBT", "NOROESTE"]);
+check("periodo de CFE", r.cuerpo.periodo_cfe, "MAR-26");
+check("dos cargos: sin demanda ni horarios", r.cuerpo.cargos, { energia: 3.347, fijo: 19.78 });
+check("unidades", r.cuerpo.unidades, { energia: "$/kWh", fijo: "$/mes" });
+check("sin sistema_horario ni división de horario",
+  ["sistema_horario" in r.cuerpo, "division" in r.cuerpo], [false, false]);
+r = await get("/v1/tarifa?tarifa=PDBT&region=NOROESTE&anio=2025&mes=12");
+check("el cambio de cargo fijo de enero de 2026 se ve (diciembre)", r.cuerpo.cargos, { energia: 3.435, fijo: 77.77 });
+r = await get("/v1/tarifa?tarifa=PDBT&region=NOROESTE&anio=2026&mes=1");
+check("el cambio de cargo fijo de enero de 2026 se ve (enero)", r.cuerpo.cargos, { energia: 3.345, fijo: 19.78 });
+r = await get("/v1/tarifa?tarifa=PDBT&region=ORIENTE&anio=2026&mes=3");
+check("PDBT en una región sin capturar: 404", r.status, 404);
+
 console.log("\nGDMTH sigue igual");
 r = await get("/v1/tarifa?estado=SONORA&municipio=NAVOJOA&anio=2026&mes=3");
 check("cargos de GDMTH", r.cuerpo.cargos, {
@@ -61,18 +77,21 @@ check("y sin periodos disponibles", r.cuerpo.periodos_disponibles, []);
 
 r = await get("/v1/tarifa?tarifa=NOEXISTE&region=NOROESTE&anio=2026&mes=9");
 check("tarifa desconocida: 404", r.status, 404);
-check("lista las tarifas disponibles", r.cuerpo.tarifas_disponibles, ["GDMTH", "GDMTO"]);
+check("lista las tarifas disponibles", r.cuerpo.tarifas_disponibles, ["GDMTH", "GDMTO", "PDBT"]);
 
 console.log("\n/v1/tarifas");
 r = await get("/v1/tarifas");
 check("status", r.status, 200);
-check("claves", r.cuerpo.tarifas.map((t) => t.tarifa), ["GDMTH", "GDMTO"]);
-const [h, o] = r.cuerpo.tarifas;
+check("claves", r.cuerpo.tarifas.map((t) => t.tarifa), ["GDMTH", "GDMTO", "PDBT"]);
+const [h, o, pd] = r.cuerpo.tarifas;
 check("GDMTH tiene horarios y 17 regiones", [h.horarios, h.regiones.length], [true, 17]);
 check("GDMTH desde 2018-01", h.periodo_desde, "2018-01");
 check("GDMTO sin horarios", o.horarios, false);
 check("GDMTO piloto: Noroeste y Oriente", o.regiones, ["NOROESTE", "ORIENTE"]);
 check("GDMTO desde 2025-01", o.periodo_desde, "2025-01");
+check("PDBT piloto: Noroeste, sin horarios, desde 2025-01",
+  [pd.regiones, pd.horarios, pd.periodo_desde, pd.registros >= 21], [["NOROESTE"], false, "2025-01", true]);
+check("PDBT con descripción", pd.descripcion.includes("Pequeña demanda"), true);
 check("GDMTO llega al menos a 2026-09", o.periodo_hasta >= "2026-09", true);
 check("registros de GDMTO = meses de las dos regiones", o.registros >= 42, true);
 check("explica qué es el mes", r.cuerpo.nota_mes.includes("sin ajustes"), true);

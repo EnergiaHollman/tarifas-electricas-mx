@@ -310,7 +310,7 @@ def main():
                          "que un dato viejo contaminado podría sobrevivir; --limpiar-todo "
                          "no deja ningún dato viejo por delante, contaminado o no. "
                          "Como tarifas.json está versionado en git, es reversible.")
-    ap.add_argument("--reintentos-vacios", type=int, default=2,
+    ap.add_argument("--reintentos-vacios", type=int, default=3,
                     help="veces que se reabre la página si responde sin tabla, antes de "
                          "darla por 'sin publicación'")
     ap.add_argument("--pausa", type=float, default=1.5)

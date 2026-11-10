@@ -97,7 +97,7 @@ const HERRAMIENTAS = [
         tarifa: {
           type: "string",
           default: "GDMTH",
-          description: "Clave de la tarifa en mayúsculas (GDMTH, GDMTO). Por omisión GDMTH.",
+          description: "Clave de la tarifa en mayúsculas (GDMTH, GDMTO, PDBT). Por omisión GDMTH.",
         },
       },
       required: ["anio", "mes"],
