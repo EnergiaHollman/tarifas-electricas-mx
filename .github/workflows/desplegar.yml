@@ -1,0 +1,61 @@
+name: Desplegar
+
+# Publica el Worker cuando cambia lo que sirve: el código (worker/) o los datos
+# (data/). Sin esto, un PR mergeado no llega a producción: los otros dos
+# workflows solo despliegan al final de una captura que commitea datos nuevos.
+# (Pasó con GDMTO, PDBT y DAC: estuvieron en main y no en producción hasta un
+# `wrangler deploy` a mano.)
+#
+# También se puede lanzar a mano: Actions -> Desplegar -> Run workflow.
+#
+# Solo corre sobre main, nunca sobre pull requests: el secreto de Cloudflare no
+# debe estar al alcance de código que aún no se revisó.
+#
+# Los commits que hacen "Actualizar tarifas" y "Backfill (manual)" los empuja
+# GITHUB_TOKEN, y GitHub no dispara otros workflows desde esos pushes. Por eso
+# no hay doble despliegue: esos dos siguen desplegando por su cuenta.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "worker/**"
+      - "data/**"
+      - ".github/workflows/desplegar.yml"
+  workflow_dispatch:
+
+# Uno a la vez y en orden: dos merges seguidos no deben pisarse, y el segundo no
+# debe cancelar a un despliegue a medias.
+concurrency:
+  group: desplegar
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  desplegar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Probar la API
+        # Incluye la guarda de integridad de los datos. NUNCA se despliega si
+        # algo falla: los pasos siguientes no corren.
+        run: cd worker && npm install --no-audit --no-fund esbuild && npm test
+
+      - name: Desplegar
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: worker
+
+      - name: Resumen
+        run: |
+          {
+            echo "## Despliegue"
+            echo ""
+            echo "- Commit: \`${GITHUB_SHA::7}\`"
+            echo "- Disparado por: \`${GITHUB_EVENT_NAME}\`"
+            echo "- Registros de tarifas servidos: $(python3 -c "import json;print(len(json.load(open('data/tarifas.json'))['registros']))")"
+          } >> "$GITHUB_STEP_SUMMARY"
