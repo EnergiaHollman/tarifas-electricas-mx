@@ -24,6 +24,13 @@ DD_MES_HISTORICO = "ctl00$ContentPlaceHolder1$MesVerano3$ddMesConsulta"
 # La página de DAC (carpeta TarifasCRECasa) llama distinto a su control de mes
 # del año en curso; para años pasados usa el mismo DD_MES_HISTORICO.
 DD_MES_DAC = "ctl00$ContentPlaceHolder1$Fecha1$ddMes"
+# Domésticas (Tarifa1.aspx ... Tarifa1F.aspx). La 1 tiene un solo control de mes;
+# de la 1A a la 1F hay además "mes en que comienza el verano en tu localidad"
+# (febrero a mayo) y el control de mes pasa a ser otro. Los años pasados usan
+# los mismos nombres (a diferencia de GDMTH).
+DD_MES_CASA_1 = "ctl00$ContentPlaceHolder1$MesVerano1$ddMesConsulta"
+DD_MES_CASA_2 = "ctl00$ContentPlaceHolder1$MesVerano2$ddMesConsulta"
+DD_INICIO_VERANO = "ctl00$ContentPlaceHolder1$MesVerano1$ddMesVerano"
 # Ocultos que el servidor escribe con el año y mes vigentes. No hay JavaScript
 # que los actualice, así que al hacer postback hay que mandarlos coherentes.
 HD_ANIO = "ctl00$ContentPlaceHolder1$hdAnio"
@@ -103,6 +110,10 @@ def control_mes(html):
         return DD_MES_HISTORICO
     if s.find("select", attrs={"name": DD_MES_DAC}) is not None:
         return DD_MES_DAC
+    if s.find("select", attrs={"name": DD_MES_CASA_2}) is not None:
+        return DD_MES_CASA_2
+    if s.find("select", attrs={"name": DD_MES_CASA_1}) is not None:
+        return DD_MES_CASA_1
     return None
 
 
@@ -249,6 +260,21 @@ def _parsear_tabla(tabla):
 # DAC (Doméstico de Alto Consumo)
 # --------------------------------------------------------------------------
 
+def _periodo_seleccionado(s):
+    """'SEP-26' a partir del año y el mes elegidos en la página, o None.
+
+    Las páginas de DAC y de las domésticas no rotulan el periodo en la tabla
+    como GDMTH; se deriva de la selección. Sirve también de guardia: el que
+    captura compara este periodo con el mes que pidió.
+    """
+    control = control_mes(s)
+    mes = seleccionado(s, control)[0] if control else None
+    anio = seleccionado(s, DD_ANIO)[0]
+    if mes and anio and mes.isdigit() and 1 <= int(mes) <= 12:
+        return f"{MESES[int(mes) - 1][:3]}-{anio[-2:]}"
+    return None
+
+
 def parsear_dac(html):
     """Las tablas de DAC de la página -> una entrada por región de DAC.
 
@@ -263,12 +289,7 @@ def parsear_dac(html):
     trae resultados.
     """
     s = _sopa(html)
-    control = control_mes(s)
-    mes = seleccionado(s, control)[0] if control else None
-    anio = seleccionado(s, DD_ANIO)[0]
-    periodo = None
-    if mes and anio and mes.isdigit() and 1 <= int(mes) <= 12:
-        periodo = f"{MESES[int(mes) - 1][:3]}-{anio[-2:]}"
+    periodo = _periodo_seleccionado(s)
 
     fuera = []
     for tabla in s.find_all("table"):
@@ -308,6 +329,96 @@ def parsear_dac(html):
                           "conceptos": conceptos, "cargos": cargos, "unidades": unidades,
                           "facturacion": None})
     return fuera
+
+
+# --------------------------------------------------------------------------
+# Domésticas (1, 1A, 1B, 1C, 1D, 1E, 1F)
+# --------------------------------------------------------------------------
+
+class ErrorParseo(ValueError):
+    """Un texto de CFE que el parser no reconoce. No se inventa un valor."""
+
+
+_RE_TEMPORADA = re.compile(r"^\s*2\.[12]\s+Temporada\s+(de verano|fuera de verano)\s*$", re.I)
+_RE_ESCALON = re.compile(r"\b(primeros|siguientes)\s+(\d[\d,]*)", re.I)
+_RE_MINIMO = re.compile(r"M[ií]nimo mensual\s+El equivalente a\s+(\d+)", re.I)
+
+
+def _escalones(filas):
+    """Filas (concepto, precio, texto) -> escalones con límites acumulados.
+
+    El tamaño de cada escalón viene en texto libre ("por cada uno de los
+    primeros 75 ...", "... de los siguientes 65 ..."); se suma para tener el
+    rango en kWh. El último ("excedente") no tiene tope. Cualquier texto que no
+    encaje hace fallar el parser en vez de adivinar un límite.
+    """
+    fuera, acumulado = [], 0
+    for i, (concepto, precio, texto) in enumerate(filas):
+        nombre = _clave(concepto)
+        nombre = nombre[len("consumo_"):] if nombre.startswith("consumo_") else nombre
+        valor = _numero(precio)
+        if not nombre or valor is None:
+            raise ErrorParseo(f"fila no reconocida: {concepto!r}, {precio!r}")
+        if nombre == "excedente":
+            if i != len(filas) - 1 or "adicional" not in texto.lower():
+                raise ErrorParseo(f"el excedente no es la última fila o no dice 'adicional': {texto!r}")
+            fuera.append({"nombre": nombre, "desde_kwh": acumulado, "hasta_kwh": None, "valor": valor})
+            continue
+        m = _RE_ESCALON.search(texto)
+        if not m:
+            raise ErrorParseo(f"no se reconoce el tamaño del escalón: {texto!r}")
+        esperado = "primeros" if i == 0 else "siguientes"
+        if m.group(1).lower() != esperado:
+            raise ErrorParseo(f"la fila {i + 1} dice {m.group(1)!r} y se esperaba {esperado!r}: {texto!r}")
+        tamano = int(m.group(2).replace(",", ""))
+        if tamano <= 0:
+            raise ErrorParseo(f"escalón de tamaño no positivo: {texto!r}")
+        fuera.append({"nombre": nombre, "desde_kwh": acumulado, "hasta_kwh": acumulado + tamano, "valor": valor})
+        acumulado += tamano
+    if len(fuera) < 3 or fuera[-1]["nombre"] != "excedente":
+        raise ErrorParseo("se esperaban al menos tres escalones terminando en el excedente")
+    return fuera
+
+
+def parsear_domestica(html):
+    """La tabla de consumo de una tarifa doméstica -> dict, o None si no hay.
+
+    Devuelve {"temporada": "verano" | "fuera_verano" | None, "periodo_cfe",
+    "inicio_verano": "4" | None, "minimo_mensual_kwh", "escalones", "cargos",
+    "unidades", "conceptos"}. temporada es None en la tarifa 1, que no la tiene.
+
+    Los precios van en $/kWh: la página no rotula la unidad, pero dice "por cada
+    kilowatt-hora" en cada fila.
+
+    Lanza ErrorParseo ante un texto que no reconoce; None solo si la página no
+    trae la tabla (mes sin publicar o respuesta vacía).
+    """
+    s = _sopa(html)
+    for tabla in s.find_all("table"):
+        if tabla.find("table"):
+            continue
+        filas = [[c.get_text(" ", strip=True) for c in f.find_all(["th", "td"])]
+                 for f in tabla.find_all("tr")]
+        if not filas or not all(len(f) == 3 and normalizar(f[0]).startswith("CONSUMO") for f in filas):
+            continue
+        escalones = _escalones(filas)
+        previo = tabla.find_previous(string=_RE_TEMPORADA)
+        temporada = None
+        if previo is not None:
+            temporada = "verano" if "fuera" not in previo.lower() else "fuera_verano"
+        minimo = _RE_MINIMO.search(re.sub(r"\s+", " ", s.get_text(" ", strip=True)))
+        return {
+            "temporada": temporada,
+            "periodo_cfe": _periodo_seleccionado(s),
+            "inicio_verano": seleccionado(s, DD_INICIO_VERANO)[0],
+            "minimo_mensual_kwh": int(minimo.group(1)) if minimo else None,
+            "escalones": escalones,
+            "cargos": {e["nombre"]: e["valor"] for e in escalones},
+            "unidades": {e["nombre"]: "$/kWh" for e in escalones},
+            "conceptos": [{"int_horario": "-", "cargo": f[0], "unidades": "$/kWh", "valor": e["valor"]}
+                          for f, e in zip(filas, escalones)],
+        }
+    return None
 
 
 # Cuando CFE corrige o republica un mes, la página no muestra una tabla sino
