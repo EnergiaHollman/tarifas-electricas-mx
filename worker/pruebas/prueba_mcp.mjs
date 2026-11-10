@@ -96,6 +96,10 @@ check("consultar_tarifa: mes está acotado 1-12",
    porNombre.consultar_tarifa.inputSchema.properties.mes.maximum], [1, 12]);
 check("consultar_tarifa: tarifa por omisión GDMTH",
   porNombre.consultar_tarifa.inputSchema.properties.tarifa.default, "GDMTH");
+check("consultar_tarifa: acepta inicio_verano (2 a 5) y temporada, para las domésticas",
+  [porNombre.consultar_tarifa.inputSchema.properties.inicio_verano.minimum,
+   porNombre.consultar_tarifa.inputSchema.properties.inicio_verano.maximum,
+   porNombre.consultar_tarifa.inputSchema.properties.temporada.enum], [2, 5, ["verano", "fuera_verano"]]);
 check("consultar_horarios: requiere fecha",
   porNombre.consultar_horarios.inputSchema.required, ["fecha"]);
 check("listar_regiones: sin parámetros requeridos",
@@ -119,6 +123,18 @@ for (const nombre of nombres) {
 // 4. consultar_tarifa
 // ---------------------------------------------------------------------
 console.log("\n4. consultar_tarifa");
+r = await rpc("tools/call", {
+  name: "consultar_tarifa",
+  arguments: { tarifa: "1F", anio: 2026, mes: 9, inicio_verano: 5 },
+});
+check("doméstica por MCP, sin ubicación: no es error", r.cuerpo.result.isError ?? false, false);
+const dom = JSON.parse(r.cuerpo.result.content[0].text);
+check("doméstica por MCP: temporada y escalones", [dom.temporada, dom.escalones.length, dom.cargos.basico], ["verano", 4, 0.851]);
+r = await rpc("tools/call", {
+  name: "consultar_tarifa",
+  arguments: { tarifa: "1F", anio: 2026, mes: 9 },
+});
+check("doméstica por MCP sin temporada: error que lo pide", [r.cuerpo.result.isError, r.cuerpo.result.content[0].text.includes("inicio_verano")], [true, true]);
 r = await rpc("tools/call", {
   name: "consultar_tarifa",
   arguments: { estado: "SONORA", municipio: "NAVOJOA", anio: 2026, mes: 3, tarifa: "GDMTH" },
