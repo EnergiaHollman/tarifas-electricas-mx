@@ -21,6 +21,9 @@ DD_REGION = "ctl00$ContentPlaceHolder1$EdoMpoDiv$ddDivision"
 # siquiera se renderiza y aparece este otro en su lugar. No son variantes de
 # lo mismo: son dos controles ASP.NET distintos, con onchange propio.
 DD_MES_HISTORICO = "ctl00$ContentPlaceHolder1$MesVerano3$ddMesConsulta"
+# La página de DAC (carpeta TarifasCRECasa) llama distinto a su control de mes
+# del año en curso; para años pasados usa el mismo DD_MES_HISTORICO.
+DD_MES_DAC = "ctl00$ContentPlaceHolder1$Fecha1$ddMes"
 # Ocultos que el servidor escribe con el año y mes vigentes. No hay JavaScript
 # que los actualice, así que al hacer postback hay que mandarlos coherentes.
 HD_ANIO = "ctl00$ContentPlaceHolder1$hdAnio"
@@ -98,6 +101,8 @@ def control_mes(html):
         return DD_MES
     if s.find("select", attrs={"name": DD_MES_HISTORICO}) is not None:
         return DD_MES_HISTORICO
+    if s.find("select", attrs={"name": DD_MES_DAC}) is not None:
+        return DD_MES_DAC
     return None
 
 
@@ -238,6 +243,71 @@ def _parsear_tabla(tabla):
     return {"tarifa": tarifa, "region": region, "periodo_cfe": periodo_cfe,
             "conceptos": conceptos, "cargos": cargos, "unidades": unidades_norm,
             "facturacion": _clasificar_facturacion(tabla)}
+
+
+# --------------------------------------------------------------------------
+# DAC (Doméstico de Alto Consumo)
+# --------------------------------------------------------------------------
+
+def parsear_dac(html):
+    """Las tablas de DAC de la página -> una entrada por región de DAC.
+
+    DAC no depende de estado ni municipio: la página trae una tabla con una fila
+    por "Región" (Baja California, Baja California Sur, Central, Noroeste, Norte
+    y Noreste, Sur y Peninsular), y esas regiones NO son las divisiones de
+    GDMTH. Baja California y Baja California Sur traen energía de verano y de
+    fuera de verano (tabla TarifaDacFV); las demás, un solo precio (TarifaDacV).
+
+    Cada entrada tiene la misma forma que parsear_todas, para que la guardia y
+    el guardado del actualizador la traten igual. Devuelve [] si la página no
+    trae resultados.
+    """
+    s = _sopa(html)
+    control = control_mes(s)
+    mes = seleccionado(s, control)[0] if control else None
+    anio = seleccionado(s, DD_ANIO)[0]
+    periodo = None
+    if mes and anio and mes.isdigit() and 1 <= int(mes) <= 12:
+        periodo = f"{MESES[int(mes) - 1][:3]}-{anio[-2:]}"
+
+    fuera = []
+    for tabla in s.find_all("table"):
+        if not (tabla.get("id") or "").startswith("TarifaDac"):
+            continue
+        filas = [[c.get_text(" ", strip=True) for c in f.find_all(["th", "td"])]
+                 for f in tabla.find_all("tr")]
+        cabecera = " ".join(" ".join(f) for f in filas[:2]).lower()
+        con_temporadas = "fuera de verano" in cabecera
+        for celdas in filas:
+            if len(celdas) < 3 or normalizar(celdas[0]) in ("REGION", "$/MES"):
+                continue
+            valores = [_numero(c) for c in celdas[1:]]
+            esperados = 3 if con_temporadas else 2
+            if len(valores) != esperados or any(v is None for v in valores):
+                continue
+            region = normalizar(celdas[0])
+            if con_temporadas:
+                fijo, verano, fuera_verano = valores
+                conceptos = [
+                    {"int_horario": "-", "cargo": "Fijo", "unidades": "$/mes", "valor": fijo},
+                    {"int_horario": "Verano", "cargo": "Variable (Energía)", "unidades": "$/kWh", "valor": verano},
+                    {"int_horario": "Fuera de verano", "cargo": "Variable (Energía)", "unidades": "$/kWh",
+                     "valor": fuera_verano},
+                ]
+                cargos = {"fijo": fijo, "energia_verano": verano, "energia_fuera_verano": fuera_verano}
+                unidades = {"fijo": "$/mes", "energia_verano": "$/kWh", "energia_fuera_verano": "$/kWh"}
+            else:
+                fijo, energia = valores
+                conceptos = [
+                    {"int_horario": "-", "cargo": "Fijo", "unidades": "$/mes", "valor": fijo},
+                    {"int_horario": "-", "cargo": "Variable (Energía)", "unidades": "$/kWh", "valor": energia},
+                ]
+                cargos = {"fijo": fijo, "energia": energia}
+                unidades = {"fijo": "$/mes", "energia": "$/kWh"}
+            fuera.append({"tarifa": "DAC", "region": region, "periodo_cfe": periodo,
+                          "conceptos": conceptos, "cargos": cargos, "unidades": unidades,
+                          "facturacion": None})
+    return fuera
 
 
 # Cuando CFE corrige o republica un mes, la página no muestra una tabla sino

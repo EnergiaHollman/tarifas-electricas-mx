@@ -202,6 +202,35 @@ check("sin columnas Cargo/Unidades: None",
       P.parsear_todas("<table class='table-striped'><tr><th>A</th><th>B</th></tr>"
                       "<tr><td>1</td><td>2</td></tr></table>"), [])
 
+print("\nDAC (tabla por región de DAC, sin ubicación)")
+HTML_DAC = (pathlib.Path(__file__).parent / "muestra" / "DAC_2026-09.html").read_text(encoding="utf-8", errors="replace")
+HTML_DAC_2019 = (pathlib.Path(__file__).parent / "muestra" / "DAC_2019-09.html").read_text(encoding="utf-8", errors="replace")
+check("año actual: control de mes de DAC", P.control_mes(HTML_DAC), P.DD_MES_DAC)
+check("año pasado: el mismo control histórico de siempre", P.control_mes(HTML_DAC_2019), P.DD_MES_HISTORICO)
+dac = {t["region"]: t for t in P.parsear_dac(HTML_DAC)}
+check("seis regiones de DAC", sorted(dac), ["BAJA CALIFORNIA", "BAJA CALIFORNIA SUR", "CENTRAL",
+                                            "NOROESTE", "NORTE Y NORESTE", "SUR Y PENINSULAR"])
+check("periodo derivado del mes seleccionado", {t["periodo_cfe"] for t in dac.values()}, {"SEP-26"})
+check("Noroeste 2026-09 (publicado por CFE)", dac["NOROESTE"]["cargos"], {"fijo": 145.85, "energia": 6.143})
+check("Central, Norte y Noreste, Sur y Peninsular",
+      [dac[r]["cargos"]["energia"] for r in ("CENTRAL", "NORTE Y NORESTE", "SUR Y PENINSULAR")],
+      [6.557, 5.984, 6.08])
+check("Baja California trae verano y fuera de verano", dac["BAJA CALIFORNIA"]["cargos"],
+      {"fijo": 145.85, "energia_verano": 6.376, "energia_fuera_verano": 5.475})
+check("Baja California Sur", dac["BAJA CALIFORNIA SUR"]["cargos"],
+      {"fijo": 145.85, "energia_verano": 6.948, "energia_fuera_verano": 5.475})
+check("unidades", dac["NOROESTE"]["unidades"], {"fijo": "$/mes", "energia": "$/kWh"})
+check("conceptos con la forma de siempre", dac["NOROESTE"]["conceptos"][1],
+      {"int_horario": "-", "cargo": "Variable (Energía)", "unidades": "$/kWh", "valor": 6.143})
+check("conceptos de temporada llevan Verano / Fuera de verano",
+      [c["int_horario"] for c in dac["BAJA CALIFORNIA"]["conceptos"]], ["-", "Verano", "Fuera de verano"])
+dac19 = {t["region"]: t for t in P.parsear_dac(HTML_DAC_2019)}
+check("2019-09 Noroeste (el recibo real de septiembre de 2019 lo reproduce)",
+      dac19["NOROESTE"]["cargos"], {"fijo": 107.74, "energia": 4.305})
+check("la misma forma en 2019", sorted(dac19) == sorted(dac), True)
+check("una página de GDMTH no trae tablas de DAC", P.parsear_dac(HTML), [])
+check("una página vacía tampoco", P.parsear_dac("<html></html>"), [])
+
 print()
 if fallos:
     print(f"{len(fallos)} prueba(s) fallaron: {', '.join(fallos)}")
