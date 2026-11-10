@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-10T18:13:48+00:00",
+ "actualizado": "2026-11-10T18:45:16+00:00",
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
  "registros": {
   "GDMTH|BAJA CALIFORNIA SUR|2018-01": {
@@ -118543,6 +118543,742 @@
    "unidades": {
     "capacidad": "$/kW",
     "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-01": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.553,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.553
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:25+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 1,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "ENE-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-02": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.557,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.557
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:27+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 2,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "FEB-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-03": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.558,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.558
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:29+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 3,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "MAR-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-04": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.558,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.558
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:32+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 4,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "ABR-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-05": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.558,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.558
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:34+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 5,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "MAY-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-06": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.619,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.619
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:36+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 6,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "JUN-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-07": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.658,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.658
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:39+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 7,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "JUL-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-08": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.662,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.662
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:41+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 8,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "AGO-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-09": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.641,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.641
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:43+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 9,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "SEP-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-10": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.641,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.641
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:45+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 10,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "OCT-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-11": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.562,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.562
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:48+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 11,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "NOV-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2025-12": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 3.435,
+    "fijo": 77.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 77.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.435
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:43:50+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 12,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "DIC-25",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.345,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.345
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:01+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 1,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "ENE-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.346,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.346
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:03+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 2,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "FEB-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.347,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.347
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:05+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 3,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "MAR-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.347,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.347
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:08+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 4,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "ABR-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.324,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.324
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:10+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 5,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "MAY-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.301,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.301
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:12+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 6,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "JUN-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.254,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.254
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:14+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 7,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "JUL-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.254,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.254
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:17+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 8,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "AGO-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.254,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.254
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:19+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 9,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "SEP-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.254,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.254
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:21+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 10,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "OCT-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "PDBT|NOROESTE|2026-11": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 3.254,
+    "fijo": 19.78
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 19.78
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 3.254
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:44:24+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+   "mes": 11,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "NOV-26",
+   "region": "NOROESTE",
+   "tarifa": "PDBT",
+   "unidades": {
     "energia": "$/kWh",
     "fijo": "$/mes"
    }
