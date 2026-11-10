@@ -29,7 +29,9 @@ function problemasDeIntegridad(dir) {
   const tarifas = leer(dir, "tarifas.json").registros;
   const catalogo = leer(dir, "catalogo.json");
 
-  const conTarifa = new Set(Object.values(tarifas).map((r) => r.region));
+  // Las regiones de DAC (Central, Norte y Noreste, ...) no son divisiones
+  // tarifarias y no tienen horario: no cuentan para esta guarda.
+  const conTarifa = new Set(Object.values(tarifas).filter((r) => r.tarifa !== "DAC").map((r) => r.region));
   const enMapa = new Set(Object.keys(mapa.divisiones));
 
   for (const d of [...conTarifa].sort())

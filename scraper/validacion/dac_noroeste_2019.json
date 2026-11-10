@@ -1,0 +1,19 @@
+{
+  "tarifa": "DAC",
+  "region": "NOROESTE",
+  "origen": "Recibo real de DAC en Navojoa, periodo 22-ago a 20-sep-2019, 3,662 kWh. Solo cifras: kWh y el importe de la linea Energia (que en ese recibo incluye el cargo fijo). Sin datos de cliente.",
+  "mes": "mes en que termina el periodo facturado",
+  "desfase_meses": 0,
+  "tolerancias": {"fijo": 0, "energia": 0},
+  "meses": {
+    "2019-09": {"fijo": 107.74, "energia": 4.305}
+  },
+  "totales": [
+    {"mes": "2019-09", "kwh": 3662, "importe": 15872.65, "formula": "fijo+kwh*energia", "tolerancia": 0.005,
+     "descripcion": "linea Energia del recibo; el IVA de 16 % sobre ese importe (2,539.62) tambien cuadra"}
+  ],
+  "notas": {
+    "alcance": "Valida DAC Noroeste en 2019-09 y que el portal reproduce un recibo real de DAC. NO valida 2025-2026: el cargo fijo de 2026 (145.85 en septiembre) sigue sin validar contra un recibo.",
+    "desfase_meses": "En este recibo el mes del periodo (septiembre) coincide con el del portal. Con agosto (107.91 / 4.487) el total daria 16,539.30 y con prorrateo por dias 16,094.81: no cuadran. En PDBT 2025-26 el desfase es -1; no se generaliza ninguno de los dos."
+  }
+}

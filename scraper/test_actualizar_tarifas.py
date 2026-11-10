@@ -16,6 +16,7 @@ import pathlib
 import sys
 import tempfile
 
+import actualizar_dac as D
 import actualizar_tarifas as A
 import cfe
 import parser as P
@@ -24,6 +25,7 @@ MUESTRA = pathlib.Path(__file__).parent / "muestra"
 HTML_GDMTH = (MUESTRA / "GranDemandaMTH.html").read_text(encoding="utf-8", errors="replace")
 HTML_GDMTO = (MUESTRA / "GDMTO_2026-09_NOROESTE.html").read_text(encoding="utf-8", errors="replace")
 HTML_PDBT = (MUESTRA / "PDBT_2026-03_NOROESTE.html").read_text(encoding="utf-8", errors="replace")
+HTML_DAC = (MUESTRA / "DAC_2026-09.html").read_text(encoding="utf-8", errors="replace")
 HTML_VACIO = "<html><body><p>sin resultados</p></body></html>"
 
 fallos = []
@@ -220,6 +222,133 @@ check("tabla incompleta: GDMTH sigue", "GDMTH|NOROESTE|2026-03" in regs, True)
 
 codigo, tarifas, _ = correr("GDMTO", HTML_GDMTO, extra=("--limpiar-todo",))
 check("--limpiar-todo con GDMTO no borra GDMTH", "GDMTH|NOROESTE|2026-03" in tarifas["registros"], True)
+
+print("\nDAC: guardias de la captura")
+tablas_ok = P.parsear_dac(HTML_DAC)
+check("las seis regiones, completas y con el periodo pedido: confiable", D.revisar(2026, 9, tablas_ok), None)
+check("periodo esperado", D.periodo_esperado(2026, 9), "SEP-26")
+motivo = D.revisar(2026, 9, tablas_ok[:5])
+check("falta una región: sospechoso", motivo is not None and "seis esperadas" in motivo, True)
+motivo = D.revisar(2026, 3, tablas_ok)
+check("la página muestra otro mes que el pedido: sospechoso",
+      motivo is not None and "MAR-26" in motivo and "SEP-26" in motivo, True)
+rota = [dict(t) for t in tablas_ok]
+rota[3] = {**rota[3], "cargos": {"fijo": 145.85}}
+motivo = D.revisar(2026, 9, rota)
+check("una región con solo el fijo: sospechoso", motivo is not None and "incompleta" in motivo, True)
+extra = tablas_ok + [{**tablas_ok[0], "region": "VALLE DE MEXICO"}]
+check("una región nueva: sospechoso", D.revisar(2026, 9, extra) is not None, True)
+
+
+class SesionDAC:
+    """Sin red: poner_mes() deja en .html la respuesta que toque."""
+    url = "https://ejemplo/TarifaDAC.aspx"
+
+    def __init__(self, respuestas, meses=(8, 9, 10)):
+        self.respuestas = list(respuestas)
+        self._meses = list(meses)
+        self.html = HTML_VACIO
+        self.aperturas = 0
+        self.pedidos = []
+
+    def abrir(self):
+        self.aperturas += 1
+        return self
+
+    def poner_anio(self, anio):
+        pass
+
+    def poner_mes(self, mes):
+        self.pedidos.append(mes)
+        self.html = self.respuestas.pop(0) if len(self.respuestas) > 1 else self.respuestas[0]
+
+    def anios(self):
+        return [2026]
+
+    def meses(self):
+        return self._meses
+
+    def _actual(self, control):
+        return ("2026", "2026")
+
+    def horarios(self):
+        raise AssertionError("DAC no tiene horarios")
+
+
+def captura_dac(respuestas, meses=(9,), registros=None, **kw):
+    registros = {} if registros is None else registros
+    s = SesionDAC(respuestas, meses=meses)
+    r = D.capturar(s, registros, [2026], kw.get("filtro"), kw.get("rehacer", False),
+                   kw.get("faltantes", False), kw.get("reintentos", 2), 0, lambda: "ahora", lambda: None)
+    return s, r, registros
+
+
+print("\nDAC: captura con una sesión simulada")
+s, r, regs_dac = captura_dac([HTML_DAC])
+check("un mes guarda seis registros", (r["nuevos"], r["sospechosos"]), (6, 0))
+check("claves por región y mes", sorted(regs_dac), [
+    "DAC|BAJA CALIFORNIA SUR|2026-09", "DAC|BAJA CALIFORNIA|2026-09", "DAC|CENTRAL|2026-09",
+    "DAC|NOROESTE|2026-09", "DAC|NORTE Y NORESTE|2026-09", "DAC|SUR Y PENINSULAR|2026-09"])
+nor = regs_dac["DAC|NOROESTE|2026-09"]
+check("el registro tiene la forma de los demás (sin municipio: DAC no tiene ubicación)",
+      sorted(nor), ["anio", "cargos", "conceptos", "fecha_captura", "fuente", "mes",
+                    "periodo_cfe", "region", "tarifa", "unidades"])
+check("cargos de Noroeste", nor["cargos"], {"fijo": 145.85, "energia": 6.143})
+s, r, _ = captura_dac([HTML_DAC], registros=regs_dac)
+check("un mes ya capturado se omite sin consultar", (r["nuevos"], r["omitidos"], s.pedidos), (0, 1, []))
+s, r, _ = captura_dac([HTML_VACIO, HTML_DAC])
+check("sin tabla a la primera: llega al reintentar (una apertura del año y una del reintento)",
+      (r["nuevos"], s.aperturas), (6, 2))
+s, r, _ = captura_dac([HTML_VACIO], meses=(9, 10))
+check("siempre vacío en el mes 9 (hay un mes posterior): hueco confirmado",
+      (r["nuevos"], len(r["vacios_confirmados"])), (0, 1))
+s, r, _ = captura_dac([HTML_VACIO], meses=(8, 9))
+check("el último mes vacío no es noticia", (r["vacios"], r["vacios_confirmados"]), (2, ["DAC 2026-08 (3 intentos)"]))
+s, r, regs_mal = captura_dac([HTML_DAC], meses=(3,))
+check("la página muestra septiembre cuando se pidió marzo: no se guarda",
+      (r["nuevos"], r["sospechosos"], regs_mal), (0, 1, {}))
+s, r, _ = captura_dac([HTML_DAC], meses=(8, 9, 10), filtro={9})
+check("--meses limita lo que se consulta", s.pedidos, [9])
+
+
+print("\nmain() de DAC de punta a punta")
+def correr_dac(html, extra=(), meses=(9,)):
+    with tempfile.TemporaryDirectory() as d:
+        d = pathlib.Path(d)
+        (d / "horarios.json").write_text(json.dumps(HORARIOS_CENTINELA), encoding="utf-8")
+        (d / "tarifas.json").write_text(json.dumps({
+            "actualizado": "antes", "fuente": cfe.PAGINAS["GDMTH"],
+            "registros": reg("GDMTH", "NOROESTE", 3)}), encoding="utf-8")
+        A.DATA, A.CATALOGO, A.TARIFAS, A.HORARIOS = d, d / "catalogo.json", d / "tarifas.json", d / "horarios.json"
+        sesion = SesionDAC([html], meses=meses)
+        original = cfe.SesionCFE
+        cfe.SesionCFE = lambda *a, **k: sesion
+        argv = sys.argv
+        sys.argv = ["actualizar_tarifas.py", "--tarifa", "DAC", "--desde", "2026", "--hasta", "2026",
+                    "--pausa", "0", *extra]
+        codigo = 0
+        try:
+            with contextlib.redirect_stdout(io.StringIO()):
+                A.main()
+        except SystemExit as e:
+            codigo = e.code
+        finally:
+            cfe.SesionCFE, sys.argv = original, argv
+        return (codigo, json.loads((d / "tarifas.json").read_text(encoding="utf-8")),
+                json.loads((d / "horarios.json").read_text(encoding="utf-8")))
+
+
+codigo, tarifas, horarios = correr_dac(HTML_DAC)
+regs = tarifas["registros"]
+check("termina bien sin catálogo (DAC no lo usa)", codigo, 0)
+check("seis registros de DAC y el de GDMTH", sorted(k.split("|")[0] for k in regs),
+      ["DAC"] * 6 + ["GDMTH"])
+check("horarios.json no se tocó", horarios, HORARIOS_CENTINELA)
+codigo, tarifas, _ = correr_dac(HTML_DAC, extra=("--meses", "3"), meses=(3,))
+check("pedir marzo y recibir septiembre: sin registros de DAC y termina con error",
+      ([k for k in tarifas["registros"] if k.startswith("DAC")], codigo), ([], 1))
+codigo, tarifas, _ = correr_dac(HTML_DAC, extra=("--limpiar-todo",))
+check("--limpiar-todo con DAC no borra GDMTH", "GDMTH|NOROESTE|2026-03" in tarifas["registros"], True)
 
 print()
 if fallos:

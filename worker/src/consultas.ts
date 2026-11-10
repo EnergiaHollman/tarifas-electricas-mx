@@ -14,9 +14,11 @@ import {
   obtenerTarifa,
   periodosDe,
   regionDeMunicipio,
+  regionesDac,
   tarifas,
   tarifasConDatos,
   tieneHorarios,
+  ubicacionDe,
   zonaDeRegion,
 } from "./datos";
 
@@ -104,6 +106,9 @@ export function consultarTarifa(args: Args) {
       aviso: AVISO,
     };
   }
+  // DAC se ubica por región de DAC, no por división: otro camino.
+  if (ubicacionDe(tarifa) === "region_dac") return consultarDac(args, tarifa, anio, mes);
+
   // Las tarifas sin horarios no llevan sistema_horario ni división de horario.
   const horario = (reg: string) => (tieneHorarios(tarifa) ? describirHorario(reg) : {});
 
@@ -161,6 +166,94 @@ export function consultarTarifa(args: Args) {
 }
 
 /**
+ * DAC. Sus regiones (Central, Noroeste, Norte y Noreste, Sur y Peninsular,
+ * Baja California, Baja California Sur) no son las divisiones de GDMTH.
+ *
+ *  - region=<región de DAC>: se usa tal cual, es la que el usuario dice.
+ *  - estado + municipio (o una división por region=): solo si esa división está
+ *    CONFIRMADA en regiones_dac.json. Si no, error claro: no se adivina.
+ */
+function consultarDac(args: Args, tarifa: string, anio: number, mes: number) {
+  const disponibles = regionesDac.regiones_dac;
+  const confirmadas = Object.keys(regionesDac.confirmadas).sort();
+  let regionDac: string;
+  let via: "region_dac" | "division";
+  let ubic: ReturnType<typeof resolverRegion> | null = null;
+
+  const sinConfirmar = (division: string) => ({
+    error:
+      `La región de DAC de la división ${division} no está confirmada, y no se adivina. ` +
+      "Pasa region con la región de DAC que indica tu recibo.",
+    division,
+    regiones_dac: disponibles,
+    divisiones_confirmadas: confirmadas,
+    aviso: AVISO,
+  });
+
+  if (args.region) {
+    const pedida = normalizar(String(args.region));
+    if (disponibles.includes(pedida)) {
+      regionDac = pedida;
+      via = "region_dac";
+    } else if (regionesDac.confirmadas[pedida]) {
+      regionDac = regionesDac.confirmadas[pedida].region_dac;
+      via = "division";
+    } else if (listarRegiones().includes(pedida)) {
+      return sinConfirmar(pedida);
+    } else {
+      return { error: `"${pedida}" no es una región de DAC.`, regiones_dac: disponibles, aviso: AVISO };
+    }
+  } else {
+    ubic = resolverRegion(args);
+    if ("error" in ubic) return ubic;
+    const destinos = new Set<string>();
+    for (const division of ubic.regiones) {
+      const c = regionesDac.confirmadas[division];
+      if (!c) return sinConfirmar(division);
+      destinos.add(c.region_dac);
+    }
+    if (destinos.size !== 1) {
+      return {
+        error: "El municipio cae en divisiones con distinta región de DAC; cuál aplica depende del punto " +
+               "de suministro. Pasa region con la región de DAC de tu recibo.",
+        divisiones: ubic.regiones, regiones_dac: [...destinos], aviso: AVISO,
+      };
+    }
+    regionDac = [...destinos][0];
+    via = "division";
+  }
+
+  const r = obtenerTarifa(tarifa, regionDac, anio, mes);
+  if (!r) {
+    const periodos = periodosDe(tarifa, regionDac);
+    return {
+      error: `No hay datos capturados de ${tarifa} en ${regionDac} para ${anio}-${String(mes).padStart(2, "0")}.`,
+      region: regionDac,
+      periodos_disponibles: periodos.length > 40 ? [periodos[0], "...", periodos[periodos.length - 1]] : periodos,
+      aviso: AVISO,
+    };
+  }
+  return {
+    tarifa: r.tarifa,
+    region: r.region,
+    via_region: via,
+    ...(ubic ? datosMunicipio(ubic) : {}),
+    anio: r.anio,
+    mes: r.mes,
+    periodo_cfe: r.periodo_cfe,
+    cargos: r.cargos,
+    unidades: r.unidades,
+    conceptos: r.conceptos,
+    fuente: r.fuente,
+    fecha_captura: r.fecha_captura,
+    nota:
+      "region es la región de DAC, no una división de GDMTH. El cargo fijo de 2025-2026 no está " +
+      "validado contra un recibo real (ver /v1/tarifas).",
+    aviso: AVISO,
+  };
+}
+
+/**
  * Qué tarifas se pueden consultar y con qué cobertura, para que un cliente no
  * tenga que adivinar. anio y mes son el mes de las cuotas que CFE publica en su
  * portal ("Cuotas aplicables en el mes de X"), servido tal cual.
@@ -169,7 +262,10 @@ export function listarTarifas() {
   return {
     tarifas: tarifasConDatos().map((t) => ({
       ...t,
-      parametros: "anio, mes y ubicación (region, o estado + municipio)",
+      parametros:
+        t.ubicacion === "region_dac"
+          ? "anio, mes y region (una región de DAC), o estado + municipio de una división confirmada"
+          : "anio, mes y ubicación (region, o estado + municipio)",
     })),
     nota_mes:
       "anio y mes son el mes de las cuotas publicadas por CFE, sin ajustes. Cómo se " +

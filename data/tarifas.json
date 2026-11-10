@@ -1,7 +1,4855 @@
 {
- "actualizado": "2026-11-10T18:45:16+00:00",
+ "actualizado": "2026-11-10T19:23:18+00:00",
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
  "registros": {
+  "DAC|BAJA CALIFORNIA SUR|2019-09": {
+   "anio": 2019,
+   "cargos": {
+    "energia_fuera_verano": 3.838,
+    "energia_verano": 4.868,
+    "fijo": 107.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 107.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 4.868
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 3.838
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:43+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-19",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-01": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.537,
+    "energia_verano": 7.022,
+    "fijo": 140.16
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.16
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.022
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.537
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:52+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-02": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.678,
+    "energia_verano": 7.201,
+    "fijo": 140.26
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.26
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.201
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.678
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:55+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-03": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.656,
+    "energia_verano": 7.174,
+    "fijo": 141.62
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.62
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.174
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.656
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:57+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-04": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.606,
+    "energia_verano": 7.11,
+    "fijo": 142.5
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.5
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.11
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.606
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:59+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-05": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.628,
+    "energia_verano": 7.138,
+    "fijo": 142.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.138
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.628
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:02+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-06": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.423,
+    "energia_verano": 6.878,
+    "fijo": 143.27
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.27
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.878
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.423
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:04+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-07": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.453,
+    "energia_verano": 6.917,
+    "fijo": 142.25
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.25
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.917
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.453
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:06+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-08": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.384,
+    "energia_verano": 6.829,
+    "fijo": 141.91
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.91
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.829
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.384
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:08+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-09": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.274,
+    "energia_verano": 6.689,
+    "fijo": 141.29
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.29
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.689
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.274
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:11+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-10": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.242,
+    "energia_verano": 6.649,
+    "fijo": 141.42
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.42
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.649
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.242
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:13+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-11": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.295,
+    "energia_verano": 6.716,
+    "fijo": 141.56
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.56
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.716
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.295
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:15+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2025-12": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.362,
+    "energia_verano": 6.801,
+    "fijo": 142.0
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.0
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.801
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.362
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:17+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 12,
+   "periodo_cfe": "DIC-25",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.557,
+    "energia_verano": 7.049,
+    "fijo": 142.41
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.41
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.049
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.557
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:22+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.54,
+    "energia_verano": 7.028,
+    "fijo": 143.19
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.19
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.028
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.54
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:24+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 6.045,
+    "energia_verano": 7.669,
+    "fijo": 144.46
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.46
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.669
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 6.045
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:27+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.49,
+    "energia_verano": 6.965,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.965
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.49
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:29+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.714,
+    "energia_verano": 7.249,
+    "fijo": 145.24
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.24
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.249
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.714
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:31+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.639,
+    "energia_verano": 7.154,
+    "fijo": 144.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.154
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.639
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:33+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.606,
+    "energia_verano": 7.113,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.113
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.606
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.536,
+    "energia_verano": 7.025,
+    "fijo": 145.04
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.04
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.025
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.536
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:38+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.475,
+    "energia_verano": 6.948,
+    "fijo": 145.85
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.85
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.948
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.475
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:40+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.62,
+    "energia_verano": 7.131,
+    "fijo": 145.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.131
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.62
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:42+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA SUR|2026-11": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.736,
+    "energia_verano": 7.278,
+    "fijo": 146.01
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 146.01
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.278
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.736
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:44+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-26",
+   "region": "BAJA CALIFORNIA SUR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2019-09": {
+   "anio": 2019,
+   "cargos": {
+    "energia_fuera_verano": 3.838,
+    "energia_verano": 4.47,
+    "fijo": 107.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 107.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 4.47
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 3.838
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:43+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-19",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-01": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.537,
+    "energia_verano": 6.445,
+    "fijo": 140.16
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.16
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.445
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.537
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:52+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-02": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.678,
+    "energia_verano": 6.609,
+    "fijo": 140.26
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.26
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.609
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.678
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:55+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-03": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.656,
+    "energia_verano": 6.584,
+    "fijo": 141.62
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.62
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.584
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.656
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:57+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-04": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.606,
+    "energia_verano": 6.525,
+    "fijo": 142.5
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.5
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.525
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.606
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:59+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-05": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.628,
+    "energia_verano": 6.551,
+    "fijo": 142.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.551
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.628
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:02+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-06": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.423,
+    "energia_verano": 6.313,
+    "fijo": 143.27
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.27
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.313
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.423
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:04+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-07": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.453,
+    "energia_verano": 6.348,
+    "fijo": 142.25
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.25
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.348
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.453
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:06+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-08": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.384,
+    "energia_verano": 6.267,
+    "fijo": 141.91
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.91
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.267
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.384
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:08+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-09": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.274,
+    "energia_verano": 6.139,
+    "fijo": 141.29
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.29
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.139
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.274
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:11+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-10": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.242,
+    "energia_verano": 6.102,
+    "fijo": 141.42
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.42
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.102
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.242
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:13+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-11": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.295,
+    "energia_verano": 6.164,
+    "fijo": 141.56
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.56
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.164
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.295
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:15+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2025-12": {
+   "anio": 2025,
+   "cargos": {
+    "energia_fuera_verano": 5.362,
+    "energia_verano": 6.242,
+    "fijo": 142.0
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.0
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.242
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.362
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:17+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 12,
+   "periodo_cfe": "DIC-25",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.557,
+    "energia_verano": 6.469,
+    "fijo": 142.41
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.41
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.469
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.557
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:22+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.54,
+    "energia_verano": 6.45,
+    "fijo": 143.19
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.19
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.45
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.54
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:24+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 6.045,
+    "energia_verano": 7.038,
+    "fijo": 144.46
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.46
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 7.038
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 6.045
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:27+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.49,
+    "energia_verano": 6.392,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.392
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.49
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:29+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.714,
+    "energia_verano": 6.653,
+    "fijo": 145.24
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.24
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.653
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.714
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:31+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.639,
+    "energia_verano": 6.566,
+    "fijo": 144.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.566
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.639
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:33+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.606,
+    "energia_verano": 6.528,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.528
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.606
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.536,
+    "energia_verano": 6.447,
+    "fijo": 145.04
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.04
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.447
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.536
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:38+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.475,
+    "energia_verano": 6.376,
+    "fijo": 145.85
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.85
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.376
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.475
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:40+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.62,
+    "energia_verano": 6.544,
+    "fijo": 145.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.544
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.62
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:42+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|BAJA CALIFORNIA|2026-11": {
+   "anio": 2026,
+   "cargos": {
+    "energia_fuera_verano": 5.736,
+    "energia_verano": 6.679,
+    "fijo": 146.01
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 146.01
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Verano",
+     "unidades": "$/kWh",
+     "valor": 6.679
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "Fuera de verano",
+     "unidades": "$/kWh",
+     "valor": 5.736
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:44+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-26",
+   "region": "BAJA CALIFORNIA",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia_fuera_verano": "$/kWh",
+    "energia_verano": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2019-09": {
+   "anio": 2019,
+   "cargos": {
+    "energia": 4.597,
+    "fijo": 107.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 107.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 4.597
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:43+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-19",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-01": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.628,
+    "fijo": 140.16
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.16
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.628
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:52+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-02": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.797,
+    "fijo": 140.26
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.26
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.797
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:55+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-03": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.771,
+    "fijo": 141.62
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.62
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.771
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:57+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-04": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.711,
+    "fijo": 142.5
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.5
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.711
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:59+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-05": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.738,
+    "fijo": 142.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.738
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:02+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-06": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.493,
+    "fijo": 143.27
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.27
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.493
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:04+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-07": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.529,
+    "fijo": 142.25
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.25
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.529
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:06+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-08": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.446,
+    "fijo": 141.91
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.91
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.446
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:08+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-09": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.314,
+    "fijo": 141.29
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.29
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.314
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:11+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-10": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.276,
+    "fijo": 141.42
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.42
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.276
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:13+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-11": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.339,
+    "fijo": 141.56
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.56
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.339
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:15+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2025-12": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.419,
+    "fijo": 142.0
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.0
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.419
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:17+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 12,
+   "periodo_cfe": "DIC-25",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.653,
+    "fijo": 142.41
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.41
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.653
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:22+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.633,
+    "fijo": 143.19
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.19
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.633
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:24+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 7.238,
+    "fijo": 144.46
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.46
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 7.238
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:27+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.574,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.574
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:29+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.842,
+    "fijo": 145.24
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.24
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.842
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:31+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.752,
+    "fijo": 144.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.752
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:33+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.713,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.713
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.63,
+    "fijo": 145.04
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.04
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.63
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:38+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.557,
+    "fijo": 145.85
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.85
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.557
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:40+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.73,
+    "fijo": 145.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.73
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:42+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|CENTRAL|2026-11": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.869,
+    "fijo": 146.01
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 146.01
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.869
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:44+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-26",
+   "region": "CENTRAL",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2019-09": {
+   "anio": 2019,
+   "cargos": {
+    "energia": 4.305,
+    "fijo": 107.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 107.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 4.305
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:43+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-19",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-01": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.211,
+    "fijo": 140.16
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.16
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.211
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:52+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-02": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.369,
+    "fijo": 140.26
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.26
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.369
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:55+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-03": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.345,
+    "fijo": 141.62
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.62
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.345
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:57+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-04": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.289,
+    "fijo": 142.5
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.5
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.289
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:59+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-05": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.314,
+    "fijo": 142.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.314
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:02+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-06": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.084,
+    "fijo": 143.27
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.27
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.084
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:04+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-07": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.118,
+    "fijo": 142.25
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.25
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.118
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:06+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-08": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.04,
+    "fijo": 141.91
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.91
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.04
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:08+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-09": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.916,
+    "fijo": 141.29
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.29
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.916
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:11+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-10": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.881,
+    "fijo": 141.42
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.42
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.881
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:13+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-11": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.94,
+    "fijo": 141.56
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.56
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.94
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:15+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2025-12": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.015,
+    "fijo": 142.0
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.0
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.015
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:17+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 12,
+   "periodo_cfe": "DIC-25",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.234,
+    "fijo": 142.41
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.41
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.234
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:22+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.215,
+    "fijo": 143.19
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.19
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.215
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:24+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.782,
+    "fijo": 144.46
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.46
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.782
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:27+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.159,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.159
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:29+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.41,
+    "fijo": 145.24
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.24
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.41
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:31+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.326,
+    "fijo": 144.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.326
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:33+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.289,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.289
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.211,
+    "fijo": 145.04
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.04
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.211
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:38+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.143,
+    "fijo": 145.85
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.85
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.143
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:40+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.305,
+    "fijo": 145.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.305
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:42+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NOROESTE|2026-11": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.435,
+    "fijo": 146.01
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 146.01
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.435
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:44+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-26",
+   "region": "NOROESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2019-09": {
+   "anio": 2019,
+   "cargos": {
+    "energia": 4.197,
+    "fijo": 107.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 107.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 4.197
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:43+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-19",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-01": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.052,
+    "fijo": 140.16
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.16
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.052
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:52+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-02": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.206,
+    "fijo": 140.26
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.26
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.206
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:55+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-03": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.182,
+    "fijo": 141.62
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.62
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.182
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:57+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-04": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.127,
+    "fijo": 142.5
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.5
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.127
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:59+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-05": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.152,
+    "fijo": 142.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.152
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:02+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-06": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.928,
+    "fijo": 143.27
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.27
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.928
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:04+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-07": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.961,
+    "fijo": 142.25
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.25
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.961
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:06+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-08": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.885,
+    "fijo": 141.91
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.91
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.885
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:08+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-09": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.764,
+    "fijo": 141.29
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.29
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.764
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:11+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-10": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.729,
+    "fijo": 141.42
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.42
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.729
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:13+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-11": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.787,
+    "fijo": 141.56
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.56
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.787
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:15+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2025-12": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.86,
+    "fijo": 142.0
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.0
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.86
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:17+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 12,
+   "periodo_cfe": "DIC-25",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.073,
+    "fijo": 142.41
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.41
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.073
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:22+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.055,
+    "fijo": 143.19
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.19
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.055
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:24+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.607,
+    "fijo": 144.46
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.46
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.607
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:27+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.0,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.0
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:29+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.245,
+    "fijo": 145.24
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.24
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.245
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:31+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.163,
+    "fijo": 144.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.163
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:33+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.127,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.127
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.051,
+    "fijo": 145.04
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.04
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.051
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:38+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 5.984,
+    "fijo": 145.85
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.85
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.984
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:40+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.142,
+    "fijo": 145.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.142
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:42+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|NORTE Y NORESTE|2026-11": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.269,
+    "fijo": 146.01
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 146.01
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.269
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:44+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-26",
+   "region": "NORTE Y NORESTE",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2019-09": {
+   "anio": 2019,
+   "cargos": {
+    "energia": 4.263,
+    "fijo": 107.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 107.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 4.263
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:43+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-19",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-01": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.145,
+    "fijo": 140.16
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.16
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.145
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:52+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-02": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.302,
+    "fijo": 140.26
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 140.26
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.302
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:55+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-03": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.278,
+    "fijo": 141.62
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.62
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.278
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:57+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-04": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.222,
+    "fijo": 142.5
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.5
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.222
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:21:59+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-05": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.247,
+    "fijo": 142.74
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.74
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.247
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:02+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-06": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.02,
+    "fijo": 143.27
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.27
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.02
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:04+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-07": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 6.054,
+    "fijo": 142.25
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.25
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.054
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:06+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-08": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.977,
+    "fijo": 141.91
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.91
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.977
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:08+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-09": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.854,
+    "fijo": 141.29
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.29
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.854
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:11+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-10": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.819,
+    "fijo": 141.42
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.42
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.819
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:13+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-11": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.878,
+    "fijo": 141.56
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 141.56
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.878
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:15+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2025-12": {
+   "anio": 2025,
+   "cargos": {
+    "energia": 5.952,
+    "fijo": 142.0
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.0
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 5.952
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:17+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 12,
+   "periodo_cfe": "DIC-25",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.169,
+    "fijo": 142.41
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 142.41
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.169
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:22+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 1,
+   "periodo_cfe": "ENE-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.15,
+    "fijo": 143.19
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 143.19
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.15
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:24+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 2,
+   "periodo_cfe": "FEB-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.711,
+    "fijo": 144.46
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.46
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.711
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:27+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 3,
+   "periodo_cfe": "MAR-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.095,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.095
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:29+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 4,
+   "periodo_cfe": "ABR-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.344,
+    "fijo": 145.24
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.24
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.344
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:31+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 5,
+   "periodo_cfe": "MAY-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.261,
+    "fijo": 144.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.261
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:33+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 6,
+   "periodo_cfe": "JUN-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.225,
+    "fijo": 144.95
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 144.95
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.225
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 7,
+   "periodo_cfe": "JUL-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.148,
+    "fijo": 145.04
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.04
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.148
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:38+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 8,
+   "periodo_cfe": "AGO-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.08,
+    "fijo": 145.85
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.85
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.08
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:40+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 9,
+   "periodo_cfe": "SEP-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.241,
+    "fijo": 145.79
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 145.79
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.241
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:42+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 10,
+   "periodo_cfe": "OCT-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "DAC|SUR Y PENINSULAR|2026-11": {
+   "anio": 2026,
+   "cargos": {
+    "energia": 6.37,
+    "fijo": 146.01
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 146.01
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 6.37
+    }
+   ],
+   "fecha_captura": "2026-11-10T19:22:44+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+   "mes": 11,
+   "periodo_cfe": "NOV-26",
+   "region": "SUR Y PENINSULAR",
+   "tarifa": "DAC",
+   "unidades": {
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
   "GDMTH|BAJA CALIFORNIA SUR|2018-01": {
    "anio": 2018,
    "cargos": {

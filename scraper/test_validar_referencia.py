@@ -82,6 +82,29 @@ check("cubre 2025-11 a 2026-10 salvo junio y julio",
 check("sin datos de cliente: solo claves de precios",
       set(c for m in ref["meses"].values() for c in m), {"fijo", "energia"})
 
+print("\nTotales de un recibo")
+REF_T = {"tarifa": "DAC", "region": "NOROESTE", "desfase_meses": 0,
+         "meses": {"2019-09": {"fijo": 107.74, "energia": 4.305}},
+         "totales": [{"mes": "2019-09", "kwh": 3662, "importe": 15872.65,
+                      "formula": "fijo+kwh*energia", "tolerancia": 0.005}]}
+bien = {"DAC|NOROESTE|2019-09": {"cargos": {"fijo": 107.74, "energia": 4.305}}}
+f = V.validar_totales(bien, REF_T)
+check("107.74 + 3662 × 4.305 = 15,872.65: cuadra", (f[0]["ok"], f[0]["obtenido"]), (True, 15872.65))
+agosto = {"DAC|NOROESTE|2019-09": {"cargos": {"fijo": 107.91, "energia": 4.487}}}
+f = V.validar_totales(agosto, REF_T)
+check("con los precios de agosto el total no cuadra", (f[0]["ok"], f[0]["obtenido"]), (False, 16539.3))
+f = V.validar_totales({}, REF_T)
+check("sin registro: falla y lo dice", (f[0]["ok"], f[0]["motivo"]), (False, "no hay registro capturado"))
+f = V.validar_totales(bien, {**REF_T, "totales": [{**REF_T["totales"][0], "formula": "inventada"}]})
+check("fórmula desconocida: falla, no revienta", f[0]["ok"], False)
+f = V.validar_totales({"DAC|NOROESTE|2019-08": {"cargos": {"fijo": 107.74, "energia": 4.305}}},
+                      {**REF_T, "desfase_meses": -1})
+check("el desfase también aplica a los totales", (f[0]["mes_portal"], f[0]["ok"]), ("2019-08", True))
+ref19 = json.loads((pathlib.Path(__file__).parent / "validacion" / "dac_noroeste_2019.json").read_text(encoding="utf-8"))
+check("la referencia real de DAC 2019 declara el alcance",
+      "NO valida 2025-2026" in ref19["notas"]["alcance"], True)
+check("y su total es el del recibo", (ref19["totales"][0]["kwh"], ref19["totales"][0]["importe"]), (3662, 15872.65))
+
 print()
 if fallos:
     print(f"{len(fallos)} prueba(s) fallaron: {', '.join(fallos)}")

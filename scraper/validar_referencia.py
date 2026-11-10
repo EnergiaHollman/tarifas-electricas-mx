@@ -7,6 +7,12 @@ de recibos reales. Solo lectura.
 El archivo de referencia dice tarifa, region, tolerancia por cargo y, por mes,
 el valor esperado de cada cargo (un numero, o una lista de valores aceptables).
 
+Ademas de precios, la referencia puede traer `totales`: importes de un recibo
+que se reproducen con los cargos capturados, por ejemplo
+{"mes", "kwh", "importe", "formula": "fijo+kwh*energia", "tolerancia"}. Es la
+comprobacion menos circular: no depende de que alguien haya despejado antes un
+precio del recibo.
+
 `desfase_meses` (0 si falta) dice a que mes del portal corresponde cada mes de la
 referencia: con -1, el recibo cuyo periodo termina en 2026-02 se compara con las
 cuotas que el portal publica para 2026-01. `--desfase N` lo sustituye desde la
@@ -63,6 +69,35 @@ def validar(registros, ref, desfase=None):
     return filas
 
 
+FORMULAS = {
+    "fijo+kwh*energia": lambda c, kwh: c["fijo"] + kwh * c["energia"],
+}
+
+
+def validar_totales(registros, ref, desfase=None):
+    """Reproduce con los cargos capturados los importes de `totales`."""
+    filas = []
+    if desfase is None:
+        desfase = ref.get("desfase_meses", 0)
+    for tot in ref.get("totales", []):
+        mes_portal = desplazar(tot["mes"], desfase)
+        reg = registros.get(f"{ref['tarifa']}|{ref['region']}|{mes_portal}")
+        fila = {"mes": tot["mes"], "mes_portal": mes_portal, "formula": tot["formula"],
+                "kwh": tot["kwh"], "esperado": tot["importe"], "obtenido": None,
+                "ok": False, "motivo": ""}
+        if reg is None:
+            fila["motivo"] = "no hay registro capturado"
+        else:
+            try:
+                fila["obtenido"] = round(FORMULAS[tot["formula"]](reg["cargos"], tot["kwh"]), 2)
+                fila["ok"] = abs(fila["obtenido"] - tot["importe"]) <= tot.get("tolerancia", 0.005) + 1e-9
+                fila["motivo"] = "" if fila["ok"] else f"difiere en {round(fila['obtenido'] - tot['importe'], 2)}"
+            except KeyError as e:
+                fila["motivo"] = f"formula o cargo desconocido: {e}"
+        filas.append(fila)
+    return filas
+
+
 def main(argv):
     args = argv[1:]
     desfase = None
@@ -83,8 +118,14 @@ def main(argv):
         print(f"  {marca} recibo {f['mes']} = portal {f['mes_portal']} {f['cargo']:<8} "
               f"esperado {f['esperado']}  obtenido {f['obtenido']}"
               + (f"  ({f['motivo']})" if f["motivo"] else ""))
+    totales = validar_totales(registros, ref, desfase)
+    for f in totales:
+        marca = "ok   " if f["ok"] else "FALLA"
+        print(f"  {marca} recibo {f['mes']} = portal {f['mes_portal']} total {f['formula']} con {f['kwh']} kWh: "
+              f"esperado {f['esperado']}  obtenido {f['obtenido']}" + (f"  ({f['motivo']})" if f["motivo"] else ""))
     for mes, motivo in sorted(ref.get("sin_referencia", {}).items()):
         print(f"  --    {mes} sin referencia: {motivo}")
+    filas = filas + totales
     malas = [f for f in filas if not f["ok"]]
     print(f"\n{len(filas) - len(malas)} de {len(filas)} comprobaciones correctas.")
     return 1 if malas else 0

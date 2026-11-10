@@ -32,6 +32,7 @@ TARIFAS = {
     "GDMTH": {
         "url": _NEGOCIO + "GranDemandaMTH.aspx",
         "tiene_horarios": True,
+        "estructura": "negocio",
         "cargos_validos": [
             frozenset({"fijo", "base", "intermedia", "punta", "distribucion", "capacidad"}),
             frozenset({"fijo", "base", "intermedia", "distribucion", "capacidad"}),
@@ -42,14 +43,40 @@ TARIFAS = {
     "GDMTO": {
         "url": _NEGOCIO + "GranDemandaMTO.aspx",
         "tiene_horarios": False,
+        "estructura": "negocio",
         "cargos_validos": [frozenset({"fijo", "energia", "distribucion", "capacidad"})],
     },
     "PDBT": {
         "url": _NEGOCIO + "PequenaDemandaBT.aspx",
         "tiene_horarios": False,
+        "estructura": "negocio",
         "cargos_validos": [frozenset({"fijo", "energia"})],
     },
+    # DAC vive en otra carpeta del portal (TarifasCRECasa) y no tiene estado,
+    # municipio ni división: solo año y mes. La página trae las seis regiones
+    # de DAC juntas. Baja California y Baja California Sur tienen energía de
+    # verano y de fuera de verano; las demás, un solo precio.
+    "DAC": {
+        "url": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/TarifaDAC.aspx",
+        "tiene_horarios": False,
+        "estructura": "dac",
+        "cargos_validos": [
+            frozenset({"fijo", "energia"}),
+            frozenset({"fijo", "energia_verano", "energia_fuera_verano"}),
+        ],
+    },
 }
+
+# Las regiones que publica la tabla de DAC. No son las 17 divisiones de GDMTH.
+# Si CFE agrega, quita o renombra una, la captura de ese mes es sospechosa en
+# vez de guardarse a medias.
+REGIONES_DAC = frozenset({"BAJA CALIFORNIA", "BAJA CALIFORNIA SUR", "CENTRAL",
+                          "NOROESTE", "NORTE Y NORESTE", "SUR Y PENINSULAR"})
+
+
+def estructura(tarifa):
+    """'negocio' (estado, municipio, división) o 'dac' (solo año y mes)."""
+    return TARIFAS[tarifa]["estructura"]
 
 # Compatibilidad: el resto del código sigue pidiendo la URL por aquí.
 PAGINAS = {clave: meta["url"] for clave, meta in TARIFAS.items()}
