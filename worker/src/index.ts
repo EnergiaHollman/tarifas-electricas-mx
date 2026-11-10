@@ -5,7 +5,7 @@
  * empaquetados en el Worker. Por eso responde en milisegundos y no se cae
  * aunque el portal de CFE esté fuera de servicio.
  */
-import { consultarCalendario, consultarHorarios, consultarTarifa, resumenRegiones } from "./consultas";
+import { consultarCalendario, consultarHorarios, consultarTarifa, listarTarifas, resumenRegiones } from "./consultas";
 import {
   AVISO,
   catalogo,
@@ -91,6 +91,12 @@ const OPENAPI = {
           { name: "tarifa", in: "query", schema: { type: "string", default: "GDMTH" } },
         ],
         responses: { "200": { description: "Cargos" }, "404": { description: "Sin datos" } },
+      },
+    },
+    "/v1/tarifas": {
+      get: {
+        summary: "Tarifas con datos capturados y su cobertura (regiones y periodos)",
+        responses: { "200": { description: "Catálogo de tarifas" } },
       },
     },
     "/v1/horarios": {
@@ -194,6 +200,8 @@ export default {
         }),
       );
     }
+
+    if (ruta === "/v1/tarifas") return json(listarTarifas());
 
     if (ruta === "/v1/horarios") {
       return resultado(
