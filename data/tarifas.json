@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-10T18:01:11+00:00",
+ "actualizado": "2026-11-10T18:13:48+00:00",
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
  "registros": {
   "GDMTH|BAJA CALIFORNIA SUR|2018-01": {
@@ -116347,6 +116347,1110 @@
    "municipio_consultado": "AHOME, SINALOA",
    "periodo_cfe": "NOV-26",
    "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-01": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 312.82,
+    "distribucion": 211.58,
+    "energia": 1.408,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.408
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 312.82
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:11:50+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 1,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "ENE-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-02": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 313.31,
+    "distribucion": 211.58,
+    "energia": 1.41,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.41
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 313.31
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:11:53+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 2,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "FEB-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-03": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 313.44,
+    "distribucion": 211.58,
+    "energia": 1.411,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.411
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 313.44
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:11:55+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 3,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "MAR-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-04": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 313.44,
+    "distribucion": 211.58,
+    "energia": 1.411,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.411
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 313.44
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:11:58+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 4,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "ABR-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-05": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 313.44,
+    "distribucion": 211.58,
+    "energia": 1.411,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.411
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 313.44
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:00+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 5,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "MAY-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-06": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 320.89,
+    "distribucion": 211.58,
+    "energia": 1.44,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.44
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 320.89
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:03+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 6,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "JUN-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-07": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 325.7,
+    "distribucion": 211.58,
+    "energia": 1.458,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.458
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 325.7
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:05+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 7,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "JUL-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-08": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 326.15,
+    "distribucion": 211.58,
+    "energia": 1.46,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.46
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 326.15
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:08+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 8,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "AGO-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-09": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 323.17,
+    "distribucion": 211.58,
+    "energia": 1.453,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.453
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 323.17
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:11+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 9,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "SEP-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-10": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 323.18,
+    "distribucion": 211.58,
+    "energia": 1.453,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.453
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 323.18
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:13+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 10,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "OCT-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-11": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 313.47,
+    "distribucion": 211.58,
+    "energia": 1.415,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.415
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 313.47
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:16+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 11,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "NOV-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2025-12": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 297.8,
+    "distribucion": 211.58,
+    "energia": 1.354,
+    "fijo": 474.54
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 474.54
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.354
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 211.58
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 297.8
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:18+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 12,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "DIC-25",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 291.1,
+    "distribucion": 202.45,
+    "energia": 1.325,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.325
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 291.1
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:30+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 1,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "ENE-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 291.27,
+    "distribucion": 202.45,
+    "energia": 1.326,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.326
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 291.27
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:33+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 2,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "FEB-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 291.44,
+    "distribucion": 202.45,
+    "energia": 1.326,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.326
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 291.44
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 3,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "MAR-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 291.43,
+    "distribucion": 202.45,
+    "energia": 1.326,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.326
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 291.43
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:38+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 4,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "ABR-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 288.52,
+    "distribucion": 202.45,
+    "energia": 1.315,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.315
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 288.52
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:40+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 5,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "MAY-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 285.65,
+    "distribucion": 202.45,
+    "energia": 1.304,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.304
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 285.65
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:43+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 6,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "JUN-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 279.93,
+    "distribucion": 202.45,
+    "energia": 1.282,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.282
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 279.93
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:46+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 7,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "JUL-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 279.94,
+    "distribucion": 202.45,
+    "energia": 1.282,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.282
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 279.94
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:48+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 8,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "AGO-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 279.94,
+    "distribucion": 202.45,
+    "energia": 1.282,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.282
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 279.94
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:12:51+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 9,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "SEP-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 279.94,
+    "distribucion": 202.45,
+    "energia": 1.282,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.282
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 279.94
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:13:09+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 10,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "OCT-26",
+   "region": "ORIENTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|ORIENTE|2026-11": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 279.94,
+    "distribucion": 202.45,
+    "energia": 1.282,
+    "fijo": 636.28
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 636.28
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.282
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 202.45
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 279.94
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:13:12+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 11,
+   "municipio_consultado": "ACATLAN DE PEREZ FIGUEROA, OAXACA",
+   "periodo_cfe": "NOV-26",
+   "region": "ORIENTE",
    "tarifa": "GDMTO",
    "unidades": {
     "capacidad": "$/kW",
