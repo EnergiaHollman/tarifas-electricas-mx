@@ -33,6 +33,14 @@ check("sin división de horario", "division" in r.cuerpo, false);
 check("trae fuente de GDMTO", r.cuerpo.fuente.includes("GranDemandaMTO"), true);
 check("trae aviso", typeof r.cuerpo.aviso, "string");
 
+console.log("\nGDMTO en Oriente (cargos reales de CFE, septiembre 2026)");
+r = await get("/v1/tarifa?tarifa=GDMTO&region=ORIENTE&anio=2026&mes=9");
+check("Oriente 2026-09", r.cuerpo.cargos,
+  { capacidad: 279.94, distribucion: 202.45, energia: 1.282, fijo: 636.28 });
+r = await get("/v1/tarifa?tarifa=GDMTO&region=ORIENTE&anio=2025&mes=10");
+check("Oriente 2025-10 (antes del cambio de enero de 2026)", r.cuerpo.cargos,
+  { capacidad: 323.18, distribucion: 211.58, energia: 1.453, fijo: 474.54 });
+
 r = await get("/v1/tarifa?tarifa=gdmto&region=noroeste&anio=2026&mes=9");
 check("clave de tarifa y región sin importar mayúsculas", r.cuerpo.cargos.capacidad, 327.96);
 
@@ -63,10 +71,10 @@ const [h, o] = r.cuerpo.tarifas;
 check("GDMTH tiene horarios y 17 regiones", [h.horarios, h.regiones.length], [true, 17]);
 check("GDMTH desde 2018-01", h.periodo_desde, "2018-01");
 check("GDMTO sin horarios", o.horarios, false);
-check("GDMTO piloto: solo Noroeste", o.regiones, ["NOROESTE"]);
+check("GDMTO piloto: Noroeste y Oriente", o.regiones, ["NOROESTE", "ORIENTE"]);
 check("GDMTO desde 2025-01", o.periodo_desde, "2025-01");
 check("GDMTO llega al menos a 2026-09", o.periodo_hasta >= "2026-09", true);
-check("registros de GDMTO = meses de Noroeste", o.registros >= 21, true);
+check("registros de GDMTO = meses de las dos regiones", o.registros >= 42, true);
 check("explica qué es el mes", r.cuerpo.nota_mes.includes("sin ajustes"), true);
 check("OpenAPI lo documenta",
   Object.keys((await get("/openapi.json")).cuerpo.paths).includes("/v1/tarifas"), true);
