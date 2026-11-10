@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-03T18:53:07+00:00",
+ "actualizado": "2026-11-10T18:01:11+00:00",
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
  "registros": {
   "GDMTH|BAJA CALIFORNIA SUR|2018-01": {
@@ -115249,6 +115249,1110 @@
     "fijo": "$/mes",
     "intermedia": "$/kWh",
     "punta": "$/kWh"
+   }
+  },
+  "GDMTO|NOROESTE|2025-01": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 366.47,
+    "distribucion": 94.64,
+    "energia": 1.385,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.385
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 366.47
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:33+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 1,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "ENE-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-02": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 367.06,
+    "distribucion": 94.64,
+    "energia": 1.387,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.387
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 367.06
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 2,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "FEB-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-03": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 367.21,
+    "distribucion": 94.64,
+    "energia": 1.387,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.387
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 367.21
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:37+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 3,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "MAR-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-04": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 367.21,
+    "distribucion": 94.64,
+    "energia": 1.387,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.387
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 367.21
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:40+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 4,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "ABR-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-05": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 367.21,
+    "distribucion": 94.64,
+    "energia": 1.387,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.387
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 367.21
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:42+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 5,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "MAY-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-06": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 375.93,
+    "distribucion": 94.64,
+    "energia": 1.416,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.416
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 375.93
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:45+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 6,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "JUN-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-07": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 381.57,
+    "distribucion": 94.64,
+    "energia": 1.434,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.434
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 381.57
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:47+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 7,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "JUL-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-08": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 382.1,
+    "distribucion": 94.64,
+    "energia": 1.436,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.436
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 382.1
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:49+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 8,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "AGO-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-09": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 378.61,
+    "distribucion": 94.64,
+    "energia": 1.428,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.428
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 378.61
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:52+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 9,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "SEP-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-10": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 378.61,
+    "distribucion": 94.64,
+    "energia": 1.428,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.428
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 378.61
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:54+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 10,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "OCT-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-11": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 367.24,
+    "distribucion": 94.64,
+    "energia": 1.392,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.392
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 367.24
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:56+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 11,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "NOV-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2025-12": {
+   "anio": 2025,
+   "cargos": {
+    "capacidad": 348.88,
+    "distribucion": 94.64,
+    "energia": 1.332,
+    "fijo": 777.67
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 777.67
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.332
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 94.64
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 348.88
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:58:59+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 12,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "DIC-25",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-01": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 341.03,
+    "distribucion": 90.85,
+    "energia": 1.303,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.303
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 341.03
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:59:10+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 1,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "ENE-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-02": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 341.23,
+    "distribucion": 90.85,
+    "energia": 1.304,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.304
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 341.23
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:59:28+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 2,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "FEB-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-03": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 341.43,
+    "distribucion": 90.85,
+    "energia": 1.305,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.305
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 341.43
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:59:30+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 3,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "MAR-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-04": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 341.42,
+    "distribucion": 90.85,
+    "energia": 1.305,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.305
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 341.42
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:59:32+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 4,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "ABR-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-05": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 338.01,
+    "distribucion": 90.85,
+    "energia": 1.294,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.294
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 338.01
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:59:35+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 5,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "MAY-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-06": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 334.65,
+    "distribucion": 90.85,
+    "energia": 1.283,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.283
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 334.65
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:59:37+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 6,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "JUN-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-07": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 327.95,
+    "distribucion": 90.85,
+    "energia": 1.261,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.261
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 327.95
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:59:40+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 7,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "JUL-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-08": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 327.96,
+    "distribucion": 90.85,
+    "energia": 1.261,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.261
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 327.96
+    }
+   ],
+   "fecha_captura": "2026-11-10T17:59:42+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 8,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "AGO-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-09": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 327.96,
+    "distribucion": 90.85,
+    "energia": 1.261,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.261
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 327.96
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:00:17+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 9,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "SEP-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-10": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 327.96,
+    "distribucion": 90.85,
+    "energia": 1.261,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.261
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 327.96
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:00:19+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 10,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "OCT-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
+   }
+  },
+  "GDMTO|NOROESTE|2026-11": {
+   "anio": 2026,
+   "cargos": {
+    "capacidad": 327.96,
+    "distribucion": 90.85,
+    "energia": 1.261,
+    "fijo": 197.77
+   },
+   "conceptos": [
+    {
+     "cargo": "Fijo",
+     "int_horario": "-",
+     "unidades": "$/mes",
+     "valor": 197.77
+    },
+    {
+     "cargo": "Variable (Energía)",
+     "int_horario": "-",
+     "unidades": "$/kWh",
+     "valor": 1.261
+    },
+    {
+     "cargo": "Distribución",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 90.85
+    },
+    {
+     "cargo": "Capacidad",
+     "int_horario": "-",
+     "unidades": "$/kW",
+     "valor": 327.96
+    }
+   ],
+   "fecha_captura": "2026-11-10T18:00:36+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
+   "mes": 11,
+   "municipio_consultado": "AHOME, SINALOA",
+   "periodo_cfe": "NOV-26",
+   "region": "NOROESTE",
+   "tarifa": "GDMTO",
+   "unidades": {
+    "capacidad": "$/kW",
+    "distribucion": "$/kW",
+    "energia": "$/kWh",
+    "fijo": "$/mes"
    }
   }
  }
