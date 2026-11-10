@@ -125,6 +125,11 @@ redespliega. Si CFE rediseña la página, el Action falla en el paso de pruebas
 del parser **antes** de tocar los datos, y te llega el correo de GitHub. Ese
 es tu sistema de alertas.
 
+Además, el workflow *Desplegar* publica el Worker cada vez que se mergea a
+`main` un cambio en `worker/` o `data/`: corre las pruebas y, solo si pasan,
+despliega. Así un PR mergeado llega a producción sin un `wrangler deploy` a
+mano. También se puede lanzar desde Actions. Nunca corre sobre pull requests.
+
 ### 5. Conéctalo a un agente
 
 En Claude: Settings → Connectors → Add custom connector, con la URL
