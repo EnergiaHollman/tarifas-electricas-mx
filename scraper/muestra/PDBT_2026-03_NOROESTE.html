@@ -1,0 +1,940 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+
+</title><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="EI=Edge; IE=11; IE=10; IE=9;" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body class="stretched side-push-panel" data-loader="7" data-loader-color="#008E5A" data-loader-timeout="600" >
+    <form method="post" action="./PequenaDemandaBT.aspx" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="B58804E8" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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" />
+            <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, IE=10, IE=9" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link href="https://framework-gb.cdn.gob.mx/gm/accesibilidad/css/gobmx-accesibilidad.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.cfe.gob.mx/2019/assets/css/cfe.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+<link rel="shortcut icon" href="https://cdn.cfe.gob.mx/2019/assets/images/favico.png" type="image/vnd.microsoft.icon" id="favicon" />
+
+<div id="wrapper" class="clearfix">
+
+    <div class="body-overlay"></div>
+
+    <!-- Menu Derecho
+    ============================================= -->
+
+    <div id="side-panel">
+
+        <div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="fa-solid fa-bars pt-2"></i></a></div>
+
+        <div class="side-panel-wrap">
+
+            <div class="widget widget_links clearfix">
+
+                <img src="https://cdn.cfe.gob.mx/2019/assets/images/logo.svg" />
+
+                <h4 class="mt-3">Administración y Legales</h4>
+                <nav class="nav-tree mt-4">
+                    <ul>
+                        <li><a href='https://www.cfe.gob.mx/consejo/Pages/default.aspx'>CONSEJO DE ADMINISTRACIÓN</a></li><li><a href='https://www.cfe.gob.mx/finanzas/Pages/default.aspx'>FINANZAS</a></li><li><a href='https://www.cfe.gob.mx/concursoscontratos/Pages/default.aspx'>CONCURSOS Y CONTRATOS</a></li><li><a href='https://www.cfe.gob.mxhttps://msc.cfe.mx/Aplicaciones/NCFE/Concursos/Proveedor/PadronProveedores'>Proveedores</a></li><li><a href='https://msc.cfe.mx/Aplicaciones/NCFE/Concursos/'>Sistema Electrónico de Contrataciones</a></li><li><a href='https://www.cfe.gob.mx/distribucion/cumplimiento/pages/default.aspx'>Cumplimiento Regulatorio</a></li><li><a href='https://www.cfe.gob.mx/suministrobasico/informesb/pages/default.aspx'>Informes de la Calidad en el Suministro Básico</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Document Wrapper
+    ============================================= -->
+    <!-- Header
+    ============================================= -->
+    <header id="header">
+
+        <div id="header-wrap">
+
+            <div class="container clearfix">
+
+                <div id="primary-menu-trigger"><i class="fa-solid fa-bars pt-2"></i></div>
+
+                <!-- Logo
+                ============================================= -->
+                <div id="logo">
+                    <a href="https://www.cfe.gob.mx" class="standard-logo">
+                        <img src="https://cdn.cfe.gob.mx/2019/assets/images/logo.svg" alt="CFE" />
+                    </a>
+                    <a href="https://www.cfe.gob.mx" class="retina-logo">
+                        <img src="https://cdn.cfe.gob.mx/2019/assets/images/logo.svg" alt="CFE" />
+                    </a>
+                </div>
+                <!-- #logo end -->
+
+                <div id="top-account" class="mb-0 d-none d-sm-none d-md-none d-lg-block">
+                    <a href="https://app.cfe.mx/Aplicaciones/CCFE/MiEspacio/Login.aspx" class="button button-small rounded text-white m-0"><i class="fa-solid fa-user mr-2"></i>Mi CFE</a>
+
+                </div>
+
+                <!-- Primary Navigation
+                 ============================================= -->
+                <nav id='primary-menu'><ul><li><a href='https://cfecontigocontratos.cfe.mx/cfe/'>Contratación</a></li><li class='mega-menu'><a href='#'>Trámites y Servicios</a><div class='mega-menu-content style-2 clearfix' style='background-image: url(); background-repeat: no-repeat; background-position: right bottom;'><ul class='mega-menu-column col-lg-2'><li class='mega-menu-title'><a href='https://www.cfe.gob.mx/hogar/infcliente/pages/catalogo-tramites.aspx'>HOGAR</a><ul></ul></li></ul><ul class='mega-menu-column col-lg-2'><li class='mega-menu-title'><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/catalogo-de-tramites.aspx'>NEGOCIO</a><ul></ul></li></ul><ul class='mega-menu-column col-lg-2'><li class='mega-menu-title'><a href='https://www.cfe.gob.mx/industria/infcliente/pages/catalogo-de-tramites-y-servicios.aspx'>INDUSTRIA</a><ul></ul></li></ul><ul class='mega-menu-column col-lg-2'><li class='mega-menu-title'><a href='https://www.cfe.gob.mx/agricolayservicios/infcliente/pages/catalogo-de-tramites-y-servicios.aspx'>AGRíCOLA Y SERVICIOS</a><ul></ul></li></ul><ul class='mega-menu-column col-lg-2'><li class='mega-menu-title'><a href='https://www.cfe.gob.mx/servicios_externos'>Servicios Externos</a><ul></ul></li></ul></div></li></ul><div id='side-panel-trigger' class='side-panel-trigger'><a href='#'><i class='icon-reorder'></i></a></div></nav>
+                <!-- #primary-menu end -->
+
+
+            </div>
+
+        </div>
+
+    </header>
+    <!-- MENU 3 -->
+    <div id="page-menu">
+
+        <div id="page-menu-wrap" class="bg-gold">
+
+            <div class="container clearfix">
+
+                <nav>
+                    <ul>
+			<li>
+                            <a href="https://app.cfe.mx/Aplicaciones/OTROS/Boletines/Prensa?c=19">
+                                <div>Justicia Energética</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://app.cfe.mx/Aplicaciones/OTROS/Boletines/AcercaDe">
+                                <div>Prensa</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cfe.gob.mx/Pages/preguntas_frecuentes.aspx">
+                                <div>Preguntas Frecuentes</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://facebook.com/cfenacional" target="_blank">
+                                <div>
+                                    <i class="fab fa-facebook-f pt-2"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+
+                            <a href="https://twitter.com/cfemx" target="_blank">
+                                <i class="fab fa-x-twitter pt-2"></i>
+                            </a>
+                        </li>
+                        <li>
+
+                            <a href="https://www.youtube.com/channel/UC5YjgDMZ08jSn4LxPom7O2Q/videos" target="_blank">
+                                <div>
+                                    <i class="fab fa-youtube pt-2"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/cfe_nacional/" target="_blank">
+                                <div>
+                                    <i class="fab fa-instagram pt-2"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.tiktok.com/@cfe_nacional" target="_blank">
+                                <div>
+                                    <i class="fab fa-tiktok pt-2"></i>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <div class="mt-2">
+                                <div id="cse-search-box" class="input-group">
+                                    <input id="qu" name="q" type="text" class="form-control form-control-sm" value="" placeholder="buscar..." />
+                                    <div class="input-group-append">
+                                        <button type="button" id="myBtn" class="input-group-btn btn bgcolor btn-sm" onclick="jQuery().SharePointFormSubmit(
+                                         {
+                                               'element':'#cse-search-box',
+                                               'frmMethod':'post',
+                                               'frmAction': 'https://app.cfe.mx/Aplicaciones/OTROS/Buscador/Resultados.aspx?q='+ $('#qu').val(),
+                                               'frmTarget':'_blank'
+
+                                         })">
+                                            <i class="fa-solid fa-magnifying-glass text-white"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </nav>
+
+                <div id="page-submenu-trigger"><i class="fa-solid fa-bars pt-2"></i></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Page Title
+============================================= -->
+<section class="page-title page-title-dark">
+
+    <div class="image-cover">
+	<div class="container">
+        	<img src="https://app.cfe.mx/cdn/2019/assets/images/headers/Header CFE_gris_Bco_Negocio.png" />
+	</div>
+    </div>
+
+    <div class="container clearfix">
+        <h1>NEGOCIO</h1>
+    </div>
+
+</section>
+<!-- #page-title end -->
+<!-- Page Sub Menu
+   ============================================= -->
+<div id="page-menu" class="no-sticky">
+
+    <div id="page-menu-wrap">
+
+        <div class="container clearfix">
+
+            <div class="menu-title"><span>Tarifas</span></div>
+
+            <ol class="breadcrumb">
+            	<li class='breadcrumb-item'><a href='https://www.cfe.gob.mx'>CFE</a></li><li class='breadcrumb-item'><a href='#'>Trámites y servicios</a></li><li class='breadcrumb-item'><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/catalogo-de-tramites.aspx'>Negocio</a></li><li class='breadcrumb-item active' aria-current='page'>Tarifas</li>
+            </ol>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- #page-menu end -->
+    <!-- #banner interior end-->
+</div>
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="fa-solid fa-angles-up pt-0"></div>
+
+
+<!-- External JavaScripts -->
+<!-- ============================================= -->
+<script src="https://cdn.cfe.gob.mx/2019/assets/js/jquery.js"></script>
+<script src="https://www.cfe.gob.mx/cdn/2019/assets/js/plugins.js"></script>
+<script src="https://cdn.cfe.gob.mx/2019/assets/js/functions.js"></script>
+
+<script src="https://cdn.cfe.gob.mx/2019/assets/js/jquery.SharePointFormSubmit.js"></script>
+
+<script src="https://framework-gb.cdn.gob.mx/gm/accesibilidad/js/gobmx-accesibilidad.min.js"></script>
+
+<script>
+    var input = document.getElementById("qu");
+    input.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("myBtn").click();
+            this.value = "";
+        }
+    });
+</script>
+
+
+<script>
+    // jQuery Typing
+    (function (f) { function l(g, h) { function d(a) { if (!e) { e = true; c.start && c.start(a, b) } } function i(a, j) { if (e) { clearTimeout(k); k = setTimeout(function () { e = false; c.stop && c.stop(a, b) }, j >= 0 ? j : c.delay) } } var c = f.extend({ start: null, stop: null, delay: 400 }, h), b = f(g), e = false, k; b.keypress(d); b.keydown(function (a) { if (a.keyCode === 8 || a.keyCode === 46) d(a) }); b.keyup(i); b.blur(function (a) { i(a, 0) }) } f.fn.typing = function (g) { return this.each(function (h, d) { l(d, g) }) } })(jQuery);
+
+    jQuery(document).ready(function ($) {
+
+        $('#icons-filter').typing({
+            stop: function (event, $elem) {
+                var filterValue = $elem.val(),
+                    count = 0;
+
+                if ($elem.val()) {
+
+                    $(".icons-list li").each(function () {
+                        if ($(this).text().search(new RegExp(filterValue, "i")) < 0) {
+                            $(this).fadeOut();
+                        } else {
+                            $(this).show();
+                            count++
+                        }
+                    });
+                } else {
+                    $(".icons-list li").show();
+                }
+
+                count = 0;
+            },
+            delay: 500
+        });
+
+    });
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HHX5QY23J4"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-HHX5QY23J4', {
+        'cookie_domain': 'cfe.mx'
+    });
+
+</script>
+
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-75733004-1']);
+    _gaq.push(['_setDomainName', '.cfe.mx']);
+    _gaq.push(['_setAllowHash', false]);
+    _gaq.push(['_trackPageview']);
+    _gaq.push(['_trackPageLoadTime']);
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script> 
+        <!--<div id="wrapper" class="clearfix">-->
+
+       <section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+					<div class="sidebar menu-izq clearfix">
+						<div class='toggle'><div class='togglet'><i class='toggle-closed icon-chevron-right'></i><i class='toggle-open icon-chevron-down'></i>Negocio</div><div class='togglec'><div class='sidebar-widgets-wrap'><div class='list-group'><a href='https://www.cfe.gob.mx/negocio/pages/default.aspx' class='list-group-item list-group-item-action clearfix'>¿Quiénes somos?</a></div></div></div></div><div class='toggle'><div class='togglet'><i class='toggle-closed icon-chevron-right'></i><i class='toggle-open icon-chevron-down'></i>Nuevo Contrato</div><div class='togglec'><div class='sidebar-widgets-wrap'><div class='list-group'><a href='https://www.cfe.gob.mx/negocio/nuevocontrato/pages/default.aspx' class='list-group-item list-group-item-action clearfix'>Para contratar</a><a href='https://www.cfe.gob.mx/negocio/nuevocontrato/pages/dondecontratar.aspx' class='list-group-item list-group-item-action clearfix'>¿Dónde contratar?</a><a href='https://www.cfe.gob.mx/negocio/nuevocontrato/pages/fotovoltaiconegocio.aspx' class='list-group-item list-group-item-action clearfix'>Contratación de interconexión para negocio</a><a href='https://www.cfe.gob.mx/negocio/nuevocontrato/pages/electrolinerasnegocio.aspx' class='list-group-item list-group-item-action clearfix'>Electrolineras para negocio</a></div></div></div></div><div class='toggle' data-state='open'><div class='togglet'><i class='toggle-closed icon-chevron-right'></i><i class='toggle-open icon-chevron-down'></i>Tarifas</div><div class='togglec'><div class='sidebar-widgets-wrap'><div class='list-group'><a href='https://www.cfe.gob.mx/negocio/tarifas/pages/default.aspx' class='list-group-item list-group-item-action clearfix'>Esquema tarifario vigente</a><a href='https://www.cfe.gob.mx/negocio/tarifas/pages/acuerdosmodificatoriostarifas.aspx' class='list-group-item list-group-item-action clearfix'>Acuerdos modificatorios de las tarifas</a><a href='https://www.cfe.gob.mx/negocio/tarifas/pages/disposicionescomplementarias.aspx' class='list-group-item list-group-item-action clearfix'>Disposiciones complementarias</a><a href='https://www.cfe.gob.mx/negocio/tarifas/pages/acervo-historico-tarifario.aspx' class='list-group-item list-group-item-action clearfix'>Acervo histórico tarifario</a></div></div></div></div><div class='toggle'><div class='togglet'><i class='toggle-closed icon-chevron-right'></i><i class='toggle-open icon-chevron-down'></i>Información al cliente</div><div class='togglec'><div class='sidebar-widgets-wrap'><div class='list-group'><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/default.aspx' class='list-group-item list-group-item-action clearfix'>Derechos y obligaciones del usuario de Suministro Básico</a><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/medios-de-pago.aspx' class='list-group-item list-group-item-action clearfix'>Centros de Atención</a><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/normas-de-distribucion.aspx' class='list-group-item list-group-item-action clearfix'>Normas de distribución</a><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/precio-por-obra-solicitada.aspx' class='list-group-item list-group-item-action clearfix'>Precio por obra solicitada</a><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/acervo-historico-precio-obra.aspx' class='list-group-item list-group-item-action clearfix'>Acervo histórico precio por obra solicitada</a><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/cuotasserviciolbranza.aspx' class='list-group-item list-group-item-action clearfix'>Servicio de Libranza</a><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/costo-de-reconexion.aspx' class='list-group-item list-group-item-action clearfix'>Costo de reconexión</a><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/como-leer-medidor.aspx' class='list-group-item list-group-item-action clearfix'>¿Cómo leer tu medidor?</a><a href='https://www.cfe.gob.mx/negocio/infcliente/pages/catalogo-de-tramites.aspx' class='list-group-item list-group-item-action clearfix'>Catálogo de trámites y servicios</a></div></div></div></div><div class='toggle'><div class='togglet'><i class='toggle-closed icon-chevron-right'></i><i class='toggle-open icon-chevron-down'></i>Centros de atención</div><div class='togglec'><div class='sidebar-widgets-wrap'><div class='list-group'><a href='https://www.cfe.gob.mx/negocio/centroatencion/pages/default.aspx' class='list-group-item list-group-item-action clearfix'>Consulta</a></div></div></div></div><div class='toggle'><div class='togglet'><i class='toggle-closed icon-chevron-right'></i><i class='toggle-open icon-chevron-down'></i>Actualiza tus datos</div><div class='togglec'><div class='sidebar-widgets-wrap'><div class='list-group'><a href='https://www.cfe.gob.mx/negocio/actualizate/pages/default.aspx' class='list-group-item list-group-item-action clearfix'>Actualizate</a></div></div></div></div> 
+					</div>
+                                        <div class="postcontent nobottommargin col_last">
+                                              
+      <input type="hidden" name="ctl00$ContentPlaceHolder1$hdAnio" id="ContentPlaceHolder1_hdAnio" value="2026" />
+    <input type="hidden" name="ctl00$ContentPlaceHolder1$hdMes" id="ContentPlaceHolder1_hdMes" value="3" />
+   
+<table border="0" width="100%" align="center">
+
+<tbody><tr>
+  <td colspan="2">
+  <span class="tituloContenidoRojo">Tarifa PDBT</span>
+  </td>
+</tr><tr>
+			<td colspan="2">
+				<table border="0" width="100%">
+					<tr>
+						 <td width="10%"></td>
+						<td style="text-align:right" width="40%">
+							<br/>
+							<span class="tituloContenidoRojo">Consultar tarifas de: &nbsp; &nbsp; &nbsp;</span>
+						</td>
+						<td style="text-align:left" width="15%"><br/>
+                            <select name="ctl00$ContentPlaceHolder1$Fecha$ddAnio" id="ContentPlaceHolder1_Fecha_ddAnio" class="input">
+	<option selected="selected" value="2026">2026</option>
+	<option value="2025">2025</option>
+	<option value="2024">2024</option>
+	<option value="2023">2023</option>
+	<option value="2022">2022</option>
+	<option value="2021">2021</option>
+	<option value="2020">2020</option>
+	<option value="2019">2019</option>
+	<option value="2018">2018</option>
+	<option value="2017">2017</option>
+
+</select>
+
+						</td>
+                         <td width="35%"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+<tr>
+<td>
+
+
+</td>
+</tr>
+
+<tr>
+  <td colspan="2"><br/>
+      <p style="text-align:justify">
+          Pequeña demanda baja tensión hasta 25 kW-mes <o:p></o:p>
+      </p>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="2"><br/>
+   <span class="tituloContenidoRojo">1.-	Aplicación</span>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="2">
+   <p style="text-align:justify"><br />Esta tarifa se aplicará a todos los servicios que destinen la energía en baja tensión a cualquier uso, con demanda hasta de 25 kilowatts, excepto a los servicios para los cuales se fija específicamente su tarifa.</p>
+  </td>
+</tr>
+
+<tr>
+   <td>   
+     
+     <table width="90%" border="0" bordercolor="ff0000">
+  
+ <tbody><tr>
+   <td width="38%"><br />
+   2.- Cuotas aplicables en el mes de </td>
+                            <td width="40%">
+ 
+        <select name="ctl00$ContentPlaceHolder1$Fecha2$ddMes" id="ContentPlaceHolder1_Fecha2_ddMes" class="input">
+	<option value="0">-- Selecciona un mes --</option>
+	<option value="1">ENERO</option>
+	<option value="2">FEBRERO</option>
+	<option selected="selected" value="3">MARZO</option>
+	<option value="4">ABRIL</option>
+	<option value="5">MAYO</option>
+	<option value="6">JUNIO</option>
+	<option value="7">JULIO</option>
+	<option value="8">AGOSTO</option>
+	<option value="9">SEPTIEMBRE</option>
+	<option value="10">OCTUBRE</option>
+	<option value="11">NOVIEMBRE</option>
+	<option value="12">DICIEMBRE</option>
+
+</select>
+
+                                   
+ 
+  </td><td width="22%"> &nbsp;de 2026.  </td>
+       </tr>
+     </tbody>
+      
+         </table>
+   </td>
+  </tr>
+
+     
+    
+		<tr>
+			<td>
+                   <br />  2.1 Identifica tu región tarifaria
+                    <br /><br />
+                        
+
+<div class="row">
+    <div class="col-md-12">
+<select name="ctl00$ContentPlaceHolder1$EdoMpoDiv$ddEstado" id="ContentPlaceHolder1_EdoMpoDiv_ddEstado" class="input col-md-4">
+	<option value="0">-- Seleccione un Estado --</option>
+	<option value="1">AGUASCALIENTES</option>
+	<option value="2">BAJA CALIFORNIA</option>
+	<option value="3">BAJA CALIFORNIA SUR</option>
+	<option value="4">CAMPECHE</option>
+	<option value="5">CHIAPAS</option>
+	<option value="6">CHIHUAHUA</option>
+	<option value="9">CIUDAD DE M&#201;XICO</option>
+	<option value="7">COAHUILA</option>
+	<option value="8">COLIMA</option>
+	<option value="10">DURANGO</option>
+	<option value="15">ESTADO DE M&#201;XICO</option>
+	<option value="11">GUANAJUATO</option>
+	<option value="12">GUERRERO</option>
+	<option value="13">HIDALGO</option>
+	<option value="14">JALISCO</option>
+	<option value="16">MICHOAC&#193;N</option>
+	<option value="17">MORELOS</option>
+	<option value="18">NAYARIT</option>
+	<option value="19">NUEVO LE&#211;N</option>
+	<option value="20">OAXACA</option>
+	<option value="21">PUEBLA</option>
+	<option value="22">QUER&#201;TARO</option>
+	<option value="23">QUINTANA ROO</option>
+	<option value="24">SAN LUIS POTOS&#205;</option>
+	<option value="25">SINALOA</option>
+	<option selected="selected" value="26">SONORA</option>
+	<option value="27">TABASCO</option>
+	<option value="28">TAMAULIPAS</option>
+	<option value="29">TLAXCALA</option>
+	<option value="30">VERACRUZ</option>
+	<option value="31">YUCAT&#193;N</option>
+	<option value="32">ZACATECAS</option>
+
+</select>
+
+
+<select name="ctl00$ContentPlaceHolder1$EdoMpoDiv$ddMunicipio" id="ContentPlaceHolder1_EdoMpoDiv_ddMunicipio" class="input col-md-4">
+	<option value="0">-- Seleccione un Municipio --</option>
+	<option value="1879">ACONCHI</option>
+	<option value="1880">AGUA PRIETA</option>
+	<option value="1881">ALAMOS</option>
+	<option value="1882">ALTAR</option>
+	<option value="1883">ARIVECHI</option>
+	<option value="1884">ARIZPE</option>
+	<option value="1885">ATIL</option>
+	<option value="1886">BACADEHUACHI</option>
+	<option value="1887">BACANORA</option>
+	<option value="1888">BACERAC</option>
+	<option value="1889">BACOACHI</option>
+	<option value="1890">BACUM</option>
+	<option value="1891">BANAMICHI</option>
+	<option value="1892">BAVIACORA</option>
+	<option value="1893">BAVISPE</option>
+	<option value="1894">BENITO JUAREZ</option>
+	<option value="1895">BENJAMIN HILL</option>
+	<option value="1896">CABORCA</option>
+	<option value="1897">CAJEME</option>
+	<option value="1898">CANANEA</option>
+	<option value="1899">CARBO</option>
+	<option value="1900">CUCURPE</option>
+	<option value="1901">CUMPAS</option>
+	<option value="1902">DIVISADEROS</option>
+	<option value="1903">EMPALME</option>
+	<option value="1904">ETCHOJOA</option>
+	<option value="1905">FRONTERAS</option>
+	<option value="1906">GRANADOS</option>
+	<option value="1907">GUAYMAS</option>
+	<option value="1908">HERMOSILLO</option>
+	<option value="1909">HUACHINERA</option>
+	<option value="1910">HUASABAS</option>
+	<option value="1911">HUATABAMPO</option>
+	<option value="1912">HUEPAC</option>
+	<option value="1913">IMURIS</option>
+	<option value="1914">LA COLORADA</option>
+	<option value="1915">MAGDALENA</option>
+	<option value="1916">MAZATAN</option>
+	<option value="1917">MOCTEZUMA</option>
+	<option value="1918">NACO</option>
+	<option value="1919">NACORI CHICO</option>
+	<option value="1920">NACOZARI DE GARCIA</option>
+	<option selected="selected" value="1921">NAVOJOA</option>
+	<option value="1922">NOGALES</option>
+	<option value="1923">ONAVAS</option>
+	<option value="1924">OPODEPE</option>
+	<option value="1925">OQUITOA</option>
+	<option value="1926">PITIQUITO</option>
+	<option value="1927">PUERTO PENASCO</option>
+	<option value="1928">QUIRIEGO</option>
+	<option value="1929">RAYON</option>
+	<option value="1930">ROSARIO</option>
+	<option value="1931">SAHUARIPA</option>
+	<option value="1932">SAN FELIPE DE JESUS</option>
+	<option value="1933">SAN IGNACIO RIO MUERTO</option>
+	<option value="1934">SAN JAVIER</option>
+	<option value="1935">SAN LUIS RIO COLORADO</option>
+	<option value="1936">SAN MIGUEL DE HORCASITAS</option>
+	<option value="1937">SAN PEDRO DE LA CUEVA</option>
+	<option value="1938">SANTA ANA</option>
+	<option value="1939">SANTA CRUZ</option>
+	<option value="1940">SARIC</option>
+	<option value="1941">SOYOPA</option>
+	<option value="1942">SUAQUI GRANDE</option>
+	<option value="1943">TEPACHE</option>
+	<option value="1944">TRINCHERAS</option>
+	<option value="1945">TUBUTAMA</option>
+	<option value="1946">VILLA HIDALGO</option>
+	<option value="1947">VILLA PESQUEIRA</option>
+	<option value="1948">YECORA</option>
+
+</select>
+
+
+<select name="ctl00$ContentPlaceHolder1$EdoMpoDiv$ddDivision" id="ContentPlaceHolder1_EdoMpoDiv_ddDivision" class="input  col-md-4">
+	<option value="0">-- Seleccione un Divisi&#243;n --</option>
+	<option selected="selected" value="18">NOROESTE</option>
+
+</select>
+    </div>
+    </div>
+
+
+                <br />
+				<table border="0" width="100%">
+					
+						
+               
+                        <tbody>  <tr>
+                                <td><br />
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Noroeste</h3><table class='table table-bordered table-striped'><tr><th>Tarifa</th><th>Descripción</th><th>Cargo</th><th>Unidades</th><th>MAR-26</th></tr> <tr><th rowspan='2'>PDBT</th><th rowspan='2'>Pequeña demanda baja tensión hasta 25 kW-mes</th><td>Fijo </td><td>$/mes</td><td>19.78</td></tr>  <tr><td>Variable (Energía)</td><td>$/kWh</td><td>3.347</td></tr></table>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+
+                        </tbody>
+</table>
+			</td>
+		</tr>
+ 
+ <tr><td> <p style="text-align:justify">Los cargos de las tarifas finales del suministro básico descritos en este apartado, corresponden a la integración de los cargos por Transmisión, Distribución, Operación del CENACE, Operación del Suministrador Básico, Servicios Conexos No MEM, Energía y Capacidad.</p></td></tr>
+         <tr><td> <p style="text-align:justify">Para mayor información sobre las cuotas aplicables favor de consultar el apartado de <a href='https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Acuerdos/AcuerdosNegocio.aspx' data-toggle="tooltip" title="Acuerdos que autorizan o modifican tarifas emitidos por la CRE">Acuerdos que autorizan o modifican tarifas.</a></p></td></tr>
+			
+<tr>
+  <td colspan="2">
+  <br/><span class="tituloContenidoRojo">3.- Mínimo mensual</span> 
+  </td>
+</tr>
+
+<tr>
+  <td colspan="2">
+  <p style="text-align:justify"><br />La cantidad que resulte de aplicar el cargo por la por la operación del Suministrador de Servicios Básicos.</p>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="2">
+  <br/><span class="tituloContenidoRojo"> 4.-	Demanda por contratar</span> 
+  </td>
+</tr>
+
+<tr>
+  <td colspan="2">
+   <p style="text-align:justify"><br />La demanda por contratar la fijará inicialmente el usuario con base en sus necesidades de potencia. Cualquier fracción de kilowatt se considerará como kilowatt completo.</p>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="2">
+ <p style="text-align:justify">Cuando el usuario exceda la demanda de 25 kilowatts, deberá solicitar al suministrador aplique la tarifa GDBT. De no hacerlo, a la tercera medición consecutiva en que exceda la demanda de 25 kilowatts, será reclasificado por el suministrador, notificándole al usuario.</p>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="2">
+  <br/><span class="tituloContenidoRojo">5.- Depósito de garantía</span>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="2">
+   <p style="text-align:justify"><br />Es el importe que resulte de aplicar la cuota a cada kilowatt, con base a los hilos contratados de acuerdo a lo siguiente:</p>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="2">
+  <br/>a) 125 kilowatts-hora para los servicios suministrados con 1 hilo de corriente.<p>
+  </p></td>
+</tr>
+
+<tr>
+  <td colspan="2">
+ b)	350 kilowatts-hora para los servicios suministrados con 2 hilos de corriente.<p>
+  </p></td>
+</tr>
+
+<tr>
+  <td colspan="2">
+c)	400 kilowatts-hora para los servicios suministrados con 3 hilos de corriente.<p>
+  </p></td>
+</tr>
+
+<tr>
+  <td colspan="2">
+<p style="text-align:justify"><br />En el caso de los servicios con facturación bimestral, el depósito de garantía será dos veces el importe que resulte de aplicar lo anterior.</p>
+  </td>
+</tr>
+
+    </tbody></table>
+  
+
+     <br />
+        <br />
+    <table class="cuadroNotas" cellspacing="0" cellpadding="0" border="0" align="center" >
+                    
+                    <tr> 
+                       <th><i class="fa fa-commenting-o"></i>&nbsp;Nota</th>
+                    </tr>
+                    <tr> 
+                      <td colspan="2"><table class="cuadroNotas" cellspacing="0" cellpadding="0" border="0" align="center" >
+                          <tr> 
+                            <td class="letra_negra">
+                            
+             <p align="justify">
+ Para atender dudas, comentarios y aclaraciones de la metodología de cálculo y ajuste de las tarifas finales de Suministro Básico, contacte a la Comisión Nacional de Energía a través de su página www.gob.mx/cne y su Atención Ciudadana (55) 5000 6000 ext. 2646.
+ </p>
+            
+
+</td></tr></table> 
+                          </td>
+                        </tr>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+                     			</div>
+
+                    		</div>
+                  		<div class="col-lg-8 pull-right">
+                 			<a href="https://www.cfe.mx/" class="button button-rounded" title="Página principal de Tarifas"><i class="icon-home" ></i></a>
+                 			<a onclick="JavaScript: window.history.back(1); return false;" id="linkAnt" class="button button-rounded" href="javascript:__doPostBack(&#39;ctl00$linkAnt&#39;,&#39;&#39;)"><i class="icon-line2-arrow-left"></i></a> 
+                 			                 		<!--	-->
+                       		</div>
+                	</div>
+           </section>
+
+
+            
+<footer id="footer" class="bg-white border-0">
+    <div class="container">
+
+        <!-- Footer Widgets
+        ============================================= -->
+        <div class="footer-widgets-wrap">
+
+
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-4 mb-3">
+
+                    <div class="widget clearfix">
+                        <img src="https://cdn.cfe.gob.mx/2019/assets/images/logo.svg" alt="CFE" class="footer-logo my-auto" height="100" />
+                    </div>
+
+                </div>
+
+                <div class="col-auto mb-3">
+                    <a href="https://apps.apple.com/mx/app/cfe-contigo/id1354232135" class="button button-desc d-inline-flex align-items-center button-small button-border rounded">
+                        <i class="fab fa-apple fs-2 w-auto"></i>
+                        <div>
+                            <small class="d-block font-body mb-2 op-07">Descarga en la</small>
+                            <div class="text-larger fw-semibold">Apple Store</div>
+                        </div>
+                    </a>
+
+                    <a href="https://play.google.com/store/apps/details?id=mx.com.cfe.cfecontigo&hl=es_MX" class="button button-desc d-inline-flex align-items-center button-small button-border rounded">
+                        <i class="fab fa-google-play fs-2 w-auto"></i>
+                        <div>
+                            <small class="d-block font-body mb-2 op-07">Descarga en la</small>
+                            <div class="text-larger fw-semibold">Google Play</div>
+                        </div>
+                    </a>
+                    <a href="https://appgallery5.huawei.com/#/app/C101693327" class="button button-desc d-inline-flex align-items-center button-small button-border rounded">
+                        <i class="fa-solid fa-bag-shopping fs-2 w-auto"></i>
+                        <div>
+                            <small class="d-block font-body mb-2 op-07">Descarga en la</small>
+                            <div class="text-larger fw-semibold">AppGallery</div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+
+
+            <div class="clear line border-width-4 mb-4 mt-0"></div>
+
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-md-12">
+
+
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6 mb-3 border-right">
+
+                            <div class="widget widget_links clearfix">
+
+                                <h4>Nuestra Empresa</h4>
+                                <ul>
+                                    <li><a href="https://www.cfe.gob.mx/nuestraempresa/pages/queeslacfe.aspx">&#191;Qui&eacute;nes somos?</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/nuestraempresa/pages/mision.aspx">Misi&oacute;n</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/nuestraempresa/pages/vision.aspx">Visi&oacute;n</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/nuestraempresa/Pages/DG.aspx">Directora General</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/nuestraempresa/pages/directores.aspx">Directoras y Directores</a></li>
+                                    <li><a href="https://app.cfe.mx/normateca/">Marco Legal y Normativo</a></li>
+                                    <li><a href="https://apps.cfe.mx/SolicitudesEmpleo/Solicitud/Inicio">Solicitudes de Empleo</a></li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6 mb-3 border-right">
+
+                            <div class="widget widget_links clearfix">
+
+                                <h4>Clientes</h4>
+                                <ul>
+                                    <li><a href="https://www.cfe.gob.mx/Hogar/Pages/default.aspx">Hogar</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/Negocio/Pages/default.aspx">Negocio</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/Industria/Pages/default.aspx">Industria</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/Agricolayservicios/Pages/default.aspx">Agr&iacute;cola y Servicios</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/servicios_externos/Paginas/default.aspx">Externos</a></li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6 mb-3 border-right">
+                            <div class="widget widget_links clearfix">
+
+
+                                <h4>Comunicaci&oacute;n</h4>
+                                <ul>
+                                    <li><a href="https://app.cfe.mx/Aplicaciones/OTROS/Boletines/Prensa?c=1">Prensa</a></li>
+                                    <li><a href="https://app.cfe.mx/Aplicaciones/OTROS/Boletines/StockFotos">Galer&iacute;a</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/dir_comunicacion/Pages/default.aspx">Contacto</a></li>
+                                </ul>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col-lg-3 col-sm-6 mb-3">
+
+                            <div class="widget widget_links clearfix">
+
+
+                                <h4>&Eacute;TICA / TRANSPARENCIA</h4>
+                                <ul>
+                                    <li><a href="https://www.cfe.gob.mx/transparencia_etica/etica/pages/acciones-%c3%a9tica.aspx">&Eacute;tica</a></li>
+                                    <li><a href="https://www.plataformadetransparencia.org.mx/">Plataforma de Transparencia</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/transparencia_etica/transparencia/pages/transparencia.aspx">Obligaciones de Transparencia</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/transparencia_etica/transparencia/Pages/datos_personales.aspx">Protecci&oacute;n de Datos Personales</a></li>
+                                    <li><a href="https://www.cfe.gob.mx/transparencia_etica/">Transparencia</a></li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="fancy-title title-center title-border mb-0">
+                <h3><i class="fa-solid fa-bolt pt-2 text-gold"></i></h3>
+            </div>
+
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-8 col-md-6">
+                    <div class="widget">
+                        <div class="row">
+
+                            <div class="col-auto">
+                                <div class="footer-big-contacts">
+                                    <span><strong>Atenci&oacute;n al Cliente:</strong></span>
+                                    <span class="color text-larger"><strong>Marca 071</strong></span>
+                                </div>
+                            </div>
+
+                            <div class="col-auto">
+                                <div class="footer-big-contacts">
+                                    <span><strong>Oficinas Nacionales:</strong></span>
+                                    Av. Paseo de la Reforma 164, Col. Ju&aacute;rez, C.P. 06600, Ciudad de M&eacute;xico. M&eacute;xico.
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="fright clearfix">
+                        <a href="http://facebook.com/cfenacional" target="_blank" class="social-icon si-small si-borderless si-gold text-gold">
+                            <i class="fab fa-facebook-f pt-2"></i>
+                            <i class="fab fa-facebook-f pt-3"></i>
+                        </a>
+
+                        <a href="https://twitter.com/cfemx" target="_blank" class="social-icon si-small si-borderless si-gold text-gold">
+                            <i class="fab fa-x-twitter pt-2"></i>
+                            <i class="fab fa-x-twitter pt-3"></i>
+                        </a>
+
+                        <a href="https://www.youtube.com/channel/UC5YjgDMZ08jSn4LxPom7O2Q/videos" target="_blank" class="social-icon si-small si-borderless si-gold text-gold">
+                            <i class="fab fa-youtube pt-2"></i>
+                            <i class="fab fa-youtube pt-3"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/cfe_nacional/" target="_blank" class="social-icon si-small si-borderless si-gold text-gold">
+                            <i class="fab fa-instagram pt-2"></i>
+                            <i class="fab fa-instagram pt-3"></i>
+                        </a>
+
+                        <a href="https://www.tiktok.com/@cfe_nacional" target="_blank" class="social-icon si-small si-borderless si-gold text-gold">
+                            <i class="fab fa-tiktok pt-2"></i>
+                            <i class="fab fa-tiktok pt-3"></i>
+                        </a>
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div id="copyrights" class="dark">
+
+        <div class="container clearfix">
+
+            <div class="col text-center">
+
+                <div class="copyright-links">&copy; Derechos reservados. <a class="text-white" href="https://www.cfe.gob.mx/Pages/TerminosyCondiciones.aspx"><strong>T&eacute;rminos y condiciones</strong></a> / <a class="text-white" href="https://www.cfe.gob.mx/Pages/Politica_de_privacidad.aspx"><strong>Pol&iacute;tica de privacidad</strong></a></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+        <!--</div>-->
+        
+     <script>
+         function goBack() {
+             window.history.back();
+         }
+</script>
+    </form>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+<script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=6&cb=751641862" async></script></body>
+</html>

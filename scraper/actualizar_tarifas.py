@@ -19,8 +19,10 @@ no cambia, y si cambia quieres enterarte, no que se sobreescriba callado.
 """
 import argparse
 import json
+import os
 import pathlib
 import sys
+import time
 from datetime import datetime, timezone
 
 import cfe
@@ -204,9 +206,92 @@ def clave(tarifa, region, anio, mes):
     return f"{tarifa}|{region}|{anio:04d}-{mes:02d}"
 
 
+def limpiar_tarifa(registros, tarifa):
+    """Borra TODOS los registros de una tarifa y solo de esa. Devuelve cuántos."""
+    fuera = [k for k, v in registros.items() if v.get("tarifa") == tarifa]
+    for k in fuera:
+        del registros[k]
+    return len(fuera)
+
+
+def olvidar_registros(registros, tarifa, regiones):
+    """Borra los registros de esas regiones, pero solo de la tarifa dada.
+
+    Antes filtraba solo por región: con varias tarifas en tarifas.json, olvidar
+    NOROESTE para repetir GDMTO se llevaba también el NOROESTE de GDMTH.
+    """
+    borrar = {P.normalizar(r) for r in regiones}
+    fuera = [k for k, v in registros.items()
+             if v.get("tarifa") == tarifa and P.normalizar(v["region"]) in borrar]
+    for k in fuera:
+        del registros[k]
+    return fuera
+
+
+def tablas_de(s):
+    return [t for t in P.parsear_todas(s.html) if t["cargos"]]
+
+
+def consultar_con_reintento(s, anio, mes, eid, mid, oid, etiqueta_division, reintentos, pausa):
+    """consultar() y, si la página responde sin tabla, vuelve a intentarlo.
+
+    Un 200 con la selección correcta pero sin tabla puede ser un mes que CFE
+    no publicó, o una respuesta vacía pasajera (se vio con PDBT). Para no
+    confundirlos se reabre la página desde cero y se reintenta; solo si sigue
+    vacía tras agotar los intentos se da por "sin publicación".
+
+    Devuelve (tablas, intentos_usados). Las excepciones de consultar() (p. ej.
+    la región equivocada) se propagan: eso no se reintenta, es sospechoso.
+    """
+    s.consultar(anio, mes, eid, mid, region_id=oid, region_etiqueta=etiqueta_division)
+    tablas = tablas_de(s)
+    intentos = 1
+    while not tablas and intentos <= reintentos:
+        time.sleep(pausa * (intentos + 1))
+        s.abrir()
+        s.poner_anio(anio)
+        s.consultar(anio, mes, eid, mid, region_id=oid, region_etiqueta=etiqueta_division)
+        tablas = tablas_de(s)
+        intentos += 1
+    return tablas, intentos
+
+
+def emitir_resumen(alertas, vacios_confirmados, tarifa):
+    """Que los meses sospechosos no pasen desapercibidos.
+
+    En GitHub Actions se escribe el resumen del job y se emite una anotación
+    ::warning:: (visible en la cabecera de la corrida, no solo dentro del log).
+    Fuera de Actions se imprime igual.
+    """
+    if not alertas and not vacios_confirmados:
+        return
+    lineas = [f"## Captura de {tarifa}: requiere revisión", ""]
+    if alertas:
+        lineas.append(f"**{len(alertas)} mes(es) sospechoso(s), NO guardados:**")
+        lineas += [f"- {a}" for a in alertas]
+        lineas.append("")
+    if vacios_confirmados:
+        lineas.append(f"**{len(vacios_confirmados)} mes(es) sin tabla tras reintentos** "
+                      "(posible hueco de CFE, no se guardó nada):")
+        lineas += [f"- {v}" for v in vacios_confirmados]
+    texto = "\n".join(lineas)
+    print("\n" + texto)
+    destino = os.environ.get("GITHUB_STEP_SUMMARY")
+    if destino:
+        with open(destino, "a", encoding="utf-8") as f:
+            f.write(texto + "\n")
+    if os.environ.get("GITHUB_ACTIONS"):
+        if alertas:
+            print(f"::warning title=Tarifas {tarifa}: {len(alertas)} mes(es) sospechoso(s)::"
+                  "No se guardaron. Ver el resumen del job.")
+        if vacios_confirmados:
+            print(f"::warning title=Tarifas {tarifa}: {len(vacios_confirmados)} mes(es) sin tabla::"
+                  "CFE devolvió la página sin resultados tras reintentar.")
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--tarifa", default="GDMTH", choices=sorted(cfe.PAGINAS))
+    ap.add_argument("--tarifa", default="GDMTH", choices=sorted(cfe.TARIFAS))
     ap.add_argument("--regiones", help="separadas por coma; omitir = todas las del catálogo")
     ap.add_argument("--desde", type=int, help="año inicial")
     ap.add_argument("--hasta", type=int, help="año final")
@@ -218,12 +303,16 @@ def main():
     ap.add_argument("--olvidar", metavar="REGIONES",
                     help="separadas por coma; borra sus registros antes de capturar")
     ap.add_argument("--limpiar-todo", action="store_true",
-                    help="vacía TODOS los registros de tarifas.json antes de capturar "
+                    help="vacía TODOS los registros de la tarifa de --tarifa (y solo de esa) "
+                         "antes de capturar "
                          "(el catálogo y horarios no se tocan). Con --rehacer, un mes "
                          "que falla al reverificar simplemente no se sobreescribe, así "
                          "que un dato viejo contaminado podría sobrevivir; --limpiar-todo "
                          "no deja ningún dato viejo por delante, contaminado o no. "
                          "Como tarifas.json está versionado en git, es reversible.")
+    ap.add_argument("--reintentos-vacios", type=int, default=2,
+                    help="veces que se reabre la página si responde sin tabla, antes de "
+                         "darla por 'sin publicación'")
     ap.add_argument("--pausa", type=float, default=1.5)
     ap.add_argument("--inseguro", action="store_true",
                     help="salta la verificación TLS; último recurso")
@@ -238,23 +327,25 @@ def main():
     registros = tarifas["registros"]
 
     if args.limpiar_todo:
-        n = len(registros)
-        registros.clear()
+        n = limpiar_tarifa(registros, args.tarifa)
         escribir(TARIFAS, tarifas)   # visible de inmediato, no solo al final de la corrida
-        print(f"Limpiados TODOS los registros ({n}). Arrancando tarifas.json desde cero.")
+        print(f"Limpiados TODOS los registros de {args.tarifa} ({n}). "
+              f"Los de otras tarifas no se tocan.")
 
     if args.olvidar:
         borrar = {P.normalizar(r) for r in lista(args.olvidar)}
-        fuera = [k for k, v in registros.items() if P.normalizar(v["region"]) in borrar]
-        for k in fuera:
-            del registros[k]
-        print(f"Olvidados {len(fuera)} registro(s) de: {', '.join(sorted(borrar))}")
+        fuera = olvidar_registros(registros, args.tarifa, lista(args.olvidar))
+        print(f"Olvidados {len(fuera)} registro(s) de {args.tarifa} en: {', '.join(sorted(borrar))}")
 
     s = cfe.SesionCFE(args.tarifa, pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
 
-    # Los horarios vienen en cualquier respuesta de la página.
-    escribir(HORARIOS, {"generado": ahora(), "fuente": s.url, "zonas": s.horarios()})
-    print(f"horarios -> {HORARIOS.name}")
+    # Los horarios vienen en cualquier respuesta de la página de GDMTH. Las
+    # demás tarifas no los publican: nunca deben pisar el archivo.
+    if cfe.tiene_horarios(args.tarifa):
+        escribir(HORARIOS, {"generado": ahora(), "fuente": s.url, "zonas": s.horarios()})
+        print(f"horarios -> {HORARIOS.name}")
+    else:
+        print(f"{args.tarifa} no tiene horarios: {HORARIOS.name} no se toca")
 
     # Al cargar la página, el desplegable de años puede traer solo el año en
     # curso y ampliarse después de seleccionar ubicación. Por eso el rango se
@@ -290,6 +381,7 @@ def main():
         sys.exit("el catálogo no tiene regiones")
 
     nuevos = omitidos = vacios = sospechosos = 0
+    alertas, vacios_confirmados = [], []
     for region, (eid, mid, oid, etiqueta_division, etiqueta) in sorted(reps.items()):
         print(f"\n== {region}  ({etiqueta})")
         for anio in anios_pedidos:
@@ -325,15 +417,35 @@ def main():
                 # de verdad en un backfill real- en vez de guardar en
                 # silencio el dato de la región equivocada.
                 try:
-                    s.consultar(anio, mes, eid, mid, region_id=oid, region_etiqueta=etiqueta_division)
+                    tablas, intentos = consultar_con_reintento(
+                        s, anio, mes, eid, mid, oid, etiqueta_division,
+                        args.reintentos_vacios, args.pausa)
                 except cfe.ErrorCFE as e:
                     print(f"   {anio}-{mes:02d}  ! SOSPECHOSO, no se guarda: {e}")
+                    alertas.append(f"{region} {anio}-{mes:02d}: {e}")
                     sospechosos += 1
                     continue
-                tablas = [t for t in P.parsear_todas(s.html) if t["cargos"]]
                 if not tablas:
-                    print(f"   {anio}-{mes:02d}  sin publicación")
+                    print(f"   {anio}-{mes:02d}  sin publicación (tras {intentos} intento(s))")
                     vacios += 1
+                    # El último mes que lista CFE suele estar vacío porque aún
+                    # no se publica: eso es normal. Un hueco con meses
+                    # posteriores sí es noticia.
+                    if mes < max(meses):
+                        vacios_confirmados.append(f"{region} {anio}-{mes:02d} ({intentos} intentos)")
+                    continue
+                if intentos > 1:
+                    print(f"   {anio}-{mes:02d}  la tabla llegó en el intento {intentos}")
+                # Guardia: una tabla que no trae todos los cargos de la tarifa
+                # es una lectura incompleta, aunque "parezca" buena.
+                incompletas = [t for t in tablas if not cfe.tabla_completa(args.tarifa, t)]
+                if incompletas:
+                    claves = sorted(incompletas[0]["cargos"])
+                    print(f"   {anio}-{mes:02d}  ! SOSPECHOSO, no se guarda: tabla incompleta "
+                          f"para {args.tarifa}: trae {claves}")
+                    alertas.append(f"{region} {anio}-{mes:02d}: tabla incompleta para "
+                                   f"{args.tarifa} (trae {', '.join(claves)})")
+                    sospechosos += 1
                     continue
                 # Con una tabla, la división es la que se seleccionó; con
                 # varias, la etiqueta era compuesta y cada encabezado manda.
@@ -409,6 +521,8 @@ def main():
                     print(f"   {anio}-{mes:02d}  ! SOSPECHOSO, no se guarda: se esperaban "
                           f"{len(regiones_esperadas)} tabla(s) ({', '.join(regiones_esperadas)}) "
                           f"y llegaron {len(tablas)} ({', '.join(vistas)})")
+                    alertas.append(f"{region} {anio}-{mes:02d}: se esperaban "
+                                   f"{len(regiones_esperadas)} tabla(s) y llegaron {len(tablas)}")
                     print(f"      cargos DISTINTOS entre las tablas, ambigüedad real:")
                     for i, t in enumerate(tablas):
                         print(f"        tabla {i+1} ({P.normalizar(t['region'] or '?')}): {t['cargos']}")
@@ -446,6 +560,7 @@ def main():
     escribir(TARIFAS, tarifas)
     print(f"\n{nuevos} nuevo(s), {omitidos} ya estaban, {vacios} sin publicación, "
           f"{sospechosos} sospechoso(s) descartados. Total en base: {len(registros)}")
+    emitir_resumen(alertas, vacios_confirmados, args.tarifa)
     if sospechosos:
         print("\nHubo meses donde la sesión mostró una división distinta a la pedida.")
         print("No se guardaron (mejor un hueco que un dato mal etiquetado), pero conviene")

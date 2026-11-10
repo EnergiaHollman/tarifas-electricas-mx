@@ -7,8 +7,13 @@ name: Backfill (manual)
 on:
   workflow_dispatch:
     inputs:
+      tarifa:
+        description: "Tarifa a capturar (una por corrida). olvidar y limpiar_todo solo afectan a esa tarifa."
+        type: choice
+        options: [GDMTH, GDMTO, PDBT]
+        default: GDMTH
       estados:
-        description: "Estados separados por COMA, o TODOS para el país completo (~1 h)."
+        description: "Estados separados por COMA, o TODOS para el país completo (~1 h). Solo se usa con GDMTH: el catálogo sale de esa página."
         required: true
         default: "SONORA"
       regiones:
@@ -24,11 +29,11 @@ on:
         required: false
         default: ""
       olvidar:
-        description: "Regiones a borrar antes de capturar, separadas por COMA. Vacío = ninguna."
+        description: "Regiones a borrar antes de capturar, separadas por COMA, SOLO de la tarifa elegida. Vacío = ninguna."
         required: false
         default: ""
       limpiar_todo:
-        description: "Vaciar TODOS los registros de tarifas.json antes de capturar (reversible: está en git). Úsalo tras detectar datos mal etiquetados."
+        description: "Vaciar TODOS los registros de la tarifa elegida (y solo de esa) antes de capturar (reversible: está en git). Úsalo tras detectar datos mal etiquetados."
         type: boolean
         default: false
       diagnostico:
@@ -67,14 +72,16 @@ jobs:
         run: cd scraper && python3 preparar_tls.py --github-env
 
       - name: Verificar que el parser siga funcionando
-        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py && python3 test_cfe_session.py && python3 test_cruzar_catalogo.py
+        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py && python3 test_cfe_session.py && python3 test_cruzar_catalogo.py && python3 test_actualizar_tarifas.py
 
       - name: Diagnóstico de los desplegables
         if: inputs.diagnostico
         run: cd scraper && python3 diagnostico.py --pausa 2 --anio "${{ inputs.diagnostico_anio }}"
 
       - name: Construir catálogo
-        if: '!inputs.diagnostico' 
+        # El catálogo (estado -> municipio -> división) sale de la página de
+        # GDMTH y las demás tarifas de negocio lo reutilizan tal cual.
+        if: ${{ !inputs.diagnostico && inputs.tarifa == 'GDMTH' }}
         env:
           ESTADOS: ${{ inputs.estados }}
         run: |
@@ -99,7 +106,7 @@ jobs:
           cd scraper
           # Array, no cadena: los nombres llevan espacios y una expansión sin
           # comillas los partiría en argumentos sueltos.
-          ARGS=(--pausa 2 --desde "$DESDE")
+          ARGS=(--tarifa "${{ inputs.tarifa }}" --pausa 2 --desde "$DESDE")
           if [ -n "$HASTA" ]; then ARGS+=(--hasta "$HASTA"); fi
           if [ -n "$REGIONES" ] && [ "$REGIONES" != "TODAS" ]; then
             ARGS+=(--regiones "$REGIONES")

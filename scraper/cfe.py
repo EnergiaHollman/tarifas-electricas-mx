@@ -19,13 +19,50 @@ import requests
 
 import parser as P
 
-PAGINAS = {
-    "GDMTH": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
-    # El resto del portal usa exactamente la misma mecánica; basta con
-    # agregar la URL para que el scraper las capture igual.
-    "GDMTO": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTO.aspx",
-    "PDBT": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/PequenaDemandaBT.aspx",
+_NEGOCIO = "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/"
+
+# Qué sabe el scraper de cada tarifa. `cargos_validos` son los conjuntos de
+# claves que una tabla completa puede traer; cualquier otra combinación es una
+# captura incompleta y NO se guarda (ver tabla_completa). Es lo que impide que
+# un parser que pierde filas deje registros que parecen buenos.
+#
+# GDMTH admite tres: los seis cargos, y los meses de transición de temporada en
+# que CFE no publica uno de los dos extremos (sin punta, o sin base).
+TARIFAS = {
+    "GDMTH": {
+        "url": _NEGOCIO + "GranDemandaMTH.aspx",
+        "tiene_horarios": True,
+        "cargos_validos": [
+            frozenset({"fijo", "base", "intermedia", "punta", "distribucion", "capacidad"}),
+            frozenset({"fijo", "base", "intermedia", "distribucion", "capacidad"}),
+            frozenset({"fijo", "intermedia", "punta", "distribucion", "capacidad"}),
+        ],
+    },
+    # El resto del portal de negocio usa exactamente la misma mecánica.
+    "GDMTO": {
+        "url": _NEGOCIO + "GranDemandaMTO.aspx",
+        "tiene_horarios": False,
+        "cargos_validos": [frozenset({"fijo", "energia", "distribucion", "capacidad"})],
+    },
+    "PDBT": {
+        "url": _NEGOCIO + "PequenaDemandaBT.aspx",
+        "tiene_horarios": False,
+        "cargos_validos": [frozenset({"fijo", "energia"})],
+    },
 }
+
+# Compatibilidad: el resto del código sigue pidiendo la URL por aquí.
+PAGINAS = {clave: meta["url"] for clave, meta in TARIFAS.items()}
+
+
+def tabla_completa(tarifa, tabla):
+    """¿La tabla trae exactamente las claves de cargo que esa tarifa publica?"""
+    return frozenset(tabla["cargos"]) in TARIFAS[tarifa]["cargos_validos"]
+
+
+def tiene_horarios(tarifa):
+    return TARIFAS[tarifa]["tiene_horarios"]
+
 
 # Un User-Agent de navegador sin la huella TLS real de un navegador es peor
 # que uno honesto: un firewall puede bloquear por completo la combinación
