@@ -97,7 +97,7 @@ const HERRAMIENTAS = [
         tarifa: {
           type: "string",
           default: "GDMTH",
-          description: "Clave de la tarifa en mayúsculas (GDMTH, GDMTO, PDBT). Por omisión GDMTH.",
+          description: "Clave de la tarifa en mayúsculas (GDMTH, GDMTO, PDBT, DAC). Por omisión GDMTH. DAC se ubica por región de DAC (Central, Noroeste, ...).",
         },
       },
       required: ["anio", "mes"],

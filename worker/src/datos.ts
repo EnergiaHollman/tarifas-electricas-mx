@@ -8,6 +8,7 @@ import horariosJson from "../../data/horarios.json";
 import sistemasJson from "../../data/sistemas_horario.json";
 import complementoJson from "../../data/municipios_complemento.json";
 import tarifasJson from "../../data/tarifas.json";
+import regionesDacJson from "../../data/regiones_dac.json";
 import type { Zona } from "./calendario";
 
 type Opcion = { id: string; etiqueta: string };
@@ -183,7 +184,8 @@ export function regionesDeMunicipio(m: Municipio): string[] {
 
 export function listarRegiones(): string[] {
   const s = new Set<string>();
-  for (const r of Object.values(tarifas.registros)) s.add(r.region);
+  // Las regiones de DAC (p. ej. "NORTE Y NORESTE") no son divisiones tarifarias.
+  for (const r of Object.values(tarifas.registros)) if (ubicacionDe(r.tarifa) === "division") s.add(r.region);
   for (const e of Object.values(catalogo.estados))
     for (const m of Object.values(e.municipios))
       for (const r of regionesDeMunicipio(m)) s.add(r);
@@ -277,11 +279,41 @@ export function describirHorario(region: string): { division: string | null; sis
  * (base/intermedia/punta). Una tarifa sin horarios no lleva sistema_horario ni
  * división de horario en la respuesta: no le aplican.
  */
-export const META_TARIFAS: Record<string, { descripcion: string; horarios: boolean }> = {
-  GDMTH: { descripcion: "Gran demanda en media tensión, horaria", horarios: true },
-  GDMTO: { descripcion: "Gran demanda en media tensión, ordinaria", horarios: false },
-  PDBT: { descripcion: "Pequeña demanda en baja tensión, hasta 25 kW-mes", horarios: false },
+export type Ubicacion = "division" | "region_dac";
+
+export const META_TARIFAS: Record<
+  string,
+  { descripcion: string; horarios: boolean; ubicacion: Ubicacion; notas?: string[] }
+> = {
+  GDMTH: { descripcion: "Gran demanda en media tensión, horaria", horarios: true, ubicacion: "division" },
+  GDMTO: { descripcion: "Gran demanda en media tensión, ordinaria", horarios: false, ubicacion: "division" },
+  PDBT: { descripcion: "Pequeña demanda en baja tensión, hasta 25 kW-mes", horarios: false, ubicacion: "division" },
+  DAC: {
+    descripcion: "Doméstica de alto consumo",
+    horarios: false,
+    // Sus regiones no son las divisiones de GDMTH: ver regiones_dac.json.
+    ubicacion: "region_dac",
+    notas: [
+      "Las seis regiones de DAC (Baja California, Baja California Sur, Central, Noroeste, Norte y " +
+        "Noreste, Sur y Peninsular) no son las divisiones tarifarias de GDMTH.",
+      "Solo la división NOROESTE tiene mapeo confirmado a su región de DAC. Para las demás divisiones " +
+        "pasa region con la región de DAC que indica tu recibo (p. ej. region=CENTRAL).",
+      "El cargo fijo de 2025-2026 (145.85 en septiembre de 2026) NO está validado contra un recibo real. " +
+        "El único recibo de DAC disponible es de septiembre de 2019 en Noroeste, que el portal reproduce exacto.",
+    ],
+  },
 };
+
+/** División tarifaria -> región de DAC. Solo divisiones confirmadas. */
+export const regionesDac = regionesDacJson as unknown as {
+  fuente: string;
+  regiones_dac: string[];
+  confirmadas: Record<string, { region_dac: string; confirmacion: string }>;
+};
+
+export function ubicacionDe(tarifa: string): Ubicacion {
+  return META_TARIFAS[normalizar(tarifa)]?.ubicacion ?? "division";
+}
 
 export function tieneHorarios(tarifa: string): boolean {
   return META_TARIFAS[normalizar(tarifa)]?.horarios ?? false;
@@ -291,6 +323,8 @@ export type ResumenTarifa = {
   tarifa: string;
   descripcion: string | null;
   horarios: boolean;
+  ubicacion: Ubicacion;
+  notas?: string[];
   regiones: string[];
   periodo_desde: string;
   periodo_hasta: string;
@@ -313,6 +347,8 @@ export function tarifasConDatos(): ResumenTarifa[] {
         tarifa,
         descripcion: META_TARIFAS[tarifa]?.descripcion ?? null,
         horarios: tieneHorarios(tarifa),
+        ubicacion: ubicacionDe(tarifa),
+        ...(META_TARIFAS[tarifa]?.notas ? { notas: META_TARIFAS[tarifa].notas } : {}),
         regiones: [...e.regiones].sort(),
         periodo_desde: ps[0],
         periodo_hasta: ps[ps.length - 1],

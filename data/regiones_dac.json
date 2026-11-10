@@ -1,0 +1,10 @@
+{
+  "fuente": "Tabla de DAC de la pagina de CFE (TarifasCRECasa/Tarifas/TarifaDAC.aspx). Sus seis regiones NO son las 17 divisiones tarifarias de GDMTH; esta tabla dice a cual region de DAC pertenece cada division. Solo entran divisiones confirmadas; el resto se rechaza con un error claro en vez de adivinar.",
+  "regiones_dac": ["BAJA CALIFORNIA", "BAJA CALIFORNIA SUR", "CENTRAL", "NOROESTE", "NORTE Y NORESTE", "SUR Y PENINSULAR"],
+  "confirmadas": {
+    "NOROESTE": {
+      "region_dac": "NOROESTE",
+      "confirmacion": "Recibo real de DAC en Navojoa (division NOROESTE), septiembre de 2019: el importe de Energia se reproduce exacto con la fila Noroeste de DAC (107.74 + 3,662 kWh x 4.305 = 15,872.65)."
+    }
+  }
+}

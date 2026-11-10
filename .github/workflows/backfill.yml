@@ -10,18 +10,18 @@ on:
       tarifa:
         description: "Tarifa a capturar (una por corrida). olvidar y limpiar_todo solo afectan a esa tarifa."
         type: choice
-        options: [GDMTH, GDMTO, PDBT]
+        options: [GDMTH, GDMTO, PDBT, DAC]
         default: GDMTH
       estados:
         description: "Estados separados por COMA, o TODOS para el país completo (~1 h). Solo se usa con GDMTH: el catálogo sale de esa página."
         required: true
         default: "SONORA"
       regiones:
-        description: "Regiones separadas por COMA, o TODAS."
+        description: "Regiones separadas por COMA, o TODAS. No aplica a DAC: su tabla trae las seis regiones de DAC juntas."
         required: true
         default: "TODAS"
       desde:
-        description: "Año inicial. CFE tiene histórico desde 2017."
+        description: "Año inicial. CFE tiene histórico desde 2017 (DAC: enero de 2017 no está disponible; usa 2018 o más)."
         required: true
         default: "2017"
       hasta:
