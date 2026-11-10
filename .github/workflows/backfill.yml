@@ -10,14 +10,14 @@ on:
       tarifa:
         description: "Tarifa a capturar (una por corrida). olvidar y limpiar_todo solo afectan a esa tarifa."
         type: choice
-        options: [GDMTH, GDMTO, PDBT, DAC]
+        options: [GDMTH, GDMTO, PDBT, DAC, "1", "1A", "1B", "1C", "1D", "1E", "1F"]
         default: GDMTH
       estados:
         description: "Estados separados por COMA, o TODOS para el país completo (~1 h). Solo se usa con GDMTH: el catálogo sale de esa página."
         required: true
         default: "SONORA"
       regiones:
-        description: "Regiones separadas por COMA, o TODAS. No aplica a DAC: su tabla trae las seis regiones de DAC juntas."
+        description: "Regiones separadas por COMA, o TODAS. No aplica a DAC ni a las domésticas (1, 1A a 1F): no piden ubicación."
         required: true
         default: "TODAS"
       desde:
@@ -72,7 +72,7 @@ jobs:
         run: cd scraper && python3 preparar_tls.py --github-env
 
       - name: Verificar que el parser siga funcionando
-        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py && python3 test_cfe_session.py && python3 test_cruzar_catalogo.py && python3 test_actualizar_tarifas.py && python3 test_validar_referencia.py
+        run: cd scraper && python3 test_parser.py && python3 test_catalogo.py && python3 test_cfe_session.py && python3 test_cruzar_catalogo.py && python3 test_actualizar_tarifas.py && python3 test_actualizar_domestica.py && python3 test_validar_referencia.py
 
       - name: Diagnóstico de los desplegables
         if: inputs.diagnostico
