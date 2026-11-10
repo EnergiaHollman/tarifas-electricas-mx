@@ -3,6 +3,7 @@
   "region": "NOROESTE",
   "origen": "Recibos reales de la tarifa 02 (PDBT) reproducidos por Dashboard: cargo fijo del CFDI y energia = importe de Energia / kWh facturados. Solo precios; sin datos de cliente.",
   "mes": "mes en que termina el periodo facturado (convencion de Dashboard); la clave del Worker es el mes de cuotas de CFE y su equivalencia se confirma aparte",
+  "desfase_meses": -1,
   "tolerancias": {"fijo": 0, "energia": 0.002},
   "meses": {
     "2025-11": {"fijo": 77.77, "energia": 3.641},
@@ -21,6 +22,7 @@
     "2026-07": "los recibos de ese mes no tienen kWh facturados"
   },
   "notas": {
-    "2026-01": "el recibo trae 19.78 o 77.77 segun el caso (cambio de cargo fijo en enero); se acepta cualquiera de los dos"
+    "desfase_meses": "Hallazgo del piloto: comparando con el portal del mes ANTERIOR coinciden exactos las 10 energias y los 10 fijos (sin desfase fallan 4 de 20). El recibo cuyo periodo termina en el mes M usa las cuotas que CFE publica para M-1. Vale para PDBT en Noroeste en estos meses; no se extiende a otras tarifas sin comprobarlo.",
+    "2026-01": "el recibo trae 19.78 o 77.77 segun el caso (cambio de cargo fijo en enero); se acepta cualquiera de los dos. Con el desfase de -1 mes corresponde al portal 2025-12, que publica 77.77"
   }
 }

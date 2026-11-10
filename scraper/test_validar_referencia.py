@@ -47,6 +47,21 @@ r = resultado(regs(**{"2026-03": {"fijo": 19.78, "energia": 3.348},
                       "2026-01": {"fijo": 19.78, "energia": 3.435}}))
 check("energía a exactamente 0.002 pasa (sin error de punto flotante)", r[("2026-03", "energia")], True)
 
+print("\nDesfase entre el mes del recibo y el del portal")
+check("desplazar dentro del año", V.desplazar("2026-05", -1), "2026-04")
+check("desplazar cruzando de año hacia atrás", V.desplazar("2026-01", -1), "2025-12")
+check("desplazar cruzando de año hacia adelante", V.desplazar("2025-12", 1), "2026-01")
+check("desplazar 0 no cambia", V.desplazar("2026-03", 0), "2026-03")
+REF_D = {**REF, "desfase_meses": -1}
+# El portal publica para 2026-02 lo que el recibo de 2026-03 trae, y para 2025-12 lo del recibo de 2026-01.
+portal = regs(**{"2026-02": {"fijo": 19.78, "energia": 3.346}, "2025-12": {"fijo": 77.77, "energia": 3.435}})
+filas = V.validar(portal, REF_D)
+check("con desfase -1 cada mes se compara con el del portal anterior",
+      sorted({(f["mes"], f["mes_portal"]) for f in filas}), [("2026-01", "2025-12"), ("2026-03", "2026-02")])
+check("y todo coincide", all(f["ok"] for f in filas), True)
+check("el mismo dato sin desfase NO coincide (no es una prueba trivial)",
+      all(f["ok"] for f in V.validar(portal, REF_D, desfase=0)), False)
+
 print("\nHuecos y cargos faltantes")
 filas = V.validar(regs(**{"2026-03": {"fijo": 19.78}}), REF)
 por = {(f["mes"], f["cargo"]): f for f in filas}
@@ -59,6 +74,7 @@ print("\nArchivo de referencia real")
 ref = json.loads((pathlib.Path(__file__).parent / "validacion" / "pdbt_noroeste.json").read_text(encoding="utf-8"))
 check("tarifa y región", (ref["tarifa"], ref["region"]), ("PDBT", "NOROESTE"))
 check("tolerancias acordadas", ref["tolerancias"], {"fijo": 0, "energia": 0.002})
+check("desfase del piloto declarado en la referencia", ref["desfase_meses"], -1)
 check("cubre 2025-11 a 2026-10 salvo junio y julio",
       sorted(ref["meses"]) + sorted(ref["sin_referencia"]),
       ["2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05",
