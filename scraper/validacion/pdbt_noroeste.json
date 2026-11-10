@@ -1,0 +1,26 @@
+{
+  "tarifa": "PDBT",
+  "region": "NOROESTE",
+  "origen": "Recibos reales de la tarifa 02 (PDBT) reproducidos por Dashboard: cargo fijo del CFDI y energia = importe de Energia / kWh facturados. Solo precios; sin datos de cliente.",
+  "mes": "mes en que termina el periodo facturado (convencion de Dashboard); la clave del Worker es el mes de cuotas de CFE y su equivalencia se confirma aparte",
+  "tolerancias": {"fijo": 0, "energia": 0.002},
+  "meses": {
+    "2025-11": {"fijo": 77.77, "energia": 3.641},
+    "2025-12": {"fijo": 77.77, "energia": 3.562},
+    "2026-01": {"fijo": [19.78, 77.77], "energia": 3.435},
+    "2026-02": {"fijo": 19.78, "energia": 3.345},
+    "2026-03": {"fijo": 19.78, "energia": 3.346},
+    "2026-04": {"fijo": 19.78, "energia": 3.347},
+    "2026-05": {"fijo": 19.78, "energia": 3.347},
+    "2026-08": {"fijo": 19.78, "energia": 3.254},
+    "2026-09": {"fijo": 19.78, "energia": 3.254},
+    "2026-10": {"fijo": 19.78, "energia": 3.254}
+  },
+  "sin_referencia": {
+    "2026-06": "los recibos de ese mes no tienen kWh facturados",
+    "2026-07": "los recibos de ese mes no tienen kWh facturados"
+  },
+  "notas": {
+    "2026-01": "el recibo trae 19.78 o 77.77 segun el caso (cambio de cargo fijo en enero); se acepta cualquiera de los dos"
+  }
+}
