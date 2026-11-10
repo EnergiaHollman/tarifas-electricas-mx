@@ -159,6 +159,49 @@ else:
     check("un mes normal (marzo 2026, una sola tabla) no trae marca de facturación",
           P.parsear_cargos(HTML)["facturacion"], None)
 
+print("\nRegresión de GDMTH: el parser generalizado extrae lo mismo que el anterior")
+# muestra/dorado_gdmth.json es la salida del parser ANTERIOR (el de posiciones
+# fijas) sobre las tres muestras de GDMTH, congelada antes de generalizarlo.
+# Si esto falla, cambió la forma de los datos que ya consume Dashboard.
+import json
+DORADO = json.loads((pathlib.Path(__file__).parent / "muestra" / "dorado_gdmth.json")
+                    .read_text(encoding="utf-8"))
+for nombre in ("GranDemandaMTH", "GranDemandaMTH_historico", "GranDemandaMTH_facturacion"):
+    h = (pathlib.Path(__file__).parent / "muestra" / f"{nombre}.html").read_text(
+        encoding="utf-8", errors="replace")
+    check(f"{nombre}: tablas idénticas a las del parser anterior",
+          P.parsear_todas(h), DORADO[nombre]["todas"])
+    check(f"{nombre}: horarios idénticos", P.parsear_horarios(h), DORADO[nombre]["horarios"])
+
+print("\nGDMTO (Noroeste, septiembre 2026): sin horarios, cuatro cargos")
+HTML_GDMTO = (pathlib.Path(__file__).parent / "muestra" / "GDMTO_2026-09_NOROESTE.html"
+              ).read_text(encoding="utf-8", errors="replace")
+r = P.parsear_cargos(HTML_GDMTO)
+check("tarifa", r["tarifa"], "GDMTO")
+check("región", P.normalizar(r["region"]), "NOROESTE")
+check("periodo", r["periodo_cfe"], "SEP-26")
+check("cargos completos (antes solo sobrevivía 'fijo')", r["cargos"], {
+    "fijo": 197.77, "energia": 1.261, "distribucion": 90.85, "capacidad": 327.96})
+check("4 conceptos", len(r["conceptos"]), 4)
+check("conceptos con la forma de siempre", r["conceptos"][1],
+      {"int_horario": "-", "cargo": "Variable (Energía)", "unidades": "$/kWh", "valor": 1.261})
+check("unidades", r["unidades"], {"fijo": "$/mes", "energia": "$/kWh",
+                                   "distribucion": "$/kW", "capacidad": "$/kW"})
+
+print("\nPDBT (Noroeste, marzo 2026): sin horarios ni demanda")
+HTML_PDBT = (pathlib.Path(__file__).parent / "muestra" / "PDBT_2026-03_NOROESTE.html"
+             ).read_text(encoding="utf-8", errors="replace")
+r = P.parsear_cargos(HTML_PDBT)
+check("tarifa", r["tarifa"], "PDBT")
+check("periodo", r["periodo_cfe"], "MAR-26")
+check("cargos completos (antes solo sobrevivía 'fijo')", r["cargos"], {"fijo": 19.78, "energia": 3.347})
+check("2 conceptos", len(r["conceptos"]), 2)
+
+print("\nUna tabla con encabezado irreconocible no se inventa")
+check("sin columnas Cargo/Unidades: None",
+      P.parsear_todas("<table class='table-striped'><tr><th>A</th><th>B</th></tr>"
+                      "<tr><td>1</td><td>2</td></tr></table>"), [])
+
 print()
 if fallos:
     print(f"{len(fallos)} prueba(s) fallaron: {', '.join(fallos)}")

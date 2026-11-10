@@ -1,0 +1,1628 @@
+{
+ "GranDemandaMTH": {
+  "horarios": {
+   "Regiones Central, Noreste, Noroeste, Norte, Peninsular y Sur": {
+    "regiones": [
+     "CENTRAL",
+     "NORESTE",
+     "NOROESTE",
+     "NORTE",
+     "PENINSULAR",
+     "SUR"
+    ],
+    "temporadas": {
+     "invierno": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1080
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          360
+         ]
+        ],
+        "intermedia": [
+         [
+          360,
+          1080
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1080,
+          1320
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          480
+         ]
+        ],
+        "intermedia": [
+         [
+          480,
+          1140
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1140,
+          1260
+         ]
+        ]
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       }
+      },
+      "vigencia": "Del último domingo de octubre al sábado anterior al primer domingo de abril"
+     },
+     "verano": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1140
+         ]
+        ],
+        "intermedia": [
+         [
+          1140,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          360
+         ]
+        ],
+        "intermedia": [
+         [
+          360,
+          1200
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1200,
+          1320
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          420
+         ]
+        ],
+        "intermedia": [
+         [
+          420,
+          1440
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       }
+      },
+      "vigencia": "Del primer domingo de abril al sábado anterior al último domingo de octubre"
+     }
+    },
+    "zona": "Regiones Central, Noreste, Noroeste, Norte, Peninsular y Sur"
+   },
+   "Región Baja California": {
+    "regiones": [
+     "BAJA CALIFORNIA"
+    ],
+    "temporadas": {
+     "invierno": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "intermedia": [],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          1020
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1020,
+          1320
+         ]
+        ],
+        "punta": []
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          1080
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1260
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": 0,
+        "dia": 30,
+        "mes": 4,
+        "tipo": "fijo"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       }
+      },
+      "vigencia": "Del último domingo de octubre al 30 de abril"
+     },
+     "verano": {
+      "dias": {
+       "domingo": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          840
+         ],
+         [
+          1080,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          840,
+          1080
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia": 1,
+        "mes": 5,
+        "tipo": "fijo"
+       }
+      },
+      "vigencia": "Del 1º de mayo al sábado anterior al último domingo de octubre"
+     }
+    },
+    "zona": "Región Baja California"
+   },
+   "Región Baja California Sur": {
+    "regiones": [
+     "BAJA CALIFORNIA SUR"
+    ],
+    "temporadas": {
+     "invierno": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1140
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1140,
+          1260
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          1080
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1320
+         ]
+        ],
+        "punta": []
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          1080
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1260
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       }
+      },
+      "vigencia": "Del último domingo de octubre al sábado anterior al primer domingo de abril"
+     },
+     "verano": {
+      "dias": {
+       "domingo": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          720
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          720,
+          1320
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1140
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1140,
+          1320
+         ]
+        ]
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       }
+      },
+      "vigencia": "Del primer domingo de abril al sábado anterior al último domingo de octubre"
+     }
+    },
+    "zona": "Región Baja California Sur"
+   }
+  },
+  "todas": [
+   {
+    "cargos": {
+     "base": 0.9715,
+     "capacidad": 392.66,
+     "distribucion": 90.85,
+     "fijo": 197.77,
+     "intermedia": 1.5573,
+     "punta": 1.7262
+    },
+    "conceptos": [
+     {
+      "cargo": "Fijo",
+      "int_horario": "-",
+      "unidades": "$/mes",
+      "valor": 197.77
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Base",
+      "unidades": "$/kWh",
+      "valor": 0.9715
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Intermedia",
+      "unidades": "$/kWh",
+      "valor": 1.5573
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Punta",
+      "unidades": "$/kWh",
+      "valor": 1.7262
+     },
+     {
+      "cargo": "Distribución",
+      "int_horario": "-",
+      "unidades": "$/kW",
+      "valor": 90.85
+     },
+     {
+      "cargo": "Capacidad",
+      "int_horario": "-",
+      "unidades": "$/kW",
+      "valor": 392.66
+     }
+    ],
+    "facturacion": null,
+    "periodo_cfe": "MAR-26",
+    "region": "Noroeste",
+    "tarifa": "GDMTH",
+    "unidades": {
+     "base": "$/kWh",
+     "capacidad": "$/kW",
+     "distribucion": "$/kW",
+     "fijo": "$/mes",
+     "intermedia": "$/kWh",
+     "punta": "$/kWh"
+    }
+   }
+  ]
+ },
+ "GranDemandaMTH_facturacion": {
+  "horarios": {
+   "Regiones Central, Noreste, Noroeste, Norte, Peninsular y Sur": {
+    "regiones": [
+     "CENTRAL",
+     "NORESTE",
+     "NOROESTE",
+     "NORTE",
+     "PENINSULAR",
+     "SUR"
+    ],
+    "temporadas": {
+     "invierno": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1080
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          360
+         ]
+        ],
+        "intermedia": [
+         [
+          360,
+          1080
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1080,
+          1320
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          480
+         ]
+        ],
+        "intermedia": [
+         [
+          480,
+          1140
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1140,
+          1260
+         ]
+        ]
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       }
+      },
+      "vigencia": "Del último domingo de octubre al sábado anterior al primer domingo de abril"
+     },
+     "verano": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1140
+         ]
+        ],
+        "intermedia": [
+         [
+          1140,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          360
+         ]
+        ],
+        "intermedia": [
+         [
+          360,
+          1200
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1200,
+          1320
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          420
+         ]
+        ],
+        "intermedia": [
+         [
+          420,
+          1440
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       }
+      },
+      "vigencia": "Del primer domingo de abril al sábado anterior al último domingo de octubre"
+     }
+    },
+    "zona": "Regiones Central, Noreste, Noroeste, Norte, Peninsular y Sur"
+   },
+   "Región Baja California": {
+    "regiones": [
+     "BAJA CALIFORNIA"
+    ],
+    "temporadas": {
+     "invierno": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "intermedia": [],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          1020
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1020,
+          1320
+         ]
+        ],
+        "punta": []
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          1080
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1260
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": 0,
+        "dia": 30,
+        "mes": 4,
+        "tipo": "fijo"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       }
+      },
+      "vigencia": "Del último domingo de octubre al 30 de abril"
+     },
+     "verano": {
+      "dias": {
+       "domingo": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          840
+         ],
+         [
+          1080,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          840,
+          1080
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia": 1,
+        "mes": 5,
+        "tipo": "fijo"
+       }
+      },
+      "vigencia": "Del 1º de mayo al sábado anterior al último domingo de octubre"
+     }
+    },
+    "zona": "Región Baja California"
+   },
+   "Región Baja California Sur": {
+    "regiones": [
+     "BAJA CALIFORNIA SUR"
+    ],
+    "temporadas": {
+     "invierno": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1140
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1140,
+          1260
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          1080
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1320
+         ]
+        ],
+        "punta": []
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          1080
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1260
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       }
+      },
+      "vigencia": "Del último domingo de octubre al sábado anterior al primer domingo de abril"
+     },
+     "verano": {
+      "dias": {
+       "domingo": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          720
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          720,
+          1320
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1140
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1140,
+          1320
+         ]
+        ]
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       }
+      },
+      "vigencia": "Del primer domingo de abril al sábado anterior al último domingo de octubre"
+     }
+    },
+    "zona": "Región Baja California Sur"
+   }
+  },
+  "todas": [
+   {
+    "cargos": {
+     "base": 0.6011,
+     "capacidad": 195.84,
+     "distribucion": 84.16,
+     "fijo": 591.73,
+     "intermedia": 0.87,
+     "punta": 1.0022
+    },
+    "conceptos": [
+     {
+      "cargo": "Fijo",
+      "int_horario": "-",
+      "unidades": "$/mes",
+      "valor": 591.73
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Base",
+      "unidades": "$/kWh",
+      "valor": 0.6011
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Intermedia",
+      "unidades": "$/kWh",
+      "valor": 0.87
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Punta",
+      "unidades": "$/kWh",
+      "valor": 1.0022
+     },
+     {
+      "cargo": "Distribución",
+      "int_horario": "-",
+      "unidades": "$/kW",
+      "valor": 84.16
+     },
+     {
+      "cargo": "Capacidad",
+      "int_horario": "-",
+      "unidades": "$/kW",
+      "valor": 195.84
+     }
+    ],
+    "facturacion": "mismo_mes",
+    "periodo_cfe": "FEB-18",
+    "region": "Noroeste",
+    "tarifa": "GDMTH",
+    "unidades": {
+     "base": "$/kWh",
+     "capacidad": "$/kW",
+     "distribucion": "$/kW",
+     "fijo": "$/mes",
+     "intermedia": "$/kWh",
+     "punta": "$/kWh"
+    }
+   },
+   {
+    "cargos": {
+     "base": 0.5589,
+     "capacidad": 195.84,
+     "distribucion": 84.16,
+     "fijo": 591.73,
+     "intermedia": 0.851,
+     "punta": 0.9353
+    },
+    "conceptos": [
+     {
+      "cargo": "Fijo",
+      "int_horario": "-",
+      "unidades": "$/mes",
+      "valor": 591.73
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Base",
+      "unidades": "$/kWh",
+      "valor": 0.5589
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Intermedia",
+      "unidades": "$/kWh",
+      "valor": 0.851
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Punta",
+      "unidades": "$/kWh",
+      "valor": 0.9353
+     },
+     {
+      "cargo": "Distribución",
+      "int_horario": "-",
+      "unidades": "$/kW",
+      "valor": 84.16
+     },
+     {
+      "cargo": "Capacidad",
+      "int_horario": "-",
+      "unidades": "$/kW",
+      "valor": 195.84
+     }
+    ],
+    "facturacion": "mes_siguiente",
+    "periodo_cfe": "FEB-18",
+    "region": "Noroeste",
+    "tarifa": "GDMTH",
+    "unidades": {
+     "base": "$/kWh",
+     "capacidad": "$/kW",
+     "distribucion": "$/kW",
+     "fijo": "$/mes",
+     "intermedia": "$/kWh",
+     "punta": "$/kWh"
+    }
+   }
+  ]
+ },
+ "GranDemandaMTH_historico": {
+  "horarios": {
+   "Regiones Central, Noreste, Noroeste, Norte, Peninsular y Sur": {
+    "regiones": [
+     "CENTRAL",
+     "NORESTE",
+     "NOROESTE",
+     "NORTE",
+     "PENINSULAR",
+     "SUR"
+    ],
+    "temporadas": {
+     "invierno": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1080
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          360
+         ]
+        ],
+        "intermedia": [
+         [
+          360,
+          1080
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1080,
+          1320
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          480
+         ]
+        ],
+        "intermedia": [
+         [
+          480,
+          1140
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1140,
+          1260
+         ]
+        ]
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       }
+      },
+      "vigencia": "Del último domingo de octubre al sábado anterior al primer domingo de abril"
+     },
+     "verano": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1140
+         ]
+        ],
+        "intermedia": [
+         [
+          1140,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          360
+         ]
+        ],
+        "intermedia": [
+         [
+          360,
+          1200
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1200,
+          1320
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          420
+         ]
+        ],
+        "intermedia": [
+         [
+          420,
+          1440
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       }
+      },
+      "vigencia": "Del primer domingo de abril al sábado anterior al último domingo de octubre"
+     }
+    },
+    "zona": "Regiones Central, Noreste, Noroeste, Norte, Peninsular y Sur"
+   },
+   "Región Baja California": {
+    "regiones": [
+     "BAJA CALIFORNIA"
+    ],
+    "temporadas": {
+     "invierno": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "intermedia": [],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          1020
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1020,
+          1320
+         ]
+        ],
+        "punta": []
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          1080
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1260
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": 0,
+        "dia": 30,
+        "mes": 4,
+        "tipo": "fijo"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       }
+      },
+      "vigencia": "Del último domingo de octubre al 30 de abril"
+     },
+     "verano": {
+      "dias": {
+       "domingo": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          840
+         ],
+         [
+          1080,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          840,
+          1080
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia": 1,
+        "mes": 5,
+        "tipo": "fijo"
+       }
+      },
+      "vigencia": "Del 1º de mayo al sábado anterior al último domingo de octubre"
+     }
+    },
+    "zona": "Región Baja California"
+   },
+   "Región Baja California Sur": {
+    "regiones": [
+     "BAJA CALIFORNIA SUR"
+    ],
+    "temporadas": {
+     "invierno": {
+      "dias": {
+       "domingo": {
+        "base": [
+         [
+          0,
+          1140
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1140,
+          1260
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [
+         [
+          0,
+          1080
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1320
+         ]
+        ],
+        "punta": []
+       },
+       "sabado": {
+        "base": [
+         [
+          0,
+          1080
+         ],
+         [
+          1260,
+          1440
+         ]
+        ],
+        "intermedia": [
+         [
+          1080,
+          1260
+         ]
+        ],
+        "punta": []
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       }
+      },
+      "vigencia": "Del último domingo de octubre al sábado anterior al primer domingo de abril"
+     },
+     "verano": {
+      "dias": {
+       "domingo": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1440
+         ]
+        ],
+        "punta": []
+       },
+       "habil": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          720
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          720,
+          1320
+         ]
+        ]
+       },
+       "sabado": {
+        "base": [],
+        "intermedia": [
+         [
+          0,
+          1140
+         ],
+         [
+          1320,
+          1440
+         ]
+        ],
+        "punta": [
+         [
+          1140,
+          1320
+         ]
+        ]
+       }
+      },
+      "regla": {
+       "fin": {
+        "desplazamiento": -1,
+        "dia_semana": 6,
+        "mes": 10,
+        "tipo": "ultimo_dia_semana"
+       },
+       "inicio": {
+        "desplazamiento": 0,
+        "dia_semana": 6,
+        "mes": 4,
+        "n": 1,
+        "tipo": "n_dia_semana"
+       }
+      },
+      "vigencia": "Del primer domingo de abril al sábado anterior al último domingo de octubre"
+     }
+    },
+    "zona": "Región Baja California Sur"
+   }
+  },
+  "todas": [
+   {
+    "cargos": {
+     "base": 0.8801,
+     "capacidad": 354.09,
+     "distribucion": 87.59,
+     "fijo": 611.85,
+     "intermedia": 1.4083,
+     "punta": 1.5606
+    },
+    "conceptos": [
+     {
+      "cargo": "Fijo",
+      "int_horario": "-",
+      "unidades": "$/mes",
+      "valor": 611.85
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Base",
+      "unidades": "$/kWh",
+      "valor": 0.8801
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Intermedia",
+      "unidades": "$/kWh",
+      "valor": 1.4083
+     },
+     {
+      "cargo": "Variable (Energía)",
+      "int_horario": "Punta",
+      "unidades": "$/kWh",
+      "valor": 1.5606
+     },
+     {
+      "cargo": "Distribución",
+      "int_horario": "-",
+      "unidades": "$/kW",
+      "valor": 87.59
+     },
+     {
+      "cargo": "Capacidad",
+      "int_horario": "-",
+      "unidades": "$/kW",
+      "valor": 354.09
+     }
+    ],
+    "facturacion": null,
+    "periodo_cfe": "MAY-19",
+    "region": "Noroeste",
+    "tarifa": "GDMTH",
+    "unidades": {
+     "base": "$/kWh",
+     "capacidad": "$/kW",
+     "distribucion": "$/kW",
+     "fijo": "$/mes",
+     "intermedia": "$/kWh",
+     "punta": "$/kWh"
+    }
+   }
+  ]
+ }
+}

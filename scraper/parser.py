@@ -159,35 +159,64 @@ def parsear_todas(html):
             if r is not None]
 
 
+def _rol_columna(encabezado):
+    """Texto del encabezado -> rol de la columna, o None si no se reconoce."""
+    k = _clave(encabezado)
+    return {"tarifa": "tarifa", "descripcion": "descripcion", "int_horario": "int_horario",
+            "cargo": "cargo", "unidades": "unidades"}.get(k)
+
+
 def _parsear_tabla(tabla):
+    """Una tabla de resultados -> dict, guiada por el encabezado.
+
+    No se asumen posiciones fijas: GDMTH trae seis columnas (Tarifa,
+    Descripción, Int. Horario, Cargo, Unidades, periodo) pero GDMTO y PDBT no
+    tienen "Int. Horario", y las celdas con rowspan (tarifa y descripción)
+    solo aparecen en la primera fila. Asumir cuatro celdas por fila descartaba
+    sin avisar todas las filas menos la primera.
+
+    Cada fila trae las últimas N columnas del encabezado; las que faltan al
+    principio son las de rowspan y se heredan de la fila anterior.
+    """
     filas = tabla.find_all("tr")
     if len(filas) < 2:
         return None
 
     encabezados = [c.get_text(strip=True) for c in filas[0].find_all(["th", "td"])]
     periodo_cfe = encabezados[-1] if encabezados else None
+    roles = [_rol_columna(h) for h in encabezados[:-1]] + ["valor"]
+    if not {"cargo", "unidades"} <= set(roles):
+        return None
 
     titulo = tabla.find_previous(["h3", "h2"])
     region = titulo.get_text(strip=True) if titulo else None
 
     tarifa = None
+    heredado = {}
     conceptos = []
     for fila in filas[1:]:
         celdas = fila.find_all(["th", "td"])
-        if len(celdas) < 4:
+        if len(celdas) < 3 or len(celdas) > len(roles):
             continue
-        # Las celdas con rowspan (tarifa y descripción) solo aparecen en la
-        # primera fila; por eso se lee siempre desde el final.
-        valor = _numero(celdas[-1].get_text(strip=True))
-        unidades = celdas[-2].get_text(strip=True)
-        cargo = celdas[-3].get_text(strip=True)
-        int_horario = celdas[-4].get_text(strip=True)
+        faltan = len(roles) - len(celdas)
+        fila_datos = dict(heredado)
+        for rol, celda in zip(roles[faltan:], celdas):
+            fila_datos[rol] = celda.get_text(strip=True)
+        # Lo que viene antes de las columnas de la fila (rowspan) se recuerda
+        # para las filas siguientes.
+        for rol, celda in zip(roles, celdas if faltan == 0 else []):
+            if rol in ("tarifa", "descripcion"):
+                heredado[rol] = celda.get_text(strip=True)
+
+        valor = _numero(fila_datos.get("valor"))
         if valor is None:
             continue
-        if tarifa is None and len(celdas) > 4:
-            tarifa = celdas[0].get_text(strip=True)
-        conceptos.append({"int_horario": int_horario, "cargo": cargo,
-                          "unidades": unidades, "valor": valor})
+        if tarifa is None:
+            tarifa = fila_datos.get("tarifa")
+        conceptos.append({"int_horario": fila_datos.get("int_horario", "-"),
+                          "cargo": fila_datos.get("cargo", ""),
+                          "unidades": fila_datos.get("unidades", ""),
+                          "valor": valor})
 
     if not conceptos:
         return None
@@ -195,8 +224,12 @@ def _parsear_tabla(tabla):
     cargos, unidades_norm = {}, {}
     for c in conceptos:
         # En las filas de energía el concepto es el intervalo horario
-        # (Base/Intermedia/Punta); en las demás, el nombre del cargo.
-        base = c["int_horario"] if _clave(c["cargo"]).startswith("variable") else c["cargo"]
+        # (Base/Intermedia/Punta); en las demás, el nombre del cargo. Sin
+        # intervalo horario (GDMTO, PDBT) la energía es un solo cargo.
+        if _clave(c["cargo"]).startswith("variable"):
+            base = c["int_horario"] if _clave(c["int_horario"]) else "energia"
+        else:
+            base = c["cargo"]
         k = _clave(base)
         if k and k != "-":
             cargos[k] = c["valor"]
