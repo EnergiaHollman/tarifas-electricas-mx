@@ -15,6 +15,8 @@ import {
   periodosDe,
   regionDeMunicipio,
   tarifas,
+  tarifasConDatos,
+  tieneHorarios,
   zonaDeRegion,
 } from "./datos";
 
@@ -94,6 +96,16 @@ export function consultarTarifa(args: Args) {
   if ("error" in ubic) return ubic;
 
   const tarifa = normalizar(String(args.tarifa ?? "GDMTH"));
+  const conDatos = tarifasConDatos().map((t) => t.tarifa);
+  if (!conDatos.includes(tarifa)) {
+    return {
+      error: `La tarifa "${tarifa}" no existe o todavía no tiene datos capturados.`,
+      tarifas_disponibles: conDatos,
+      aviso: AVISO,
+    };
+  }
+  // Las tarifas sin horarios no llevan sistema_horario ni división de horario.
+  const horario = (reg: string) => (tieneHorarios(tarifa) ? describirHorario(reg) : {});
 
   // Municipio que CFE atiende con dos divisiones: se devuelven las dos, porque
   // cuál aplica depende del punto de suministro y solo el recibo lo dice.
@@ -101,7 +113,7 @@ export function consultarTarifa(args: Args) {
     const resultados = ubic.regiones
       .map((reg) => {
         const t = obtenerTarifa(tarifa, reg, anio, mes);
-        return t ? { region: reg, ...describirHorario(reg), cargos: t.cargos, unidades: t.unidades,
+        return t ? { region: reg, ...horario(reg), cargos: t.cargos, unidades: t.unidades,
                      periodo_cfe: t.periodo_cfe, fecha_captura: t.fecha_captura } : null;
       })
       .filter(Boolean);
@@ -134,7 +146,7 @@ export function consultarTarifa(args: Args) {
     region: r.region,
     // Aditivo: `region` se queda como siempre; estos dos separan los conceptos
     // (cargos por DIVISIÓN, horarios por SISTEMA interconectado).
-    ...describirHorario(r.region),
+    ...horario(r.region),
     ...datosMunicipio(ubic),
     anio: r.anio,
     mes: r.mes,
@@ -144,6 +156,25 @@ export function consultarTarifa(args: Args) {
     conceptos: r.conceptos,
     fuente: r.fuente,
     fecha_captura: r.fecha_captura,
+    aviso: AVISO,
+  };
+}
+
+/**
+ * Qué tarifas se pueden consultar y con qué cobertura, para que un cliente no
+ * tenga que adivinar. anio y mes son el mes de las cuotas que CFE publica en su
+ * portal ("Cuotas aplicables en el mes de X"), servido tal cual.
+ */
+export function listarTarifas() {
+  return {
+    tarifas: tarifasConDatos().map((t) => ({
+      ...t,
+      parametros: "anio, mes y ubicación (region, o estado + municipio)",
+    })),
+    nota_mes:
+      "anio y mes son el mes de las cuotas publicadas por CFE, sin ajustes. Cómo se " +
+      "corresponde con el mes de consumo o de facturación de un recibo se valida aparte " +
+      "contra recibos reales; no se asume aquí.",
     aviso: AVISO,
   };
 }

@@ -73,8 +73,8 @@ const HERRAMIENTAS = [
       "la respuesta sigue al portal y agrega divisiones_segun_acuerdo y nota_division; para " +
       "consultar otra división, pasa region. " +
       "tarifa: la clave de la tarifa, en mayúsculas; si no se indica se asume " +
-      "GDMTH (Gran Demanda en Media Tensión Horaria), que es la única con datos " +
-      "capturados por ahora. mes va de 1 (enero) a 12 (diciembre), como entero, " +
+      "GDMTH (Gran Demanda en Media Tensión Horaria). Si pides una tarifa sin datos, " +
+      "la respuesta lista las tarifas disponibles. mes va de 1 (enero) a 12 (diciembre), como entero, " +
       "no como nombre de mes.",
     inputSchema: {
       type: "object",
@@ -97,7 +97,7 @@ const HERRAMIENTAS = [
         tarifa: {
           type: "string",
           default: "GDMTH",
-          description: "Clave de la tarifa en mayúsculas. Por omisión GDMTH, la única con datos hoy.",
+          description: "Clave de la tarifa en mayúsculas (GDMTH, GDMTO). Por omisión GDMTH.",
         },
       },
       required: ["anio", "mes"],

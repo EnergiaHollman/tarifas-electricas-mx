@@ -271,6 +271,56 @@ export function describirHorario(region: string): { division: string | null; sis
   };
 }
 
+/**
+ * Qué se sabe de cada tarifa que el servidor puede ofrecer. Lo único que no
+ * sale de los datos capturados: la descripción y si la tarifa tiene horarios
+ * (base/intermedia/punta). Una tarifa sin horarios no lleva sistema_horario ni
+ * división de horario en la respuesta: no le aplican.
+ */
+export const META_TARIFAS: Record<string, { descripcion: string; horarios: boolean }> = {
+  GDMTH: { descripcion: "Gran demanda en media tensión, horaria", horarios: true },
+  GDMTO: { descripcion: "Gran demanda en media tensión, ordinaria", horarios: false },
+};
+
+export function tieneHorarios(tarifa: string): boolean {
+  return META_TARIFAS[normalizar(tarifa)]?.horarios ?? false;
+}
+
+export type ResumenTarifa = {
+  tarifa: string;
+  descripcion: string | null;
+  horarios: boolean;
+  regiones: string[];
+  periodo_desde: string;
+  periodo_hasta: string;
+  registros: number;
+};
+
+/** Las tarifas que tienen al menos un registro capturado, con su cobertura. */
+export function tarifasConDatos(): ResumenTarifa[] {
+  const por = new Map<string, { regiones: Set<string>; periodos: string[] }>();
+  for (const [k, r] of Object.entries(tarifas.registros)) {
+    const e = por.get(r.tarifa) ?? { regiones: new Set<string>(), periodos: [] };
+    e.regiones.add(r.region);
+    e.periodos.push(k.slice(k.lastIndexOf("|") + 1));
+    por.set(r.tarifa, e);
+  }
+  return [...por.entries()]
+    .map(([tarifa, e]) => {
+      const ps = e.periodos.sort();
+      return {
+        tarifa,
+        descripcion: META_TARIFAS[tarifa]?.descripcion ?? null,
+        horarios: tieneHorarios(tarifa),
+        regiones: [...e.regiones].sort(),
+        periodo_desde: ps[0],
+        periodo_hasta: ps[ps.length - 1],
+        registros: ps.length,
+      };
+    })
+    .sort((a, b) => a.tarifa.localeCompare(b.tarifa));
+}
+
 export const AVISO =
   "Datos capturados automáticamente del portal público de CFE. Este no es un " +
   "servicio oficial de CFE ni está afiliado a ella. La fuente autoritativa es " +
