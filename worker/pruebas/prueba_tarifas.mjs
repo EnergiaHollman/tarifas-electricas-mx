@@ -204,12 +204,37 @@ check("las domésticas avisan que los apoyos no están y que los límites son me
   por["1F"].notas.some((n) => n.includes("subsidios")) && por["1F"].notas.some((n) => n.includes("MENSUALES")), true);
 check("la 1 no menciona temporada en sus notas", por["1"].notas.some((n) => n.includes("inicio_verano")), false);
 check("DAC declara que solo Noroeste está confirmada", dac.notas.some((n) => n.includes("Solo la división NOROESTE")), true);
-check("las demás tarifas no llevan notas", [h.notas, o.notas, pd.notas], [undefined, undefined, undefined]);
+check("GDMTH y PDBT no llevan notas", [h.notas, pd.notas], [undefined, undefined]);
+check("GDMTO explica energia_4dec", o.notas.length === 1 && o.notas[0].includes("energia_4dec"), true);
 check("GDMTO llega al menos a 2026-09", o.periodo_hasta >= "2026-09", true);
 check("registros de GDMTO = meses de las dos regiones", o.registros >= 42, true);
 check("explica qué es el mes", r.cuerpo.nota_mes.includes("sin ajustes"), true);
 check("OpenAPI lo documenta",
   Object.keys((await get("/openapi.json")).cuerpo.paths).includes("/v1/tarifas"), true);
+
+console.log("\nGDMTO: energía con 4 decimales (suma de componentes del aviso del DOF)");
+r = await get("/v1/tarifa?tarifa=GDMTO&region=ORIENTE&anio=2026&mes=9");
+check("energia del portal, sin cambios", r.cuerpo.cargos.energia, 1.282);
+check("energia_4dec = suma de los cuatro cargos", r.cuerpo.energia_4dec, 1.2816);
+check("componentes del DOF",  r.cuerpo.componentes_energia,
+  { transmision: 0.1801, cenace: 0.0076, suministro: 0.0069, generacion: 1.087 });
+check("precisión declarada", r.cuerpo.energia_precision, "dof_4_decimales");
+check("trae el aviso del DOF", r.cuerpo.aviso_dof, 5800039);
+r = await get("/v1/tarifa?tarifa=GDMTO&region=ORIENTE&anio=2026&mes=5");
+check("mayo de 2026 (aviso 5788863)", [r.cuerpo.cargos.energia, r.cuerpo.energia_4dec], [1.315, 1.3146]);
+r = await get("/v1/tarifa?tarifa=GDMTO&region=ORIENTE&anio=2025&mes=9");
+check("septiembre de 2025", r.cuerpo.energia_4dec, 1.4527);
+r = await get("/v1/tarifa?tarifa=GDMTO&region=NOROESTE&anio=2026&mes=9");
+check("Noroeste también", r.cuerpo.energia_4dec, 1.2606);
+r = await get("/v1/tarifa?tarifa=GDMTO&region=ORIENTE&anio=2026&mes=11");
+check("sin aviso del mes: energia_4dec null, no inventado", [r.cuerpo.energia_4dec, r.cuerpo.componentes_energia], [null, null]);
+check("sin aviso: se marca de 3 decimales y energia sigue siendo la del portal",
+  [r.cuerpo.energia_precision, r.cuerpo.cargos.energia, "aviso_dof" in r.cuerpo], ["portal_3_decimales", 1.282, false]);
+r = await get("/v1/tarifa?tarifa=GDMTH&region=ORIENTE&anio=2026&mes=9");
+check("GDMTH no cambia: sin campos nuevos",
+  ["energia_4dec", "energia_precision", "componentes_energia", "aviso_dof"].some((k) => k in r.cuerpo), false);
+r = await get("/v1/tarifa?tarifa=PDBT&region=NOROESTE&anio=2026&mes=3");
+check("PDBT no cambia: sin campos nuevos", "energia_4dec" in r.cuerpo, false);
 
 console.log();
 if (contar()) {

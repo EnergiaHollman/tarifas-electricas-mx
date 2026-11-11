@@ -8,6 +8,7 @@ import horariosJson from "../../data/horarios.json";
 import sistemasJson from "../../data/sistemas_horario.json";
 import complementoJson from "../../data/municipios_complemento.json";
 import tarifasJson from "../../data/tarifas.json";
+import componentesDofJson from "../../data/componentes_dof.json";
 import regionesDacJson from "../../data/regiones_dac.json";
 import type { Zona } from "./calendario";
 
@@ -210,6 +211,44 @@ export function obtenerTarifa(
   return tarifas.registros[k] ?? null;
 }
 
+type ComponentesDof = {
+  transmision: number; cenace: number; suministro: number; generacion: number;
+  energia_4dec: number; aviso_dof: number; fecha_captura: string;
+};
+const componentesDof = componentesDofJson as unknown as Record<string, ComponentesDof>;
+
+/** Tarifas cuya energía es suma de componentes publicados en el DOF. */
+const TARIFAS_CON_COMPONENTES = new Set(["GDMTO"]);
+
+/**
+ * Energía con 4 decimales, sumada de los cargos del aviso mensual del DOF.
+ * Aditivo: `cargos.energia` sigue siendo el del portal (3 decimales). Si el
+ * aviso del mes todavía no está capturado, energia_4dec va en null: no se
+ * inventa; quien consulte usa la energía del portal y la marca como 3 decimales.
+ * Para las demás tarifas no devuelve nada (la respuesta no cambia).
+ */
+export function energiaDof(tarifa: string, region: string, anio: number, mes: number) {
+  const t = normalizar(tarifa);
+  if (!TARIFAS_CON_COMPONENTES.has(t)) return {};
+  const c = componentesDof[`${t}|${normalizar(region)}|${anio}-${String(mes).padStart(2, "0")}`];
+  if (!c) {
+    return {
+      energia_precision: "portal_3_decimales",
+      energia_4dec: null,
+      componentes_energia: null,
+    };
+  }
+  return {
+    energia_precision: "dof_4_decimales",
+    energia_4dec: c.energia_4dec,
+    componentes_energia: {
+      transmision: c.transmision, cenace: c.cenace,
+      suministro: c.suministro, generacion: c.generacion,
+    },
+    aviso_dof: c.aviso_dof,
+  };
+}
+
 /** Periodos disponibles de una región, para decir qué sí hay cuando falta uno. */
 export function periodosDe(tarifa: string, region: string): string[] {
   const pre = `${normalizar(tarifa)}|${normalizar(region)}|`;
@@ -294,7 +333,18 @@ export const META_TARIFAS: Record<
   { descripcion: string; horarios: boolean; ubicacion: Ubicacion; estacional?: boolean; notas?: string[] }
 > = {
   GDMTH: { descripcion: "Gran demanda en media tensión, horaria", horarios: true, ubicacion: "division" },
-  GDMTO: { descripcion: "Gran demanda en media tensión, ordinaria", horarios: false, ubicacion: "division" },
+  GDMTO: {
+    descripcion: "Gran demanda en media tensión, ordinaria",
+    horarios: false,
+    ubicacion: "division",
+    notas: [
+      "cargos.energia es el precio del portal de CFE, redondeado a 3 decimales. energia_4dec es la suma " +
+        "de los cargos por kWh del aviso mensual del DOF (transmisión, CENACE, suministro, generación) y " +
+        "conserva el 4.º decimal; los recibos facturan con esa suma. Si energia_4dec es null, el aviso del " +
+        "mes todavía no está capturado (el DOF lo publica 10 a 25 días tarde): usa cargos.energia y " +
+        "trátala como de 3 decimales (energia_precision).",
+    ],
+  },
   PDBT: { descripcion: "Pequeña demanda en baja tensión, hasta 25 kW-mes", horarios: false, ubicacion: "division" },
   DAC: {
     descripcion: "Doméstica de alto consumo",
