@@ -255,6 +255,19 @@ check("otro mes que el pedido: no se guarda ningún registro de GDMTO (antes se 
 check("otro mes que el pedido: el proceso termina con error", codigo, 1)
 check("otro mes que el pedido: GDMTH sigue", "GDMTH|NOROESTE|2026-03" in regs, True)
 
+print("\n--ventana: solo los meses pedidos")
+check("parsea la ventana", A.parsear_ventana("2025-09:2026-10"), ((2025, 9), (2026, 10)))
+for malo in ("2025-09", "2026-10:2025-09", "2025-13:2026-01", "x:y"):
+    try:
+        A.parsear_ventana(malo)
+        check(f"ventana inválida {malo!r}", "no falló", "SystemExit")
+    except SystemExit:
+        check(f"ventana inválida {malo!r}", "SystemExit", "SystemExit")
+codigo, tarifas, _ = correr("GDMTO", HTML_GDMTO, extra=("--ventana", "2026-02:2026-02"))
+check("solo se guardó febrero (enero y marzo, fuera de la ventana, no)",
+      sorted(k for k in tarifas["registros"] if k.startswith("GDMTO")), ["GDMTO|NOROESTE|2026-02"])
+check("termina bien", codigo, 0)
+
 codigo, tarifas, _ = correr("GDMTO", HTML_GDMTO, extra=("--limpiar-todo",))
 check("--limpiar-todo con GDMTO no borra GDMTH", "GDMTH|NOROESTE|2026-03" in tarifas["registros"], True)
 
