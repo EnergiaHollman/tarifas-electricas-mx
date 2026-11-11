@@ -9,6 +9,7 @@ import sistemasJson from "../../data/sistemas_horario.json";
 import complementoJson from "../../data/municipios_complemento.json";
 import tarifasJson from "../../data/tarifas.json";
 import componentesDofJson from "../../data/componentes_dof.json";
+import validacionJson from "../../data/validacion.json";
 import regionesDacJson from "../../data/regiones_dac.json";
 import type { Zona } from "./calendario";
 
@@ -249,6 +250,24 @@ export function energiaDof(tarifa: string, region: string, anio: number, mes: nu
   };
 }
 
+const validacion = validacionJson as unknown as { registros: Record<string, string[]> };
+
+/** Tarifas cuyos registros se contrastan con el DOF y, donde hay, con recibos. */
+const TARIFAS_VALIDADAS = new Set(["GDMTO", "PDBT"]);
+
+/**
+ * Con qué se validó el registro. Aditivo; las demás tarifas no llevan el campo.
+ *   "dof"    coincide con el aviso mensual de tarifas finales del DOF (precio oficial).
+ *   "recibo" además se reprodujo con recibos reales en esa región.
+ *   []       capturado del portal, sin validar (p. ej. un mes sin aviso del DOF todavía).
+ */
+export function validacionDe(tarifa: string, region: string, anio: number, mes: number) {
+  const t = normalizar(tarifa);
+  if (!TARIFAS_VALIDADAS.has(t)) return {};
+  const k = `${t}|${normalizar(region)}|${anio}-${String(mes).padStart(2, "0")}`;
+  return { validado: validacion.registros[k] ?? [] };
+}
+
 /** Periodos disponibles de una región, para decir qué sí hay cuando falta uno. */
 export function periodosDe(tarifa: string, region: string): string[] {
   const pre = `${normalizar(tarifa)}|${normalizar(region)}|`;
@@ -328,6 +347,12 @@ export function describirHorario(region: string): { division: string | null; sis
  */
 export type Ubicacion = "division" | "region_dac" | "nacional";
 
+const VALIDADO_NOTA =
+  "validado dice con qué se contrastó el registro: «dof» = coincide con el aviso mensual de tarifas " +
+  "finales del DOF (precio oficial); «recibo» = además se reprodujo con recibos reales en esa región; " +
+  "[] = capturado del portal sin validar. Un registro solo «dof» es precio oficial sin recibo " +
+  "reproducido en esa región.";
+
 export const META_TARIFAS: Record<
   string,
   { descripcion: string; horarios: boolean; ubicacion: Ubicacion; estacional?: boolean; notas?: string[] }
@@ -343,9 +368,15 @@ export const META_TARIFAS: Record<
         "conserva el 4.º decimal; los recibos facturan con esa suma. Si energia_4dec es null, el aviso del " +
         "mes todavía no está capturado (el DOF lo publica 10 a 25 días tarde): usa cargos.energia y " +
         "trátala como de 3 decimales (energia_precision).",
+      VALIDADO_NOTA,
     ],
   },
-  PDBT: { descripcion: "Pequeña demanda en baja tensión, hasta 25 kW-mes", horarios: false, ubicacion: "division" },
+  PDBT: {
+    descripcion: "Pequeña demanda en baja tensión, hasta 25 kW-mes",
+    horarios: false,
+    ubicacion: "division",
+    notas: [VALIDADO_NOTA],
+  },
   DAC: {
     descripcion: "Doméstica de alto consumo",
     horarios: false,

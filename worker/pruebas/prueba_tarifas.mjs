@@ -57,8 +57,8 @@ r = await get("/v1/tarifa?tarifa=PDBT&region=NOROESTE&anio=2025&mes=12");
 check("el cambio de cargo fijo de enero de 2026 se ve (diciembre)", r.cuerpo.cargos, { energia: 3.435, fijo: 77.77 });
 r = await get("/v1/tarifa?tarifa=PDBT&region=NOROESTE&anio=2026&mes=1");
 check("el cambio de cargo fijo de enero de 2026 se ve (enero)", r.cuerpo.cargos, { energia: 3.345, fijo: 19.78 });
-r = await get("/v1/tarifa?tarifa=PDBT&region=ORIENTE&anio=2026&mes=3");
-check("PDBT en una región sin capturar: 404", r.status, 404);
+r = await get("/v1/tarifa?tarifa=PDBT&region=ORIENTE&anio=2024&mes=3");
+check("PDBT en un mes sin capturar (antes de la ventana): 404", r.status, 404);
 
 console.log("\nDAC: se ubica por región de DAC, no por división");
 r = await get("/v1/tarifa?tarifa=DAC&estado=SONORA&municipio=NAVOJOA&anio=2026&mes=9");
@@ -164,10 +164,10 @@ check("GDMTH conserva sistema_horario", "sistema_horario" in r.cuerpo, true);
 check("GDMTH conserva división", r.cuerpo.division, "NOROESTE");
 
 console.log("\nCasos de error");
-r = await get("/v1/tarifa?tarifa=GDMTO&region=NORTE&anio=2026&mes=9");
-check("GDMTO en una región sin capturar: 404", r.status, 404);
+r = await get("/v1/tarifa?tarifa=GDMTO&region=NORTE&anio=2024&mes=9");
+check("GDMTO en un mes sin capturar (antes de la ventana): 404", r.status, 404);
 check("lo dice con la región", r.cuerpo.error.includes("GDMTO en NORTE"), true);
-check("y sin periodos disponibles", r.cuerpo.periodos_disponibles, []);
+check("y da los periodos que sí hay: 2025-09 a 2026-10", [r.cuerpo.periodos_disponibles[0], r.cuerpo.periodos_disponibles.at(-1)], ["2025-09", "2026-10"]);
 
 r = await get("/v1/tarifa?tarifa=NOEXISTE&region=NOROESTE&anio=2026&mes=9");
 check("tarifa desconocida: 404", r.status, 404);
@@ -184,10 +184,10 @@ const { GDMTH: h, GDMTO: o, PDBT: pd, DAC: dac } = por;
 check("GDMTH tiene horarios y 17 regiones", [h.horarios, h.regiones.length], [true, 17]);
 check("GDMTH desde 2018-01", h.periodo_desde, "2018-01");
 check("GDMTO sin horarios", o.horarios, false);
-check("GDMTO piloto: Noroeste y Oriente", o.regiones, ["NOROESTE", "ORIENTE"]);
+check("GDMTO: las 17 divisiones", [o.regiones.length, o.regiones.includes("SURESTE")], [17, true]);
 check("GDMTO desde 2025-01", o.periodo_desde, "2025-01");
-check("PDBT piloto: Noroeste, sin horarios, desde 2025-01",
-  [pd.regiones, pd.horarios, pd.periodo_desde, pd.registros >= 21], [["NOROESTE"], false, "2025-01", true]);
+check("PDBT: las 17 divisiones, sin horarios, desde 2025-01 (Noroeste conserva sus meses previos)",
+  [pd.regiones.length, pd.horarios, pd.periodo_desde, pd.registros >= 17 * 14], [17, false, "2025-01", true]);
 check("PDBT con descripción", pd.descripcion.includes("Pequeña demanda"), true);
 check("DAC: seis regiones de DAC, sin horarios, por región de DAC",
   [dac.regiones, dac.horarios, dac.ubicacion],
@@ -204,8 +204,9 @@ check("las domésticas avisan que los apoyos no están y que los límites son me
   por["1F"].notas.some((n) => n.includes("subsidios")) && por["1F"].notas.some((n) => n.includes("MENSUALES")), true);
 check("la 1 no menciona temporada en sus notas", por["1"].notas.some((n) => n.includes("inicio_verano")), false);
 check("DAC declara que solo Noroeste está confirmada", dac.notas.some((n) => n.includes("Solo la división NOROESTE")), true);
-check("GDMTH y PDBT no llevan notas", [h.notas, pd.notas], [undefined, undefined]);
-check("GDMTO explica energia_4dec", o.notas.length === 1 && o.notas[0].includes("energia_4dec"), true);
+check("GDMTH no lleva notas", h.notas, undefined);
+check("GDMTO explica energia_4dec y validado", o.notas.length === 2 && o.notas[0].includes("energia_4dec") && o.notas[1].includes("validado"), true);
+check("PDBT explica validado", pd.notas.length === 1 && pd.notas[0].includes("sin recibo reproducido"), true);
 check("GDMTO llega al menos a 2026-09", o.periodo_hasta >= "2026-09", true);
 check("registros de GDMTO = meses de las dos regiones", o.registros >= 42, true);
 check("explica qué es el mes", r.cuerpo.nota_mes.includes("sin ajustes"), true);
@@ -235,6 +236,35 @@ check("GDMTH no cambia: sin campos nuevos",
   ["energia_4dec", "energia_precision", "componentes_energia", "aviso_dof"].some((k) => k in r.cuerpo), false);
 r = await get("/v1/tarifa?tarifa=PDBT&region=NOROESTE&anio=2026&mes=3");
 check("PDBT no cambia: sin campos nuevos", "energia_4dec" in r.cuerpo, false);
+
+console.log("\nvalidado: con qué se contrastó cada registro (GDMTO y PDBT, 17 divisiones, 2025-09 a 2026-10)");
+const v = async (q) => (await get("/v1/tarifa?" + q)).cuerpo;
+check("GDMTO Oriente 2026-09: DOF y recibo", (await v("tarifa=GDMTO&region=ORIENTE&anio=2026&mes=9")).validado, ["dof", "recibo"]);
+check("PDBT Noroeste 2026-03: DOF y recibo", (await v("tarifa=PDBT&region=NOROESTE&anio=2026&mes=3")).validado, ["dof", "recibo"]);
+r = await v("tarifa=GDMTO&region=SURESTE&anio=2026&mes=9");
+check("GDMTO Sureste 2026-09: precio oficial del DOF, sin recibo", r.validado, ["dof"]);
+check("GDMTO Sureste: energía del portal y a 4 decimales (la captura que antes salía de otro mes)",
+  [r.cargos.energia, r.energia_4dec, r.periodo_cfe], [1.238, 1.2376, "SEP-26"]);
+r = await v("tarifa=PDBT&region=SURESTE&anio=2026&mes=9");
+check("PDBT Sureste 2026-09: DOF, sin componentes", [r.validado, "energia_4dec" in r], [["dof"], false]);
+check("GDMTO Noroeste: DOF, sin recibo declarado", (await v("tarifa=GDMTO&region=NOROESTE&anio=2026&mes=9")).validado, ["dof"]);
+check("Oriente fuera de la ventana validada (2025-08): sin validar", (await v("tarifa=GDMTO&region=ORIENTE&anio=2025&mes=8")).validado, []);
+check("Oriente 2026-11 (aún sin aviso): sin validar", (await v("tarifa=GDMTO&region=ORIENTE&anio=2026&mes=11")).validado, []);
+check("GDMTH no lleva validado", "validado" in (await v("tarifa=GDMTH&region=ORIENTE&anio=2026&mes=9")), false);
+check("DAC no lleva validado", "validado" in (await v("tarifa=DAC&region=NOROESTE&anio=2026&mes=9")), false);
+r = await v("tarifa=GDMTO&estado=SONORA&municipio=NAVOJOA&anio=2026&mes=9");
+check("por municipio también", r.validado, ["dof"]);
+let todos = 0, sin = [];
+for (const reg of ["BAJA CALIFORNIA","BAJA CALIFORNIA SUR","BAJIO","CENTRO OCCIDENTE","CENTRO ORIENTE","CENTRO SUR","GOLFO CENTRO","GOLFO NORTE","JALISCO","NOROESTE","NORTE","ORIENTE","PENINSULAR","SURESTE","VALLE DE MEXICO CENTRO","VALLE DE MEXICO NORTE","VALLE DE MEXICO SUR"]) {
+  for (const t of ["GDMTO", "PDBT"]) {
+    for (const [a, m] of [[2025, 9], [2026, 3], [2026, 10]]) {
+      const x = await v(`tarifa=${t}&region=${encodeURIComponent(reg)}&anio=${a}&mes=${m}`);
+      todos++;
+      if (!x.validado?.includes("dof")) sin.push(`${t} ${reg} ${a}-${m}`);
+    }
+  }
+}
+check(`las 17 divisiones, ${todos} consultas de muestra: todas con DOF`, sin, []);
 
 console.log();
 if (contar()) {
