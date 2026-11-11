@@ -235,26 +235,43 @@ def tablas_de(s):
 
 
 def consultar_con_reintento(s, anio, mes, eid, mid, oid, etiqueta_division, reintentos, pausa):
-    """consultar() y, si la página responde sin tabla, vuelve a intentarlo.
+    """consultar() y, si la respuesta no sirve, reabre la página y reintenta.
 
-    Un 200 con la selección correcta pero sin tabla puede ser un mes que CFE
-    no publicó, o una respuesta vacía pasajera (se vio con PDBT). Para no
-    confundirlos se reabre la página desde cero y se reintenta; solo si sigue
-    vacía tras agotar los intentos se da por "sin publicación".
+    No sirve cuando llega sin tabla (un mes que CFE no publicó, o una respuesta
+    vacía pasajera que se vio con PDBT) o cuando las tablas son de OTRO mes:
+    el portal a veces contesta el postback con la tabla de un mes distinto al
+    pedido y, sin esta guarda, se guardaba bajo la clave pedida. Se vio en un
+    backfill de GDMTO y PDBT: 9 registros con otro mes, detectados al
+    contrastar con los avisos del DOF.
 
-    Devuelve (tablas, intentos_usados). Las excepciones de consultar() (p. ej.
-    la región equivocada) se propagan: eso no se reintenta, es sospechoso.
+    Devuelve (tablas, intentos_usados). Solo se devuelven tablas del mes
+    pedido. Sin tabla tras agotar los intentos, la lista va vacía ("sin
+    publicación"). Si tras agotarlos solo hay tablas de otro mes, se levanta
+    cfe.ErrorCFE, que el llamador marca como sospechoso y no guarda. Las
+    excepciones de consultar() (p. ej. la región equivocada) se propagan: eso
+    no se reintenta, es sospechoso.
     """
+    esperado = cfe.periodo_esperado(anio, mes)
+
+    def leer():
+        todas = tablas_de(s)
+        return [t for t in todas if t["periodo_cfe"] == esperado], todas
+
     s.consultar(anio, mes, eid, mid, region_id=oid, region_etiqueta=etiqueta_division)
-    tablas = tablas_de(s)
+    tablas, todas = leer()
     intentos = 1
     while not tablas and intentos <= reintentos:
         time.sleep(pausa * (intentos + 1))
         s.abrir()
         s.poner_anio(anio)
         s.consultar(anio, mes, eid, mid, region_id=oid, region_etiqueta=etiqueta_division)
-        tablas = tablas_de(s)
+        tablas, todas = leer()
         intentos += 1
+    if not tablas and todas:
+        vistos = sorted({str(t["periodo_cfe"]) for t in todas})
+        raise cfe.ErrorCFE(
+            f"se pidió {esperado} pero la página muestra {', '.join(vistos)} "
+            f"(tras {intentos} intento(s)); el portal contestó con otro mes")
     return tablas, intentos
 
 
