@@ -1,0 +1,1458 @@
+{
+ "actualizado": "2026-11-11T23:14:38+00:00",
+ "diferencias": [],
+ "huecos": {},
+ "registros": {
+  "GDMTO|BAJA CALIFORNIA SUR|2025-09": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2025-10": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2025-11": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2025-12": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2026-01": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2026-02": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2026-03": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2026-04": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2026-05": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2026-06": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2026-07": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2026-08": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2026-09": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA SUR|2026-10": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2025-09": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2025-10": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2025-11": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2025-12": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2026-01": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2026-02": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2026-03": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2026-04": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2026-05": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2026-06": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2026-07": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2026-08": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2026-09": [
+   "dof"
+  ],
+  "GDMTO|BAJA CALIFORNIA|2026-10": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2025-09": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2025-10": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2025-11": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2025-12": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2026-01": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2026-02": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2026-03": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2026-04": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2026-05": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2026-06": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2026-07": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2026-08": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2026-09": [
+   "dof"
+  ],
+  "GDMTO|BAJIO|2026-10": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2025-09": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2025-10": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2025-11": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2025-12": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2026-01": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2026-02": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2026-03": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2026-04": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2026-05": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2026-06": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2026-07": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2026-08": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2026-09": [
+   "dof"
+  ],
+  "GDMTO|CENTRO OCCIDENTE|2026-10": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2025-09": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2025-10": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2025-11": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2025-12": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2026-01": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2026-02": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2026-03": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2026-04": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2026-05": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2026-06": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2026-07": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2026-08": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2026-09": [
+   "dof"
+  ],
+  "GDMTO|CENTRO ORIENTE|2026-10": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2025-09": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2025-10": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2025-11": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2025-12": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2026-01": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2026-02": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2026-03": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2026-04": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2026-05": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2026-06": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2026-07": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2026-08": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2026-09": [
+   "dof"
+  ],
+  "GDMTO|CENTRO SUR|2026-10": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2025-09": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2025-10": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2025-11": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2025-12": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2026-01": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2026-02": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2026-03": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2026-04": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2026-05": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2026-06": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2026-07": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2026-08": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2026-09": [
+   "dof"
+  ],
+  "GDMTO|GOLFO CENTRO|2026-10": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2025-09": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2025-10": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2025-11": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2025-12": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2026-01": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2026-02": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2026-03": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2026-04": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2026-05": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2026-06": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2026-07": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2026-08": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2026-09": [
+   "dof"
+  ],
+  "GDMTO|GOLFO NORTE|2026-10": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2025-09": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2025-10": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2025-11": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2025-12": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2026-01": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2026-02": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2026-03": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2026-04": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2026-05": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2026-06": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2026-07": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2026-08": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2026-09": [
+   "dof"
+  ],
+  "GDMTO|JALISCO|2026-10": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2025-09": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2025-10": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2025-11": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2025-12": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2026-01": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2026-02": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2026-03": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2026-04": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2026-05": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2026-06": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2026-07": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2026-08": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2026-09": [
+   "dof"
+  ],
+  "GDMTO|NOROESTE|2026-10": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2025-09": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2025-10": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2025-11": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2025-12": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2026-01": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2026-02": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2026-03": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2026-04": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2026-05": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2026-06": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2026-07": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2026-08": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2026-09": [
+   "dof"
+  ],
+  "GDMTO|NORTE|2026-10": [
+   "dof"
+  ],
+  "GDMTO|ORIENTE|2025-09": [
+   "dof"
+  ],
+  "GDMTO|ORIENTE|2025-10": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2025-11": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2025-12": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2026-01": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2026-02": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2026-03": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2026-04": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2026-05": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2026-06": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2026-07": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2026-08": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2026-09": [
+   "dof",
+   "recibo"
+  ],
+  "GDMTO|ORIENTE|2026-10": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2025-09": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2025-10": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2025-11": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2025-12": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2026-01": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2026-02": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2026-03": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2026-04": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2026-05": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2026-06": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2026-07": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2026-08": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2026-09": [
+   "dof"
+  ],
+  "GDMTO|PENINSULAR|2026-10": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2025-09": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2025-10": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2025-11": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2025-12": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2026-01": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2026-02": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2026-03": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2026-04": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2026-05": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2026-06": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2026-07": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2026-08": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2026-09": [
+   "dof"
+  ],
+  "GDMTO|SURESTE|2026-10": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2025-09": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2025-10": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2025-11": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2025-12": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2026-01": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2026-02": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2026-03": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2026-04": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2026-05": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2026-06": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2026-07": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2026-08": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2026-09": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO CENTRO|2026-10": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2025-09": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2025-10": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2025-11": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2025-12": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2026-01": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2026-02": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2026-03": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2026-04": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2026-05": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2026-06": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2026-07": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2026-08": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2026-09": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO NORTE|2026-10": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2025-09": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2025-10": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2025-11": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2025-12": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2026-01": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2026-02": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2026-03": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2026-04": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2026-05": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2026-06": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2026-07": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2026-08": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2026-09": [
+   "dof"
+  ],
+  "GDMTO|VALLE DE MEXICO SUR|2026-10": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2025-09": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2025-10": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2025-11": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2025-12": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2026-01": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2026-02": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2026-03": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2026-04": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2026-05": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2026-06": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2026-07": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2026-08": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2026-09": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA SUR|2026-10": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2025-09": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2025-10": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2025-11": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2025-12": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2026-01": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2026-02": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2026-03": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2026-04": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2026-05": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2026-06": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2026-07": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2026-08": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2026-09": [
+   "dof"
+  ],
+  "PDBT|BAJA CALIFORNIA|2026-10": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2025-09": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2025-10": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2025-11": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2025-12": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2026-01": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2026-02": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2026-03": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2026-04": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2026-05": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2026-06": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2026-07": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2026-08": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2026-09": [
+   "dof"
+  ],
+  "PDBT|BAJIO|2026-10": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2025-09": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2025-10": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2025-11": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2025-12": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2026-01": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2026-02": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2026-03": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2026-04": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2026-05": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2026-06": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2026-07": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2026-08": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2026-09": [
+   "dof"
+  ],
+  "PDBT|CENTRO OCCIDENTE|2026-10": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2025-09": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2025-10": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2025-11": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2025-12": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2026-01": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2026-02": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2026-03": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2026-04": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2026-05": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2026-06": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2026-07": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2026-08": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2026-09": [
+   "dof"
+  ],
+  "PDBT|CENTRO ORIENTE|2026-10": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2025-09": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2025-10": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2025-11": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2025-12": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2026-01": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2026-02": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2026-03": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2026-04": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2026-05": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2026-06": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2026-07": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2026-08": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2026-09": [
+   "dof"
+  ],
+  "PDBT|CENTRO SUR|2026-10": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2025-09": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2025-10": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2025-11": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2025-12": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2026-01": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2026-02": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2026-03": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2026-04": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2026-05": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2026-06": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2026-07": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2026-08": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2026-09": [
+   "dof"
+  ],
+  "PDBT|GOLFO CENTRO|2026-10": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2025-09": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2025-10": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2025-11": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2025-12": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2026-01": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2026-02": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2026-03": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2026-04": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2026-05": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2026-06": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2026-07": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2026-08": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2026-09": [
+   "dof"
+  ],
+  "PDBT|GOLFO NORTE|2026-10": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2025-09": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2025-10": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2025-11": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2025-12": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2026-01": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2026-02": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2026-03": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2026-04": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2026-05": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2026-06": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2026-07": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2026-08": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2026-09": [
+   "dof"
+  ],
+  "PDBT|JALISCO|2026-10": [
+   "dof"
+  ],
+  "PDBT|NOROESTE|2025-09": [
+   "dof"
+  ],
+  "PDBT|NOROESTE|2025-10": [
+   "dof",
+   "recibo"
+  ],
+  "PDBT|NOROESTE|2025-11": [
+   "dof",
+   "recibo"
+  ],
+  "PDBT|NOROESTE|2025-12": [
+   "dof",
+   "recibo"
+  ],
+  "PDBT|NOROESTE|2026-01": [
+   "dof",
+   "recibo"
+  ],
+  "PDBT|NOROESTE|2026-02": [
+   "dof",
+   "recibo"
+  ],
+  "PDBT|NOROESTE|2026-03": [
+   "dof",
+   "recibo"
+  ],
+  "PDBT|NOROESTE|2026-04": [
+   "dof",
+   "recibo"
+  ],
+  "PDBT|NOROESTE|2026-05": [
+   "dof"
+  ],
+  "PDBT|NOROESTE|2026-06": [
+   "dof"
+  ],
+  "PDBT|NOROESTE|2026-07": [
+   "dof",
+   "recibo"
+  ],
+  "PDBT|NOROESTE|2026-08": [
+   "dof",
+   "recibo"
+  ],
+  "PDBT|NOROESTE|2026-09": [
+   "dof",
+   "recibo"
+  ],
+  "PDBT|NOROESTE|2026-10": [
+   "dof"
+  ],
+  "PDBT|NORTE|2025-09": [
+   "dof"
+  ],
+  "PDBT|NORTE|2025-10": [
+   "dof"
+  ],
+  "PDBT|NORTE|2025-11": [
+   "dof"
+  ],
+  "PDBT|NORTE|2025-12": [
+   "dof"
+  ],
+  "PDBT|NORTE|2026-01": [
+   "dof"
+  ],
+  "PDBT|NORTE|2026-02": [
+   "dof"
+  ],
+  "PDBT|NORTE|2026-03": [
+   "dof"
+  ],
+  "PDBT|NORTE|2026-04": [
+   "dof"
+  ],
+  "PDBT|NORTE|2026-05": [
+   "dof"
+  ],
+  "PDBT|NORTE|2026-06": [
+   "dof"
+  ],
+  "PDBT|NORTE|2026-07": [
+   "dof"
+  ],
+  "PDBT|NORTE|2026-08": [
+   "dof"
+  ],
+  "PDBT|NORTE|2026-09": [
+   "dof"
+  ],
+  "PDBT|NORTE|2026-10": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2025-09": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2025-10": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2025-11": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2025-12": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2026-01": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2026-02": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2026-03": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2026-04": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2026-05": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2026-06": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2026-07": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2026-08": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2026-09": [
+   "dof"
+  ],
+  "PDBT|ORIENTE|2026-10": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2025-09": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2025-10": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2025-11": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2025-12": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2026-01": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2026-02": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2026-03": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2026-04": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2026-05": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2026-06": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2026-07": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2026-08": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2026-09": [
+   "dof"
+  ],
+  "PDBT|PENINSULAR|2026-10": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2025-09": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2025-10": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2025-11": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2025-12": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2026-01": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2026-02": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2026-03": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2026-04": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2026-05": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2026-06": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2026-07": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2026-08": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2026-09": [
+   "dof"
+  ],
+  "PDBT|SURESTE|2026-10": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2025-09": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2025-10": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2025-11": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2025-12": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2026-01": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2026-02": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2026-03": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2026-04": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2026-05": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2026-06": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2026-07": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2026-08": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2026-09": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO CENTRO|2026-10": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2025-09": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2025-10": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2025-11": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2025-12": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2026-01": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2026-02": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2026-03": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2026-04": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2026-05": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2026-06": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2026-07": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2026-08": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2026-09": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO NORTE|2026-10": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2025-09": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2025-10": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2025-11": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2025-12": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2026-01": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2026-02": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2026-03": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2026-04": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2026-05": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2026-06": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2026-07": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2026-08": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2026-09": [
+   "dof"
+  ],
+  "PDBT|VALLE DE MEXICO SUR|2026-10": [
+   "dof"
+  ]
+ },
+ "ventana": "2025-09:2026-10"
+}

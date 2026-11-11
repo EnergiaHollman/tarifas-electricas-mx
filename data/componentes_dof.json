@@ -1,4 +1,1138 @@
 {
+ "GDMTO|BAJA CALIFORNIA SUR|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 2.5767,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.379,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 2.5767,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.379,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 2.5047,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.307,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 2.3897,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.192,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 2.3376,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.143,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 2.3386,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.144,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 2.3396,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.145,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 2.3396,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.145,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 2.3186,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.124,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 2.2976,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.103,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 2.2546,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.06,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 2.2546,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.06,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 2.2546,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.06,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA SUR|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 2.2556,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 2.061,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 0.7737,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.576,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJA CALIFORNIA|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 0.7737,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.576,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJA CALIFORNIA|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 0.7567,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.559,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJA CALIFORNIA|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 0.7287,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.531,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJA CALIFORNIA|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 0.7136,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.519,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 0.7136,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.519,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 0.7136,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.519,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 0.7136,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.519,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 0.7086,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.514,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 0.7036,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.509,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 0.6936,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.499,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 0.6936,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.499,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 0.6936,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.499,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJA CALIFORNIA|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 0.6936,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 0.499,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJIO|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.6897,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.492,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJIO|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.6897,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.492,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJIO|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.6447,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.447,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJIO|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.5727,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.375,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|BAJIO|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5386,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.344,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJIO|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5396,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.345,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJIO|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5406,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.346,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJIO|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5406,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.346,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJIO|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5266,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.332,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJIO|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5136,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.319,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJIO|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4866,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.292,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJIO|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4866,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.292,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJIO|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4866,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.292,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|BAJIO|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4866,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.292,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO OCCIDENTE|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.5317,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.334,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO OCCIDENTE|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.5317,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.334,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO OCCIDENTE|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.4917,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.294,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO OCCIDENTE|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.4267,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.229,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO OCCIDENTE|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3966,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.202,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO OCCIDENTE|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3966,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.202,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO OCCIDENTE|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3976,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.203,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO OCCIDENTE|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3976,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.203,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO OCCIDENTE|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3856,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.191,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO OCCIDENTE|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3736,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.179,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO OCCIDENTE|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3506,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.156,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO OCCIDENTE|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3506,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.156,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO OCCIDENTE|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3506,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.156,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO OCCIDENTE|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3506,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.156,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO ORIENTE|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.6677,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.47,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO ORIENTE|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.6677,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.47,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO ORIENTE|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.6237,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.426,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO ORIENTE|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.5527,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.355,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO ORIENTE|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5186,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.324,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO ORIENTE|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5196,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.325,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO ORIENTE|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5206,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.326,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO ORIENTE|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5206,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.326,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO ORIENTE|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5076,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.313,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO ORIENTE|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4946,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.3,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO ORIENTE|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4686,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.274,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO ORIENTE|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4686,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.274,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO ORIENTE|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4686,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.274,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO ORIENTE|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4686,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.274,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO SUR|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3877,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.19,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO SUR|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3877,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.19,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO SUR|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3517,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.154,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO SUR|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.2937,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.096,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|CENTRO SUR|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2666,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.072,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO SUR|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2666,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.072,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO SUR|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2676,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.073,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO SUR|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2676,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.073,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO SUR|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2566,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.062,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO SUR|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2466,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.052,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO SUR|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2246,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.03,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO SUR|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2246,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.03,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO SUR|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2246,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.03,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|CENTRO SUR|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2256,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.031,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO CENTRO|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.4877,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.29,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|GOLFO CENTRO|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.4877,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.29,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|GOLFO CENTRO|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.4487,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.251,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|GOLFO CENTRO|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3857,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.188,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|GOLFO CENTRO|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3566,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.162,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO CENTRO|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3566,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.162,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO CENTRO|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3576,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.163,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO CENTRO|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3576,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.163,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO CENTRO|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3456,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.151,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO CENTRO|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3346,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.14,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO CENTRO|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3116,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.117,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO CENTRO|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3116,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.117,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO CENTRO|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3116,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.117,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO CENTRO|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3116,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.117,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO NORTE|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3877,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.19,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|GOLFO NORTE|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3877,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.19,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|GOLFO NORTE|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3527,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.155,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|GOLFO NORTE|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.2947,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.097,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|GOLFO NORTE|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2666,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.072,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO NORTE|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2676,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.073,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO NORTE|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2686,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.074,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO NORTE|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2676,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.073,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO NORTE|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2576,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.063,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO NORTE|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2466,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.052,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO NORTE|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2256,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.031,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO NORTE|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2256,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.031,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO NORTE|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2256,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.031,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|GOLFO NORTE|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2256,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.031,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|JALISCO|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.5527,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.355,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|JALISCO|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.5527,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.355,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|JALISCO|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.5127,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.315,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|JALISCO|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.4467,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.249,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|JALISCO|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4156,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.221,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|JALISCO|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4156,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.221,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|JALISCO|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4166,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.222,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|JALISCO|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4166,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.222,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|JALISCO|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.4046,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.21,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|JALISCO|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3926,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.198,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|JALISCO|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3686,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.174,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|JALISCO|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3686,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.174,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|JALISCO|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3686,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.174,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|JALISCO|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.3686,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.174,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
  "GDMTO|NOROESTE|2025-09": {
   "aviso_dof": 5768268,
   "cenace": 0.0106,
@@ -125,6 +1259,132 @@
   "suministro": 0.0069,
   "transmision": 0.1801
  },
+ "GDMTO|NORTE|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3607,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.163,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|NORTE|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3607,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.163,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|NORTE|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3257,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.128,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|NORTE|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.2697,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.072,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|NORTE|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2426,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.048,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|NORTE|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2426,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.048,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|NORTE|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2436,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.049,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|NORTE|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2436,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.049,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|NORTE|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2326,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.038,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|NORTE|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2226,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.028,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|NORTE|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2016,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.007,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|NORTE|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2016,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.007,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|NORTE|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2016,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.007,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|NORTE|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2016,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.007,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
  "GDMTO|ORIENTE|2025-09": {
   "aviso_dof": 5768268,
   "cenace": 0.0106,
@@ -248,6 +1508,636 @@
   "energia_4dec": 1.2816,
   "fecha_captura": "2026-11-11T16:20:08+00:00",
   "generacion": 1.087,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|PENINSULAR|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.9087,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.711,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|PENINSULAR|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.9087,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.711,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|PENINSULAR|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.8577,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.66,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|PENINSULAR|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.7747,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.577,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|PENINSULAR|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.7356,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.541,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|PENINSULAR|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.7366,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.542,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|PENINSULAR|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.7376,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.543,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|PENINSULAR|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.7376,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.543,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|PENINSULAR|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.7226,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.528,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|PENINSULAR|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.7066,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.512,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|PENINSULAR|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.6766,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.482,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|PENINSULAR|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.6766,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.482,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|PENINSULAR|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.6766,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.482,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|PENINSULAR|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.6766,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.482,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|SURESTE|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.4017,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.204,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|SURESTE|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.4017,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.204,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|SURESTE|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3647,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.167,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|SURESTE|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.3067,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.109,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|SURESTE|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2786,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.084,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|SURESTE|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2796,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.085,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|SURESTE|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2796,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.085,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|SURESTE|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2796,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.085,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|SURESTE|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2696,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.075,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|SURESTE|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2586,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.064,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|SURESTE|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2376,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.043,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|SURESTE|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2376,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.043,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|SURESTE|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2376,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.043,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|SURESTE|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.2376,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.043,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.7527,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.555,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.7527,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.555,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.7057,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.508,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.6307,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.433,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5946,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.4,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5956,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.401,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5966,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.402,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5966,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.402,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5826,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.388,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5686,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.374,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5416,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.347,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5416,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.347,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5416,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.347,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO CENTRO|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5416,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.347,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.7127,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.515,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.7127,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.515,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.6667,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.469,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.5937,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.396,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5586,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.364,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5596,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.365,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5606,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.366,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5606,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.366,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5466,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.352,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5336,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.339,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5066,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.312,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5066,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.312,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5066,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.312,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO NORTE|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5066,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.312,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2025-09": {
+  "aviso_dof": 5768268,
+  "cenace": 0.0106,
+  "energia_4dec": 1.7687,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.571,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2025-10": {
+  "aviso_dof": 5770684,
+  "cenace": 0.0106,
+  "energia_4dec": 1.7687,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.571,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2025-11": {
+  "aviso_dof": 5774289,
+  "cenace": 0.0106,
+  "energia_4dec": 1.7207,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.523,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2025-12": {
+  "aviso_dof": 5777062,
+  "cenace": 0.0106,
+  "energia_4dec": 1.6447,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.447,
+  "suministro": 0.0062,
+  "transmision": 0.1809
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2026-01": {
+  "aviso_dof": 5779203,
+  "cenace": 0.0076,
+  "energia_4dec": 1.6096,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.415,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2026-02": {
+  "aviso_dof": 5781736,
+  "cenace": 0.0076,
+  "energia_4dec": 1.6106,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.416,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2026-03": {
+  "aviso_dof": 5784039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.6106,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.416,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2026-04": {
+  "aviso_dof": 5786266,
+  "cenace": 0.0076,
+  "energia_4dec": 1.6106,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.416,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2026-05": {
+  "aviso_dof": 5788863,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5966,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.402,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2026-06": {
+  "aviso_dof": 5791865,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5826,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.388,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2026-07": {
+  "aviso_dof": 5795184,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5546,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.36,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2026-08": {
+  "aviso_dof": 5797487,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5556,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.361,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2026-09": {
+  "aviso_dof": 5800039,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5556,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.361,
+  "suministro": 0.0069,
+  "transmision": 0.1801
+ },
+ "GDMTO|VALLE DE MEXICO SUR|2026-10": {
+  "aviso_dof": 5802191,
+  "cenace": 0.0076,
+  "energia_4dec": 1.5556,
+  "fecha_captura": "2026-11-11T23:14:38+00:00",
+  "generacion": 1.361,
   "suministro": 0.0069,
   "transmision": 0.1801
  }
