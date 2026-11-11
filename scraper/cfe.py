@@ -142,6 +142,11 @@ class ErrorCFE(RuntimeError):
     pass
 
 
+def periodo_esperado(anio, mes):
+    """Cómo rotula CFE el mes en el encabezado de la tabla: 'SEP-26'."""
+    return f"{('ENE FEB MAR ABR MAY JUN JUL AGO SEP OCT NOV DIC').split()[mes - 1]}-{str(anio)[-2:]}"
+
+
 class SesionCFE:
     """Una sesión contra una página de tarifas."""
 

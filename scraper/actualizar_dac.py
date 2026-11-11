@@ -17,8 +17,7 @@ import cfe
 import parser as P
 
 
-def periodo_esperado(anio, mes):
-    return f"{P.MESES[mes - 1][:3]}-{str(anio)[-2:]}"
+periodo_esperado = cfe.periodo_esperado
 
 
 def claves_del_mes(registros, anio, mes):
