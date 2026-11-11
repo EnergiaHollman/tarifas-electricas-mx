@@ -93,6 +93,7 @@ class SesionFalsa:
         self.html = HTML_VACIO
         self.consultas = 0
         self.aperturas = 0
+        self.seguir_el_mes = False
 
     def abrir(self):
         self.aperturas += 1
@@ -103,7 +104,11 @@ class SesionFalsa:
 
     def consultar(self, anio, mes, eid, mid, region_id=None, region_etiqueta=None):
         self.consultas += 1
-        self.html = self.respuestas.pop(0) if len(self.respuestas) > 1 else self.respuestas[0]
+        html = self.respuestas.pop(0) if len(self.respuestas) > 1 else self.respuestas[0]
+        if self.seguir_el_mes:
+            # Sesión que contesta bien el mes pedido: la muestra es de SEP-26.
+            html = html.replace("SEP-26", cfe.periodo_esperado(anio, mes))
+        self.html = html
 
     def horarios(self):
         raise AssertionError("una tarifa sin horarios no debe pedir horarios")
@@ -129,6 +134,27 @@ check("siempre vacía: 3 intentos y sin tabla", (tablas, intentos), ([], 3))
 s = SesionFalsa([HTML_GDMTO])
 tablas, intentos = A.consultar_con_reintento(s, 2026, 9, "26", "1921", "18", "NOROESTE", 2, 0)
 check("con tabla a la primera no reintenta", (len(tablas), intentos, s.aperturas), (1, 1, 0))
+print("\nTabla de otro mes que el pedido (el portal contesta con un mes distinto)")
+# La muestra es de SEP-26; se pide marzo. Antes se guardaba como marzo.
+s = SesionFalsa([HTML_GDMTO])
+try:
+    A.consultar_con_reintento(s, 2026, 3, "26", "1921", "18", "NOROESTE", 2, 0)
+    check("siempre de otro mes: se levanta ErrorCFE", False, True)
+except cfe.ErrorCFE as e:
+    check("siempre de otro mes: se levanta ErrorCFE", True, True)
+    check("el motivo dice qué se pidió y qué llegó", "MAR-26" in str(e) and "SEP-26" in str(e), True)
+    check("reintentó antes de rendirse (3 consultas, 2 reaperturas)", (s.consultas, s.aperturas), (3, 2))
+HTML_MARZO = HTML_GDMTO.replace("SEP-26", "MAR-26")
+s = SesionFalsa([HTML_GDMTO, HTML_MARZO])
+tablas, intentos = A.consultar_con_reintento(s, 2026, 3, "26", "1921", "18", "NOROESTE", 2, 0)
+check("de otro mes y luego bien: reabre y toma la buena", (len(tablas), intentos, tablas[0]["periodo_cfe"]), (1, 2, "MAR-26"))
+s = SesionFalsa([HTML_MARZO])
+tablas, intentos = A.consultar_con_reintento(s, 2026, 3, "26", "1921", "18", "NOROESTE", 2, 0)
+check("del mes pedido a la primera: no reintenta", (len(tablas), intentos, s.aperturas), (1, 1, 0))
+s = SesionFalsa([HTML_VACIO])
+tablas, intentos = A.consultar_con_reintento(s, 2026, 3, "26", "1921", "18", "NOROESTE", 2, 0)
+check("vacía sigue siendo 'sin publicación', no sospechosa", (tablas, intentos), ([], 3))
+
 class SesionContaminada(SesionFalsa):
     def consultar(self, *a, **k):
         raise cfe.ErrorCFE("región equivocada")
@@ -173,7 +199,7 @@ CATALOGO = {"generado": None, "fuente": "x", "expansiones": {}, "estados": {"SON
 HORARIOS_CENTINELA = {"generado": "centinela", "fuente": "x", "zonas": {"intacto": True}}
 
 
-def correr(tarifa, html, extra=()):
+def correr(tarifa, html, extra=(), seguir_el_mes=True):
     """Corre main() con datos en un directorio temporal. Devuelve (código, tarifas, horarios)."""
     with tempfile.TemporaryDirectory() as d:
         d = pathlib.Path(d)
@@ -184,6 +210,7 @@ def correr(tarifa, html, extra=()):
             "registros": reg("GDMTH", "NOROESTE", 3)}), encoding="utf-8")
         A.DATA, A.CATALOGO, A.TARIFAS, A.HORARIOS = d, d / "catalogo.json", d / "tarifas.json", d / "horarios.json"
         sesion = SesionFalsa([html])
+        sesion.seguir_el_mes = seguir_el_mes
         original = cfe.SesionCFE
         cfe.SesionCFE = lambda *a, **k: sesion
         argv = sys.argv
@@ -219,6 +246,14 @@ check("tabla incompleta: no se guarda ningún registro de GDMTO",
       [k for k in regs if k.startswith("GDMTO")], [])
 check("tabla incompleta: el proceso termina con error (no en silencio)", codigo, 1)
 check("tabla incompleta: GDMTH sigue", "GDMTH|NOROESTE|2026-03" in regs, True)
+
+# Una sesión que siempre contesta SEP-26 mientras se piden enero a marzo.
+codigo, tarifas, _ = correr("GDMTO", HTML_GDMTO, seguir_el_mes=False)
+regs = tarifas["registros"]
+check("otro mes que el pedido: no se guarda ningún registro de GDMTO (antes se guardaban bajo el mes pedido)",
+      [k for k in regs if k.startswith("GDMTO")], [])
+check("otro mes que el pedido: el proceso termina con error", codigo, 1)
+check("otro mes que el pedido: GDMTH sigue", "GDMTH|NOROESTE|2026-03" in regs, True)
 
 codigo, tarifas, _ = correr("GDMTO", HTML_GDMTO, extra=("--limpiar-todo",))
 check("--limpiar-todo con GDMTO no borra GDMTH", "GDMTH|NOROESTE|2026-03" in tarifas["registros"], True)
