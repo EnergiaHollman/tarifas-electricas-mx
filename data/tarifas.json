@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-12T23:30:11+00:00",
+ "actualizado": "2026-11-12T23:34:05+00:00",
  "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRENegocio/Tarifas/GranDemandaMTH.aspx",
  "registros": {
   "1A|NACIONAL|2025-01": {
@@ -11937,6 +11937,162 @@
        "hasta_kwh": null,
        "nombre": "excedente",
        "valor": 3.43
+      }
+     ],
+     "unidades": {
+      "basico": "$/kWh",
+      "excedente": "$/kWh",
+      "intermedio_alto": "$/kWh",
+      "intermedio_bajo": "$/kWh"
+     }
+    }
+   }
+  },
+  "1F|NACIONAL|2023-05": {
+   "anio": 2023,
+   "fecha_captura": "2026-11-12T23:34:05+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/Tarifa1F.aspx",
+   "mes": 5,
+   "minimo_mensual_kwh": 25,
+   "periodo_cfe": "MAY-23",
+   "region": "NACIONAL",
+   "tarifa": "1F",
+   "temporadas": {
+    "verano": {
+     "cargos": {
+      "basico": 0.717,
+      "excedente": 3.452,
+      "intermedio_alto": 2.184,
+      "intermedio_bajo": 0.898
+     },
+     "conceptos": [
+      {
+       "cargo": "Consumo básico",
+       "int_horario": "-",
+       "unidades": "$/kWh",
+       "valor": 0.717
+      },
+      {
+       "cargo": "Consumo intermedio bajo",
+       "int_horario": "-",
+       "unidades": "$/kWh",
+       "valor": 0.898
+      },
+      {
+       "cargo": "Consumo intermedio alto",
+       "int_horario": "-",
+       "unidades": "$/kWh",
+       "valor": 2.184
+      },
+      {
+       "cargo": "Consumo excedente",
+       "int_horario": "-",
+       "unidades": "$/kWh",
+       "valor": 3.452
+      }
+     ],
+     "escalones": [
+      {
+       "desde_kwh": 0,
+       "hasta_kwh": 300,
+       "nombre": "basico",
+       "valor": 0.717
+      },
+      {
+       "desde_kwh": 300,
+       "hasta_kwh": 1200,
+       "nombre": "intermedio_bajo",
+       "valor": 0.898
+      },
+      {
+       "desde_kwh": 1200,
+       "hasta_kwh": 2500,
+       "nombre": "intermedio_alto",
+       "valor": 2.184
+      },
+      {
+       "desde_kwh": 2500,
+       "hasta_kwh": null,
+       "nombre": "excedente",
+       "valor": 3.452
+      }
+     ],
+     "unidades": {
+      "basico": "$/kWh",
+      "excedente": "$/kWh",
+      "intermedio_alto": "$/kWh",
+      "intermedio_bajo": "$/kWh"
+     }
+    }
+   }
+  },
+  "1F|NACIONAL|2023-06": {
+   "anio": 2023,
+   "fecha_captura": "2026-11-12T23:34:05+00:00",
+   "fuente": "https://app.cfe.mx/Aplicaciones/CCFE/Tarifas/TarifasCRECasa/Tarifas/Tarifa1F.aspx",
+   "mes": 6,
+   "minimo_mensual_kwh": 25,
+   "periodo_cfe": "JUN-23",
+   "region": "NACIONAL",
+   "tarifa": "1F",
+   "temporadas": {
+    "verano": {
+     "cargos": {
+      "basico": 0.722,
+      "excedente": 3.474,
+      "intermedio_alto": 2.198,
+      "intermedio_bajo": 0.904
+     },
+     "conceptos": [
+      {
+       "cargo": "Consumo básico",
+       "int_horario": "-",
+       "unidades": "$/kWh",
+       "valor": 0.722
+      },
+      {
+       "cargo": "Consumo intermedio bajo",
+       "int_horario": "-",
+       "unidades": "$/kWh",
+       "valor": 0.904
+      },
+      {
+       "cargo": "Consumo intermedio alto",
+       "int_horario": "-",
+       "unidades": "$/kWh",
+       "valor": 2.198
+      },
+      {
+       "cargo": "Consumo excedente",
+       "int_horario": "-",
+       "unidades": "$/kWh",
+       "valor": 3.474
+      }
+     ],
+     "escalones": [
+      {
+       "desde_kwh": 0,
+       "hasta_kwh": 300,
+       "nombre": "basico",
+       "valor": 0.722
+      },
+      {
+       "desde_kwh": 300,
+       "hasta_kwh": 1200,
+       "nombre": "intermedio_bajo",
+       "valor": 0.904
+      },
+      {
+       "desde_kwh": 1200,
+       "hasta_kwh": 2500,
+       "nombre": "intermedio_alto",
+       "valor": 2.198
+      },
+      {
+       "desde_kwh": 2500,
+       "hasta_kwh": null,
+       "nombre": "excedente",
+       "valor": 3.474
       }
      ],
      "unidades": {
