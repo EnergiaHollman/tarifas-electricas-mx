@@ -199,7 +199,10 @@ check("DAC: seis registros por mes", dac.registros >= 6 * 24, true);
 check("DAC declara que el fijo de 2025-2026 no está validado", dac.notas.some((n) => n.includes("NO está validado")), true);
 check("domésticas: precio nacional, por escalones",
   ["1", "1A", "1B", "1C", "1D", "1E", "1F"].map((c) => [por[c].ubicacion, por[c].regiones, por[c].horarios, por[c].periodo_desde]),
-  Array(7).fill(["nacional", ["NACIONAL"], false, "2025-01"]));
+  [...Array(6).fill(["nacional", ["NACIONAL"], false, "2025-01"]), ["nacional", ["NACIONAL"], false, "2023-02"]]);
+// 1F incluye 2023-02 a 2023-04 (capturas puntuales para contrastar un recibo), como DAC incluye 2019-09.
+check("1F: 2023-02..04 son capturas puntuales y la nota lo dice",
+  por["1F"].notas.some((n) => n.includes("la cobertura continua de 1F empieza en 2025-01")), true);
 check("las domésticas con temporada piden inicio_verano o temporada; la 1 no",
   [por["1"].parametros.includes("inicio_verano"), por["1A"].parametros.includes("inicio_verano")], [false, true]);
 check("las domésticas avisan que los apoyos no están y que los límites son mensuales",
@@ -319,7 +322,17 @@ check("1E fuera del rango de recibos (2025-08): sin validar", r.validado, []);
 r = await v("tarifa=1E&anio=2026&mes=11&temporada=fuera_verano");
 check("1E 2026-11: sin validar", r.validado, []);
 check("1E: la nota ya no dice que no esta validada", r.nota.includes("Precios sin validar"), false);
-for (const c of ["1", "1A", "1B", "1C", "1D", "1F"]) {
+r = await v("tarifa=1F&anio=2023&mes=3&temporada=fuera_verano");
+check("1F 2023-03 fuera de verano: recibo bimestral con los tres bloques (0.957, 1.167, 3.409)",
+  [r.validado, r.bloques_validados, r.cargos.basico, r.cargos.intermedio, r.cargos.excedente],
+  [["recibo"], ["basico", "intermedio", "excedente"], 0.957, 1.167, 3.409]);
+r = await v("tarifa=1F&anio=2023&mes=3&temporada=verano");
+check("1F 2023-03 pero verano: esa temporada no se validó", [r.validado, r.bloques_validados], [[], []]);
+r = await v("tarifa=1F&anio=2023&mes=2&temporada=fuera_verano");
+check("1F 2023-02 (clave distinta del recibo): sin validar", r.validado, []);
+r = await v("tarifa=1F&anio=2025&mes=3&temporada=fuera_verano");
+check("1F 2025-03: sin validar (el recibo es de 2023)", r.validado, []);
+for (const c of ["1", "1A", "1B", "1C", "1D"]) {
   const x = await v(`tarifa=${c}&anio=2026&mes=8&temporada=verano`);
   check(`${c} no lleva validado ni bloques_validados`, ["validado" in x, "bloques_validados" in x], [false, false]);
 }

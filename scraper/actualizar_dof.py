@@ -43,7 +43,7 @@ RECIBOS = pathlib.Path(__file__).resolve().parent / "validacion" / "recibos.json
 TARIFAS_VALIDADAS = ("GDMTO", "PDBT")
 # Domesticas con recibos: no pasan por el DOF (sus precios no salen del aviso mensual de
 # suministro basico); se marcan solo con "recibo", por mes y temporada.
-DOMESTICAS_CON_RECIBO = ("1E|NACIONAL",)
+DOMESTICAS_CON_RECIBO = ("1E|NACIONAL", "1F|NACIONAL")
 URL = "https://dof.gob.mx/nota_detalle_popup.php?codigo={codigo}"
 # Ventana en la que las 17 divisiones de GDMTO y PDBT se capturaron y se esperan completas.
 # Los huecos y el informe solo miran esta ventana; fuera de ella solo se valida lo que ya
