@@ -29,7 +29,10 @@
    "basico"
   ],
   "1E|NACIONAL|2026-07|verano": [
-   "basico"
+   "basico",
+   "intermedio_bajo",
+   "intermedio_alto",
+   "excedente"
   ],
   "1E|NACIONAL|2026-08|verano": [
    "basico",

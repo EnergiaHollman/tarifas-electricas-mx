@@ -365,8 +365,9 @@ export type Ubicacion = "division" | "region_dac" | "nacional";
 const VALIDADO_1E_NOTA =
   "validado = [\"recibo\"] significa que ese precio, en esa temporada, se reprodujo con recibos reales de " +
   "una localidad de Navojoa (inicio de verano en mayo; octubre de 2025 a octubre de 2026). " +
-  "bloques_validados dice qué escalones: «basico» en todos los meses con recibo e «intermedio_bajo» solo " +
-  "en 2026-08 y 2026-09. No hay recibo del intermedio alto, del excedente ni del intermedio fuera de verano. " +
+  "bloques_validados dice qué escalones: «basico» en todos los meses con recibo, «intermedio_bajo» en " +
+  "2026-07, 2026-08 y 2026-09, y «intermedio_alto» y «excedente» solo en 2026-07. No hay recibo del " +
+  "intermedio alto ni del excedente de los demás meses, ni del intermedio fuera de verano. " +
   "validado = [] es capturado del portal sin validar. El recibo usa los precios del mes anterior al del fin " +
   "del periodo (un periodo que termina en septiembre usa mes=8), todo a la temporada de ese mes.";
 

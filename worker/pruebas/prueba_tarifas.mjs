@@ -299,7 +299,11 @@ r = await v("tarifa=1E&anio=2026&mes=9&temporada=verano");
 check("1E 2026-09 verano: basico 0.851 e intermedio_bajo 1.051",
   [r.validado, r.bloques_validados, r.cargos.basico, r.cargos.intermedio_bajo], [["recibo"], ["basico", "intermedio_bajo"], 0.851, 1.051]);
 r = await v("tarifa=1E&anio=2026&mes=7&temporada=verano");
-check("1E 2026-07 verano: solo basico (0.845)", [r.validado, r.bloques_validados, r.cargos.basico], [["recibo"], ["basico"], 0.845]);
+check("1E 2026-07 verano: los cuatro bloques con un recibo de 2,113 kWh (0.845, 1.045, 1.356 y 4.016)",
+  [r.validado, r.bloques_validados, r.cargos.basico, r.cargos.intermedio_bajo, r.cargos.intermedio_alto, r.cargos.excedente],
+  [["recibo"], ["basico", "intermedio_bajo", "intermedio_alto", "excedente"], 0.845, 1.045, 1.356, 4.016]);
+r = await v("tarifa=1E&anio=2026&mes=6&temporada=verano");
+check("1E 2026-06 verano: solo basico (sin recibo de los otros bloques)", r.bloques_validados, ["basico"]);
 r = await v("tarifa=1E&anio=2026&mes=4&temporada=fuera_verano");
 check("1E 2026-04 fuera de verano: solo basico (1.119)", [r.validado, r.bloques_validados, r.cargos.basico], [["recibo"], ["basico"], 1.119]);
 r = await v("tarifa=1E&anio=2025&mes=11&temporada=fuera_verano");
