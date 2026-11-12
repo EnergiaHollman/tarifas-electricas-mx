@@ -56,7 +56,7 @@
   ]
  },
  "1E|NACIONAL": {
-  "fuente": "24 CFDI de CFE de una localidad de Navojoa (1E, inicio de verano en mayo), 12 de cada uno de dos suministros con medicion neta, periodos de octubre de 2025 a octubre de 2026. El recibo usa los precios de la clave del mes anterior al del fin del periodo y todo el periodo a la temporada de esa clave, sin prorrateo por dias. Validado: precio basico en las 12 claves; intermedio_bajo solo en 2026-08 y 2026-09 (un recibo con 300 kWh basico y 249 kWh intermedio en cada mes); dos recibos facturan consumo solo en el basico (273 kWh a 0.818 y 86 kWh a 0.845) y cuatro con menos de 25 kWh cobran el minimo de 25 kWh al precio basico. Sin recibo: intermedio_alto, excedente e intermedio fuera de verano.",
+  "fuente": "24 CFDI de CFE de una localidad de Navojoa (1E, inicio de verano en mayo), 12 de cada uno de dos suministros con medicion neta, periodos de octubre de 2025 a octubre de 2026. El recibo usa los precios de la clave del mes anterior al del fin del periodo y todo el periodo a la temporada de esa clave, sin prorrateo por dias. Validado: precio basico en las 12 claves; intermedio_bajo solo en 2026-08 y 2026-09 (un recibo con 300 kWh basico y 249 kWh intermedio en cada mes); dos recibos facturan consumo solo en el basico (273 kWh a 0.818 y 86 kWh a 0.845) y cuatro con menos de 25 kWh cobran el minimo de 25 kWh al precio basico. Ademas, un recibo de Navojoa del 10-jul-26 al 10-ago-26 (2,113 kWh: 300 basico a 0.845, 450 intermedio a 1.045, 150 intermedio alto a 1.356 y 1,213 excedente a 4.016) valida los cuatro bloques de 2026-07. Sin recibo: intermedio alto y excedente de los demas meses, e intermedio fuera de verano.",
   "temporada_por_mes": {
    "2025-10": "verano",
    "2025-11": "fuera_verano",
@@ -72,6 +72,11 @@
    "2026-09": "verano"
   },
   "bloques_extra": {
+   "2026-07": [
+    "intermedio_bajo",
+    "intermedio_alto",
+    "excedente"
+   ],
    "2026-08": [
     "intermedio_bajo"
    ],
