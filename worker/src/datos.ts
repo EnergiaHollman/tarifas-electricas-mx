@@ -254,7 +254,13 @@ export function energiaDof(tarifa: string, region: string, anio: number, mes: nu
   };
 }
 
-const validacion = validacionJson as unknown as { registros: Record<string, string[]> };
+const validacion = validacionJson as unknown as {
+  registros: Record<string, string[]>;
+  bloques_validados: Record<string, string[]>;
+};
+
+/** Domésticas con recibos: se marcan por mes Y temporada (los precios de cada temporada son otros). */
+export const DOMESTICAS_VALIDADAS = new Set(["1E"]);
 
 /** Tarifas cuyos registros se contrastan con el DOF y, donde hay, con recibos. */
 const TARIFAS_VALIDADAS = new Set(["GDMTO", "PDBT"]);
@@ -265,11 +271,16 @@ const TARIFAS_VALIDADAS = new Set(["GDMTO", "PDBT"]);
  *   "recibo" además se reprodujo con recibos reales en esa región.
  *   []       capturado del portal, sin validar (p. ej. un mes sin aviso del DOF todavía).
  */
-export function validacionDe(tarifa: string, region: string, anio: number, mes: number) {
+export function validacionDe(tarifa: string, region: string, anio: number, mes: number, temporada?: string | null) {
   const t = normalizar(tarifa);
+  const periodo = `${anio}-${String(mes).padStart(2, "0")}`;
+  if (DOMESTICAS_VALIDADAS.has(t)) {
+    // Solo "recibo" (el DOF no publica estos precios) y, aparte, qué escalones se reprodujeron.
+    const k = `${t}|${normalizar(region)}|${periodo}|${temporada ?? ""}`;
+    return { validado: validacion.registros[k] ?? [], bloques_validados: validacion.bloques_validados[k] ?? [] };
+  }
   if (!TARIFAS_VALIDADAS.has(t)) return {};
-  const k = `${t}|${normalizar(region)}|${anio}-${String(mes).padStart(2, "0")}`;
-  return { validado: validacion.registros[k] ?? [] };
+  return { validado: validacion.registros[`${t}|${normalizar(region)}|${periodo}`] ?? [] };
 }
 
 /** Periodos disponibles de una región, para decir qué sí hay cuando falta uno. */
@@ -351,6 +362,14 @@ export function describirHorario(region: string): { division: string | null; sis
  */
 export type Ubicacion = "division" | "region_dac" | "nacional";
 
+const VALIDADO_1E_NOTA =
+  "validado = [\"recibo\"] significa que ese precio, en esa temporada, se reprodujo con recibos reales de " +
+  "una localidad de Navojoa (inicio de verano en mayo; octubre de 2025 a octubre de 2026). " +
+  "bloques_validados dice qué escalones: «basico» en todos los meses con recibo e «intermedio_bajo» solo " +
+  "en 2026-08 y 2026-09. No hay recibo del intermedio alto, del excedente ni del intermedio fuera de verano. " +
+  "validado = [] es capturado del portal sin validar. El recibo usa los precios del mes anterior al del fin " +
+  "del periodo (un periodo que termina en septiembre usa mes=8), todo a la temporada de ese mes.";
+
 const VALIDADO_NOTA =
   "validado dice con qué se contrastó el registro: «dof» = coincide con el aviso mensual de tarifas " +
   "finales del DOF (precio oficial); «recibo» = además se reprodujo con recibos reales en esa región; " +
@@ -429,9 +448,11 @@ const DOMESTICAS: [string, string][] = [
   ["1F", "Doméstica, localidades con temperatura media mínima en verano de 33 °C"],
 ];
 for (const [clave, descripcion] of DOMESTICAS) {
+  const notas = NOTAS_DOMESTICAS(clave !== "1");
   META_TARIFAS[clave] = {
     descripcion, horarios: false, ubicacion: "nacional", estacional: clave !== "1",
-    notas: NOTAS_DOMESTICAS(clave !== "1"),
+    // La 1E tiene recibos: su última nota deja de decir que no se ha validado.
+    notas: DOMESTICAS_VALIDADAS.has(clave) ? [...notas.slice(0, -1), VALIDADO_1E_NOTA] : notas,
   };
 }
 

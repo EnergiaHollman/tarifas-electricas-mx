@@ -290,6 +290,36 @@ check("GDMTH no lleva validado", "validado" in (await v("tarifa=GDMTH&region=ORI
 check("DAC no lleva validado", "validado" in (await v("tarifa=DAC&region=NOROESTE&anio=2026&mes=9")), false);
 r = await v("tarifa=GDMTO&estado=SONORA&municipio=NAVOJOA&anio=2026&mes=9");
 check("por municipio también", r.validado, ["dof"]);
+
+console.log("\nvalidado en 1E: recibos de Navojoa, por mes y temporada");
+r = await v("tarifa=1E&anio=2026&mes=8&temporada=verano");
+check("1E 2026-08 verano: recibo, basico e intermedio_bajo (0.848 y 1.048)",
+  [r.validado, r.bloques_validados, r.cargos.basico, r.cargos.intermedio_bajo], [["recibo"], ["basico", "intermedio_bajo"], 0.848, 1.048]);
+r = await v("tarifa=1E&anio=2026&mes=9&temporada=verano");
+check("1E 2026-09 verano: basico 0.851 e intermedio_bajo 1.051",
+  [r.validado, r.bloques_validados, r.cargos.basico, r.cargos.intermedio_bajo], [["recibo"], ["basico", "intermedio_bajo"], 0.851, 1.051]);
+r = await v("tarifa=1E&anio=2026&mes=7&temporada=verano");
+check("1E 2026-07 verano: solo basico (0.845)", [r.validado, r.bloques_validados, r.cargos.basico], [["recibo"], ["basico"], 0.845]);
+r = await v("tarifa=1E&anio=2026&mes=4&temporada=fuera_verano");
+check("1E 2026-04 fuera de verano: solo basico (1.119)", [r.validado, r.bloques_validados, r.cargos.basico], [["recibo"], ["basico"], 1.119]);
+r = await v("tarifa=1E&anio=2025&mes=11&temporada=fuera_verano");
+check("1E 2025-11 fuera de verano: basico 1.103", [r.validado, r.cargos.basico], [["recibo"], 1.103]);
+r = await v("tarifa=1E&anio=2025&mes=10&temporada=verano");
+check("1E 2025-10 verano: basico 0.818", [r.validado, r.cargos.basico], [["recibo"], 0.818]);
+r = await v("tarifa=1E&anio=2026&mes=8&temporada=fuera_verano");
+check("1E 2026-08 pero fuera_verano: esa temporada no se validó con recibo", [r.validado, r.bloques_validados], [[], []]);
+r = await v("tarifa=1E&anio=2026&mes=8&inicio_verano=5");
+check("1E por inicio_verano=5 en 2026-08 cae en verano: validado", r.validado, ["recibo"]);
+r = await v("tarifa=1E&anio=2025&mes=8&temporada=verano");
+check("1E fuera del rango de recibos (2025-08): sin validar", r.validado, []);
+r = await v("tarifa=1E&anio=2026&mes=11&temporada=fuera_verano");
+check("1E 2026-11: sin validar", r.validado, []);
+check("1E: la nota ya no dice que no esta validada", r.nota.includes("Precios sin validar"), false);
+for (const c of ["1", "1A", "1B", "1C", "1D", "1F"]) {
+  const x = await v(`tarifa=${c}&anio=2026&mes=8&temporada=verano`);
+  check(`${c} no lleva validado ni bloques_validados`, ["validado" in x, "bloques_validados" in x], [false, false]);
+}
+check("la nota de /v1/tarifas de 1E menciona bloques_validados", JSON.stringify((await get("/v1/tarifas")).cuerpo.tarifas.find((x) => x.tarifa === "1E")).includes("bloques_validados"), true);
 let todos = 0, sin = [];
 for (const reg of ["BAJA CALIFORNIA","BAJA CALIFORNIA SUR","BAJIO","CENTRO OCCIDENTE","CENTRO ORIENTE","CENTRO SUR","GOLFO CENTRO","GOLFO NORTE","JALISCO","NOROESTE","NORTE","ORIENTE","PENINSULAR","SURESTE","VALLE DE MEXICO CENTRO","VALLE DE MEXICO NORTE","VALLE DE MEXICO SUR"]) {
   for (const t of ["GDMTO", "PDBT"]) {
