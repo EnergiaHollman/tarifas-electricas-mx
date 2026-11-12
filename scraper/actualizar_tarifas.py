@@ -204,6 +204,18 @@ def representantes(catalogo, expansiones):
     return fuera
 
 
+def parsear_ventana(texto):
+    """'2025-09:2026-10' -> ((2025, 9), (2026, 10)). Falla con un mensaje claro."""
+    try:
+        a, b = texto.split(":")
+        v = tuple((int(x[:4]), int(x[5:])) for x in (a, b))
+        assert all(x[:4].isdigit() and x[4] == "-" for x in (a, b))
+        assert all(1 <= m <= 12 for _, m in v) and v[0] <= v[1]
+    except (ValueError, AssertionError, IndexError):
+        raise SystemExit(f"--ventana debe ser AAAA-MM:AAAA-MM con inicio <= fin; llegó {texto!r}")
+    return v
+
+
 def clave(tarifa, region, anio, mes):
     return f"{tarifa}|{region}|{anio:04d}-{mes:02d}"
 
@@ -353,6 +365,9 @@ def main():
     ap.add_argument("--regiones", help="separadas por coma; omitir = todas las del catálogo")
     ap.add_argument("--desde", type=int, help="año inicial")
     ap.add_argument("--hasta", type=int, help="año final")
+    ap.add_argument("--ventana", metavar="AAAA-MM:AAAA-MM",
+                    help="solo GDMTH/GDMTO/PDBT: captura únicamente los meses de esa ventana "
+                         "(inclusive). Sirve para no mezclar meses sin validar con los validados.")
     ap.add_argument("--faltantes", action="store_true",
                     help="solo lo que no esté capturado (modo cron)")
     ap.add_argument("--rehacer", action="store_true")
@@ -401,6 +416,8 @@ def main():
     s = cfe.SesionCFE(args.tarifa, pausa=args.pausa, verificar_tls=not args.inseguro).abrir()
 
     if es_casa:
+        if args.ventana:
+            sys.exit("--ventana solo aplica a GDMTH, GDMTO y PDBT; DAC y las domésticas usan --meses")
         return main_casa(args, s, tarifas, registros)
 
     # Los horarios vienen en cualquier respuesta de la página de GDMTH. Las
@@ -416,8 +433,9 @@ def main():
     # toma de lo que pidió el usuario y se contrasta región por región.
     ofrecidos = sorted(s.anios(), reverse=True)
     print(f"Años ofrecidos al cargar: {ofrecidos}")
-    desde = args.desde or max(ofrecidos)
-    hasta = args.hasta or max(ofrecidos)
+    ventana = parsear_ventana(args.ventana) if args.ventana else None
+    desde = args.desde or (ventana[0][0] if ventana else max(ofrecidos))
+    hasta = args.hasta or (ventana[1][0] if ventana else max(ofrecidos))
     if desde > hasta:
         sys.exit(f"rango vacío: {desde}–{hasta}")
     anios_pedidos = list(range(desde, hasta + 1))
@@ -467,6 +485,8 @@ def main():
                 print(f"   {anio}  el sitio no ofrece meses; se omite")
                 continue
             for mes in meses:              # CFE solo lista los meses publicados
+                if ventana and not (ventana[0] <= (anio, mes) <= ventana[1]):
+                    continue
                 k = clave(args.tarifa, region, anio, mes)
                 if k in registros and not args.rehacer:
                     omitidos += 1

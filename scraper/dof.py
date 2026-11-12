@@ -20,6 +20,11 @@ _N = r"(\d+(?:\.\d+)?)"
 _FILA_GDMTO = re.compile(
     r"GDMTO \$/kWh " + _N + " " + _N + " " + _N + " " + _N
     + r" \$/kW " + _N + " " + _N + r" \$/mes " + _N)
+# PDBT: fijo en $/mes y seis cargos por kWh (transmisión, distribución, CENACE,
+# suministradora, energía, capacidad). El portal publica como «energía» la suma
+# de los seis, redondeada a 3 decimales.
+_FILA_PDBT = re.compile(
+    r"PDBT \$/mes " + _N + r" \$/kWh " + _N + " " + _N + " " + _N + " " + _N + " " + _N + " " + _N)
 _DIVISION = re.compile(r"División ([^\d$]+?) Categor")
 
 
@@ -42,7 +47,7 @@ def clave_region(nombre: str) -> str:
 
 
 def parsear_aviso(crudo: str) -> dict:
-    """Devuelve {anio, mes, gdmto: {REGION: {...}}} con los cargos de GDMTO.
+    """Devuelve {anio, mes, gdmto: {REGION: {...}}, pdbt: {REGION: {...}}}.
 
     Los números se devuelven como Decimal: la suma de cuatro floats arrastraría
     ruido binario justo en el cuarto decimal que se quiere conservar.
@@ -56,7 +61,7 @@ def parsear_aviso(crudo: str) -> dict:
     cortes = [(d.start(), d.group(1)) for d in _DIVISION.finditer(t)]
     if not cortes:
         raise ErrorDOF("El aviso no trae divisiones.")
-    gdmto = {}
+    gdmto, pdbt = {}, {}
     for i, (ini, nombre) in enumerate(cortes):
         fin = cortes[i + 1][0] if i + 1 < len(cortes) else len(t)
         f = _FILA_GDMTO.search(t[ini:fin])
@@ -64,15 +69,27 @@ def parsear_aviso(crudo: str) -> dict:
             raise ErrorDOF(f"Sin fila de GDMTO reconocible en la división {nombre}.")
         v = [Decimal(x) for x in f.groups()]
         clave = clave_region(nombre)
+        p = _FILA_PDBT.search(t[ini:fin])
+        if not p:
+            raise ErrorDOF(f"Sin fila de PDBT reconocible en la división {nombre}.")
+        w = [Decimal(x) for x in p.groups()]
+        pdbt[clave] = {"fijo": w[0], "transmision": w[1], "distribucion": w[2], "cenace": w[3],
+                       "suministro": w[4], "energia": w[5], "capacidad": w[6]}
         if clave in gdmto:
             raise ErrorDOF(f"División repetida en el aviso: {nombre}.")
         gdmto[clave] = {
             "transmision": v[0], "cenace": v[1], "suministro": v[2], "generacion": v[3],
             "distribucion": v[4], "capacidad": v[5], "fijo": v[6],
         }
-    return {"anio": anio, "mes": mes, "gdmto": gdmto}
+    return {"anio": anio, "mes": mes, "gdmto": gdmto, "pdbt": pdbt}
 
 
 def energia_4dec(c: dict) -> Decimal:
     """Suma de los cuatro cargos por kWh, sin redondear más allá del 4.º decimal."""
     return c["transmision"] + c["cenace"] + c["suministro"] + c["generacion"]
+
+
+def energia_pdbt(c: dict) -> Decimal:
+    """Suma de los seis cargos por kWh de PDBT (lo que el portal llama «energía»)."""
+    return (c["transmision"] + c["distribucion"] + c["cenace"] + c["suministro"]
+            + c["energia"] + c["capacidad"])

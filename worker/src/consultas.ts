@@ -16,6 +16,7 @@ import {
   normalizar,
   obtenerTarifa,
   energiaDof,
+  validacionDe,
   periodosDe,
   regionDeMunicipio,
   regionesDac,
@@ -125,7 +126,7 @@ export function consultarTarifa(args: Args) {
       .map((reg) => {
         const t = obtenerTarifa(tarifa, reg, anio, mes);
         return t ? { region: reg, ...horario(reg), cargos: t.cargos, unidades: t.unidades,
-                     periodo_cfe: t.periodo_cfe, ...energiaDof(tarifa, reg, anio, mes),
+                     periodo_cfe: t.periodo_cfe, ...energiaDof(tarifa, reg, anio, mes), ...validacionDe(tarifa, reg, anio, mes),
                      fecha_captura: t.fecha_captura } : null;
       })
       .filter(Boolean);
@@ -167,6 +168,7 @@ export function consultarTarifa(args: Args) {
     unidades: r.unidades,
     conceptos: r.conceptos,
     ...energiaDof(tarifa, r.region, r.anio, r.mes),
+    ...validacionDe(tarifa, r.region, r.anio, r.mes),
     fuente: r.fuente,
     fecha_captura: r.fecha_captura,
     aviso: AVISO,
