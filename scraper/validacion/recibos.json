@@ -1,11 +1,58 @@
 {
  "_nota": "Qué meses (clave del Worker, mes de cuotas del portal) están reproducidos con recibos reales. Lo declara quien tiene los recibos; este archivo no los verifica. Solo precios, sin datos de cliente.",
  "PDBT|NOROESTE": {
-  "fuente": "Recibos reales de la tarifa 02 reproducidos por Dashboard (ver pdbt_noroeste.json). El recibo del mes M usa las cuotas del portal M-1, por eso la clave va un mes antes que el recibo. Faltan 2026-05 y 2026-06 (sus recibos no traen kWh facturados).",
-  "meses": ["2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-07", "2026-08", "2026-09"]
+  "fuente": "Dos respaldos. (1) Piloto: recibos reales de la tarifa 02 reproducidos por Dashboard (ver pdbt_noroeste.json), con fijo exacto y energia a +-0.002; el recibo del mes M usa las cuotas del portal M-1, por eso la clave va un mes antes que el recibo. (2) 28 recibos bimestrales con medicion neta de Noroeste (Tepeyac), reproducidos por Dashboard dentro de +-$1 con el fijo del bimestre descontado (2 x 77.77 en 2025, 2 x 19.78 en 2026), todo el periodo al precio de la clave del mes anterior al del fin; no es una reproduccion al centavo. No hay prorrateo por dias: esa mezcla falla (-$401 en el recibo que termina el 2025-12-12). Sin respaldo: 2026-06 (sus recibos no traen kWh facturados).",
+  "meses": [
+   "2025-09",
+   "2025-10",
+   "2025-11",
+   "2025-12",
+   "2026-01",
+   "2026-02",
+   "2026-03",
+   "2026-04",
+   "2026-05",
+   "2026-07",
+   "2026-08",
+   "2026-09"
+  ],
+  "respaldo_piloto": [
+   "2025-10",
+   "2025-11",
+   "2025-12",
+   "2026-01",
+   "2026-02",
+   "2026-03",
+   "2026-04",
+   "2026-07",
+   "2026-08",
+   "2026-09"
+  ],
+  "respaldo_tepeyac": [
+   "2025-09",
+   "2025-11",
+   "2026-01",
+   "2026-03",
+   "2026-05",
+   "2026-07",
+   "2026-09"
+  ]
  },
  "GDMTO|ORIENTE": {
   "fuente": "36 recibos reales «OM» de Veracruz reproducidos por el motor de GDMTO de Dashboard (R-027), octubre de 2025 a septiembre de 2026: demanda exacta y línea «Energía» dentro de $1.50 con energia_4dec.",
-  "meses": ["2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09"]
+  "meses": [
+   "2025-10",
+   "2025-11",
+   "2025-12",
+   "2026-01",
+   "2026-02",
+   "2026-03",
+   "2026-04",
+   "2026-05",
+   "2026-06",
+   "2026-07",
+   "2026-08",
+   "2026-09"
+  ]
  }
 }
