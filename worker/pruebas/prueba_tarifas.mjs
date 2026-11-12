@@ -241,6 +241,10 @@ console.log("\nvalidado: con qué se contrastó cada registro (GDMTO y PDBT, 17 
 const v = async (q) => (await get("/v1/tarifa?" + q)).cuerpo;
 check("GDMTO Oriente 2026-09: DOF y recibo", (await v("tarifa=GDMTO&region=ORIENTE&anio=2026&mes=9")).validado, ["dof", "recibo"]);
 check("PDBT Noroeste 2026-03: DOF y recibo", (await v("tarifa=PDBT&region=NOROESTE&anio=2026&mes=3")).validado, ["dof", "recibo"]);
+check("PDBT Noroeste 2026-05 y 2025-09: también con recibo (Tepeyac, ±$1 con el fijo descontado)",
+  [(await v("tarifa=PDBT&region=NOROESTE&anio=2026&mes=5")).validado, (await v("tarifa=PDBT&region=NOROESTE&anio=2025&mes=9")).validado],
+  [["dof", "recibo"], ["dof", "recibo"]]);
+check("PDBT Noroeste 2026-06: sin recibo (sus recibos no traen kWh facturados)", (await v("tarifa=PDBT&region=NOROESTE&anio=2026&mes=6")).validado, ["dof"]);
 r = await v("tarifa=GDMTO&region=SURESTE&anio=2026&mes=9");
 check("GDMTO Sureste 2026-09: precio oficial del DOF, sin recibo", r.validado, ["dof"]);
 check("GDMTO Sureste: energía del portal y a 4 decimales (la captura que antes salía de otro mes)",

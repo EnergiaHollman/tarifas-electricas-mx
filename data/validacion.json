@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-11T23:14:38+00:00",
+ "actualizado": "2026-11-12T16:30:31+00:00",
  "diferencias": [],
  "huecos": {},
  "registros": {
@@ -1108,7 +1108,8 @@
    "dof"
   ],
   "PDBT|NOROESTE|2025-09": [
-   "dof"
+   "dof",
+   "recibo"
   ],
   "PDBT|NOROESTE|2025-10": [
    "dof",
@@ -1139,7 +1140,8 @@
    "recibo"
   ],
   "PDBT|NOROESTE|2026-05": [
-   "dof"
+   "dof",
+   "recibo"
   ],
   "PDBT|NOROESTE|2026-06": [
    "dof"
