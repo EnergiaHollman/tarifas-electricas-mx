@@ -74,7 +74,7 @@ def parsear_aviso(crudo: str) -> dict:
             raise ErrorDOF(f"Sin fila de PDBT reconocible en la división {nombre}.")
         w = [Decimal(x) for x in p.groups()]
         pdbt[clave] = {"fijo": w[0], "transmision": w[1], "distribucion": w[2], "cenace": w[3],
-                       "suministro": w[4], "energia": w[5], "capacidad": w[6]}
+                       "suministro": w[4], "generacion": w[5], "capacidad": w[6]}
         if clave in gdmto:
             raise ErrorDOF(f"División repetida en el aviso: {nombre}.")
         gdmto[clave] = {
@@ -92,4 +92,4 @@ def energia_4dec(c: dict) -> Decimal:
 def energia_pdbt(c: dict) -> Decimal:
     """Suma de los seis cargos por kWh de PDBT (lo que el portal llama «energía»)."""
     return (c["transmision"] + c["distribucion"] + c["cenace"] + c["suministro"]
-            + c["energia"] + c["capacidad"])
+            + c["generacion"] + c["capacidad"])

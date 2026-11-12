@@ -42,7 +42,10 @@ VALIDACION = RAIZ / "data" / "validacion.json"
 RECIBOS = pathlib.Path(__file__).resolve().parent / "validacion" / "recibos.json"
 TARIFAS_VALIDADAS = ("GDMTO", "PDBT")
 URL = "https://dof.gob.mx/nota_detalle_popup.php?codigo={codigo}"
-TARIFA = "GDMTO"
+# Ventana en la que las 17 divisiones de GDMTO y PDBT se capturaron y se esperan completas.
+# Los huecos y el informe solo miran esta ventana; fuera de ella solo se valida lo que ya
+# existe (p. ej. Noroeste y Oriente desde 2025-01).
+VENTANA = ("2025-09", "2026-10")
 TOL_PORTAL = 0.0005 + 1e-9
 
 
@@ -59,62 +62,43 @@ def descargar(codigo, pausa):
     return r.content.decode("latin-1")
 
 
-def construir(aviso, portal, codigo, ahora):
-    """Entradas validadas de un aviso. Devuelve (entradas, problemas)."""
+# Qué se lee del aviso y qué se contrasta con el portal, por tarifa. «exactos» son
+# cargos del portal que deben coincidir al centavo; la energía del portal debe ser
+# la suma de los componentes por kWh redondeada (±0.0005).
+CONFIG = {
+    "GDMTO": {"fila": "gdmto", "suma": dof.energia_4dec, "exactos": ("distribucion", "capacidad", "fijo"),
+              "componentes": ("transmision", "cenace", "suministro", "generacion")},
+    "PDBT": {"fila": "pdbt", "suma": dof.energia_pdbt, "exactos": ("fijo",),
+             "componentes": ("transmision", "distribucion", "cenace", "suministro", "generacion",
+                             "capacidad")},
+}
+
+
+def construir(aviso, portal, codigo, ahora, tarifa="GDMTO"):
+    """Entradas validadas de un aviso para una tarifa. Devuelve (entradas, problemas)."""
+    cfg = CONFIG[tarifa]
     entradas, problemas = {}, []
     for clave, reg in portal.items():
         t, region, periodo = clave.split("|")
-        if t != TARIFA or periodo != f"{aviso['anio']}-{aviso['mes']:02d}":
+        if t != tarifa or periodo != f"{aviso['anio']}-{aviso['mes']:02d}":
             continue
-        c = aviso["gdmto"].get(region)
+        c = aviso[cfg["fila"]].get(region)
         if c is None:
             problemas.append(f"{clave}: el aviso no trae la división {region}.")
             continue
         cargos = reg["cargos"]
-        suma = dof.energia_4dec(c)
-        malos = [n for n in ("distribucion", "capacidad", "fijo")
-                 if abs(float(c[n]) - cargos[n]) > 1e-9]
+        suma = cfg["suma"](c)
+        malos = [n for n in cfg["exactos"] if abs(float(c[n]) - cargos[n]) > 1e-9]
         if malos:
             problemas.append(f"{clave}: {', '.join(malos)} no coincide con el portal "
                              f"({[(float(c[n]), cargos[n]) for n in malos]}).")
         if abs(float(suma) - cargos["energia"]) > TOL_PORTAL:
-            problemas.append(f"{clave}: portal {cargos['energia']} vs suma del DOF {suma}.")
+            problemas.append(f"{clave}: energía del portal {cargos['energia']} vs suma del DOF {suma}.")
         if malos or abs(float(suma) - cargos["energia"]) > TOL_PORTAL:
             continue
-        entradas[clave] = {
-            "transmision": float(c["transmision"]), "cenace": float(c["cenace"]),
-            "suministro": float(c["suministro"]), "generacion": float(c["generacion"]),
-            "energia_4dec": float(suma), "aviso_dof": codigo, "fecha_captura": ahora,
-        }
+        entradas[clave] = {**{n: float(c[n]) for n in cfg["componentes"]},
+                           "energia_4dec": float(suma), "aviso_dof": codigo, "fecha_captura": ahora}
     return entradas, problemas
-
-
-def contrastar_pdbt(aviso, portal):
-    """PDBT: fijo exacto y energía del portal = suma de seis cargos (±0.0005).
-
-    Devuelve (claves_que_cuadran, problemas). No guarda componentes: esperan.
-    """
-    ok, problemas = [], []
-    for clave, reg in portal.items():
-        t, region, periodo = clave.split("|")
-        if t != "PDBT" or periodo != f"{aviso['anio']}-{aviso['mes']:02d}":
-            continue
-        c = aviso["pdbt"].get(region)
-        if c is None:
-            problemas.append(f"{clave}: el aviso no trae la división {region}.")
-            continue
-        cargos = reg["cargos"]
-        suma = float(dof.energia_pdbt(c))
-        malos = []
-        if abs(float(c["fijo"]) - cargos["fijo"]) > 1e-9:
-            malos.append(f"fijo {cargos['fijo']} vs {c['fijo']}")
-        if abs(suma - cargos["energia"]) > TOL_PORTAL:
-            malos.append(f"energia {cargos['energia']} vs suma del DOF {suma:.4f}")
-        if malos:
-            problemas.append(f"{clave}: " + "; ".join(malos))
-        else:
-            ok.append(clave)
-    return ok, problemas
 
 
 def anotar_validacion(portal, validados_dof, ventana_meses, regiones, recibos, ahora):
@@ -131,18 +115,20 @@ def anotar_validacion(portal, validados_dof, ventana_meses, regiones, recibos, a
         if marcas:
             registros[k] = marcas
     huecos = {}
+    en_ventana = [m for m in ventana_meses if VENTANA[0] <= m <= VENTANA[1]]
     for t in TARIFAS_VALIDADAS:
         for region in regiones:
-            for periodo in ventana_meses:
+            for periodo in en_ventana:
                 k = f"{t}|{region}|{periodo}"
                 if k not in portal:
                     huecos[k] = "CFE no entregó la tabla de ese mes tras los reintentos; sin captura"
-    return {"actualizado": ahora, "ventana": f"{ventana_meses[0]}:{ventana_meses[-1]}",
+    return {"actualizado": ahora, "ventana": f"{VENTANA[0]}:{VENTANA[1]}",
             "registros": registros, "huecos": huecos}
 
 
 def informe(validacion, portal, regiones, ventana_meses):
     """Tabla en markdown: por tarifa y división, cuántos meses hay y con qué se validó."""
+    ventana_meses = [m for m in ventana_meses if VENTANA[0] <= m <= VENTANA[1]]
     n = len(ventana_meses)
     lineas = []
     for t in TARIFAS_VALIDADAS:
@@ -188,17 +174,15 @@ def main(argv=None):
                              f"{aviso['anio']}-{aviso['mes']:02d}.")
             continue
         regiones |= set(aviso["gdmto"])
-        entradas, malos = construir(aviso, portal, avisos[periodo], ahora)
-        problemas += malos
-        validados |= set(entradas)
-        for k, v in entradas.items():
-            if k not in guardado or {x: y for x, y in guardado[k].items() if x != "fecha_captura"} \
-                    != {x: y for x, y in v.items() if x != "fecha_captura"}:
-                guardado[k] = v
-                nuevos += 1
-        ok_pdbt, malos = contrastar_pdbt(aviso, portal)
-        problemas += malos
-        validados |= set(ok_pdbt)
+        for tarifa in CONFIG:
+            entradas, malos = construir(aviso, portal, avisos[periodo], ahora, tarifa=tarifa)
+            problemas += malos
+            validados |= set(entradas)
+            for k, v in entradas.items():
+                if k not in guardado or {x: y for x, y in guardado[k].items() if x != "fecha_captura"} \
+                        != {x: y for x, y in v.items() if x != "fecha_captura"}:
+                    guardado[k] = v
+                    nuevos += 1
 
     SALIDA.write_text(json.dumps(guardado, ensure_ascii=False, indent=1, sort_keys=True) + "\n",
                       encoding="utf-8")
