@@ -16,6 +16,8 @@ const get = async (ruta) => {
   return { status: r.status, cuerpo: await r.json() };
 };
 
+const v = async (q) => (await get("/v1/tarifa?" + q)).cuerpo;
+
 console.log("GDMTO: cargos reales de CFE (Noroeste, septiembre 2026)");
 let r = await get("/v1/tarifa?tarifa=GDMTO&estado=SONORA&municipio=NAVOJOA&anio=2026&mes=9");
 check("status", r.status, 200);
@@ -206,7 +208,7 @@ check("la 1 no menciona temporada en sus notas", por["1"].notas.some((n) => n.in
 check("DAC declara que solo Noroeste está confirmada", dac.notas.some((n) => n.includes("Solo la división NOROESTE")), true);
 check("GDMTH no lleva notas", h.notas, undefined);
 check("GDMTO explica energia_4dec y validado", o.notas.length === 2 && o.notas[0].includes("energia_4dec") && o.notas[1].includes("validado"), true);
-check("PDBT explica validado", pd.notas.length === 1 && pd.notas[0].includes("sin recibo reproducido"), true);
+check("PDBT explica energia_4dec y validado", pd.notas.length === 2 && pd.notas[0].includes("energia_4dec") && pd.notas[1].includes("sin recibo reproducido"), true);
 check("GDMTO llega al menos a 2026-09", o.periodo_hasta >= "2026-09", true);
 check("registros de GDMTO = meses de las dos regiones", o.registros >= 42, true);
 check("explica qué es el mes", r.cuerpo.nota_mes.includes("sin ajustes"), true);
@@ -234,11 +236,40 @@ check("sin aviso: se marca de 3 decimales y energia sigue siendo la del portal",
 r = await get("/v1/tarifa?tarifa=GDMTH&region=ORIENTE&anio=2026&mes=9");
 check("GDMTH no cambia: sin campos nuevos",
   ["energia_4dec", "energia_precision", "componentes_energia", "aviso_dof"].some((k) => k in r.cuerpo), false);
-r = await get("/v1/tarifa?tarifa=PDBT&region=NOROESTE&anio=2026&mes=3");
-check("PDBT no cambia: sin campos nuevos", "energia_4dec" in r.cuerpo, false);
+
+console.log("\nPDBT: energía con 4 decimales (suma de seis cargos del aviso del DOF)");
+const esperadoPdbt = { // valores del DOF, Noroeste; los reproduce Dashboard con sus recibos (Tepeyac)
+  "2025-01": 3.5528, "2025-02": 3.5568, "2025-03": 3.5578, "2025-06": 3.6188, "2025-07": 3.6578,
+  "2025-08": 3.6618, "2025-09": 3.6409, "2025-10": 3.6409, "2025-11": 3.5619, "2025-12": 3.4349,
+  "2026-01": 3.3449, "2026-03": 3.3469, "2026-05": 3.3239, "2026-07": 3.2539, "2026-10": 3.2539,
+};
+const obtenidoPdbt = {};
+for (const periodo of Object.keys(esperadoPdbt)) {
+  const [a, m] = periodo.split("-");
+  obtenidoPdbt[periodo] = (await v(`tarifa=PDBT&region=NOROESTE&anio=${a}&mes=${Number(m)}`)).energia_4dec;
+}
+check("PDBT Noroeste: energia_4dec por mes = aviso del DOF (incluye 3.5578 de marzo de 2025)", obtenidoPdbt, esperadoPdbt);
+r = await v("tarifa=PDBT&region=NOROESTE&anio=2026&mes=3");
+check("PDBT: energia del portal sin cambios", r.cargos, { energia: 3.347, fijo: 19.78 });
+check("PDBT: componentes fijos de 2026 (transmisión, distribución, CENACE, suministro)",
+  [r.componentes_energia.transmision, r.componentes_energia.distribucion, r.componentes_energia.cenace, r.componentes_energia.suministro],
+  [0.1801, 0.7753, 0.0076, 0.0069]);
+check("PDBT: precisión y aviso", [r.energia_precision, typeof r.aviso_dof], ["dof_4_decimales", "number"]);
+check("PDBT: la suma de los seis componentes es energia_4dec",
+  Math.round(Object.values(r.componentes_energia).reduce((x, y) => x + y, 0) * 1e4) / 1e4, r.energia_4dec);
+check("PDBT: seis componentes", Object.keys(r.componentes_energia).sort(),
+  ["capacidad", "cenace", "distribucion", "generacion", "suministro", "transmision"]);
+for (const [a, m] of [[2025, 4], [2025, 5]]) {
+  const x = await v(`tarifa=PDBT&region=NOROESTE&anio=${a}&mes=${m}`);
+  check(`PDBT Noroeste ${a}-0${m} (aviso no encontrado): null, portal_3_decimales y sin validar`,
+    [x.energia_4dec, x.energia_precision, x.validado], [null, "portal_3_decimales", []]);
+}
+r = await v("tarifa=PDBT&region=NOROESTE&anio=2026&mes=11");
+check("PDBT Noroeste 2026-11 (sin aviso todavía): null y portal_3_decimales", [r.energia_4dec, r.energia_precision], [null, "portal_3_decimales"]);
+r = await v("tarifa=PDBT&region=ORIENTE&anio=2025&mes=3");
+check("PDBT en otra división fuera de la ventana: sin datos", r.error !== undefined, true);
 
 console.log("\nvalidado: con qué se contrastó cada registro (GDMTO y PDBT, 17 divisiones, 2025-09 a 2026-10)");
-const v = async (q) => (await get("/v1/tarifa?" + q)).cuerpo;
 check("GDMTO Oriente 2026-09: DOF y recibo", (await v("tarifa=GDMTO&region=ORIENTE&anio=2026&mes=9")).validado, ["dof", "recibo"]);
 check("PDBT Noroeste 2026-03: DOF y recibo", (await v("tarifa=PDBT&region=NOROESTE&anio=2026&mes=3")).validado, ["dof", "recibo"]);
 check("PDBT Noroeste 2026-05 y 2025-09: también con recibo (Tepeyac, ±$1 con el fijo descontado)",
@@ -250,9 +281,10 @@ check("GDMTO Sureste 2026-09: precio oficial del DOF, sin recibo", r.validado, [
 check("GDMTO Sureste: energía del portal y a 4 decimales (la captura que antes salía de otro mes)",
   [r.cargos.energia, r.energia_4dec, r.periodo_cfe], [1.238, 1.2376, "SEP-26"]);
 r = await v("tarifa=PDBT&region=SURESTE&anio=2026&mes=9");
-check("PDBT Sureste 2026-09: DOF, sin componentes", [r.validado, "energia_4dec" in r], [["dof"], false]);
+check("PDBT Sureste 2026-09: DOF y energía a 4 decimales", [r.validado, r.energia_precision, typeof r.energia_4dec], [["dof"], "dof_4_decimales", "number"]);
 check("GDMTO Noroeste: DOF, sin recibo declarado", (await v("tarifa=GDMTO&region=NOROESTE&anio=2026&mes=9")).validado, ["dof"]);
-check("Oriente fuera de la ventana validada (2025-08): sin validar", (await v("tarifa=GDMTO&region=ORIENTE&anio=2025&mes=8")).validado, []);
+check("GDMTO Oriente 2025-08 (antes de la ventana, con su aviso): también con DOF", (await v("tarifa=GDMTO&region=ORIENTE&anio=2025&mes=8")).validado, ["dof"]);
+check("GDMTO Oriente 2025-05 (aviso no encontrado): sin validar", (await v("tarifa=GDMTO&region=ORIENTE&anio=2025&mes=5")).validado, []);
 check("Oriente 2026-11 (aún sin aviso): sin validar", (await v("tarifa=GDMTO&region=ORIENTE&anio=2026&mes=11")).validado, []);
 check("GDMTH no lleva validado", "validado" in (await v("tarifa=GDMTH&region=ORIENTE&anio=2026&mes=9")), false);
 check("DAC no lleva validado", "validado" in (await v("tarifa=DAC&region=NOROESTE&anio=2026&mes=9")), false);

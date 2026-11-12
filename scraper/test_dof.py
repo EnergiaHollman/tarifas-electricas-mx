@@ -74,6 +74,7 @@ check("capacidad distinta: no se guarda", "GDMTO|ORIENTE|2026-10" in e, False)
 
 print("\nPDBT: fijo y energía como suma de seis cargos")
 check("Noroeste 2026-10: seis cargos por kWh", dof.energia_pdbt(a["pdbt"]["NOROESTE"]), Decimal("3.2539"))
+check("Oriente 2025-09 (otro formato de aviso): seis cargos", dof.energia_pdbt(b["pdbt"]["ORIENTE"]) > 0, True)
 check("Noroeste 2026-10: fijo", a["pdbt"]["NOROESTE"]["fijo"], Decimal("19.78"))
 check("Oriente 2025-09 tiene fila de PDBT", "ORIENTE" in b["pdbt"], True)
 
@@ -83,12 +84,17 @@ def pdbt(energia=3.254, fijo=19.78):
             "PDBT|NOROESTE|2026-09": {"cargos": {"fijo": 0, "energia": 0}}}
 
 
-ok, mal = A.contrastar_pdbt(a, pdbt())
-check("cuadra con el portal (3.2539 redondea a 3.254)", (ok, mal), (["PDBT|NOROESTE|2026-10"], []))
-ok, mal = A.contrastar_pdbt(a, pdbt(energia=3.255))
-check("energía distinta: no valida y se reporta", (ok, len(mal)), ([], 1))
-ok, mal = A.contrastar_pdbt(a, pdbt(fijo=20.0))
-check("fijo distinto: no valida y se reporta", (ok, len(mal)), ([], 1))
+e, mal = A.construir(a, pdbt(), 5802191, "t", tarifa="PDBT")
+check("PDBT cuadra con el portal (3.2539 redondea a 3.254): se guarda con sus seis componentes",
+      (list(e), mal), (["PDBT|NOROESTE|2026-10"], []))
+check("PDBT: energia_4dec y componentes", {k: e["PDBT|NOROESTE|2026-10"][k] for k in
+      ("energia_4dec", "transmision", "distribucion", "cenace", "suministro", "generacion", "capacidad")},
+      {"energia_4dec": 3.2539, "transmision": 0.1801, "distribucion": 0.7753, "cenace": 0.0076,
+       "suministro": 0.0069, "generacion": 1.333, "capacidad": 0.951})
+e, mal = A.construir(a, pdbt(energia=3.255), 5802191, "t", tarifa="PDBT")
+check("PDBT energía distinta: no se guarda y se reporta", (list(e), len(mal)), ([], 1))
+e, mal = A.construir(a, pdbt(fijo=20.0), 5802191, "t", tarifa="PDBT")
+check("PDBT fijo distinto: no se guarda y se reporta", (list(e), len(mal)), ([], 1))
 
 print("\nvalidacion.json: marcas, huecos e informe")
 portal = {"GDMTO|ORIENTE|2025-10": {}, "GDMTO|ORIENTE|2025-11": {}, "PDBT|NOROESTE|2025-10": {},
@@ -102,6 +108,9 @@ check("capturado pero sin validar: sin marcas", "GDMTO|ORIENTE|2025-11" in v["re
 check("GDMTH no se marca", "GDMTH|NOROESTE|2025-10" in v["registros"], False)
 check("hueco: PDBT Noroeste 2025-11", "PDBT|NOROESTE|2025-11" in v["huecos"], True)
 check("lo capturado no es hueco", "GDMTO|ORIENTE|2025-10" in v["huecos"], False)
+v2 = A.anotar_validacion(portal, set(), ["2025-01", "2025-10"], ["NOROESTE"], {}, "t")
+check("meses anteriores a la ventana no generan huecos (solo se valida lo que existe)",
+      sorted(k.rsplit("|", 1)[1] for k in v2["huecos"]), ["2025-10"])
 v["diferencias"] = []
 tabla = A.informe(v, portal, ["NOROESTE", "ORIENTE"], ["2025-10", "2025-11"])
 check("el informe tiene una fila por división y tarifa", tabla.count("| ORIENTE |"), 2)
