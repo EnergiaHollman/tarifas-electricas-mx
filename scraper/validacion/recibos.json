@@ -86,14 +86,19 @@
   }
  },
  "1F|NACIONAL": {
-  "fuente": "1 CFDI de CFE de una zona rural de Cajeme (Sonora), 1F con facturacion bimestral (limites duplicados: 150 y 250 kWh), periodo del 24-feb-23 al 26-abr-23, consumo estimado de 904 kWh: 150 kWh basico a 0.957, 250 intermedio a 1.167 y 504 excedente a 3.409. Coincide con 1F 2023-03 fuera de verano (la clave del mes anterior al del fin del periodo; 2023-02 y 2023-04 no coinciden). Valida los tres bloques de fuera de verano de ese mes y la convencion del mes en 1F con facturacion bimestral. No respalda los precios de 2025-2026 ni la temporada de verano.",
+  "fuente": "2 CFDI de CFE de la zona de Cajeme (Sonora), 1F. (1) Bimestral, 24-feb-23 a 26-abr-23, consumo estimado de 904 kWh: 150 kWh basico a 0.957, 250 intermedio a 1.167 y 504 excedente a 3.409; coincide con 1F 2023-03 fuera de verano (2023-02 y 2023-04 no coinciden): valida sus tres bloques. (2) 11-may-23 a 13-jun-23, 2,046 kWh: 300 basico a 0.717, 900 intermedio bajo a 0.898 y 846 intermedio alto a 2.184; coincide con 1F 2023-05 verano (2023-06 no coincide): valida basico, intermedio_bajo e intermedio_alto de ese mes. Ambos usan la clave del mes anterior al del fin del periodo. No hay recibo del excedente de verano, ni de los precios de 2025-2026.",
   "temporada_por_mes": {
-   "2023-03": "fuera_verano"
+   "2023-03": "fuera_verano",
+   "2023-05": "verano"
   },
   "bloques_extra": {
    "2023-03": [
     "intermedio",
     "excedente"
+   ],
+   "2023-05": [
+    "intermedio_bajo",
+    "intermedio_alto"
    ]
   }
  }

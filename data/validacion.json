@@ -46,6 +46,11 @@
    "basico",
    "intermedio",
    "excedente"
+  ],
+  "1F|NACIONAL|2023-05|verano": [
+   "basico",
+   "intermedio_bajo",
+   "intermedio_alto"
   ]
  },
  "diferencias": [],
@@ -88,6 +93,9 @@
    "recibo"
   ],
   "1F|NACIONAL|2023-03|fuera_verano": [
+   "recibo"
+  ],
+  "1F|NACIONAL|2023-05|verano": [
    "recibo"
   ],
   "GDMTO|BAJA CALIFORNIA SUR|2025-09": [

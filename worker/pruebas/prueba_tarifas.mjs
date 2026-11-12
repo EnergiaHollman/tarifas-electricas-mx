@@ -326,6 +326,13 @@ r = await v("tarifa=1F&anio=2023&mes=3&temporada=fuera_verano");
 check("1F 2023-03 fuera de verano: recibo bimestral con los tres bloques (0.957, 1.167, 3.409)",
   [r.validado, r.bloques_validados, r.cargos.basico, r.cargos.intermedio, r.cargos.excedente],
   [["recibo"], ["basico", "intermedio", "excedente"], 0.957, 1.167, 3.409]);
+r = await v("tarifa=1F&anio=2023&mes=5&temporada=verano");
+check("1F 2023-05 verano: recibo con tres bloques (0.717, 0.898 y 2.184)",
+  [r.validado, r.bloques_validados, r.cargos.basico, r.cargos.intermedio_bajo, r.cargos.intermedio_alto],
+  [["recibo"], ["basico", "intermedio_bajo", "intermedio_alto"], 0.717, 0.898, 2.184]);
+check("1F 2023-05 verano: el excedente no está validado", r.bloques_validados.includes("excedente"), false);
+r = await v("tarifa=1F&anio=2023&mes=6&temporada=verano");
+check("1F 2023-06 (clave distinta del recibo): sin validar", r.validado, []);
 r = await v("tarifa=1F&anio=2023&mes=3&temporada=verano");
 check("1F 2023-03 pero verano: esa temporada no se validó", [r.validado, r.bloques_validados], [[], []]);
 r = await v("tarifa=1F&anio=2023&mes=2&temporada=fuera_verano");
