@@ -213,13 +213,17 @@ export function obtenerTarifa(
 }
 
 type ComponentesDof = {
-  transmision: number; cenace: number; suministro: number; generacion: number;
   energia_4dec: number; aviso_dof: number; fecha_captura: string;
+  // Además, un cargo por kWh por componente. GDMTO: transmision, cenace, suministro, generacion.
+  // PDBT: esos cuatro más distribucion y capacidad (el portal los suma en «energia»).
+  [componente: string]: number | string;
 };
 const componentesDof = componentesDofJson as unknown as Record<string, ComponentesDof>;
 
+const ORDEN_COMPONENTES = ["transmision", "distribucion", "cenace", "suministro", "generacion", "capacidad"];
+
 /** Tarifas cuya energía es suma de componentes publicados en el DOF. */
-const TARIFAS_CON_COMPONENTES = new Set(["GDMTO"]);
+const TARIFAS_CON_COMPONENTES = new Set(["GDMTO", "PDBT"]);
 
 /**
  * Energía con 4 decimales, sumada de los cargos del aviso mensual del DOF.
@@ -239,13 +243,13 @@ export function energiaDof(tarifa: string, region: string, anio: number, mes: nu
       componentes_energia: null,
     };
   }
+  // Siempre en este orden (el archivo guarda las claves alfabéticas).
+  const componentes: Record<string, number> = {};
+  for (const n of ORDEN_COMPONENTES) if (typeof c[n] === "number") componentes[n] = c[n] as number;
   return {
     energia_precision: "dof_4_decimales",
     energia_4dec: c.energia_4dec,
-    componentes_energia: {
-      transmision: c.transmision, cenace: c.cenace,
-      suministro: c.suministro, generacion: c.generacion,
-    },
+    componentes_energia: componentes,
     aviso_dof: c.aviso_dof,
   };
 }
@@ -375,7 +379,14 @@ export const META_TARIFAS: Record<
     descripcion: "Pequeña demanda en baja tensión, hasta 25 kW-mes",
     horarios: false,
     ubicacion: "division",
-    notas: [VALIDADO_NOTA],
+    notas: [
+      "cargos.energia es el precio del portal de CFE, redondeado a 3 decimales. energia_4dec es la suma " +
+        "de los seis cargos por kWh del aviso mensual del DOF (transmisión, distribución, CENACE, " +
+        "suministro, generación y capacidad; el portal los suma en «energia») y conserva el 4.º decimal: " +
+        "los recibos facturan con esa suma. Si energia_4dec es null, el aviso del mes todavía no está " +
+        "capturado: usa cargos.energia y trátala como de 3 decimales (energia_precision).",
+      VALIDADO_NOTA,
+    ],
   },
   DAC: {
     descripcion: "Doméstica de alto consumo",
