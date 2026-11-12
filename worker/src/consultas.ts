@@ -17,6 +17,7 @@ import {
   obtenerTarifa,
   energiaDof,
   validacionDe,
+  DOMESTICAS_VALIDADAS,
   periodosDe,
   regionDeMunicipio,
   regionesDac,
@@ -345,11 +346,15 @@ function consultarDomestica(args: Args, tarifa: string, anio: number, mes: numbe
     conceptos: bloque.conceptos,
     minimo_mensual_kwh: r.minimo_mensual_kwh,
     periodo_facturacion: "mensual",
+    ...validacionDe(tarifa, r.region, r.anio, r.mes, temporada),
     fuente: r.fuente,
     fecha_captura: r.fecha_captura,
     nota:
       "Escalones en kWh mensuales (con facturación bimestral los límites se duplican: lo aplica quien " +
-      "consulta). Los apoyos o subsidios no están incluidos. Precios sin validar contra recibos reales.",
+      "consulta). Los apoyos o subsidios no están incluidos. " +
+      (DOMESTICAS_VALIDADAS.has(r.tarifa)
+        ? "validado y bloques_validados dicen qué se reprodujo con recibos reales (ver /v1/tarifas)."
+        : "Precios sin validar contra recibos reales."),
     aviso: AVISO,
   };
 }

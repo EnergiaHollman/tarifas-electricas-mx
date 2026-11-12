@@ -111,6 +111,17 @@ check("lo capturado no es hueco", "GDMTO|ORIENTE|2025-10" in v["huecos"], False)
 v2 = A.anotar_validacion(portal, set(), ["2025-01", "2025-10"], ["NOROESTE"], {}, "t")
 check("meses anteriores a la ventana no generan huecos (solo se valida lo que existe)",
       sorted(k.rsplit("|", 1)[1] for k in v2["huecos"]), ["2025-10"])
+portal_1e = {"1E|NACIONAL|2026-08": {}, "1E|NACIONAL|2026-09": {}, "1E|NACIONAL|2025-12": {}}
+rec_1e = {"1E|NACIONAL": {"fuente": "x", "bloques_extra": {"2026-08": ["intermedio_bajo"]},
+                          "temporada_por_mes": {"2026-08": "verano", "2025-12": "fuera_verano", "2026-04": "fuera_verano"}}}
+v1 = A.anotar_validacion(portal_1e, set(), [], [], rec_1e, "t")
+check("1E: recibo por mes y temporada", v1["registros"],
+      {"1E|NACIONAL|2025-12|fuera_verano": ["recibo"], "1E|NACIONAL|2026-08|verano": ["recibo"]})
+check("1E: bloques validados (basico y, donde hay recibo, intermedio_bajo)", v1["bloques_validados"],
+      {"1E|NACIONAL|2025-12|fuera_verano": ["basico"], "1E|NACIONAL|2026-08|verano": ["basico", "intermedio_bajo"]})
+check("1E: un mes declarado pero no capturado no se marca", "1E|NACIONAL|2026-04|fuera_verano" in v1["registros"], False)
+check("1E: un mes capturado sin recibo declarado no se marca", "1E|NACIONAL|2026-09|verano" in v1["registros"], False)
+check("1E no genera huecos", v1["huecos"], {})
 v["diferencias"] = []
 tabla = A.informe(v, portal, ["NOROESTE", "ORIENTE"], ["2025-10", "2025-11"])
 check("el informe tiene una fila por división y tarifa", tabla.count("| ORIENTE |"), 2)

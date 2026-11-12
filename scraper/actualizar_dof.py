@@ -41,6 +41,9 @@ SALIDA = RAIZ / "data" / "componentes_dof.json"
 VALIDACION = RAIZ / "data" / "validacion.json"
 RECIBOS = pathlib.Path(__file__).resolve().parent / "validacion" / "recibos.json"
 TARIFAS_VALIDADAS = ("GDMTO", "PDBT")
+# Domesticas con recibos: no pasan por el DOF (sus precios no salen del aviso mensual de
+# suministro basico); se marcan solo con "recibo", por mes y temporada.
+DOMESTICAS_CON_RECIBO = ("1E|NACIONAL",)
 URL = "https://dof.gob.mx/nota_detalle_popup.php?codigo={codigo}"
 # Ventana en la que las 17 divisiones de GDMTO y PDBT se capturaron y se esperan completas.
 # Los huecos y el informe solo miran esta ventana; fuera de ella solo se valida lo que ya
@@ -114,6 +117,16 @@ def anotar_validacion(portal, validados_dof, ventana_meses, regiones, recibos, a
             marcas.append("recibo")
         if marcas:
             registros[k] = marcas
+    bloques = {}
+    for clave in DOMESTICAS_CON_RECIBO:
+        r = recibos.get(clave)
+        if not r:
+            continue
+        for periodo, temporada in sorted(r["temporada_por_mes"].items()):
+            if f"{clave}|{periodo}" in portal:
+                k = f"{clave}|{periodo}|{temporada}"
+                registros[k] = ["recibo"]
+                bloques[k] = ["basico"] + r.get("bloques_extra", {}).get(periodo, [])
     huecos = {}
     en_ventana = [m for m in ventana_meses if VENTANA[0] <= m <= VENTANA[1]]
     for t in TARIFAS_VALIDADAS:
@@ -123,7 +136,7 @@ def anotar_validacion(portal, validados_dof, ventana_meses, regiones, recibos, a
                 if k not in portal:
                     huecos[k] = "CFE no entregó la tabla de ese mes tras los reintentos; sin captura"
     return {"actualizado": ahora, "ventana": f"{VENTANA[0]}:{VENTANA[1]}",
-            "registros": registros, "huecos": huecos}
+            "registros": registros, "bloques_validados": bloques, "huecos": huecos}
 
 
 def informe(validacion, portal, regiones, ventana_meses):
