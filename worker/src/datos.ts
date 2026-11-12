@@ -372,11 +372,12 @@ const VALIDADO_1E_NOTA =
   "del periodo (un periodo que termina en septiembre usa mes=8), todo a la temporada de ese mes.";
 
 const VALIDADO_1F_NOTA =
-  "validado = [\"recibo\"] significa que ese mes y esa temporada se reprodujeron con un recibo real: solo " +
-  "2023-03 fuera de verano (un recibo bimestral de Cajeme, Sonora, con los tres bloques; bloques_validados " +
-  "lo detalla). Los precios de 2025 y 2026 y la temporada de verano NO están validados con recibo " +
-  "(validado = []). El recibo usa los precios del mes anterior al del fin del periodo. 2023-02 a 2023-04 son " +
-  "capturas puntuales para contrastar ese recibo: la cobertura continua de 1F empieza en 2025-01.";
+  "validado = [\"recibo\"] significa que ese mes y esa temporada se reprodujeron con un recibo real de la " +
+  "zona de Cajeme, Sonora: 2023-03 fuera de verano (básico, intermedio y excedente) y 2023-05 verano " +
+  "(básico, intermedio_bajo e intermedio_alto); bloques_validados lo detalla. Los precios de 2025 y 2026, " +
+  "el excedente de verano y el resto de los meses NO están validados con recibo (validado = []). El recibo " +
+  "usa los precios del mes anterior al del fin del periodo. 2023-02 a 2023-06 son capturas puntuales para " +
+  "contrastar esos recibos: la cobertura continua de 1F empieza en 2025-01.";
 
 const NOTA_VALIDADO_DOMESTICA: Record<string, string> = { "1E": VALIDADO_1E_NOTA, "1F": VALIDADO_1F_NOTA };
 
