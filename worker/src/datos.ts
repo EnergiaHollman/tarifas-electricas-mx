@@ -260,7 +260,7 @@ const validacion = validacionJson as unknown as {
 };
 
 /** Domésticas con recibos: se marcan por mes Y temporada (los precios de cada temporada son otros). */
-export const DOMESTICAS_VALIDADAS = new Set(["1E"]);
+export const DOMESTICAS_VALIDADAS = new Set(["1E", "1F"]);
 
 /** Tarifas cuyos registros se contrastan con el DOF y, donde hay, con recibos. */
 const TARIFAS_VALIDADAS = new Set(["GDMTO", "PDBT"]);
@@ -371,6 +371,15 @@ const VALIDADO_1E_NOTA =
   "validado = [] es capturado del portal sin validar. El recibo usa los precios del mes anterior al del fin " +
   "del periodo (un periodo que termina en septiembre usa mes=8), todo a la temporada de ese mes.";
 
+const VALIDADO_1F_NOTA =
+  "validado = [\"recibo\"] significa que ese mes y esa temporada se reprodujeron con un recibo real: solo " +
+  "2023-03 fuera de verano (un recibo bimestral de Cajeme, Sonora, con los tres bloques; bloques_validados " +
+  "lo detalla). Los precios de 2025 y 2026 y la temporada de verano NO están validados con recibo " +
+  "(validado = []). El recibo usa los precios del mes anterior al del fin del periodo. 2023-02 a 2023-04 son " +
+  "capturas puntuales para contrastar ese recibo: la cobertura continua de 1F empieza en 2025-01.";
+
+const NOTA_VALIDADO_DOMESTICA: Record<string, string> = { "1E": VALIDADO_1E_NOTA, "1F": VALIDADO_1F_NOTA };
+
 const VALIDADO_NOTA =
   "validado dice con qué se contrastó el registro: «dof» = coincide con el aviso mensual de tarifas " +
   "finales del DOF (precio oficial); «recibo» = además se reprodujo con recibos reales en esa región; " +
@@ -452,8 +461,8 @@ for (const [clave, descripcion] of DOMESTICAS) {
   const notas = NOTAS_DOMESTICAS(clave !== "1");
   META_TARIFAS[clave] = {
     descripcion, horarios: false, ubicacion: "nacional", estacional: clave !== "1",
-    // La 1E tiene recibos: su última nota deja de decir que no se ha validado.
-    notas: DOMESTICAS_VALIDADAS.has(clave) ? [...notas.slice(0, -1), VALIDADO_1E_NOTA] : notas,
+    // La 1E y la 1F tienen recibos: su última nota deja de decir que no se ha validado.
+    notas: clave in NOTA_VALIDADO_DOMESTICA ? [...notas.slice(0, -1), NOTA_VALIDADO_DOMESTICA[clave]] : notas,
   };
 }
 

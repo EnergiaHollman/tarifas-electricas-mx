@@ -84,5 +84,17 @@
     "intermedio_bajo"
    ]
   }
+ },
+ "1F|NACIONAL": {
+  "fuente": "1 CFDI de CFE de una zona rural de Cajeme (Sonora), 1F con facturacion bimestral (limites duplicados: 150 y 250 kWh), periodo del 24-feb-23 al 26-abr-23, consumo estimado de 904 kWh: 150 kWh basico a 0.957, 250 intermedio a 1.167 y 504 excedente a 3.409. Coincide con 1F 2023-03 fuera de verano (la clave del mes anterior al del fin del periodo; 2023-02 y 2023-04 no coinciden). Valida los tres bloques de fuera de verano de ese mes y la convencion del mes en 1F con facturacion bimestral. No respalda los precios de 2025-2026 ni la temporada de verano.",
+  "temporada_por_mes": {
+   "2023-03": "fuera_verano"
+  },
+  "bloques_extra": {
+   "2023-03": [
+    "intermedio",
+    "excedente"
+   ]
+  }
  }
 }
