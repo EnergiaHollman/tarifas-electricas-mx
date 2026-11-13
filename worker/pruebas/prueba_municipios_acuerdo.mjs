@@ -259,6 +259,58 @@ r = await get("/v1/municipios?estado=SONORA");
 check("Sonora: el listado incluye Plutarco Elías Calles y Ures",
   ["GENERAL PLUTARCO ELIAS CALLES", "URES"].every((n) => r.cuerpo.municipios.some((m) => m.nombre === n)), true);
 
+console.log("\n4. Equivalencias de nombre de Correos (data/municipios_correos.json)");
+const correos = JSON.parse(readFileSync("../data/municipios_correos.json", "utf8"));
+const catReal = JSON.parse(readFileSync("../data/catalogo.json", "utf8"));
+const compReal = JSON.parse(readFileSync("../data/municipios_complemento.json", "utf8"));
+const malas = [];
+for (const [estado, lista] of Object.entries(correos.equivalencias)) {
+  const e = catReal.estados[estado];
+  if (!e) { malas.push(`estado ${estado} no está en el catálogo`); continue; }
+  for (const q of lista) {
+    if (q.catalogo && !(q.catalogo in e.municipios)) malas.push(`${estado}: '${q.nombre}' apunta a '${q.catalogo}', que no existe`);
+    if (q.ausente && !(compReal.ausentes[estado] ?? []).some((a) => normalizar(a.oficial) === normalizar(q.ausente)))
+      malas.push(`${estado}: '${q.nombre}' apunta al ausente '${q.ausente}', que no está en el complemento`);
+    if (normalizar(q.nombre) in e.municipios) malas.push(`${estado}: '${q.nombre}' ya está en el catálogo con ese nombre`);
+  }
+}
+check("las equivalencias apuntan a municipios que existen (guarda de integridad)", malas, []);
+
+for (const [est, mun, division] of [
+  ["CHIHUAHUA", "Valle del Rosario", ["NORTE"]],
+  ["GUERRERO", "Apaxtla de Castrejón", ["CENTRO SUR"]],
+  ["OAXACA", "Villa Hidalgo Yalálag", ["SURESTE"]],
+  ["YUCATAN", "Tixpéual", ["PENINSULAR"]],
+  ["SINALOA", "Eldorado", ["NOROESTE"]],
+]) {
+  r = await tarifa(est, mun);
+  check(`${mun} (${est}) resuelve a ${division}`, [r.status, r.cuerpo.region], [200, division[0]]);
+}
+// El arnés reemplaza Guanajuato por un ejemplo; San José de Iturbide se prueba con el catálogo real.
+const workerReal = await crearWorker({
+  preparar: (d) => writeFileSync(path.join(d, "catalogo.json"), readFileSync("../data/catalogo.json")),
+});
+r = await (await workerReal.fetch(new Request(BASE + "/v1/tarifa?estado=GUANAJUATO&municipio=" +
+  encodeURIComponent("San José de Iturbide") + "&anio=2026&mes=3"))).json();
+check("San José de Iturbide (SEPOMEX) resuelve a BAJIO con el catálogo real", r.region, "BAJIO");
+// Con dos divisiones: la API devuelve las dos, no elige.
+r = await tarifa("OAXACA", "Villa de Santiago Chazumba");
+check("Villa de Santiago Chazumba: resuelve y trae las divisiones de SANTIAGO CHAZUMBA",
+  [r.status, (r.cuerpo.resultados ?? []).map((x) => x.region).sort()].flat().length > 1, true);
+r = await tarifa("OAXACA", "Santiago Chazumba");
+const directo = (r.cuerpo.resultados ?? []).map((x) => x.region).sort();
+r = await tarifa("OAXACA", "Villa de Santiago Chazumba");
+check("Villa de Santiago Chazumba da las mismas divisiones que SANTIAGO CHAZUMBA",
+  (r.cuerpo.resultados ?? []).map((x) => x.region).sort(), directo);
+// Lo que no se resuelve sigue sin resolverse: no se inventa división.
+for (const [est, mun] of [["QUINTANA ROO", "Playa del Carmen"], ["SAN LUIS POTOSI", "Villa de Pozos"]]) {
+  r = await tarifa(est, mun);
+  check(`${mun}: sigue sin catálogo (no se inventa división)`, r.status !== 200 || r.cuerpo.error !== undefined, true);
+}
+// Lo que ya resolvía no cambia.
+r = await tarifa("SINALOA", "Culiacán");
+check("Culiacán sigue en NOROESTE", r.cuerpo.region, "NOROESTE");
+
 console.log();
 if (contar()) {
   console.log(`${contar()} prueba(s) fallaron.`);
