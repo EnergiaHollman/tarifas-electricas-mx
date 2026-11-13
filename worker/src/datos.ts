@@ -7,6 +7,7 @@ import catalogoJson from "../../data/catalogo.json";
 import horariosJson from "../../data/horarios.json";
 import sistemasJson from "../../data/sistemas_horario.json";
 import complementoJson from "../../data/municipios_complemento.json";
+import correosJson from "../../data/municipios_correos.json";
 import tarifasJson from "../../data/tarifas.json";
 import componentesDofJson from "../../data/componentes_dof.json";
 import validacionJson from "../../data/validacion.json";
@@ -126,6 +127,18 @@ for (const [estado, lista] of Object.entries(complemento.alias ?? {}))
 for (const [estado, lista] of Object.entries(complemento.ausentes ?? {}))
   for (const a of lista) indiceAusentes.set(`${estado}|${normalizar(a.oficial)}`, a);
 
+/**
+ * Equivalencias de nombre con el catálogo postal de Correos de México (data/municipios_correos.json,
+ * curado a mano). Cada una apunta a un municipio que ya existe en el catálogo o entre los ausentes
+ * del Acuerdo: la división sale siempre de esos datos. Se consulta al final, solo si nada más lo encontró.
+ */
+const correos = correosJson as unknown as {
+  equivalencias: Record<string, { nombre: string; catalogo?: string; ausente?: string }[]>;
+};
+const indiceCorreos = new Map<string, { catalogo?: string; ausente?: string }>();
+for (const [estado, lista] of Object.entries(correos.equivalencias ?? {}))
+  for (const q of lista) indiceCorreos.set(`${estado}|${normalizar(q.nombre)}`, q);
+
 // Municipios que el portal y el Acuerdo asignan a divisiones distintas. No se corrige ninguno
 // de los dos: la respuesta sigue al portal y advierte lo que dice el Acuerdo.
 const indiceDivergencias = new Map<string, string[]>();                          // "ESTADO|CLAVE" -> divisiones del Acuerdo
@@ -163,7 +176,11 @@ export function regionDeMunicipio(estado: string, municipio: string): Municipio 
   const alias = indiceAlias.get(k);
   if (alias && e.municipios[alias]) return conAcuerdo(clave, alias, e.municipios[alias]);
   const ausente = indiceAusentes.get(k);
-  return ausente ? municipioDelAcuerdo(ausente) : null;
+  if (ausente) return municipioDelAcuerdo(ausente);
+  const q = indiceCorreos.get(k);                                          // último recurso: nombre de Correos
+  if (q?.catalogo && e.municipios[q.catalogo]) return conAcuerdo(clave, q.catalogo, e.municipios[q.catalogo]);
+  const dest = q?.ausente ? indiceAusentes.get(`${clave}|${normalizar(q.ausente)}`) : undefined;
+  return dest ? municipioDelAcuerdo(dest) : null;
 }
 
 /**
