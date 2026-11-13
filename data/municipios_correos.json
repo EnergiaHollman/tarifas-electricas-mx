@@ -1,0 +1,57 @@
+{
+ "_comentario": "Equivalencias de NOMBRE entre el catalogo postal de Correos de Mexico (SEPOMEX) y nuestro catalogo. Curado a mano; es un archivo aparte porque cruzar_catalogo.py --complemento reescribe municipios_complemento.json completo. Cada entrada apunta a un municipio que YA existe en data/catalogo.json (catalogo) o en los ausentes del numeral 5.9 del Acuerdo (ausente): la division siempre sale de esos datos, aqui no se asigna ninguna. Se consulta SOLO cuando ni el catalogo ni el complemento encuentran el nombre.",
+ "fuente": "Catalogo postal de Correos de Mexico (nombres); divisiones de data/catalogo.json y del Acuerdo CNE CT/11.SE/8-2025, numeral 5.9 (2026)",
+ "equivalencias": {
+  "CHIHUAHUA": [
+   {
+    "nombre": "Valle del Rosario",
+    "catalogo": "ROSARIO"
+   }
+  ],
+  "GUANAJUATO": [
+   {
+    "nombre": "San José de Iturbide",
+    "catalogo": "SAN JOSE ITURBIDE"
+   }
+  ],
+  "GUERRERO": [
+   {
+    "nombre": "Apaxtla de Castrejón",
+    "catalogo": "APAXTLA"
+   }
+  ],
+  "OAXACA": [
+   {
+    "nombre": "Magdalena Apazco",
+    "catalogo": "MAGDALENA APASCO"
+   },
+   {
+    "nombre": "Villa de Santiago Chazumba",
+    "catalogo": "SANTIAGO CHAZUMBA"
+   },
+   {
+    "nombre": "Villa Hidalgo Yalálag",
+    "catalogo": "VILLA HIDALGO"
+   }
+  ],
+  "SAN LUIS POTOSI": [
+   {
+    "nombre": "Ahualulco del Sonido 13",
+    "catalogo": "AHUALULCO"
+   }
+  ],
+  "SINALOA": [
+   {
+    "nombre": "Eldorado",
+    "ausente": "El Dorado"
+   }
+  ],
+  "YUCATAN": [
+   {
+    "nombre": "Tixpéual",
+    "catalogo": "TIXPEHUAL"
+   }
+  ]
+ },
+ "sin_resolver": "Playa del Carmen (Quintana Roo) y Villa de Pozos (San Luis Potosi): municipios de creacion reciente que ni el portal ni la tabla extraida del Acuerdo traen. No se les asigna division sin confirmarla en el Acuerdo; quien consulta cae a la reproduccion del recibo."
+}
